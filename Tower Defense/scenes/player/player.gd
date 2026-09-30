@@ -14,6 +14,7 @@ const CAMERA_PITCH_MAX_DEG := 30.0
 @onready var spring_arm: SpringArm3D = $SpringArm3D
 @onready var attack_area: Area3D = $AttackArea3D
 @onready var attack_cooldown: Timer = $AttackCooldownTimer
+@onready var domestication_channel: Node = $DomesticationChannel
 
 func _ready() -> void:
 	add_to_group("player") # alvo detectavel pelo dinossauro selvagem (Spec 002)
@@ -31,7 +32,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x - event.relative.y * MOUSE_SENSITIVITY, deg_to_rad(-55), deg_to_rad(10))
-	elif event.is_action_pressed("attack") and not Input.is_action_pressed("domesticate"):
+	elif event.is_action_pressed("attack"):
 		_try_attack()
 
 func _physics_process(delta: float) -> void:
@@ -63,6 +64,10 @@ func _physics_process(delta: float) -> void:
 func _try_attack() -> void:
 	if not DayNightManager.can_play() or not attack_cooldown.is_stopped():
 		return # RF-AGE-002: cooldown ainda ativo, ataque nao e acionado
+	# RF-AGE-006: mesma leitura de E da canalizacao (Input Map, tecla fisica
+	# e evento alternativo). O bloqueio vale para qualquer origem do ataque.
+	if domestication_channel.is_domesticate_held():
+		return
 	attack_cooldown.start()
 	$Visual.strike()
 	get_tree().call_group("audio_director", "effect", false)

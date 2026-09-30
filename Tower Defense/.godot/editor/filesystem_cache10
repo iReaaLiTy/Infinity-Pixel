@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1790779332
+::res://::1790783915
 export_presets.cfg::TextFile::-1::1790780019::0::1::::<><><>0<>0<><>::
 ::res://assets/::1790772297
 ::res://assets/audio/::1790772686
@@ -20,8 +20,8 @@ carnotauro.tscn::PackedScene::-1::1790772438::0::1::::<><><>0<>0<><>::res://scen
 wild_dino.gd::GDScript::6604269715866373088::1790772684::0::1::::<>CharacterBody3D<><>0<>0<><>::
 wild_dino.tscn::PackedScene::-1::1790772438::0::1::::<><><>0<>0<><>::res://scenes/enemies/wild_dino.gd<>res://scenes/visuals/dino.tscn
 ::res://scenes/player/::1790352897
-domestication_channel.gd::GDScript::5262794038317275940::1790772297::0::1::::<>Node<><>0<>0<><>::
-player.gd::GDScript::3985945182949789404::1790778701::0::1::::<>CharacterBody3D<><>0<>0<><>::
+domestication_channel.gd::GDScript::5262794038317275940::1790783508::0::1::::<>Node<><>0<>0<><>::
+player.gd::GDScript::3985945182949789404::1790783508::0::1::::<>CharacterBody3D<><>0<>0<><>::
 player.tscn::PackedScene::-1::1790772438::0::1::::<><><>0<>0<><>::res://scenes/player/player.gd<>res://scenes/player/domestication_channel.gd<>res://scenes/visuals/guardian.tscn
 ::res://scenes/test/::1790769178
 damage_dummy.gd::GDScript::8383572355652226358::1789649582::0::1::::<>StaticBody3D<><>0<>0<><>::
@@ -44,11 +44,13 @@ day_night_visual.gd::GDScript::197241409273998300::1790208098::0::1::::<>Node<><
 encounter_spawner.gd::GDScript::8476052863924360919::1790769173::0::1::::<>Node3D<><>0<>0<><>::
 prototype_area.tscn::PackedScene::-1::1790772951::0::1::::<><><>0<>0<><>::res://scenes/player/player.tscn<>res://scenes/enemies/wild_dino.tscn<>res://scenes/test/wave_test_trigger.gd<>res://scenes/world/base.gd<>res://scenes/world/wave_manager.gd<>res://scenes/world/day_night_visual.gd<>res://scenes/world/encounter_spawner.gd<>res://scenes/visuals/arena_art.tscn
 wave_manager.gd::GDScript::7271366205488294222::1790773379::0::1::::<>Node<><>0<>0<><>::
-::res://tests/::1790773960
-acceptance.gd::GDScript::1438697876576700160::1790779167::0::1::::<>Node<><>0<>0<><>::
+::res://tests/::1790783419
+acceptance.gd::GDScript::1438697876576700160::1790783592::0::1::::<>Node<><>0<>0<><>::
 acceptance.tscn::PackedScene::-1::1790772835::0::1::::<><><>0<>0<><>::res://tests/acceptance.gd
 demo.gd::GDScript::2285627885777609994::1790773308::0::1::::<>Node<><>0<>0<><>::
 demo.tscn::PackedScene::-1::1790773308::0::1::::<><><>0<>0<><>::res://tests/demo.gd
+domestication_regression.gd::GDScript::4599822871280513246::1790783592::0::1::::<>Node<><>0<>0<><>::
+domestication_regression.tscn::PackedScene::-1::1790783419::0::1::::<><><>0<>0<><>::res://tests/domestication_regression.gd
 showcase.gd::GDScript::5075442203652621382::1790773054::0::1::::<>Node<><>0<>0<><>::
 showcase.tscn::PackedScene::-1::1790773054::0::1::::<><><>0<>0<><>::res://tests/showcase.gd
 ::res://tools/::1790773928

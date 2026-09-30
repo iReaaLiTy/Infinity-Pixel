@@ -2,6 +2,11 @@
 
 Ciclo 1 — Núcleo Jogável.
 
+**Validação da unidade (30/09/2026):** reaberta por solicitação do usuário.
+O registro de aprovação de 25/09 permanece histórico; esta revisão exige
+novo playtest humano antes de marcar a Unidade 3 como concluída. Resultados
+técnicos e roteiro em `docs/ac1/TESTES_UNIDADE_3.md`.
+
 ## Fora do escopo
 
 - Comida ou itens específicos de domesticação — fica para ciclos futuros.
@@ -55,6 +60,50 @@ dinossauro durante a canalização cancela o processo, exigindo reinício.
   e precisa recomeçar do zero.
 - Dado que a domesticação foi concluída, quando ela termina, então o
   dinossauro deixa de atacar o jogador e passa a agir como aliado.
+
+**Contrato de interação consolidado em 30/09/2026**
+
+Os parâmetros abaixo documentam o protótipo existente; alcance e sensação
+continuam provisórios, sem alteração de balanceamento nesta revisão.
+
+- A elegibilidade exige criatura viva, selvagem, domesticável, com HP
+  positivo e no máximo 30% do total, a até **3 m no plano XZ** do Player.
+- Sem canalização ativa, escolher o elegível mais próximo. Um selvagem
+  saudável ou não domesticável mais próximo não deve ocultar essa opção.
+- Durante a canalização, manter o alvo enquanto ele for válido. A chegada
+  de outro elegível mais próximo não reinicia nem transfere o progresso.
+- Soltar E, afastar-se, perder/invalidar o alvo, pausar, perder foco ou
+  encerrar a sessão cancela e descarta o progresso. A próxima tentativa
+  começa do zero; o alvo sobrevivente retoma seu comportamento normal.
+- Um alvo morto, fora da árvore ou marcado para remoção não pode concluir
+  domesticação, mesmo no quadro em que a remoção foi solicitada.
+- Enquanto E estiver pressionado, o ataque do Player permanece bloqueado
+  sem consumir cooldown. A canalização e o ataque consultam a mesma leitura
+  da ação, tecla física e evento alternativo de E. Ao soltar E, o ataque
+  volta a funcionar, respeitando o cooldown normal.
+- O selvagem canalizado para de perseguir/atacar. Outros hostis continuam
+  ativos e podem feri-lo; não há invulnerabilidade ou cura introduzida.
+- Ao concluir, preservar o indivíduo e o HP restante, remover `wild_dino`,
+  adicionar `domesticated`, limpar o aviso e iniciar seguir (Spec 004).
+  O Player não causa dano ao aliado; outros hostis podem derrotá-lo.
+
+**Critérios complementares de aceitação**
+
+- Dado um alvo elegível e outro inelegível mais próximo, quando E é
+  segurado, então a canalização começa no elegível e permanece nele.
+- Dada uma canalização em curso, quando o jogador clica para atacar,
+  então o alvo não recebe dano desse ataque e o cooldown não é consumido,
+  inclusive quando E foi reconhecido apenas pelo evento alternativo.
+- Dado qualquer cancelamento acima, quando uma nova tentativa começa,
+  então não há progresso acumulado nem criatura presa na canalização.
+- Dado um alvo com remoção pendente, quando o tempo de canalização seria
+  completado, então não há conversão nem sinal de domesticação.
+- Dado um alvo com 20/80 HP, quando a canalização termina, então ele segue
+  como aliado com 20/80 HP e permanece no mapa até uma remoção legítima,
+  como morte em combate ou reinício da partida.
+
+Obstrução por paredes e diferenças de altura além do plano XZ ficam para
+a etapa de colisões. Esta revisão não altera câmera, navegação ou física.
 
 **Origem:** domesticação simples e não instantânea, sem itens ou múltiplos
 métodos no Ciclo 1.

@@ -1,5 +1,23 @@
 # Progress Tracker
 
+## Estado vigente — revisão de 30/09/2026
+
+A nova proposta mantém o Tower Defense central e prevê exploração,
+domesticação seletiva, construção da própria base, área para criaturas e
+ciclo gradual de dia/noite, com câmera elevada em perspectiva 3/4.
+O incremento autorizado nesta revisão é **somente documentação e
+correção/revalidação da Unidade 3**. Câmera, colisões, construção e ciclo
+visual ficam para incrementos seguintes.
+
+**Unidade 3: correções técnicas implementadas; playtest humano pendente.**
+Não marcar concluída com base nos registros históricos abaixo. Resultados,
+limites da verificação e roteiro atual: `docs/ac1/TESTES_UNIDADE_3.md`.
+
+Estado real do projeto: F5 abre `scenes/ui/main.tscn`; Jogar cria o encontro
+diurno sem T. O gatilho T está desligado por padrão e só funciona em debug
+quando `debug_enabled` é ligado. Diagnóstico detalhado da domesticação
+está desligado (`DEBUG := false`), mas logs de estado continuam ativos.
+
 ## Ciclo 1 — Núcleo Jogável
 
 ### Unidade 1 — Setup do projeto Godot + Spec 001 (controle do jogador)
@@ -80,10 +98,21 @@ dano, 1 s, 8 m, 4 m/s) ainda sem avaliação registrada.
 
 ### Unidade 3 — Spec 003 (domesticação)
 
-**Status:** CONCLUÍDA — playtest manual aprovado em 2026-09-25, após a
-correção do 4º relato. Ver "4º relato" e "Playtest manual da correção" abaixo.
-Os logs `[DEBUG DOMESTICACAO]` seguem ligados (`DEBUG := true`) até o grupo
-decidir desligá-los.
+**Status atual (30/09/2026):** REABERTA — correções técnicas implementadas;
+aguardando nova validação humana, conforme solicitação atual do usuário.
+
+**Revisão atual:** ataque passou a consultar a mesma leitura de E usada
+pela canalização, inclusive o evento alternativo de teclado; a proteção
+fica em `_try_attack()` antes de consumir cooldown. Alvos marcados para
+remoção deixam de ser válidos imediatamente, evitando conversão no mesmo
+quadro do `queue_free()`. Script: `v6-entrada-e-ciclo-de-vida`.
+Spec 003 agora registra alcance, seleção/travamento, cancelamentos e HP
+preservado. Câmera, física, dano, tempo de 2 s e alcance de 3 m preservados.
+
+**Histórico de 25/09/2026:** havia aprovação manual após a correção do 4º
+relato, descrita abaixo. Ela não substitui a aprovação desta revisão.
+Naquele momento os logs detalhados estavam ligados; atualmente `DEBUG`
+está desligado por padrão.
 
 **Status anterior:** implementada e validada em playtest (2026-09-23) — bug de
 domesticação (E não registrava, dino morria por ataque normal do jogador)
@@ -340,6 +369,10 @@ real com o mouse).
 
 ## Como testar a Unidade 4 (dia/noite, aliado, buff noturno, base)
 
+> Roteiro histórico. Na versão atual, F5 abre o menu, T está desligado por
+> padrão e há encontro diurno sem T. Use `docs/ac1/TESTES_AC1.md` para o fluxo
+> integrado e `docs/ac1/TESTES_UNIDADE_3.md` para domesticação.
+
 1. Rodar a cena principal (F5), Output visível.
 > **Atualização 2026-09-25:** T voltou a spawnar o WildDino domesticável
 > (correção da Unidade 3). Para os passos com Carnotauro abaixo, troque
@@ -371,26 +404,15 @@ real com o mouse).
 
 ## Como testar a Unidade 3
 
-Diagnóstico: `const DEBUG := true` em `scenes/player/domestication_channel.gd`
-(false desliga os logs `[DEBUG DOMESTICACAO]`; os logs `[Domesticacao]` de
-início/cancelamento/conclusão continuam). Ao rodar, o Output deve mostrar
-`script carregado (v5-alvo-elegivel)`; outra versão = editor com arquivo antigo.
+Roteiro vigente e comandos de teste em `docs/ac1/TESTES_UNIDADE_3.md`.
+F5 → Jogar → encontro à esquerda → três golpes → E por 2 s a até 3 m.
+Confirmar cancelamentos, bloqueio do clique enquanto E está pressionado,
+aliado com 20/80 HP e seguir sem atacar o Player.
 
-1. F5 na cena principal (`prototype_area.tscn`), Output visível. Confirmar
-   WASD, câmera e ataque.
-2. T: WildDino **vermelho** (não roxo). Atacar 3 vezes: 80 → 60 → 40 → 20.
-3. Parar de atacar, ficar a ≤ 3 m: aparece "Segure E para domesticar".
-4. Segurar E menos de 2 s e soltar: `cancelada: tecla_liberada`, sem dano.
-5. Segurar E de novo e afastar-se (> 3 m): `cancelada: fora_do_alcance`;
-   ao voltar, a nova tentativa recomeça em 0.
-6. Segurar E por 2 s parado: o progresso sobe no texto e no log e
-   `concluida: aliado=true hp=20/80` aparece no log.
-7. Conferir: continua no mapa, verde, `HP 20/80`, não ataca o jogador, não
-   vai ao Territory (segue o jogador — comportamento da Unidade 4).
-8. T: aliado permanece; surge novo WildDino com 80 HP e IA normal. Atenção:
-   pela Spec 002 o selvagem ataca aliados; com 20 HP o aliado morre em 2
-   golpes se o selvagem o alcançar.
-9. No novo selvagem: perseguição/ataque/retorno normais e morte com 4 golpes.
+Diagnóstico detalhado opcional: `DEBUG := true` em
+`scenes/player/domestication_channel.gd`; a versão atual é
+`v6-entrada-e-ciclo-de-vida`. Com `DEBUG := false`, início/cancelamento/
+conclusão continuam no Output; ausência do anúncio de versão é esperada.
 
 ## Como testar a Unidade 2
 

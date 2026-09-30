@@ -1,5 +1,10 @@
 # Verificação da AC1 — 30/09/2026
 
+**Revisão posterior da Unidade 3:** resultados e roteiro atual em
+[TESTES_UNIDADE_3.md](TESTES_UNIDADE_3.md). A unidade permanece pendente de
+playtest humano; os resultados técnicos e históricos abaixo não são
+aprovação dessa revisão.
+
 ## Executado nesta sessão
 
 - MCP STDIO real: descoberta de 386 ferramentas, leitura de versão/configuração, início headless, logs e parada. Ver `SETUP_MCP.md`.
@@ -40,7 +45,7 @@ Testes históricos de setembro no tracker foram mantidos como históricos. Resul
 ## Reproduzir
 
 ```sh
-"/Users/juancarlos/Downloads/Godot.app/Contents/MacOS/Godot" --headless --path "/Users/juancarlos/Downloads/jogo/Tower Defense" res://tests/acceptance.tscn
+"/Users/juancarlos/Downloads/Godot.app/Contents/MacOS/Godot" --headless --path "/Users/juancarlos/Documents/GitHub/Infinity-Pixel/Tower Defense" res://tests/acceptance.tscn
 ```
 
 Para capturas, executar `res://tests/showcase.tscn` com janela. Para vídeo, usar `--fixed-fps 30 --write-movie demonstracao.avi res://tests/demo.tscn`. Essas cenas são de teste e ficam excluídas do PCK.
