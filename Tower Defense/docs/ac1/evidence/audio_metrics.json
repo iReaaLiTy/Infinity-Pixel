@@ -1,0 +1,58 @@
+{
+  "refugio_principal.wav": {
+    "seconds": 112.0,
+    "sample_rate": 32000,
+    "peak_dbfs": -2.8533500713746314,
+    "rms_dbfs": -19.39464426459557,
+    "clipped_samples": 0,
+    "seam_jump": 0.0
+  },
+  "refugio_calm.wav": {
+    "seconds": 112.0,
+    "sample_rate": 32000,
+    "peak_dbfs": -2.8533500713746314,
+    "rms_dbfs": -19.866171235086,
+    "clipped_samples": 0,
+    "seam_jump": 0.0
+  },
+  "refugio_combat.wav": {
+    "seconds": 112.0,
+    "sample_rate": 32000,
+    "peak_dbfs": -2.8533500713746314,
+    "rms_dbfs": -18.673265037474206,
+    "clipped_samples": 0,
+    "seam_jump": 0.0
+  },
+  "victory.wav": {
+    "seconds": 4.0,
+    "sample_rate": 32000,
+    "peak_dbfs": -2.8533500713746314,
+    "rms_dbfs": -16.37775899302711,
+    "clipped_samples": 0,
+    "seam_jump": 0.0
+  },
+  "defeat.wav": {
+    "seconds": 4.0,
+    "sample_rate": 32000,
+    "peak_dbfs": -2.8533500713746314,
+    "rms_dbfs": -16.156223375385167,
+    "clipped_samples": 0,
+    "seam_jump": 0.0
+  },
+  "strike.wav": {
+    "seconds": 0.24,
+    "sample_rate": 32000,
+    "peak_dbfs": -2.8533500713746314,
+    "rms_dbfs": -10.124181722723621,
+    "clipped_samples": 0,
+    "seam_jump": 1.2040371912359492e-05
+  },
+  "bond.wav": {
+    "seconds": 0.8,
+    "sample_rate": 32000,
+    "peak_dbfs": -2.8533500713746314,
+    "rms_dbfs": -16.46022293420216,
+    "clipped_samples": 0,
+    "seam_jump": 1.664881833412438e-06
+  }
+}

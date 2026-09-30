@@ -1,0 +1,117 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 91.7 - Compatibility - Using Device: Apple - Apple M4
+
+Movie Maker mode enabled, recording movie in 1280×720 @ 30 FPS...
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+WildDinoEncontro atacou Player.
+[Player] recebeu 15 de dano (sem HP definido ainda).
+WildDinoEncontro atacou Player.
+[Player] recebeu 15 de dano (sem HP definido ainda).
+WildDinoEncontro recebeu 20 de dano. HP: 60/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 20 de dano. HP: 40/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro atacou Player.
+[Player] recebeu 15 de dano (sem HP definido ainda).
+WildDinoEncontro recebeu 20 de dano. HP: 20/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro atacou Player.
+[Player] recebeu 15 de dano (sem HP definido ainda).
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro foi domesticado com 20/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[Domesticacao] concluida: aliado=true hp=20/80
+[ALIADO] Modo alterado: FICAR
+[ALIADO] Posição de defesa definida: (0.0, 0.0, -5.0)
+[DIA/NOITE] Iniciar Noite acionado. Estado: NOITE
+[NOITE] Onda iniciada: 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] Aplicando visual de NOITE
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 15.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDino atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+WildDino recebeu 20 de dano. HP: 60/80
+[Player] ataque acionado — alvos atingidos: 1
+[NOITE] Inimigo spawnado (2/3) em (0.0, 0.5, 15.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@48
+WildDino atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+WildDino recebeu 20 de dano. HP: 40/80
+[Player] ataque acionado — alvos atingidos: 1
+@CharacterBody3D@48 atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+WildDino recebeu 20 de dano. HP: 20/80
+@CharacterBody3D@48 recebeu 20 de dano. HP: 60/80
+[Player] ataque acionado — alvos atingidos: 2
+WildDino atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+[NOITE] Inimigo spawnado (3/3) em (0.0, 0.5, 15.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@49
+WildDino recebeu 20 de dano. HP: 0/80
+WildDino foi derrotado.
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@48 recebeu 20 de dano. HP: 40/80
+[Player] ataque acionado — alvos atingidos: 2
+@CharacterBody3D@48 atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+@CharacterBody3D@49 atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+@CharacterBody3D@48 recebeu 20 de dano. HP: 20/80
+@CharacterBody3D@49 recebeu 20 de dano. HP: 60/80
+[Player] ataque acionado — alvos atingidos: 2
+@CharacterBody3D@48 atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+@CharacterBody3D@48 recebeu 20 de dano. HP: 0/80
+@CharacterBody3D@48 foi derrotado.
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@49 recebeu 20 de dano. HP: 40/80
+[Player] ataque acionado — alvos atingidos: 2
+@CharacterBody3D@49 atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+@CharacterBody3D@49 recebeu 20 de dano. HP: 20/80
+[Player] ataque acionado — alvos atingidos: 1
+@CharacterBody3D@49 atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+@CharacterBody3D@49 recebeu 20 de dano. HP: 0/80
+@CharacterBody3D@49 foi derrotado.
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[Player] ataque acionado — alvos atingidos: 1
+[DIA/NOITE] Vitoria da noite. Estado: DIA
+[VISUAL DIA/NOITE] Aplicando visual de DIA
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+DEMO victory: victory
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+[DIA/NOITE] Iniciar Noite acionado. Estado: NOITE
+[NOITE] Onda iniciada: 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] Aplicando visual de NOITE
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 15.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (0.0, 0.5, 15.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@79
+[NOITE] Inimigo spawnado (3/3) em (0.0, 0.5, 15.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@80
+WildDino chegou ao territorio.
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 80/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 61/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 42/100
+@CharacterBody3D@79 chegou ao territorio.
+@CharacterBody3D@79 atacou Territory.
+Base recebeu 20 de dano. HP: 22/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 2/100
+@CharacterBody3D@79 atacou Territory.
+Base recebeu 20 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+DEMO defeat by actual enemies: defeat time=8.5
+[NOITE] Inimigo da wave removido. Restantes: 2
+[NOITE] Inimigo da wave removido. Restantes: 1
+[NOITE] Inimigo da wave removido. Restantes: 0
+[NOITE] Wave concluida
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)

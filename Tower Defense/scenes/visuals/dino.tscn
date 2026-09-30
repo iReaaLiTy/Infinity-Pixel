@@ -1,0 +1,320 @@
+[gd_scene load_steps=36 format=3]
+
+[ext_resource type="Script" path="res://scenes/visuals/actor_visual.gd" id="script"]
+
+[sub_resource type="StandardMaterial3D" id="r1"]
+albedo_color = Color(0.9058823529411765, 0.6823529411764706, 0.34509803921568627, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r2"]
+albedo_color = Color(0.4117647058823529, 0.7450980392156863, 0.6078431372549019, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r3"]
+albedo_color = Color(0.09411764705882353, 0.24313725490196078, 0.24313725490196078, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r4"]
+albedo_color = Color(0.803921568627451, 0.5764705882352941, 0.4117647058823529, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r5"]
+albedo_color = Color(0.6901960784313725, 0.7764705882352941, 0.7372549019607844, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r6"]
+albedo_color = Color(0.38823529411764707, 0.29411764705882354, 0.23921568627450981, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r7"]
+albedo_color = Color(1.0, 0.9490196078431372, 0.803921568627451, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r8"]
+albedo_color = Color(0.7803921568627451, 0.4235294117647059, 0.2980392156862745, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="r9"]
+albedo_color = Color(0.4117647058823529, 0.3411764705882353, 0.47058823529411764, 1)
+roughness = 0.88
+
+[sub_resource type="SphereMesh" id="r10"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="r11"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="r12"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="r13"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="r14"]
+size = Vector3(0.61, 0.25, 0.4)
+
+[sub_resource type="BoxMesh" id="r15"]
+size = Vector3(0.53, 0.09, 0.45)
+
+[sub_resource type="CylinderMesh" id="r16"]
+top_radius = 0
+bottom_radius = 0.5
+height = 1
+radial_segments = 7
+
+[sub_resource type="CylinderMesh" id="r17"]
+top_radius = 0
+bottom_radius = 0.5
+height = 1
+radial_segments = 7
+
+[sub_resource type="BoxMesh" id="r18"]
+size = Vector3(0.62, 0.18, 0.62)
+
+[sub_resource type="SphereMesh" id="r19"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="r20"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="r21"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="r22"]
+size = Vector3(0.19, 0.3, 0.25)
+
+[sub_resource type="BoxMesh" id="r23"]
+size = Vector3(0.27, 0.19, 0.56)
+
+[sub_resource type="BoxMesh" id="r24"]
+size = Vector3(0.17, 0.25, 0.24)
+
+[sub_resource type="CylinderMesh" id="r25"]
+top_radius = 0
+bottom_radius = 0.5
+height = 1
+radial_segments = 7
+
+[sub_resource type="CylinderMesh" id="r26"]
+top_radius = 0
+bottom_radius = 0.5
+height = 1
+radial_segments = 7
+
+[sub_resource type="SphereMesh" id="r27"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="r28"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="r29"]
+radius = 0.5
+height = 1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="r30"]
+size = Vector3(0.19, 0.3, 0.25)
+
+[sub_resource type="BoxMesh" id="r31"]
+size = Vector3(0.27, 0.19, 0.56)
+
+[sub_resource type="BoxMesh" id="r32"]
+size = Vector3(0.17, 0.25, 0.24)
+
+[sub_resource type="CylinderMesh" id="r33"]
+top_radius = 0
+bottom_radius = 0.5
+height = 1
+radial_segments = 7
+
+[sub_resource type="CylinderMesh" id="r34"]
+top_radius = 0
+bottom_radius = 0.5
+height = 1
+radial_segments = 7
+
+[node name="Visual" type="Node3D"]
+script = ExtResource("script")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.93, 0.08)
+mesh = SubResource("r10")
+material_override = SubResource("r8")
+scale = Vector3(0.92, 0.86, 1.34)
+
+[node name="Belly" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.83, -0.28)
+mesh = SubResource("r11")
+material_override = SubResource("r1")
+scale = Vector3(0.66, 0.6, 0.8)
+
+[node name="Neck" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.29, -0.45)
+mesh = SubResource("r12")
+material_override = SubResource("r8")
+scale = Vector3(0.5, 0.75, 0.57)
+
+[node name="Head" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.63, -0.72)
+mesh = SubResource("r13")
+material_override = SubResource("r8")
+scale = Vector3(0.72, 0.58, 0.92)
+
+[node name="Muzzle" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.55, -1.12)
+mesh = SubResource("r14")
+material_override = SubResource("r8")
+
+[node name="Jaw" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.41, -1.04)
+mesh = SubResource("r15")
+material_override = SubResource("r7")
+
+[node name="Tail" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.91, 1.05)
+mesh = SubResource("r16")
+material_override = SubResource("r8")
+scale = Vector3(0.58, 1.65, 0.58)
+rotation_degrees = Vector3(80, 0, 0)
+
+[node name="Crest" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.98, -0.6)
+mesh = SubResource("r17")
+material_override = SubResource("r1")
+scale = Vector3(0.31, 0.42, 0.16)
+
+[node name="Collar" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.27, -0.48)
+mesh = SubResource("r18")
+material_override = SubResource("r2")
+visible = false
+
+[node name="Eye-1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.34, 1.73, -0.84)
+mesh = SubResource("r19")
+material_override = SubResource("r7")
+scale = Vector3(0.06, 0.17, 0.17)
+
+[node name="Pupil-1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.37, 1.72, -0.89)
+mesh = SubResource("r20")
+material_override = SubResource("r3")
+scale = Vector3(0.025, 0.1, 0.08)
+
+[node name="LegL" type="Node3D" parent="."]
+position = Vector3(-0.36, 0.67, 0.12)
+
+[node name="Thigh-1" type="MeshInstance3D" parent="LegL"]
+position = Vector3(0, -0.05, 0)
+mesh = SubResource("r21")
+material_override = SubResource("r8")
+scale = Vector3(0.35, 0.64, 0.45)
+
+[node name="Shin-1" type="MeshInstance3D" parent="LegL"]
+position = Vector3(0, -0.36, 0)
+mesh = SubResource("r22")
+material_override = SubResource("r8")
+
+[node name="Foot-1" type="MeshInstance3D" parent="LegL"]
+position = Vector3(0, -0.55, -0.19)
+mesh = SubResource("r23")
+material_override = SubResource("r3")
+
+[node name="Arm-1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.43, 1.09, -0.44)
+mesh = SubResource("r24")
+material_override = SubResource("r8")
+rotation_degrees = Vector3(-25, 0, -20)
+
+[node name="Claw-10" type="MeshInstance3D" parent="."]
+position = Vector3(-0.415, 0.11, -0.4)
+mesh = SubResource("r25")
+material_override = SubResource("r7")
+scale = Vector3(0.075, 0.18, 0.075)
+rotation_degrees = Vector3(-90, 0, 0)
+
+[node name="Claw-11" type="MeshInstance3D" parent="."]
+position = Vector3(-0.305, 0.11, -0.4)
+mesh = SubResource("r26")
+material_override = SubResource("r7")
+scale = Vector3(0.075, 0.18, 0.075)
+rotation_degrees = Vector3(-90, 0, 0)
+
+[node name="Eye1" type="MeshInstance3D" parent="."]
+position = Vector3(0.34, 1.73, -0.84)
+mesh = SubResource("r27")
+material_override = SubResource("r7")
+scale = Vector3(0.06, 0.17, 0.17)
+
+[node name="Pupil1" type="MeshInstance3D" parent="."]
+position = Vector3(0.37, 1.72, -0.89)
+mesh = SubResource("r28")
+material_override = SubResource("r3")
+scale = Vector3(0.025, 0.1, 0.08)
+
+[node name="LegR" type="Node3D" parent="."]
+position = Vector3(0.36, 0.67, 0.12)
+
+[node name="Thigh1" type="MeshInstance3D" parent="LegR"]
+position = Vector3(0, -0.05, 0)
+mesh = SubResource("r29")
+material_override = SubResource("r8")
+scale = Vector3(0.35, 0.64, 0.45)
+
+[node name="Shin1" type="MeshInstance3D" parent="LegR"]
+position = Vector3(0, -0.36, 0)
+mesh = SubResource("r30")
+material_override = SubResource("r8")
+
+[node name="Foot1" type="MeshInstance3D" parent="LegR"]
+position = Vector3(0, -0.55, -0.19)
+mesh = SubResource("r31")
+material_override = SubResource("r3")
+
+[node name="Arm1" type="MeshInstance3D" parent="."]
+position = Vector3(0.43, 1.09, -0.44)
+mesh = SubResource("r32")
+material_override = SubResource("r8")
+rotation_degrees = Vector3(-25, 0, 20)
+
+[node name="Claw10" type="MeshInstance3D" parent="."]
+position = Vector3(0.305, 0.11, -0.4)
+mesh = SubResource("r33")
+material_override = SubResource("r7")
+scale = Vector3(0.075, 0.18, 0.075)
+rotation_degrees = Vector3(-90, 0, 0)
+
+[node name="Claw11" type="MeshInstance3D" parent="."]
+position = Vector3(0.415, 0.11, -0.4)
+mesh = SubResource("r34")
+material_override = SubResource("r7")
+scale = Vector3(0.075, 0.18, 0.075)
+rotation_degrees = Vector3(-90, 0, 0)

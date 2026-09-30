@@ -1,0 +1,13 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 91.7 - Compatibility - Using Device: Apple - Apple M4
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+[DIA/NOITE] Iniciar Noite acionado. Estado: NOITE
+[NOITE] Onda iniciada: 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] Aplicando visual de NOITE
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 15.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDino atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).
+WildDino atacou Player.
+[Player] recebeu 20 de dano (sem HP definido ainda).

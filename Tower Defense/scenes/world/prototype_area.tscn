@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/wild_dino.tscn" id="2_dino"]
+[ext_resource type="Script" path="res://scenes/test/wave_test_trigger.gd" id="3_trigger"]
+[ext_resource type="Script" path="res://scenes/world/base.gd" id="4_base"]
+[ext_resource type="Script" path="res://scenes/world/wave_manager.gd" id="5_wavemgr"]
+[ext_resource type="Script" path="res://scenes/world/day_night_visual.gd" id="7_daynight_visual"]
+[ext_resource type="Script" path="res://scenes/world/encounter_spawner.gd" id="8_encounter"]
+
+[ext_resource type="PackedScene" path="res://scenes/visuals/arena_art.tscn" id="ac1_arena"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_base"]
+albedo_color = Color(0.2, 0.4, 0.85, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_base"]
+top_radius = 1.5
+bottom_radius = 1.5
+height = 0.3
+material = SubResource("StandardMaterial3D_base")
+
+[sub_resource type="Environment" id="Environment_world"]
+tonemap_mode = 2
+background_mode = 1
+background_color = Color(0.58, 0.73, 0.69, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.35
+
+[node name="PrototypeArea" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_world")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+position = Vector3(0, 10, 0)
+rotation_degrees = Vector3(-45, -45, 0)
+shadow_enabled = true
+light_color = Color(1, 0.91, 0.72, 1)
+light_energy = 0.8
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("BoxShape3D_ground")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+visible = false
+position = Vector3(0, -0.5, 0)
+mesh = SubResource("BoxMesh_ground")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1, 0)
+
+[node name="Territory" type="Marker3D" parent="." groups=["territory"]]
+position = Vector3(0, 0, -15)
+script = ExtResource("4_base")
+
+[node name="TerritoryMarker" type="MeshInstance3D" parent="Territory"]
+visible = false
+mesh = SubResource("CylinderMesh_base")
+
+[node name="EnemySpawnPoint" type="Marker3D" parent="."]
+position = Vector3(0, 0.5, 15)
+
+[node name="WaveTestTrigger" type="Node3D" parent="."]
+script = ExtResource("3_trigger")
+enemy_scene = ExtResource("2_dino")
+spawn_point_path = NodePath("../EnemySpawnPoint")
+
+[node name="WaveManager" type="Node" parent="."]
+script = ExtResource("5_wavemgr")
+enemy_scene = ExtResource("2_dino")
+spawn_point_path = NodePath("../EnemySpawnPoint")
+
+[node name="DayNightVisual" type="Node" parent="."]
+script = ExtResource("7_daynight_visual")
+
+[node name="EncounterSpawner" type="Node3D" parent="."]
+position = Vector3(-10, 0.5, 5)
+script = ExtResource("8_encounter")
+encounter_scene = ExtResource("2_dino")
+
+[node name="ArenaArt" parent="." instance=ExtResource("ac1_arena")]

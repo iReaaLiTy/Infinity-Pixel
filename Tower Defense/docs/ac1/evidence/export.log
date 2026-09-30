@@ -1,0 +1,91 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Inicialização do Projeto (5 steps)
+[   0% ] first_scan_filesystem | Escaneando estrutura de arquivos...
+[  16% ] first_scan_filesystem | Carregando nomes de classe globais...
+[  33% ] first_scan_filesystem | Verificando GDExtensions...
+[  50% ] first_scan_filesystem | Criando scripts autoload...
+[  66% ] first_scan_filesystem | Inicializando plugins...
+[  83% ] first_scan_filesystem | Iniciando escaneamento de arquivos...
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started Registrando classes globais... (4 steps)
+[   0% ] update_scripts_classes | 
+[  20% ] update_scripts_classes | 
+[  40% ] update_scripts_classes | 
+[  60% ] update_scripts_classes | 
+[ DONE ] update_scripts_classes
+
+[   0% ] savepack | Started Empacotando (102 steps)
+[   1% ] savepack | Armazenando Arquivo: res://.godot/imported/bond.wav-efc9cf20a0914f263998fa877c70f20a.sample
+[   1% ] savepack | Armazenando Arquivo: res://assets/audio/bond.wav.import
+[   4% ] savepack | Armazenando Arquivo: res://.godot/imported/defeat.wav-2c373cdad262b5fb9203b05423989caa.sample
+[   4% ] savepack | Armazenando Arquivo: res://assets/audio/defeat.wav.import
+[   7% ] savepack | Armazenando Arquivo: res://.godot/imported/refugio_calm.wav-3a37de33e22d3116d46972d60c344629.sample
+[   7% ] savepack | Armazenando Arquivo: res://assets/audio/refugio_calm.wav.import
+[  10% ] savepack | Armazenando Arquivo: res://.godot/imported/refugio_combat.wav-8cdd0ceb1d6915efbfb703242e523caa.sample
+[  10% ] savepack | Armazenando Arquivo: res://assets/audio/refugio_combat.wav.import
+[  13% ] savepack | Armazenando Arquivo: res://.godot/imported/refugio_principal.wav-21181c0bfcb1b4058bbfec13501a1937.sample
+[  13% ] savepack | Armazenando Arquivo: res://assets/audio/refugio_principal.wav.import
+[  16% ] savepack | Armazenando Arquivo: res://.godot/imported/strike.wav-9713f9edc94ebbfdd066c7b28cbb4ed6.sample
+[  16% ] savepack | Armazenando Arquivo: res://assets/audio/strike.wav.import
+[  19% ] savepack | Armazenando Arquivo: res://.godot/imported/victory.wav-d893d32ad919f27e15cf04d35e288b78.sample
+[  19% ] savepack | Armazenando Arquivo: res://assets/audio/victory.wav.import
+[  22% ] savepack | Armazenando Arquivo: res://.godot/imported/game_icon.svg-e4207d9ca0aca3620d409a44439a6f10.ctex
+[  22% ] savepack | Armazenando Arquivo: res://assets/ui/game_icon.svg.import
+[  25% ] savepack | Armazenando Arquivo: res://.godot/imported/inity_mark.svg-02862bb1bfb69219813ee50958ebfec8.ctex
+[  25% ] savepack | Armazenando Arquivo: res://assets/ui/inity_mark.svg.import
+[  28% ] savepack | Armazenando Arquivo: res://.godot/imported/keyart.png-41b4cdee969e6f206ec91a6d620d74cb.ctex
+[  28% ] savepack | Armazenando Arquivo: res://assets/ui/keyart.png.import
+[  31% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-af9148ed53d3b2a9ffda3a6d48ecc413-carnotauro.scn
+[  33% ] savepack | Armazenando Arquivo: res://scenes/enemies/wild_dino.gdc
+[  36% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-540820685aa355b5b6764b3d119893a9-wild_dino.scn
+[  39% ] savepack | Armazenando Arquivo: res://scenes/player/domestication_channel.gdc
+[  42% ] savepack | Armazenando Arquivo: res://scenes/player/player.gdc
+[  45% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-c2c62cb8c73458cd122faf659769dc80-player.scn
+[  48% ] savepack | Armazenando Arquivo: res://scenes/test/damage_dummy.gdc
+[  51% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-dd1f9fa7ba22d7657a06a14202049e9f-damage_dummy.scn
+[  54% ] savepack | Armazenando Arquivo: res://scenes/test/wave_test_trigger.gdc
+[  57% ] savepack | Armazenando Arquivo: res://scenes/ui/audio_director.gdc
+[  60% ] savepack | Armazenando Arquivo: res://scenes/ui/main.gdc
+[  63% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-904bc245103761507ca130d7fb9acfc1-main.scn
+[  66% ] savepack | Armazenando Arquivo: res://scenes/visuals/actor_visual.gdc
+[  68% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-1c89879895cdd0eb6c805c522bdf0f5e-arena_art.scn
+[  71% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-642a1829a3ebc4ee80f6c654d0d398bd-carno.scn
+[  74% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-e9e588eaedec04d4d20d7b5ca8d60caa-dino.scn
+[  77% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-4fea472bfce1ec845c29c4e5e620bec9-guardian.scn
+[  80% ] savepack | Armazenando Arquivo: res://scenes/world/base.gdc
+[  83% ] savepack | Armazenando Arquivo: res://scenes/world/day_night_manager.gdc
+[  86% ] savepack | Armazenando Arquivo: res://scenes/world/day_night_visual.gdc
+[  89% ] savepack | Armazenando Arquivo: res://scenes/world/encounter_spawner.gdc
+[  92% ] savepack | Armazenando Arquivo: res://.godot/exported/133200997/export-d1265dae434de3aeeddf6ab90475b8e7-prototype_area.scn
+[  95% ] savepack | Armazenando Arquivo: res://scenes/world/wave_manager.gdc
+[  95% ] savepack | Armazenando Arquivo: res://scenes/enemies/carnotauro.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/enemies/wild_dino.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/enemies/wild_dino.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/player/domestication_channel.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/player/player.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/player/player.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/test/damage_dummy.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/test/damage_dummy.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/test/wave_test_trigger.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/ui/audio_director.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/ui/main.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/ui/main.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/visuals/actor_visual.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/visuals/arena_art.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/visuals/carno.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/visuals/dino.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/visuals/guardian.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/world/base.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/world/day_night_manager.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/world/day_night_visual.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/world/encounter_spawner.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/world/prototype_area.tscn.remap
+[  95% ] savepack | Armazenando Arquivo: res://scenes/world/wave_manager.gd.remap
+[  95% ] savepack | Armazenando Arquivo: res://.godot/global_script_class_cache.cfg
+[  95% ] savepack | Armazenando Arquivo: res://assets/ui/game_icon.svg
+[  95% ] savepack | Armazenando Arquivo: res://.godot/uid_cache.bin
+[  95% ] savepack | Armazenando Arquivo: res://project.binary
+[ DONE ] savepack
+

@@ -1,0 +1,10 @@
+res://scenes/enemies/carnotauro.tscn::fd02f68df47ee440853d70551ed0578a::1790772438::res://.godot/exported/133200997/export-af9148ed53d3b2a9ffda3a6d48ecc413-carnotauro.scn
+res://scenes/enemies/wild_dino.tscn::592c54cfbe2185c07c6d0c27f453c85e::1790772438::res://.godot/exported/133200997/export-540820685aa355b5b6764b3d119893a9-wild_dino.scn
+res://scenes/player/player.tscn::1438ce2ee2d1736d0c3931b9d46e6844::1790772438::res://.godot/exported/133200997/export-c2c62cb8c73458cd122faf659769dc80-player.scn
+res://scenes/test/damage_dummy.tscn::6ac4b7f2ea2c9d0b74ccb0fe822b9bd4::1789649595::res://.godot/exported/133200997/export-dd1f9fa7ba22d7657a06a14202049e9f-damage_dummy.scn
+res://scenes/ui/main.tscn::e8395e7314e5a603640ab4c6abe2f7e2::1790772582::res://.godot/exported/133200997/export-904bc245103761507ca130d7fb9acfc1-main.scn
+res://scenes/visuals/arena_art.tscn::9060861cf4b0987ca39fd7648dbed9dc::1790773171::res://.godot/exported/133200997/export-1c89879895cdd0eb6c805c522bdf0f5e-arena_art.scn
+res://scenes/visuals/carno.tscn::7b588918d64a3c2d4d334574d75ad10e::1790773171::res://.godot/exported/133200997/export-642a1829a3ebc4ee80f6c654d0d398bd-carno.scn
+res://scenes/visuals/dino.tscn::4f86172012d9435d878c8dae9b31307d::1790773171::res://.godot/exported/133200997/export-e9e588eaedec04d4d20d7b5ca8d60caa-dino.scn
+res://scenes/visuals/guardian.tscn::19f40f004114f54efb8a4198ffc4cf60::1790773171::res://.godot/exported/133200997/export-4fea472bfce1ec845c29c4e5e620bec9-guardian.scn
+res://scenes/world/prototype_area.tscn::52cf0a5ae1daa233011ea105ddbf989b::1790772951::res://.godot/exported/133200997/export-d1265dae434de3aeeddf6ab90475b8e7-prototype_area.scn
