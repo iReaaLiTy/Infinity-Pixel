@@ -1,0 +1,5 @@
+FOCUS_WATCH inicio suite=sky_cycle focada=false
+FOCUS_WATCH t=7.1 pausado=true
+FOCUS_WATCH t=8.1 pausado=false
+FOCUS_WATCH t=12.9 pausado=true
+FOCUS_WATCH t=14.5 pausado=false

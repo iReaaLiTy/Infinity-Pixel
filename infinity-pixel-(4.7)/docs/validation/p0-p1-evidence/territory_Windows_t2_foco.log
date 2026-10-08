@@ -1,0 +1,3 @@
+FOCUS_WATCH inicio suite=territory focada=false
+FOCUS_WATCH t=7.5 pausado=true
+FOCUS_WATCH t=8.1 pausado=false

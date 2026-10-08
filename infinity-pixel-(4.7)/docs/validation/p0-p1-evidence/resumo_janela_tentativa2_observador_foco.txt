@@ -1,0 +1,9 @@
+gameplay_stability         exit=0       STABILITY RESULTS: 15 passed; 0 failed | FAIL=0 FOCUS_OUT=0
+territory                  exit=0       SPEC015 RESULTS: 68 passed; 0 failed | FAIL=0 FOCUS_OUT=0
+build_heal                 exit=0       SPEC013D RESULTS: 68 passed; 0 failed | FAIL=0 FOCUS_OUT=0
+healing_actions            exit=0       HEALING ACTIONS: 7 passed; 0 failed | FAIL=0 FOCUS_OUT=0
+sky_cycle                  exit=0       SPEC014 RESULTS: 45 passed; 0 failed | FAIL=0 FOCUS_OUT=0
+defense_economy            exit=0       SPEC013B RESULTS: 35 passed; 0 failed | FAIL=0 FOCUS_OUT=0
+acceptance                 exit=0       AC1 RESULTS: 36 passed; 0 failed | FAIL=0 FOCUS_OUT=0
+day_cycle_real             exit=1       SPEC013 REAL RESULTS: 7 passed; 8 failed | FAIL=8 FOCUS_OUT=1
+day_cycle_real             exit=1       SPEC013 REAL RESULTS: 7 passed; 8 failed | FAIL=8 FOCUS_OUT=1

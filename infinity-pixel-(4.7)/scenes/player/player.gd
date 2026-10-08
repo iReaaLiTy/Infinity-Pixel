@@ -155,7 +155,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseMotion:
 		_aim_active = true
-	elif event.is_action_pressed("attack") and not event.is_echo() and not Input.is_action_pressed("domesticate"):
+	elif event.is_action_pressed("attack") and not event.is_echo() and not channel.blocks_attack():
 		# Spec 013D: posicionando construcao, o clique confirma a obra, nao ataca.
 		var placer := get_tree().get_first_node_in_group("build_placer")
 		if placer != null and placer.is_placing():
@@ -264,6 +264,12 @@ func _is_attackable(body) -> bool:
 		and not body.is_in_group("domesticated") and body.has_method("take_damage")
 
 func _try_attack() -> void:
+	# Revalida no momento de executar, inclusive ataque guardado pelo cooldown.
+	# E da domesticacao bloqueia; E da recuperacao do marco nao (o golpe a cancela).
+	var placer := get_tree().get_first_node_in_group("build_placer")
+	if channel.blocks_attack() or (placer != null and placer.is_placing()):
+		_attack_queued = false
+		return
 	if is_dead or not DayNightManager.can_play() or not attack_cooldown.is_stopped():
 		return # RF-VID-003: morto nao ataca. RF-AGE-002: cooldown ainda ativo
 	attack_count += 1

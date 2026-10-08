@@ -1,0 +1,9 @@
+gameplay_stability (checks novos de clique real) rodado com player.gd de versoes anteriores:
+== player.gd do astra: STABILITY RESULTS: 13 passed; 2 failed
+FAIL: Clique real durante a recuperacao ataca uma vez e cancela (RF-TER-005)
+FAIL: A mesma segurada de E nao recomeca o marco nem domestica
+== player.gd do head: STABILITY RESULTS: 11 passed; 4 failed
+FAIL: Ataque guardado nao dispara durante construcao
+FAIL: Ataque guardado nao dispara durante domesticacao
+FAIL: Clique real durante a recuperacao ataca uma vez e cancela (RF-TER-005)
+FAIL: A mesma segurada de E nao recomeca o marco nem domestica

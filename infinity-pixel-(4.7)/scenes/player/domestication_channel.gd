@@ -50,13 +50,9 @@ func _physics_process(delta: float) -> void:
 		reset_channel()
 		return
 
-<<<<<<< HEAD:infinity-pixel-(4.7)/scenes/player/domestication_channel.gd
-	var e_held := _is_domesticate_held()
+	var e_held := is_domesticate_held()
 	if not e_held:
 		e_hold_owner = "" # soltou E: a proxima segurada esta livre
-=======
-	var e_held := is_domesticate_held()
->>>>>>> b7ce48ddb459d63e6e1a936a0d86e96fabec0c2d:Tower Defense/scenes/player/domestication_channel.gd
 	if DEBUG and e_held != _last_e_state:
 		_last_e_state = e_held
 		_last_block_reason = ""
@@ -125,6 +121,13 @@ func is_domesticate_held() -> bool:
 	if InputMap.has_action("domesticate") and Input.is_action_pressed("domesticate"):
 		return true
 	return Input.is_physical_key_pressed(KEY_E) or _e_event_down
+
+## Spec 003 (Unidade 3): E segurado bloqueia o ataque, sem consumir cooldown.
+## Spec 015 (RF-TER-005): a excecao e a segurada que pertence a recuperacao do
+## marco — ali "atacar" e um dos cancelamentos, entao o golpe acontece e cancela.
+## Clique e golpe guardado consultam esta mesma leitura (player.gd).
+func blocks_attack() -> bool:
+	return is_domesticate_held() and e_hold_owner != "territory"
 
 # Parametro sem tipo de proposito: o alvo pode ter sido liberado (queue_free pela
 # morte ou pela tecla T), e um parametro tipado rejeita objeto liberado com erro.
@@ -195,7 +198,7 @@ func get_progress() -> float:
 # Spec 015: o marco territorial usa a MESMA leitura de E e a mesma busca de alvo,
 # para decidir a prioridade (alvo domesticavel valido vence o marco).
 func is_e_held() -> bool:
-	return _is_domesticate_held()
+	return is_domesticate_held()
 
 func find_eligible_target() -> Node3D:
 	return _find_nearest_eligible()

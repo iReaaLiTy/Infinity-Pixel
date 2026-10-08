@@ -1,0 +1,18 @@
+Evidencias P0/P1 (estabilidade + movimento das criaturas) - 08/10/2026
+Godot 4.6.2. Pasta ignorada pelo Godot (.gdignore). Registro: ../p0-p1.md
+
+<suite>_headless.log/.json        Regressao final sem janela, --fixed-fps 60 (como tools/test_ac1.ps1):
+                                  17 suites, 635 checks, 0 falhas.
+<suite>_Windows_t1.log/.json      Com janela, 1a tentativa - so as 10 suites que passaram nela.
+<suite>_Windows_t2.log/.json      Com janela, repeticao com observador de foco das 7 suites cuja
+<suite>_Windows_t2_foco.log       1a tentativa falhou por pausa de perda de foco (FOCUS_OUT=0 aqui).
+pendentes_day_cycle_real_*        day_cycle_real com janela (1 perda de foco retomada pelo observador).
+resumo_*.txt, pendentes_resumo    Todas as tentativas com janela, inclusive as que falharam por foco.
+                                  Os logs dessas tentativas substituidas nao foram versionados.
+day_cycle_sem_fixed_fps_*.log     day_cycle sem --fixed-fps (condicao em que falhava): 43/43 x3.
+day_cycle_diagnostico_relogio.txt Relogio lido pelo teste logo apos a transicao (causa da instabilidade).
+creature_motion_comparacao_*.json MESMO teste de movimento em 3 versoes do codigo: antes do Astra,
+                                  Astra (sem as correcoes P1) e final.
+p1_sonda_*.log                    Sondas quadro a quadro usadas para achar a causa do tremor.
+p0_mutacao_checks_clique.txt      Checks novos de clique real contra o player.gd antigo (falham = detectam).
+pendentes_folha_contato_*.png     Quadros seguidos com janela, Player dando passos curtos (Astra x final).

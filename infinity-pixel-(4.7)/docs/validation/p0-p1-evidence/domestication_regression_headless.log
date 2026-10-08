@@ -1,0 +1,117 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: HP acima do limiar: sem aviso nem canalização
+WildDinoEncontro recebeu 15 de dano. HP: 65/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 50/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 35/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 20/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Quatro golpes (15) deixam alvo vivo com 20/80 HP
+PASS: Alvo enfraquecido próximo mostra opção
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: E físico inicia canalização e suspende hostilidade
+PASS: Ataque durante E não fere alvo nem consome cooldown
+[Domesticacao] cancelada: tecla_liberada (progresso 0.3 s descartado)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: E lógico alternativo inicia canalização sem ação física do Input Map
+PASS: Ataque direto respeita E reconhecido pelo caminho alternativo
+[Domesticacao] cancelada: tecla_liberada (progresso 0.3 s descartado)
+PASS: Soltar E alternativo cancela e libera criatura
+WildDinoEncontro recebeu 15 de dano. HP: 5/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[TERRITORIO] FLORESTA OESTE: guardiao derrotado -> PRONTO PARA SER RECUPERADO
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Após soltar E, os golpes voltam a ferir e derrotam o alvo (20 -> 5 -> 0)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: Selvagem saudável e Carnotauro mais próximos não ocultam elegível
+PASS: Não domesticável próximo não recebe aviso nem canalização
+PASS: Segundo elegível mais próximo não rouba canalização
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[Domesticacao] concluida: aliado=true hp=80/80
+[Domesticacao] canalizacao iniciada: alvo=@CharacterBody3D@975 hp=20/80
+[Domesticacao] cancelada: tecla_liberada (progresso 0.1 s descartado)
+PASS: Conversão mantém o indivíduo, restaura 80/80 HP (Spec 013C) e troca grupos de hostilidade
+PASS: Aliado inicia seguindo e perde aviso de domesticação
+PASS: T desligado por padrão não cria inimigos
+[Teste] WildDino spawnado em (0.0, 0.5, 23.0)
+[Teste] dinossauro anterior removido.
+[Teste] WildDino spawnado em (0.0, 0.5, 23.0)
+PASS: T de depuração preserva aliado e substitui apenas selvagem de teste
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: E por mais de 2 s não domestica Carnotauro nem mostra falsa opção
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[Domesticacao] cancelada: fora_do_alcance (progresso 0.4 s descartado)
+PASS: Afastar cancela e libera alvo
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: Reaproximar reinicia progresso do zero
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.2 s descartado)
+PASS: Pausa cancela e soltar E durante pausa não prende alvo
+PASS: Retomar com E solto não reinicia canalização
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.2 s descartado)
+PASS: Perda de foco pausa e cancela domesticação
+PASS: Retorno de foco não conserva E preso
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro recebeu 20 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[TERRITORIO] FLORESTA OESTE: guardiao derrotado -> PRONTO PARA SER RECUPERADO
+[Domesticacao] cancelada: alvo_invalido (progresso 0.3 s descartado)
+PASS: Morte por dano externo cancela sem converter ou ressuscitar alvo
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[Domesticacao] cancelada: alvo_invalido (progresso 0.3 s descartado)
+PASS: Remoção pendente cancela antes de emitir conversão no mesmo frame
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+Base recebeu 100 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.3 s descartado)
+PASS: Derrota cancela canalização e libera criatura
+DOMESTICATION RESULTS: 26 passed; 0 failed
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)

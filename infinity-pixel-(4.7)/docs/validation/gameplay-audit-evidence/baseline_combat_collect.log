@@ -1,0 +1,302 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: [AI][AH] Novo jogo: 40 Pontos, 0 Madeira, 0 Pedra
+PASS: [A][D] WildDino 80/80; golpe do Player = 15
+WildDinoEncontro recebeu 15 de dano. HP: 65/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: [B] Primeiro clique valido causa dano (80 -> 65)
+PASS: [C] Um clique = exatamente um golpe
+WildDinoEncontro recebeu 15 de dano. HP: 50/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: [C] Dois cliques no mesmo quadro = um golpe (sem golpe duplo)
+WildDinoEncontro recebeu 15 de dano. HP: 35/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 20/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: [E] Sequencia 80 -> 65 -> 50 -> 35 -> 20 [50.0, 35.0, 20.0]
+PASS: [F] Em 20/80 continua elegivel para domesticacao
+[Player] ataque acionado — alvos atingidos: 0
+PASS: Golpe no vazio: sem dano e recuperacao curta (0.27 s)
+WildDino recebeu 15 de dano. HP: 65/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Clique logo apos um golpe no vazio nao se perde: 2 cliques = 2 golpes, 1 dano
+PASS: [I] O golpe sai na direcao do alvo sob o cursor (erro 0.0 graus)
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[Domesticacao] concluida: aliado=true hp=80/80
+PASS: [G] Domesticacao completa: 20/80 -> 80/80
+[ALIADO] recebeu 15 de dano. HP: 65/80
+PASS: [H] Aliado volta a perder vida normalmente (80 -> 65)
+PASS: [J] WASD continua controlando a orientacao visual
+PASS: [K] Dois encontros selvagens diurnos (o 2o ainda selvagem)
+PASS: [L] Encontros em regioes diferentes, nao sobrepostos (25.9 m)
+PASS: [O] 2o encontro: territorial, domesticavel, fora da onda
+WildDinoEncontro2 recebeu 15 de dano. HP: 65/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: [M] 2o encontro pode ser atacado (80 -> 65)
+WildDinoEncontro2 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro2 domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] REGIÃO ROCHOSA: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+PASS: [N] 2o encontro pode ser domesticado (vida cheia)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@347
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@348
+PASS: [O] Noite 1 com 3 inimigos de onda; nenhum e encontro diurno
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@347 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@347 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@348 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@348 foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+WildDinoEncontro2 atacou DinoDomesticado2.
+[ALIADO] recebeu 15 de dano. HP: 65/80
+PASS: [P][AK] Onda vencida (+3 x 15) sem depender dos encontros diurnos
+PASS: Amanhecer repoe 2 encontros selvagens (aliados mantidos)
+[DIA/NOITE] Noite 2 comecou (18:00). Estado: NOITE
+[NOITE] Noite 2: onda iniciada com 4 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/4) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDinoEncontro2 atacou DinoDomesticado2.
+[ALIADO] recebeu 20 de dano. HP: 46/80
+WildDinoEncontro2 atacou DinoDomesticado2.
+[ALIADO] recebeu 20 de dano. HP: 26/80
+[NOITE] Inimigo spawnado (2/4) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@355
+WildDinoEncontro2 atacou DinoDomesticado2.
+[ALIADO] recebeu 20 de dano. HP: 7/80
+WildDinoEncontro2 atacou DinoDomesticado2.
+[ALIADO] recebeu 20 de dano. HP: 0/80
+[ALIADO] DinoDomesticado2 foi derrotado
+[NOITE] Inimigo spawnado (3/4) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@356
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 46/80
+WildDinoEncontro2 atacou Player.
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 26/80
+WildDinoEncontro2 atacou Player.
+[NOITE] Inimigo spawnado (4/4) em (-1.6, 0.5, 21.6).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@357
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 100)
+[NOITE] Inimigo da wave morreu. Restantes: 3
+@CharacterBody3D@355 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@355 foi derrotado.
+[DEFESA] +15 pontos (total 115)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@356 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@356 foi derrotado.
+[DEFESA] +15 pontos (total 130)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@357 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@357 foi derrotado.
+[DEFESA] +15 pontos (total 145)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (2). Amanheceu: Dia 3, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: Novo amanhecer nao duplica encontros (2 territoriais)
+WildDinoEncontro recebeu 1000 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+WildDinoEncontro2 recebeu 1000 de dano. HP: 0/80
+WildDinoEncontro2 foi derrotado.
+PASS: [Q][AL] Selvagens diurnos mortos nao concedem Pontos de Defesa
+PASS: [V] Previa do ponto vazio usa 8 m (mesmo valor da tabela)
+PASS: [V] Previa visivel ao considerar construir aqui
+[DEFESA] +200 pontos (total 345)
+[DEFESA] -30 pontos (restam 315)
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+PASS: [AJ] Torre continua custando 30
+[DEFESA] -30 pontos (restam 285)
+[DEFESA] Torre melhorada para o nivel 2
+[DEFESA] -45 pontos (restam 240)
+[DEFESA] Torre melhorada para o nivel 3
+PASS: [R][S][T][U] Alcance L1/L2/L3 = 8/9/10 e o anel usa o mesmo valor [[8.0, 8.0], [9.0, 9.0], [10.0, 10.0]]
+PASS: Anel da torre visivel de perto; previa some depois de construir
+[DIA/NOITE] Noite 3 comecou (18:00). Estado: NOITE
+[NOITE] Noite 3: onda iniciada com 5 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/5) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDino recebeu 20 de dano. HP: 60/80
+PASS: [W] Torre adquire alvo a 9,6 m e ignora a 10,4 m (L3)
+WildDino recebeu 20 de dano. HP: 40/80
+[NOITE] Inimigo spawnado (2/5) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@380
+WildDino recebeu 20 de dano. HP: 20/80
+WildDino recebeu 20 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 255)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+[NOITE] Inimigo spawnado (3/5) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: WildDino
+@CharacterBody3D@380 recebeu 20 de dano. HP: 60/80
+@CharacterBody3D@380 recebeu 20 de dano. HP: 40/80
+[NOITE] Inimigo spawnado (4/5) em (-1.6, 0.5, 21.6).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@386
+@CharacterBody3D@380 chegou ao territorio.
+@CharacterBody3D@380 atacou Territory.
+Base recebeu 20 de dano. HP: 81/100
+[NOITE] Inimigo spawnado (5/5) em (-18.4, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@387
+@CharacterBody3D@380 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@380 foi derrotado.
+[DEFESA] +15 pontos (total 270)
+[NOITE] Inimigo da wave morreu. Restantes: 3
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 285)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@386 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@386 foi derrotado.
+[DEFESA] +15 pontos (total 300)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@387 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@387 foi derrotado.
+[DEFESA] +15 pontos (total 315)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (3). Amanheceu: Dia 4, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: 8 arvores e 6 pedras coletaveis
+PASS: [X] Arvore = 30 HP
+[Player] ataque acionado — alvos atingidos: 0
+PASS: Arvore a 6 m: o golpe nao alcanca
+[COLETA] Tree1 recebeu 15. HP: 15/30
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree1 recebeu 15. HP: 0/30
+[COLETA] +10 wood (total 10)
+[Player] ataque acionado — alvos atingidos: 1
+PASS: [Y] Arvore: 2 golpes de 15 (30 -> 15 -> 0)
+PASS: [Z] Arvore concede +10 Madeira
+PASS: [AD] Arvore esgotada nao paga de novo e deixa de ser solida
+PASS: HUD: '+10 MADEIRA' e Madeira 10
+PASS: [AA] Pedra = 45 HP
+[COLETA] Stone1 recebeu 15. HP: 30/45
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro2 atacou Player.
+[COLETA] Stone1 recebeu 15. HP: 15/45
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro2 atacou Player.
+[COLETA] Stone1 recebeu 15. HP: 0/45
+[COLETA] +6 stone (total 6)
+[Player] ataque acionado — alvos atingidos: 1
+PASS: [AB] Pedra: 3 golpes (45 -> 30 -> 15 -> 0) [30.0, 15.0, 0.0]
+PASS: [AC][AD] Pedra concede +6 Pedra uma unica vez
+PASS: [AE][AM][AN] Arvore e pedra nao concedem Pontos de Defesa
+[DIA/NOITE] Noite 4 comecou (18:00). Estado: NOITE
+[NOITE] Noite 4: onda iniciada com 6 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/6) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+PASS: Recursos continuam esgotados durante a noite
+WildDinoEncontro2 atacou Player.
+WildDinoEncontro2 atacou Player.
+[NOITE] Inimigo spawnado (2/6) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@415
+WildDinoEncontro2 atacou Player.
+WildDino recebeu 20 de dano. HP: 60/80
+WildDinoEncontro2 atacou Player.
+[NOITE] Inimigo spawnado (3/6) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@418
+WildDino recebeu 20 de dano. HP: 40/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 7/80
+WildDinoEncontro2 atacou Player.
+WildDino recebeu 20 de dano. HP: 20/80
+WildDino recebeu 20 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 330)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+WildDinoEncontro2 atacou Player.
+[NOITE] Inimigo spawnado (4/6) em (-1.6, 0.5, 21.6).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDinoEncontro2 atacou Player.
+@CharacterBody3D@415 chegou ao territorio.
+@CharacterBody3D@415 atacou Territory.
+Base recebeu 20 de dano. HP: 61/100
+WildDinoEncontro2 atacou Player.
+[NOITE] Inimigo spawnado (5/6) em (-18.4, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@422
+@CharacterBody3D@415 atacou Territory.
+Base recebeu 20 de dano. HP: 42/100
+WildDinoEncontro2 atacou Player.
+WildDino recebeu 20 de dano. HP: 60/80
+@CharacterBody3D@418 chegou ao territorio.
+@CharacterBody3D@418 atacou Territory.
+Base recebeu 20 de dano. HP: 22/100
+@CharacterBody3D@415 atacou Territory.
+Base recebeu 20 de dano. HP: 3/100
+WildDino recebeu 20 de dano. HP: 40/80
+WildDinoEncontro2 atacou Player.
+[NOITE] Inimigo spawnado (6/6) em (18.4, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@425
+@CharacterBody3D@415 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@415 foi derrotado.
+[DEFESA] +15 pontos (total 345)
+[NOITE] Inimigo da wave morreu. Restantes: 4
+@CharacterBody3D@418 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@418 foi derrotado.
+[DEFESA] +15 pontos (total 360)
+[NOITE] Inimigo da wave morreu. Restantes: 3
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 375)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@422 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@422 foi derrotado.
+[DEFESA] +15 pontos (total 390)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@425 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@425 foi derrotado.
+[DEFESA] +15 pontos (total 405)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (4). Amanheceu: Dia 5, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: [AF] Arvore e pedra voltam no amanhecer (mesmos nos)
+PASS: Restauracao reutiliza os mesmos nos (14, sem duplicar)
+PASS: [AG] Madeira e Pedra persistem entre dias
+PASS: Recursos fora das trilhas e rotas noturnas []
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: [AH] Reiniciar: Madeira 0, Pedra 0, 40 Pontos
+SPEC013C RESULTS: 46 passed; 0 failed
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2570)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)

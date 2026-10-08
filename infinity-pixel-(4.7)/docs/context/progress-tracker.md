@@ -1093,3 +1093,41 @@ verdes nos dois modos (acceptance 33/33 e 36/36, main_menu 27/27). Nenhum
 teste antigo alterado. Custo ≈ 0,4 ms/quadro no bosque.
 
 **TESTE MANUAL NECESSÁRIO:** roteiro em `docs/validation/spec015.md`.
+
+## P0/P1 — Estabilidade pós-Astra e movimentação das criaturas (2026-10-08)
+
+**Status:** **P0 e P1 aprovadas manualmente (playtest de 2026-10-08).**
+P2 (documentação e consolidação) em andamento; P3 (tutorial jogável), P4
+(game design e UX), P5 (visual noturno) e P6 (QA final) não iniciadas. A
+Spec 015 continua registrada como aguardando aprovação formal (o fluxo de
+território funcionou no playtest de P0/P1).
+
+**Contexto:** o GPT-6 Astra foi interrompido por limite de uso no meio de
+uma auditoria de QA; o merge de 2026-10-08 deixou marcadores de conflito
+commitados em `domestication_channel.gd`.
+
+**Astra (preservado e validado):** histerese de troca de alvo (0,75 m), giro
+limitado a 8 rad/s, pernas pela velocidade real, dano ≤ 0 ignorado, queda do
+recurso cancelada ao restaurar, ataque revalidado durante construção/E,
+`tests/gameplay_stability`.
+
+**Claude — P0:** conflito resolvido; regressão da Spec 015 corrigida com
+`DomesticationChannel.blocks_attack()` (E da domesticação bloqueia o ataque;
+E da recuperação do marco não — o golpe a cancela, RF-TER-005);
+`domestication_regression` alinhado à 013C (26/26); `day_cycle` lê o relógio
+no sinal da transição (estável sem `--fixed-fps`); `acceptance` e
+`domestication_regression` não sobrescrevem mais evidência versionada; +6
+checks de clique real no `gameplay_stability`.
+
+**Claude — P1:** causa da tremedeira = destino de navegação defasado (o
+agente só recebia destino novo após 0,5 m, a chegada usava o destino atual
+com 0,25 m; poucos centímetros normalizados para 4 m/s) + rumo pela
+velocidade do avoidance. Soluções em `wild_dino.gd`: último trecho segue o
+destino atual, rumo pela velocidade real suavizada, histerese de 0,6 m no
+slot de ataque. Teste novo `tests/creature_motion` (13 cenários, 32 checks).
+
+**Verificação:** sem janela (`--fixed-fps 60`) 17 suítes, 635 checks, 0
+falhas; com janela 18 suítes, 665 checks verdes na execução válida (falhas
+da 1ª tentativa = pausa por perda de foco). Passos curtos: 25 reversões e 57
+inversões de giro → 0 e 8. Detalhes, limitações e evidências em
+`docs/validation/p0-p1.md`.

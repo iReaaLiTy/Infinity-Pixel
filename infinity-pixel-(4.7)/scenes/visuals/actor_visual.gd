@@ -10,7 +10,9 @@ func _process(delta: float) -> void:
 	if body == null:
 		return
 	clock += delta
-	var pace := minf(Vector2(body.velocity.x, body.velocity.z).length() / 4.0, 1.0)
+	var actual := body.get_real_velocity()
+	var pace := minf(Vector2(actual.x, actual.z).length() / 4.0, 1.0)
+	if pace < .025: pace = 0.0
 	$LegL.rotation.x = sin(clock * 11.0) * 0.48 * pace
 	$LegR.rotation.x = -sin(clock * 11.0) * 0.48 * pace
 	swing = maxf(0, swing - delta)

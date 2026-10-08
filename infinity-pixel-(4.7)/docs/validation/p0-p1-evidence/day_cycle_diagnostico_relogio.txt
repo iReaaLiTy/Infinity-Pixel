@@ -1,0 +1,10 @@
+Sonda do relogio no day_cycle (copia temporaria instrumentada, codigo de antes da correcao do teste).
+PROBE = relogio lido pelo teste logo apos a transicao; elapsed = segundos desde a transicao.
+free#1: SPEC013 RESULTS: 42 passed; 1 failed | PROBE G clock=18:00 elapsed=0.0000 PROBE LM clock=08:01 elapsed=0.0139 
+free#2: SPEC013 RESULTS: 41 passed; 2 failed | PROBE G clock=18:01 elapsed=0.0069 PROBE LM clock=08:01 elapsed=0.0124 
+free#3: SPEC013 RESULTS: 42 passed; 1 failed | PROBE G clock=18:01 elapsed=0.0076 PROBE LM clock=08:00 elapsed=0.0000 
+free#4: SPEC013 RESULTS: 42 passed; 1 failed | PROBE G clock=18:01 elapsed=0.0076 PROBE LM clock=08:00 elapsed=0.0000 
+fixed#1: SPEC013 RESULTS: 43 passed; 0 failed | PROBE G clock=18:00 elapsed=0.0000 PROBE LM clock=08:00 elapsed=0.0000 
+fixed#2: SPEC013 RESULTS: 43 passed; 0 failed | PROBE G clock=18:00 elapsed=0.0000 PROBE LM clock=08:00 elapsed=0.0000 
+fixed#3: SPEC013 RESULTS: 43 passed; 0 failed | PROBE G clock=18:00 elapsed=0.0000 PROBE LM clock=08:00 elapsed=0.0000 
+fixed#4: SPEC013 RESULTS: 43 passed; 0 failed | PROBE G clock=18:00 elapsed=0.0000 PROBE LM clock=08:00 elapsed=0.0000 

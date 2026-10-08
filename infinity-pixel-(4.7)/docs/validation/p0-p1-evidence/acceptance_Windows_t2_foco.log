@@ -1,0 +1,9 @@
+FOCUS_WATCH inicio suite=acceptance focada=false
+FOCUS_WATCH t=11.3 pausado=true
+FOCUS_WATCH t=11.5 pausado=false
+FOCUS_WATCH t=24.1 pausado=true
+FOCUS_WATCH t=24.6 pausado=false
+FOCUS_WATCH t=25.1 pausado=true
+FOCUS_WATCH t=25.5 pausado=false
+FOCUS_WATCH t=27.6 pausado=true
+FOCUS_WATCH t=28.0 pausado=false

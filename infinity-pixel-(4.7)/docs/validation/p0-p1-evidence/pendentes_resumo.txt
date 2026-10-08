@@ -1,0 +1,4 @@
+day_cycle_real_janela  exit=0 | SPEC013 REAL RESULTS: 15 passed; 0 failed | FAIL=0 FOCUS_OUT=1 retomadas=1
+captura_astra          exit=0 | SHEET C:/Users/ppfti/AppData/Local/Temp/claude/c--Users-ppfti-OneDrive-Desktop-TDnovo-Infinity-Pixel-infinity-pixel--4-7-/7bd7bba8-a4f6-4542-ba3f-f31e01bc097c/scratchpad/pendentes/sheet_astra.png | FAIL=0 FOCUS_OUT=1 retomadas=1
+captura_final          exit=0 | SHEET C:/Users/ppfti/AppData/Local/Temp/claude/c--Users-ppfti-OneDrive-Desktop-TDnovo-Infinity-Pixel-infinity-pixel--4-7-/7bd7bba8-a4f6-4542-ba3f-f31e01bc097c/scratchpad/pendentes/sheet_final.png | FAIL=0 FOCUS_OUT=1 retomadas=1
+FIM

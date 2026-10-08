@@ -1,0 +1,18 @@
+{
+  "failed": [],
+  "metrics": {
+    "target_switches": 0,
+    "turn_one_frame": 0.133333340287209
+  },
+  "passed": [
+    "Territorial ocioso permanece estavel por 3 s",
+    "Alvos quase equidistantes nao causam alternancia continua",
+    "Ameaca claramente mais proxima ainda pode assumir prioridade",
+    "Virada limitada por quadro, sem salto instantaneo",
+    "Sem deslocamento real, pernas nao caminham por velocidade residual",
+    "Dano negativo nao cura criatura",
+    "Ataque guardado nao dispara durante construcao",
+    "Ataque guardado nao dispara durante domesticacao",
+    "Amanhecer durante queda do recurso nao o esconde depois"
+  ]
+}

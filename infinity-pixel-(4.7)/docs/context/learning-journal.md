@@ -412,3 +412,31 @@ sem ir ao Territory). Unidade 3 concluída.
   de rota) evitou marcos e testes em cima de árvores ou rotas.
 - **Medir desempenho intercalando configurações:** uma medição isolada
   indicou 1 ms; intercalando, o custo real ficou em ~0,4 ms.
+
+## 2026-10-08 — P0/P1: o dino que "chegava" onde já estava
+
+- **Destino de navegação e checagem de chegada precisam ser o mesmo ponto.**
+  O agente recebia destino novo só depois de 0,5 m; a chegada usava o
+  destino atual com 0,25 m. No intervalo, a criatura mirava um ponto onde já
+  estava, e poucos centímetros normalizados viravam 4 m/s em direção
+  aleatória. A hipótese de "falta de histerese" estava errada: medir antes de
+  corrigir mudou a solução.
+- **Distâncias do NavigationAgent3D são 3D:** com a navmesh ~0,5 m acima da
+  origem, `target_desired_distance` = 0,25 nunca é atingido.
+- **Olhar para a velocidade do avoidance faz o corpo tremer** em grupo; a
+  velocidade real suavizada (0,12 s) filtra o ruído e mantém curvas reais.
+- **Teste de movimento precisa provar que algo se moveu:** com o jogo
+  pausado, toda janela "parada" passa. Os checks de trajeto mínimo pegaram
+  isso na primeira execução com janela.
+- **Ler estado no sinal, não depois de esperar quadro:** o relógio anda no
+  `_process`; o teste esperava `physics_frame` e via 18:01.
+- **Um conflito de regras pede um dono, não uma prioridade:** E da
+  domesticação bloqueia o ataque, E do marco não — o `e_hold_owner` da
+  Spec 015 já resolvia. Um teste que chama a função direto não cobre o clique
+  real.
+- **Testes com janela no Windows:** o jogo pausa ao perder o foco; `timeout`
+  do bash não mata o Godot nativo; caminhos longos de `APPDATA` estouram o
+  limite de 260 caracteres no cache de shaders; `frame_post_draw` espera
+  para sempre se a janela não desenha.
+- **Playtest aprovado (2026-10-08):** movimentação, domesticação, aliados e
+  territórios sem regressões.

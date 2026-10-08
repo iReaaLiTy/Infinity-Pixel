@@ -37,7 +37,14 @@ const SLOT_REVIEW_INTERVAL := 0.5 # revisao de slot (anel de espera / inalcancav
 const STUCK_CHECK_INTERVAL := 1.0
 const STUCK_MIN_PROGRESS := 0.25 # andou menos que isso em 1 s querendo andar = preso
 const SLOT_SETTLE_RADIUS := 1.0 # preso a ate 1 m do destino = "perto o suficiente"
+const TARGET_SWITCH_MARGIN := 0.75 # troca so por ameaca claramente mais proxima
+const TURN_RATE := 8.0 # rad/s, sem alterar a velocidade linear
 const FACE_MIN_SPEED := 0.5 # abaixo disso nao vira o corpo (evita giro com avoidance)
+const HEADING_SMOOTH := 0.12 # s: filtra a oscilacao de 1-2 graus/quadro do avoidance no rumo
+# Parado no slot de ataque e com o alvo no alcance: so volta a andar quando o slot
+# se afasta mais que isso (ou o alvo sai do alcance). Evita passinhos/trancos
+# quando o alvo da passos curtos.
+const ATTACK_SLOT_RESUME := 0.6
 
 const ApproachSlots := preload("res://scenes/enemies/approach_slots.gd") # Spec 010
 
@@ -91,6 +98,8 @@ var _stuck_count := 0 # verificacoes seguidas sem progresso
 var _settled_goal := Vector3.INF # destino bloqueado aceito como "perto o suficiente"
 var _avoidance_pending := false
 var _face_target: Node3D # alvo dentro do alcance: o corpo olha para ele
+var _heading := Vector3.ZERO # rumo suavizado da velocidade real (para onde o corpo olha)
+var _slot_holding := false # assentado no slot de ataque (histerese, ver ATTACK_SLOT_RESUME)
 var _ally_moving := false # histerese do seguir
 
 func _ready() -> void:
@@ -170,7 +179,7 @@ func _physics_process(delta: float) -> void:
 # Spec 004 RF-AGE-008: o aliado mantem o mesmo HP/atributos de selvagem e pode
 # ser ferido por hostis. O jogador nao fere aliados (filtro em player.gd).
 func take_damage(amount: float) -> void:
-	if hp <= 0.0:
+	if hp <= 0.0 or not is_finite(amount) or amount <= 0.0:
 		return # ja derrotado neste frame (queue_free pendente)
 	$Visual.flash()
 	hp -= amount
@@ -337,13 +346,26 @@ func _find_player() -> Node3D:
 func _approach(target: Node3D, kind: StringName, speed: float, fallback_stop: float) -> Vector3:
 	var goal: Variant = _slot_goal(target, kind)
 	if goal == null:
+		_slot_holding = false
 		return _navigate_to(target.global_position, speed, fallback_stop)
+	if kind == &"attack":
+		# Histerese de parada: assentado no slot e com o alvo no alcance do golpe,
+		# passos curtos do alvo nao viram passinhos. Volta a andar se o slot se
+		# afastar mais que ATTACK_SLOT_RESUME ou o alvo sair do alcance.
+		var to_slot := _flat_offset(goal).length()
+		if to_slot <= SLOT_ARRIVAL:
+			_slot_holding = true
+		elif _slot_holding and (to_slot > ATTACK_SLOT_RESUME or _flat_offset(target.global_position).length() > ATTACK_REACH):
+			_slot_holding = false
+		if _slot_holding:
+			return Vector3.ZERO
 	return _navigate_to(goal, speed, SLOT_ARRIVAL)
 
 # Reserva/mantem o slot e devolve o ponto dele (ou null sem vaga).
 func _slot_goal(target: Node3D, kind: StringName) -> Variant:
 	if _slot_target != target or _slot_kind != kind:
 		_release_slot()
+		_slot_holding = false
 		_slot_target = target
 		_slot_kind = kind
 		_nav_goal = Vector3.INF
@@ -368,6 +390,7 @@ func _release_slot() -> void:
 		ApproachSlots.release(_slot_target, _slot_kind, self)
 	_slot_target = null
 	_slot_kind = &""
+	_slot_holding = false
 
 # RF-NAV-002: velocidade desejada (so XZ) seguindo o caminho da navmesh. Sem
 # navmesh disponivel (cena sem NavigationRegion3D), usa a IA direta anterior.
@@ -393,7 +416,17 @@ func _navigate_to(goal: Vector3, speed: float, stop_distance: float) -> Vector3:
 		_repath_left = REPATH_MIN_INTERVAL
 	if nav_agent.is_navigation_finished():
 		return Vector3.ZERO # chegou ao ponto alcancavel mais proximo do destino
-	var step := _flat_offset(nav_agent.get_next_path_position())
+	# Ultimo trecho (sem curvas pela frente): segue o destino ATUAL, o mesmo da
+	# checagem de chegada acima. O caminho so e recalculado quando o destino anda
+	# mais que REPATH_DISTANCE; mirar no ponto final antigo deixava a criatura
+	# "chegando" a um ponto onde ja estava — poucos centimetros normalizados para
+	# a velocidade cheia, em direcao aleatoria (tremor/giro com o Player dando
+	# passos curtos). O agente nunca encerra sozinho ali: a navmesh fica ~0,5 m
+	# acima da origem e target_desired_distance e medido em 3D.
+	# Caminho vazio (fora da navmesh): mantem o comportamento do agente.
+	var path := nav_agent.get_current_navigation_path()
+	var final_leg := not path.is_empty() and nav_agent.get_current_navigation_path_index() >= path.size() - 1
+	var step := flat if final_leg else _flat_offset(nav_agent.get_next_path_position())
 	if step.length() < 0.01:
 		return Vector3.ZERO
 	return step.normalized() * speed
@@ -436,15 +469,23 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
 func _apply_velocity(horizontal: Vector3) -> void:
 	velocity.x = horizontal.x
 	velocity.z = horizontal.z
+	var moving := Vector2(horizontal.x, horizontal.z).length() > FACE_MIN_SPEED
+	if moving:
+		# Rumo = velocidade real suavizada. Em grupo o avoidance desvia a velocidade
+		# 1-2 graus para um lado e para o outro a cada quadro; olhar direto para ela
+		# fazia o corpo tremer. Curvas de verdade (contornar arvore) continuam.
+		var dir := Vector3(horizontal.x, 0.0, horizontal.z).normalized()
+		_heading = dir if _heading == Vector3.ZERO else _heading.lerp(dir, 1.0 - exp(-_frame_delta / HEADING_SMOOTH))
 	if _face_target != null and is_instance_valid(_face_target):
 		_face(_flat_offset(_face_target.global_position))
-	elif Vector2(horizontal.x, horizontal.z).length() > FACE_MIN_SPEED:
-		_face(Vector3(horizontal.x, 0.0, horizontal.z))
+	elif moving:
+		_face(_heading)
 	move_and_slide()
 
 # Parado sem avoidance (slot/posto/canalizacao): os outros continuam desviando dele.
 func _hold_still() -> void:
 	_avoidance_pending = false
+	_heading = Vector3.ZERO # a proxima partida comeca no rumo novo, sem arrastar o antigo
 	if _nav_ready():
 		nav_agent.velocity = Vector3.ZERO
 	velocity.x = 0.0
@@ -512,6 +553,14 @@ func _find_nearest_target() -> Node3D:
 			if dist <= nearest_dist:
 				nearest = body
 				nearest_dist = dist
+	# Histerese de identidade: pequenas variacoes de distancia nao descartam o
+	# caminho/slot a cada 0,15 s. Alcance, leash e grupos continuam obrigatorios.
+	if is_instance_valid(_target) and not _target.is_queued_for_deletion() \
+			and (_target.is_in_group("player") or _target.is_in_group("domesticated")):
+		var current_distance := _flat_offset(_target.global_position).length()
+		var in_leash := not territorial or _flat_offset_from(home_position, _target.global_position).length() <= leash_radius
+		if in_leash and current_distance <= DETECTION_RANGE and (nearest == null or current_distance <= nearest_dist + TARGET_SWITCH_MARGIN):
+			return _target
 	return nearest
 
 func _try_attack(target: Node3D) -> void:
@@ -553,7 +602,7 @@ func _flat_offset_from(origin: Vector3, world_pos: Vector3) -> Vector3:
 
 func _face(flat_dir: Vector3) -> void:
 	if flat_dir.length_squared() > 0.0001:
-		look_at(global_position + flat_dir, Vector3.UP)
+		rotation.y = rotate_toward(rotation.y, atan2(-flat_dir.x, -flat_dir.z), TURN_RATE * _frame_delta)
 
 ## Spec 015 (RF-TER-003): o encontro diurno que guarda um territorio selvagem.
 ## So muda o rotulo; HP, IA e domesticacao sao os do WildDino normal.

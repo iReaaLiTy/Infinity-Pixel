@@ -1,0 +1,181 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: [1] TerritoryManager existe com 3 territorios
+PASS: [2] Centro (refugio) comeca CONTROLLED
+PASS: [3] Floresta Oeste comeca WILD
+PASS: [4] Regiao Rochosa comeca WILD
+PASS: Regioes do mapa: refugio, bosque, rochosa; corredor da ruina fora (area futura)
+PASS: [26] HUD comeca em TERRITORIOS 1/3
+PASS: Guardioes = os 2 encontros diurnos existentes (sem especie nova)
+PASS: Guardiao identificado (rotulo GUARDIAO) e domesticavel
+PASS: [10] Guardioes nao sao inimigos da onda
+PASS: Marco west apagado e longe das rotas noturnas
+PASS: Marco east apagado e longe das rotas noturnas
+PASS: [29] Fogueira no Oeste selvagem recusada
+PASS: [31] Fogueira no Leste selvagem recusada
+PASS: Corredor da ruina (area futura) continua fora
+PASS: BuildZone original continua valida (013D)
+PASS: Marco selvagem nao ativa com E
+WildDinoEncontro recebeu 80 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[TERRITORIO] FLORESTA OESTE: guardiao derrotado -> PRONTO PARA SER RECUPERADO
+PASS: [5][7] Derrotar o guardiao: Oeste WILD -> READY_TO_CLAIM; marco aceso
+PASS: [9] Guardiao derrotado nao da Pontos de Defesa (40)
+PASS: [10] Guardiao derrotado nao conta na onda
+PASS: Neutralizacao registrada uma vez
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[TERRITORIO] recuperacao cancelada: soltou E
+PASS: [15] Soltar E cancela (0.35 -> 0)
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[TERRITORIO] recuperacao cancelada: fora do alcance
+PASS: [14] Sair do alcance cancela
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[Player] ataque acionado — alvos atingidos: 0
+[TERRITORIO] recuperacao cancelada: atacou
+PASS: Atacar cancela a recuperacao
+[COLETA] +15 wood (total 15)
+[COLETA] +6 stone (total 6)
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[TERRITORIO] recuperacao cancelada: ação incompatível
+PASS: Iniciar posicionamento de construcao cancela
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[TERRITORIO] recuperacao cancelada: pausa
+PASS: [17] Pausar cancela
+[TERRITORIO] FLORESTA OESTE: recuperando...
+PASS: [17] Ao despausar com E segurado recomeca do zero (0.04)
+[TERRITORIO] recuperacao cancelada: soltou E
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[Player] recebeu 1000.0 de dano. HP: 0.0/100
+[Player] morreu. Respawn em 2.0 s.
+[TERRITORIO] recuperacao cancelada: morreu
+PASS: [16] Morrer cancela
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+PASS: [24] Depois do respawn o Oeste continua pronto
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[TERRITORIO] recuperacao cancelada: anoiteceu
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+PASS: [18] Comeco da noite cancela
+PASS: [19] A noite nao da para iniciar a recuperacao
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+PASS: [23] Estados atravessam a noite (Dia 2)
+PASS: Amanhecer recria o encontro do bosque como selvagem comum (sem guardiao duplicado)
+PASS: Guardiao vivo do Leste nao e recriado nem duplicado (2 selvagens diurnos: [&"WildDinoEncontro2", &"WildDinoEncontro"])
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[Domesticacao] concluida: aliado=true hp=80/80
+PASS: [11] E com alvo domesticavel valido domestica (prioridade sobre o marco)
+PASS: [13] A mesma segurada de E nao ativa o marco depois de domesticar
+[TERRITORIO] FLORESTA OESTE: recuperando...
+PASS: [13] Durante a recuperacao, E nao comeca domesticacao
+[TERRITORIO] FLORESTA OESTE RECUPERADA (2/3)
+PASS: [12][20] E no marco por 2 s: Oeste CONTROLLED
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 65/80
+PASS: [13] A segurada que recuperou o territorio nao domestica depois
+PASS: [21][27] Conquista uma vez; HUD 2/3
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro2 hp=20/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 50/80
+PASS: [21] Marco ja recuperado nao conquista de novo
+[Domesticacao] cancelada: tecla_liberada (progresso 0.8 s descartado)
+PASS: Limite discreto do territorio existe
+[COLETA] +80 wood (total 95)
+[COLETA] +40 stone (total 46)
+PASS: [30] Oeste recuperado aceita Fogueira em local livre
+PASS: [33] Arvore no Oeste recuperado continua invalidando
+PASS: [33] Nao constroi sobre o marco
+PASS: Armadilha continua so nas rotas noturnas
+[COLETA] -20 madeira, -12 pedra (restam 75 / 34)
+[CONSTRUCAO] FOGUEIRA DE CURA em (-8.0, 0.0, 8.0)
+PASS: [30] Fogueira construida no Oeste (custo 20/12)
+PASS: Limite de 1 Fogueira continua valendo
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro2 hp=20/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 35/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 20/80
+WildDinoEncontro2 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro2 domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] REGIÃO ROCHOSA: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[Domesticacao] concluida: aliado=true hp=80/80
+PASS: [6][8] Domesticar o guardiao: Leste READY_TO_CLAIM (aliado normal, vida cheia)
+PASS: [9] Domesticar nao paga; vira ALIADO comum
+[ALIADO] recebeu 500 de dano. HP: 0/80
+[ALIADO] DinoDomesticado2 foi derrotado
+PASS: Aliado (antigo guardiao) derrotado depois
+PASS: [22] Morte posterior do aliado nao altera o territorio
+[TERRITORIO] REGIÃO ROCHOSA: recuperando...
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 5/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 0/80
+[ALIADO] DinoDomesticado foi derrotado
+[TERRITORIO] REGIÃO ROCHOSA RECUPERADA (3/3)
+PASS: [20][28] Leste CONTROLLED; HUD 3/3
+[COLETA] -20 madeira, -12 pedra (restam 55 / 22)
+[CONSTRUCAO] FOGUEIRA DE CURA em (10.0, 0.0, 10.0)
+PASS: [32] Leste recuperado aceita Fogueira
+[DIA/NOITE] Noite 2 comecou (18:00). Estado: NOITE
+[NOITE] Noite 2: onda iniciada com 4 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/4) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@491
+[DIA/NOITE] Noite defendida (2). Amanheceu: Dia 3, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: [23] Territorios continuam recuperados no Dia 3
+PASS: Encontros recriados depois nao viram guardioes
+[Player] recebeu 1000.0 de dano. HP: 0.0/100
+[Player] morreu. Respawn em 2.0 s.
+WildDino chegou ao territorio.
+WildDino atacou Territory.
+Base recebeu 15 de dano. HP: 85/100
+WildDino atacou Territory.
+Base recebeu 15 de dano. HP: 70/100
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+WildDino atacou Player.
+PASS: [24] Morte/respawn nao perde territorio
+PASS: [34] As 3 rotas noturnas continuam com caminho ate o refugio
+PASS: [35] Fogueira: 20/12, +25, 3 s, 2,5 m, 2 cargas, 25 s
+PASS: [36] Armadilha: 15/6, 15 de dano, 3 cargas, maximo 3
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+PASS: [37] Torre e recompensa da onda inalteradas
+PASS: [38] Coleta: arvore +10 (30 HP), pedra +6 (45 HP)
+[COLETA] Tree1 recebeu 30. HP: 0/30
+[COLETA] +10 wood (total 65)
+PASS: [38] Coleta real continua +10 Madeira
+PASS: [39] Ciclo visual da 014 intacto; marco visivel a noite (1.00 -> 2.00)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: [25] Reiniciar: Centro CONTROLLED, Oeste e Leste WILD
+PASS: [25] Reiniciar: HUD 1/3 e 2 guardioes novos
+PASS: [25] Reiniciar: Oeste volta a recusar construcao
+PASS: [40] Reinicios nao acumulam conexoes no DayNightManager
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: [40] Segundo reinicio: mesmas conexoes
+SPEC015 RESULTS: 68 passed; 0 failed
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

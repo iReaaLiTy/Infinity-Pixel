@@ -1,0 +1,183 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Spawn seguro perto do refugio, fora do nucleo
+PASS: Player nasce no marcador com 100 HP
+PASS: Encontro territorial localizado na clareira de criaturas
+PASS: Navmesh sincronizada
+PASS: Regiao conectada a base: PlayerSpawn
+PASS: Destino sem sobreposicao solida: PlayerSpawn
+PASS: Regiao conectada a base: RefugeApproach
+PASS: Destino sem sobreposicao solida: RefugeApproach
+PASS: Regiao conectada a base: SafeZone/BuildZone
+PASS: Destino sem sobreposicao solida: SafeZone/BuildZone
+PASS: Regiao conectada a base: SafeZone/Center
+PASS: Destino sem sobreposicao solida: SafeZone/Center
+PASS: Regiao conectada a base: TransitionZone/Center
+PASS: Destino sem sobreposicao solida: TransitionZone/Center
+PASS: Regiao conectada a base: WildZone/Center
+PASS: Destino sem sobreposicao solida: WildZone/Center
+PASS: Regiao conectada a base: NightRoutes/RuinEntry
+PASS: Destino sem sobreposicao solida: NightRoutes/RuinEntry
+PASS: Regiao conectada a base: NightRoutes/WestEntry
+PASS: Destino sem sobreposicao solida: NightRoutes/WestEntry
+PASS: Regiao conectada a base: NightRoutes/EastEntry
+PASS: Destino sem sobreposicao solida: NightRoutes/EastEntry
+PASS: Regiao conectada a base: ResourceZones/WoodlandReserve
+PASS: Destino sem sobreposicao solida: ResourceZones/WoodlandReserve
+PASS: Regiao conectada a base: ResourceZones/StoneReserve
+PASS: Destino sem sobreposicao solida: ResourceZones/StoneReserve
+PASS: Regiao conectada a base: CreatureZones/CommonTerritory
+PASS: Destino sem sobreposicao solida: CreatureZones/CommonTerritory
+PASS: Regiao conectada a base: CreatureZones/DistantTerritory
+PASS: Destino sem sobreposicao solida: CreatureZones/DistantTerritory
+PASS: Regiao conectada a base: Landmarks/DefensePost
+PASS: Destino sem sobreposicao solida: Landmarks/DefensePost
+PASS: Regiao conectada a base: Landmarks/OldArch
+PASS: Destino sem sobreposicao solida: Landmarks/OldArch
+PASS: Regiao conectada a base: Landmarks/Fork
+PASS: Destino sem sobreposicao solida: Landmarks/Fork
+PASS: Regiao conectada a base: Landmarks/WestChoke
+PASS: Destino sem sobreposicao solida: Landmarks/WestChoke
+PASS: Regiao conectada a base: Landmarks/EastChoke
+PASS: Destino sem sobreposicao solida: Landmarks/EastChoke
+PASS: Regiao conectada a base: Landmarks/HeathGate
+PASS: Destino sem sobreposicao solida: Landmarks/HeathGate
+PASS: BuildZone 8x10 m aberta e navegavel em nove amostras
+PASS: Player sai da base e alcanca area selvagem por WASD real
+[Player] recebeu 1000.0 de dano. HP: 0.0/100
+[Player] morreu. Respawn em 2.0 s.
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+PASS: Morte e respawn retornam a nova area segura
+PASS: Troncos e pedras recortados na navmesh
+PASS: 66 colisores no mesmo XZ e tamanho dos visuais (maior desvio 0.000 m)
+PASS: Nenhum solido visual sem colisor []
+PASS: Navmesh sem ilhas em cima de pedras/arco (0 vertices altos)
+PASS: Nenhum obstaculo no meio das trilhas []
+PASS: Nenhuma copa do lado da camera escondendo trilhas []
+PASS: Bosque mais arborizado; regiao rochosa com mais pedras que arvores (bosque [7, 2], pedras [4, 5])
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@347
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@348
+PASS: Tres inimigos nascem em rotas distintas
+PASS: Entradas noturnas separadas por mais de 15 m
+@CharacterBody3D@347 chegou ao territorio.
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 981/100
+WildDino chegou ao territorio.
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 961/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 942/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 922/100
+@CharacterBody3D@348 chegou ao territorio.
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 903/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 883/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 864/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 844/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 825/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 805/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 786/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 766/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 747/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 727/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 708/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 688/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 669/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 649/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 630/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 610/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 591/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 571/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 552/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 532/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 513/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 493/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 474/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 454/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 435/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 415/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 396/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 376/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 357/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 337/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 318/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 298/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 279/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 259/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 240/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 220/100
+@CharacterBody3D@348 atacou Territory.
+Base recebeu 20 de dano. HP: 201/100
+@CharacterBody3D@347 atacou Territory.
+Base recebeu 20 de dano. HP: 181/100
+PASS: Inimigos percorrem as tres rotas e atacam o refugio
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@347 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@347 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@348 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@348 foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: Onda vencida retorna ao dia sem interrupcao
+Base recebeu 1000 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: Refugio continua sendo condicao de derrota
+SPEC012 RESULTS: 57 passed; 0 failed
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)

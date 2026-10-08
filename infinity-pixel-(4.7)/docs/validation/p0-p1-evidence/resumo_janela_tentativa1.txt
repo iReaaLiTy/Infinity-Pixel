@@ -1,0 +1,19 @@
+﻿main_menu                  t1 exit=0       MENU RESULTS: 27 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=0
+creature_motion            t1 exit=0       MOTION RESULTS: 32 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=2
+gameplay_stability         t1 exit=1       STABILITY RESULTS: 12 passed; 3 failed | FAIL=3 SCRIPT_ERR=0 sinais_de_foco=0
+territory                  t1 exit=1       SPEC015 RESULTS: 67 passed; 1 failed | FAIL=1 SCRIPT_ERR=0 sinais_de_foco=0
+domestication_regression   t1 exit=0       DOMESTICATION RESULTS: 26 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=4
+navigation_contracts       t1 exit=0       SPEC010 RESULTS: 38 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=0
+physics_contracts          t1 exit=0       SPEC009 RESULTS: 23 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=0
+combat_collect             t1 exit=0       SPEC013C RESULTS: 46 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=0
+build_heal                 t1 exit=1       SPEC013D RESULTS: 60 passed; 8 failed | FAIL=8 SCRIPT_ERR=0 sinais_de_foco=0
+healing_actions            t1 exit=1       HEALING ACTIONS: 6 passed; 1 failed | FAIL=1 SCRIPT_ERR=0 sinais_de_foco=1
+player_health              t1 exit=0       SPEC011 RESULTS: 47 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=1
+player_facing              t1 exit=0       RESULT: 37/37 | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=0
+day_cycle                  t1 exit=0       SPEC013 RESULTS: 43 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=0
+day_cycle_real             t1 exit=1       SPEC013 REAL RESULTS: 5 passed; 10 failed | FAIL=10 SCRIPT_ERR=0 sinais_de_foco=0
+sky_cycle                  t1 exit=1       SPEC014 RESULTS: 44 passed; 1 failed | FAIL=1 SCRIPT_ERR=0 sinais_de_foco=0
+defense_economy            t1 exit=TIMEOUT  | FAIL=5 SCRIPT_ERR=1 sinais_de_foco=0
+acceptance                 t1 exit=TIMEOUT  | FAIL=2 SCRIPT_ERR=0 sinais_de_foco=0
+world_layout               t1 exit=0       SPEC012 RESULTS: 57 passed; 0 failed | FAIL=0 SCRIPT_ERR=0 sinais_de_foco=0
+FIM

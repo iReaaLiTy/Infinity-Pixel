@@ -1,0 +1,337 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: [A] I abre o inventario
+PASS: [C] Inventario aberto nao pausa (relogio andando)
+PASS: [D][E] Madeira e Pedra exibidas = ResourceStock
+[COLETA] +40 wood (total 40)
+[COLETA] +18 stone (total 18)
+PASS: [F] Ganhar recurso atualiza o inventario no mesmo quadro (sinal)
+[COLETA] -5 madeira, -2 pedra (restam 35 / 16)
+PASS: [G] Gastar recurso atualiza o inventario
+PASS: [H] Gasto maior que o estoque falha e nunca fica negativo
+[COLETA] -35 madeira, -16 pedra (restam 0 / 0)
+[COLETA] +20 wood (total 20)
+[COLETA] +6 stone (total 6)
+PASS: [I] Receita 20/12 com 20/6: falha atomica, nada e retirado
+PASS: [B] I fecha o inventario
+[COLETA] -20 madeira, -6 pedra (restam 0 / 0)
+[COLETA] +60 wood (total 60)
+[COLETA] +30 stone (total 30)
+PASS: [J] B abre o menu de construcao
+PASS: [K] Escolher a Fogueira mostra o fantasma
+PASS: [L] Fantasma acompanha o ponto e fica valido na BuildZone
+PASS: [M][Q] Fora da BuildZone: invalido (Fora da área permitida)
+PASS: Painel de posicionamento mostra o motivo
+PASS: Nao constroi sobre arvore coletavel
+PASS: [S] Botao direito cancela sem gastar
+PASS: ESC cancela o posicionamento antes de pausar
+[COLETA] -20 madeira, -12 pedra (restam 40 / 18)
+[CONSTRUCAO] FOGUEIRA DE CURA em (8.5, 0.0, -17.0)
+PASS: Fogueira construida com clique esquerdo
+PASS: [R] O clique de construir nao gera ataque
+PASS: [T][V] Fogueira custa exatamente 20 Madeira + 12 Pedra (60/30 -> 40/18)
+PASS: Aviso 'FOGUEIRA CONSTRUÍDA'
+PASS: [W] Maximo de 1 Fogueira (LIMITE ATINGIDO)
+[COLETA] -15 madeira, -6 pedra (restam 25 / 12)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 4.0)
+PASS: [AL] Armadilha custa 15 Madeira + 6 Pedra
+PASS: [N] Nao constroi sobre outra estrutura
+PASS: [O] Nao constroi sobre o refugio
+PASS: [P] Nao constroi sobre ponto de defesa/torre (Ocupado por ponto de defesa)
+PASS: Armadilha fora das rotas: recusada
+PASS: Nao constroi em cima do Player
+[COLETA] +30 wood (total 55)
+[COLETA] +12 stone (total 24)
+[COLETA] -15 madeira, -6 pedra (restam 40 / 18)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (-17.0, 0.0, 1.0)
+[COLETA] -15 madeira, -6 pedra (restam 25 / 12)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (17.03773, 0.0, 0.867925)
+PASS: 3 armadilhas, uma por rota
+[COLETA] +15 wood (total 40)
+[COLETA] +6 stone (total 18)
+PASS: [AM] Maximo de 3 armadilhas
+PASS: [AS] Armadilha comeca com 3 cargas
+PASS: [AU] Armadilha sem corpo solido e sem obstaculo de navegacao
+PASS: [AF] Fogueira comeca com 2 cargas
+PASS: [X] Fora do alcance (4 m) H nao cura
+[Player] curou 25. HP: 75/100
+[FOGUEIRA] cura +25 (cargas 1/2, recarga 25 s)
+PASS: [Y][Z] 3 s de canalizacao (sem cura aos 2,7 s); +25 (50 -> 75)
+PASS: [AE][AI] Cura consome 1 carga e inicia recarga de 25 s (24.8)
+PASS: [AI] Durante a recarga H nao cura
+PASS: [AI] Recarga ainda ativa aos ~24 s
+PASS: [AI] Recarga termina aos 25 s
+[FOGUEIRA] cura cancelada: fora do alcance
+PASS: [AB] Sair do alcance cancela sem curar nem gastar carga
+[Player] recebeu 5.0 de dano. HP: 70.0/100
+[FOGUEIRA] cura cancelada: sofreu dano
+[FOGUEIRA] cura cancelada: soltou H
+PASS: [AC] Sofrer dano cancela (progresso descartado, 70, sem cura parcial)
+[Player] ataque acionado — alvos atingidos: 0
+[FOGUEIRA] cura cancelada: atacou
+[FOGUEIRA] cura cancelada: soltou H
+PASS: Atacar cancela a cura (0.33 -> 0.01, sem cura parcial)
+PASS: Pausar cancela a cura (0.33 -> 0.00, sem cura parcial)
+[Player] curou 25. HP: 100/100
+[FOGUEIRA] cura +25 (cargas 0/2, recarga 25 s)
+PASS: [AA] 90 -> 100 (nao passa do maximo); 2a carga usada
+PASS: [AG] Terceira cura no mesmo ciclo recusada
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@559
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@560
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@559 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@559 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@560 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@560 foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: [AH] Amanhecer restaura 2 cargas (Dia 2)
+PASS: [AK] Com 100/100 nao canaliza nem gasta carga
+[Player] recebeu 1000.0 de dano. HP: 0.0/100
+[Player] morreu. Respawn em 2.0 s.
+[FOGUEIRA] cura cancelada: morreu
+PASS: [AD] Morrer cancela a cura
+PASS: [AJ] Morto nao pode usar a Fogueira
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+PASS: Respawn intacto (100/100)
+PASS: Respawn no mesmo ponto no plano (Fogueira nao revive)
+[DIA/NOITE] Noite 2 comecou (18:00). Estado: NOITE
+[NOITE] Noite 2: onda iniciada com 4 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/4) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[COLETA] -40 madeira, -18 pedra (restam 0 / 0)
+[COLETA] +50 wood (total 50)
+[COLETA] +50 stone (total 50)
+PASS: [U] Construcao bloqueada a noite
+[NOITE] Inimigo spawnado (2/4) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@578
+[NOITE] Inimigo spawnado (3/4) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@579
+PASS: Armadilha intacta antes do teste de ativacao (cargas 3)
+[ARMADILHA] WildDino recebeu 15 (cargas 2/3)
+WildDino recebeu 15 de dano. HP: 65/80
+PASS: [AN][AR] Inimigo da onda sobre a armadilha: -15 e -1 carga
+PASS: [AV] Mesma passagem: no maximo 1 golpe (parado em cima 1,2 s)
+PASS: [AO] Player sobre a armadilha: sem dano
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[NOITE] Inimigo spawnado (4/4) em (-1.6, 0.5, 21.6).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@580
+PASS: [AP] Aliado domesticado sobre a armadilha: sem dano
+PASS: [AQ] Selvagem diurno sobre a armadilha: sem dano
+[ARMADILHA] @CharacterBody3D@578 recebeu 15 (cargas 1/3)
+@CharacterBody3D@578 recebeu 15 de dano. HP: 65/80
+[ARMADILHA] @CharacterBody3D@579 recebeu 15 (cargas 0/3)
+@CharacterBody3D@579 recebeu 15 de dano. HP: 65/80
+[ARMADILHA] esgotada
+PASS: [AV] Dois no mesmo quadro: 1 golpe, o 2o apos o intervalo (cargas 0)
+PASS: [AT] 3 ativacoes: armadilha esgota e some (limite libera)
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 100)
+[NOITE] Inimigo da wave morreu. Restantes: 3
+@CharacterBody3D@578 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@578 foi derrotado.
+[DEFESA] +15 pontos (total 115)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@579 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@579 foi derrotado.
+[DEFESA] +15 pontos (total 130)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@580 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@580 foi derrotado.
+[DEFESA] +15 pontos (total 145)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (2). Amanheceu: Dia 3, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+PASS: Armadilha com cargas continua no dia seguinte
+[COLETA] -50 madeira, -50 pedra (restam 0 / 0)
+[COLETA] +15 wood (total 15)
+[COLETA] +6 stone (total 6)
+[COLETA] -15 madeira, -6 pedra (restam 0 / 0)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 4.0)
+PASS: Armadilha na estrada (campina) para o teste de passagem
+[DIA/NOITE] Noite 3 comecou (18:00). Estado: NOITE
+[NOITE] Noite 3: onda iniciada com 5 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/5) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/5) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@629
+[ARMADILHA] WildDino recebeu 15 (cargas 2/3)
+WildDino recebeu 15 de dano. HP: 65/80
+[NOITE] Inimigo spawnado (3/5) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@630
+[ARMADILHA] @CharacterBody3D@630 recebeu 15 (cargas 2/3)
+@CharacterBody3D@630 recebeu 15 de dano. HP: 65/80
+[NOITE] Inimigo spawnado (4/5) em (-1.6, 0.5, 21.6).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@631
+@CharacterBody3D@629 chegou ao territorio.
+@CharacterBody3D@629 atacou Territory.
+Base recebeu 20 de dano. HP: 981/100
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 61/80
+@CharacterBody3D@630 atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 41/80
+[NOITE] Inimigo spawnado (5/5) em (-18.4, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@632
+[ARMADILHA] @CharacterBody3D@632 recebeu 15 (cargas 2/3)
+@CharacterBody3D@632 recebeu 15 de dano. HP: 65/80
+@CharacterBody3D@629 atacou Territory.
+Base recebeu 20 de dano. HP: 961/100
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 22/80
+@CharacterBody3D@630 atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 2/80
+@CharacterBody3D@629 atacou Territory.
+Base recebeu 20 de dano. HP: 942/100
+[ARMADILHA] @CharacterBody3D@631 recebeu 15 (cargas 1/3)
+@CharacterBody3D@631 recebeu 15 de dano. HP: 65/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 20 de dano. HP: 0/80
+[ALIADO] DinoDomesticado foi derrotado
+@CharacterBody3D@629 atacou Territory.
+Base recebeu 20 de dano. HP: 922/100
+PASS: [AU] Inimigo da Ruina passa POR CIMA da armadilha (um golpe, -15) e chega ao refugio (10.8 s)
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 160)
+[NOITE] Inimigo da wave morreu. Restantes: 4
+@CharacterBody3D@629 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@629 foi derrotado.
+[DEFESA] +15 pontos (total 175)
+[NOITE] Inimigo da wave morreu. Restantes: 3
+@CharacterBody3D@630 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@630 foi derrotado.
+[DEFESA] +15 pontos (total 190)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@631 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@631 foi derrotado.
+[DEFESA] +15 pontos (total 205)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@632 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@632 foi derrotado.
+[DEFESA] +15 pontos (total 220)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (3). Amanheceu: Dia 4, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Reiniciar: 0 Madeira, 40 Pontos, sem estruturas, Dia 1
+[COLETA] Tree1 recebeu 15. HP: 15/30
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree1 recebeu 15. HP: 0/30
+[COLETA] +10 wood (total 10)
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree2 recebeu 15. HP: 15/30
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree2 recebeu 15. HP: 0/30
+[COLETA] +10 wood (total 20)
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree3 recebeu 15. HP: 15/30
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree3 recebeu 15. HP: 0/30
+[COLETA] +10 wood (total 30)
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree4 recebeu 15. HP: 15/30
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Tree4 recebeu 15. HP: 0/30
+[COLETA] +10 wood (total 40)
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone1 recebeu 15. HP: 30/45
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone1 recebeu 15. HP: 15/45
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone1 recebeu 15. HP: 0/45
+[COLETA] +6 stone (total 6)
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone2 recebeu 15. HP: 30/45
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone2 recebeu 15. HP: 15/45
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone2 recebeu 15. HP: 0/45
+[COLETA] +6 stone (total 12)
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone3 recebeu 15. HP: 30/45
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone3 recebeu 15. HP: 15/45
+[Player] ataque acionado — alvos atingidos: 1
+[COLETA] Stone3 recebeu 15. HP: 0/45
+[COLETA] +6 stone (total 18)
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Dia 1: coletou 40 Madeira + 18 Pedra (4 arvores, 3 pedras)
+[COLETA] -20 madeira, -12 pedra (restam 20 / 6)
+[CONSTRUCAO] FOGUEIRA DE CURA em (8.5, 0.0, -17.0)
+[COLETA] -15 madeira, -6 pedra (restam 5 / 0)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 4.0)
+PASS: Construiu Fogueira + Armadilha: sobram 5 Madeira, 0 Pedra
+[DEFESA] -30 pontos (restam 10)
+[DEFESA] Torre construida em SlotRuinArch (rota Ruína)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[Player] recebeu 45.0 de dano. HP: 55.0/100
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDino recebeu 10 de dano. HP: 70/80
+WildDino recebeu 10 de dano. HP: 60/80
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@1087
+WildDino recebeu 10 de dano. HP: 50/80
+[Player] curou 25. HP: 80/100
+[FOGUEIRA] cura +25 (cargas 1/2, recarga 25 s)
+PASS: Noite 1: ferido (55) recua e cura na Fogueira (+25 -> 80)
+[ARMADILHA] WildDino recebeu 15 (cargas 2/3)
+WildDino recebeu 15 de dano. HP: 35/80
+PASS: Noite 1: inimigo passa pela armadilha e a torre continua atacando
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@1092
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 25)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@1087 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@1087 foi derrotado.
+[DEFESA] +15 pontos (total 40)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@1092 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@1092 foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: Noite vencida com construcoes + torre + Player
+SPEC013D RESULTS: 68 passed; 0 failed
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

@@ -1,0 +1,264 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+MOTION parado_em_casa [{"chatter":0,"label":"territorial","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Parado em casa nao se mexe nem gira (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+WildDino atacou Player.
+WildDino atacou Player.
+WildDino atacou Player.
+MOTION perseguir_aproximacao [{"chatter":0,"label":"cacador","leg_idle":0.065,"max_speed":4.0,"net":4.561,"path":4.561,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Cacador de fato se aproximou (menor trajeto 4.56 m >= 3.00)
+PASS: Aproximacao ao Player sem anda-para nem tremor (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+WildDino atacou Player.
+WildDino atacou Player.
+WildDino atacou Player.
+WildDino atacou Player.
+MOTION atacar_parado [{"chatter":0,"label":"cacador","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Atacando o Player parado: firme no slot (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+PASS: Cacador continua no alcance do golpe (1.94 m)
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+MOTION grupo_aproximacao [{"chatter":0,"label":"oeste","leg_idle":0.216,"max_speed":4.0,"net":4.397,"path":4.4,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":2,"yaw_travel":2.221,"yaw_wobble":0},{"chatter":0,"label":"leste","leg_idle":0.215,"max_speed":4.0,"net":4.351,"path":4.351,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":1,"yaw_travel":2.229,"yaw_wobble":0},{"chatter":0,"label":"sul","leg_idle":0.317,"max_speed":4.0,"net":4.203,"path":4.545,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":2,"yaw_travel":1.015,"yaw_wobble":0},{"chatter":0,"label":"sudoeste","leg_idle":0.235,"max_speed":4.0,"net":4.431,"path":4.599,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":3,"yaw_travel":1.63,"yaw_wobble":0}]
+PASS: Todo o grupo de fato se aproximou (menor trajeto 4.35 m >= 2.50)
+PASS: Grupo se aproxima sem tremor (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino3 atacou Player.
+WildDino4 atacou Player.
+MOTION grupo_cercando [{"chatter":0,"label":"oeste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"leste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"sul","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"sudoeste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Grupo cercando o Player parado: ninguem empurra ninguem (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+NOTA: jogo pausou (perda de foco da janela) e foi retomado pelo teste
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+MOTION player_passos_curtos [{"chatter":0,"label":"oeste","leg_idle":0.69,"max_speed":4.0,"net":0.733,"path":2.16,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":6,"twitch":0,"yaw_flips":8,"yaw_travel":5.497,"yaw_wobble":1},{"chatter":0,"label":"leste","leg_idle":0.58,"max_speed":4.0,"net":0.352,"path":1.081,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":4,"twitch":0,"yaw_flips":6,"yaw_travel":3.252,"yaw_wobble":0}]
+PASS: Cacadores de fato acompanharam os passos (menor trajeto 1.08 m >= 0.30)
+PASS: Passos curtos do Player nao viram anda-para nos cacadores (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 1.0<=2, yaw_flips 8.0<=10)
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+MOTION player_corre_e_para [{"chatter":0,"label":"oeste","leg_idle":0.48,"max_speed":4.0,"net":5.714,"path":5.732,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":2,"twitch":0,"yaw_flips":1,"yaw_travel":2.081,"yaw_wobble":0},{"chatter":0,"label":"leste","leg_idle":0.349,"max_speed":4.0,"net":5.837,"path":5.847,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":2,"twitch":0,"yaw_flips":1,"yaw_travel":4.007,"yaw_wobble":0}]
+PASS: Cacadores de fato perseguiram (menor trajeto 5.73 m >= 3.00)
+PASS: Perseguicao apos corrida sem anda-para (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+WildDino2 atacou Player.
+WildDino atacou Player.
+WildDino2 atacou Player.
+WildDino atacou Player.
+MOTION depois_da_corrida [{"chatter":0,"label":"oeste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"leste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Depois da corrida os cacadores assentam (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+WildDino recebeu 60 de dano. HP: 20/80
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino recebeu 60 de dano. HP: 20/80
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+MOTION aliados_seguem [{"chatter":0,"label":"aliado1","leg_idle":0.48,"max_speed":4.0,"net":7.447,"path":7.453,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":2,"twitch":0,"yaw_flips":0,"yaw_travel":1.698,"yaw_wobble":0},{"chatter":0,"label":"aliado2","leg_idle":0.415,"max_speed":4.0,"net":7.019,"path":7.06,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":2,"twitch":0,"yaw_flips":2,"yaw_travel":1.805,"yaw_wobble":0}]
+PASS: Aliados de fato seguiram (menor trajeto 7.06 m >= 3.00)
+PASS: Aliados seguem a corrida sem anda-para (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+MOTION aliados_parados [{"chatter":0,"label":"aliado1","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"aliado2","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Aliados parados com o Player parado (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+MOTION aliados_passos_curtos [{"chatter":0,"label":"aliado1","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"aliado2","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Passos curtos do Player nao fazem os aliados tremer (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+[ALIADO] Modo alterado: FICAR
+[ALIADO] Posição de defesa definida: (7.227281, -0.000049, 1.714703)
+PASS: Aliado de fato entrou em FICAR
+MOTION aliado_ficar [{"chatter":0,"label":"posto","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Aliado em FICAR fica firme no posto (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+MOTION dois_proximos [{"chatter":0,"label":"a","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"b","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Dois dinos proximos param e nao se empurram (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+WildDino atacou Player.
+WildDino atacou Player.
+WildDino atacou Player.
+WildDino atacou Player.
+WildDino atacou Player.
+MOTION contorna_pedra [{"chatter":0,"label":"pedra","leg_idle":0.04,"max_speed":4.0,"net":4.558,"path":4.6,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":1,"yaw_travel":1.836,"yaw_wobble":0}]
+PASS: Contorna a pedra e alcanca o Player (1.05 s)
+PASS: Contornar a pedra sem tremor (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+WildDino atacou Player.
+WildDino atacou Player.
+WildDino atacou Player.
+[NAV] WildDino sem progresso: recalculando caminho e trocando de slot (desejada=4.0 m/s, real=0.0 m/s)
+WildDino atacou Player.
+WildDino atacou Player.
+MOTION atravessa_bosque (arvore (-15.0, 0.0, 19.5)) [{"chatter":0,"label":"bosque","leg_idle":0.449,"max_speed":4.0,"net":5.159,"path":7.431,"reversals":0,"slot_sw":2,"target_sw":1,"toggles":4,"twitch":0,"yaw_flips":5,"yaw_travel":4.741,"yaw_wobble":1}]
+PASS: Atravessa o bosque e alcanca o Player (2.55 s)
+PASS: Atravessar o bosque sem tremor (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 1.0<=2)
+WildDino2 recebeu 60 de dano. HP: 20/80
+WildDino2 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino2 domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino atacou Player.
+[ALIADO] Inimigo detectado: WildDino
+[ALIADO] Atacando: WildDino
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 65/80
+WildDino atacou Player.
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 50/80
+WildDino atacou Player.
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 35/80
+WildDino atacou Player.
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 20/80
+WildDino atacou Player.
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 5/80
+MOTION troca_de_alvo [{"chatter":0,"label":"selvagem","leg_idle":0.183,"max_speed":4.0,"net":0.933,"path":0.933,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":2,"twitch":0,"yaw_flips":0,"yaw_travel":1.847,"yaw_wobble":0},{"chatter":0,"label":"aliado","leg_idle":0.287,"max_speed":4.0,"net":1.327,"path":1.331,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":1,"yaw_travel":2.204,"yaw_wobble":0}]
+PASS: Disputa de fato aconteceu (maior trajeto 1.33 m >= 0,3)
+PASS: Disputa Player x aliado sem alternancia de alvo (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2, target_sw 1.0<=2)
+WildDino recebeu 60 de dano. HP: 20/80
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+[ALIADO] Inimigo detectado: WildDino
+[ALIADO] Atacando: WildDino
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 65/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 65/80
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 50/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 50/80
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 35/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 35/80
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 20/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 20/80
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 5/80
+WildDino atacou DinoDomesticado.
+[ALIADO] recebeu 15 de dano. HP: 5/80
+MOTION aliado_x_selvagem [{"chatter":0,"label":"aliado","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"selvagem","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Aliado x selvagem de fato lutaram
+PASS: Aliado x selvagem lutam sem andar em roda (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2, path 0.0<=0.6)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@363
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@364
+@CharacterBody3D@363 chegou ao territorio.
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 99981/100
+WildDino chegou ao territorio.
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 99961/100
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 99942/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 99922/100
+@CharacterBody3D@364 chegou ao territorio.
+@CharacterBody3D@364 atacou Territory.
+Base recebeu 20 de dano. HP: 99903/100
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 99883/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 99864/100
+@CharacterBody3D@364 atacou Territory.
+Base recebeu 20 de dano. HP: 99844/100
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 99825/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 99805/100
+PASS: Onda: 3 inimigos chegaram e foram medidos no refugio (3)
+@CharacterBody3D@364 atacou Territory.
+Base recebeu 20 de dano. HP: 99786/100
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 99766/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 99747/100
+@CharacterBody3D@364 atacou Territory.
+Base recebeu 20 de dano. HP: 99727/100
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 99708/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 99688/100
+@CharacterBody3D@364 atacou Territory.
+Base recebeu 20 de dano. HP: 99669/100
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 99649/100
+WildDino atacou Territory.
+Base recebeu 20 de dano. HP: 99630/100
+MOTION onda_no_refugio [{"chatter":0,"label":"WildDino","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"@CharacterBody3D@363","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"@CharacterBody3D@364","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Onda atacando o refugio: firmes nos slots (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+@CharacterBody3D@364 atacou Territory.
+Base recebeu 20 de dano. HP: 31/100
+@CharacterBody3D@363 atacou Territory.
+Base recebeu 20 de dano. HP: 11/100
+Base recebeu 11 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+MOTION fim_de_sessao [{"chatter":0,"label":"andando1","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"andando2","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Fim de sessao ativo durante a medicao
+PASS: Fim de sessao: criaturas paradas nao andam no lugar (path 0.0<=0.01, leg_idle 0.0<=0.6)
+NOTA: 1 pausa(s) por perda de foco retomada(s); quadros pausados ficaram fora das metricas
+MOTION RESULTS: 32 passed; 0 failed

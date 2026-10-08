@@ -2,8 +2,10 @@ extends Node
 var app: Node
 var checks: Array[String] = []
 var failures: Array[String] = []
-# Permite guardar uma nova execução sem sobrescrever capturas históricas.
-var evidence := "res://docs/ac1/evidence/" if OS.get_environment("INFINITY_PIXEL_EVIDENCE_DIR").is_empty() else OS.get_environment("INFINITY_PIXEL_EVIDENCE_DIR").trim_suffix("/") + "/"
+# Padrão em user://: rodar a suíte não sobrescreve a evidência versionada da AC1
+# (docs/ac1/evidence). Evidência intencional: --evidence-dir=<pasta> ou a
+# variável INFINITY_PIXEL_EVIDENCE_DIR (tools/test_ac1.ps1 já passa a pasta).
+var evidence := "user://ac1-evidence/" if OS.get_environment("INFINITY_PIXEL_EVIDENCE_DIR").is_empty() else OS.get_environment("INFINITY_PIXEL_EVIDENCE_DIR").trim_suffix("/") + "/"
 
 func check(ok: bool, title: String) -> void:
 	(checks if ok else failures).append(title)

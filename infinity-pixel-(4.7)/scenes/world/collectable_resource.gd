@@ -30,6 +30,7 @@ var _shape: CollisionShape3D
 var _obstacle: NavigationObstacle3D
 var _rest_transform: Transform3D
 var _depleted_on_day := 0
+var _feedback_tween: Tween
 
 func _ready() -> void:
 	add_to_group("damageable") # ADR 0001: o golpe do Player alcanca
@@ -89,7 +90,9 @@ func _deplete() -> void:
 	var stock := get_node_or_null(stock_path)
 	if stock != null:
 		stock.add(StringName(kind), reward())
+	if is_instance_valid(_feedback_tween): _feedback_tween.kill()
 	var t := create_tween()
+	_feedback_tween = t
 	if kind == "wood":
 		# A arvore tomba para o lado e afunda.
 		t.tween_property(_visual, "rotation:z", deg_to_rad(82), 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
@@ -110,6 +113,7 @@ func _process(_delta: float) -> void:
 func restore() -> void:
 	if not depleted:
 		return
+	if is_instance_valid(_feedback_tween): _feedback_tween.kill()
 	depleted = false
 	hp = max_hp
 	collision_layer = WORLD | INTERACTABLES

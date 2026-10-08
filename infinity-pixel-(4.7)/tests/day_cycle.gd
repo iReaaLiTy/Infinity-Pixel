@@ -11,6 +11,11 @@ var app: Node
 var world: Node3D
 var warnings := 0
 var dawns := 0
+# Relogio lido NO INSTANTE da transicao (dentro do sinal). O relogio anda no
+# _process; ler depois de esperar physics_frame dependia do ritmo de quadros
+# (sem --fixed-fps, 1 ou mais _process rodam antes e o texto ja vira 18:01).
+var night_clock := ""
+var dawn_clock := ""
 
 func check(ok: bool, title: String) -> void:
 	(passed if ok else failed).append(title)
@@ -59,7 +64,11 @@ func _ready() -> void:
 	DayNightManager.night_warning_seconds = 3.0
 	DayNightManager.night_countdown_seconds = 2.0
 	DayNightManager.night_warning.connect(func(): warnings += 1)
-	DayNightManager.day_started.connect(func(): dawns += 1)
+	DayNightManager.day_started.connect(func():
+		dawns += 1
+		dawn_clock = DayNightManager.clock_text()
+	)
+	DayNightManager.night_started.connect(func(): night_clock = DayNightManager.clock_text())
 	app = load("res://scenes/ui/main.tscn").instantiate()
 	add_child(app)
 	await get_tree().process_frame
@@ -113,7 +122,7 @@ func _ready() -> void:
 	check(app.overlay == null and not get_tree().paused, "[F] Contagem sem modal e sem pausa")
 	# [G][H] 18:00 inicia a noite e a onda
 	await until(func(): return DayNightManager.is_night(), 5.0)
-	check(DayNightManager.is_night() and DayNightManager.clock_text() == "18:00", "[G] 18:00 inicia NOITE automaticamente")
+	check(DayNightManager.is_night() and night_clock == "18:00", "[G] 18:00 inicia NOITE automaticamente")
 	check(wave._wave_active and wave.enemy_count == 3, "[H][I] WaveManager iniciou sozinho com 3 inimigos")
 	check(warnings == 1, "[E] Aviso nao repete no mesmo dia")
 	await get_tree().process_frame
@@ -144,7 +153,7 @@ func _ready() -> void:
 	await until(func(): return DayNightManager.is_day(), 2.0)
 	await get_tree().process_frame
 	check(DayNightManager.nights_defended == 1 and dawns == 1, "[K] Onda vencida: Noites defendidas = 1")
-	check(DayNightManager.day_number == 2 and DayNightManager.clock_text() == "08:00", "[L][M] Dia 2 comeca as 08:00")
+	check(DayNightManager.day_number == 2 and dawn_clock == "08:00", "[L][M] Dia 2 comeca as 08:00")
 	var dawn_toast = app.hud.find_child("DawnToast", true, false)
 	check(dawn_toast != null and app.overlay == null and not get_tree().paused and app.screen == "playing", "Amanhecer sem modal, sem pausa, com aviso discreto")
 	await get_tree().process_frame

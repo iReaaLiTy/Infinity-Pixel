@@ -1,0 +1,53 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: W: move na direcao relativa a camera
+PASS: W: modelo olha para o movimento
+PASS: W: sem jitter em regime
+PASS: W: mira logica do ataque intacta
+PASS: S: move na direcao relativa a camera
+PASS: S: modelo olha para o movimento
+PASS: S: sem jitter em regime
+PASS: S: mira logica do ataque intacta
+PASS: A: move na direcao relativa a camera
+PASS: A: modelo olha para o movimento
+PASS: A: sem jitter em regime
+PASS: A: mira logica do ataque intacta
+PASS: D: move na direcao relativa a camera
+PASS: D: modelo olha para o movimento
+PASS: D: sem jitter em regime
+PASS: D: mira logica do ataque intacta
+PASS: W+D: move na direcao relativa a camera
+PASS: W+D: modelo olha para o movimento
+PASS: W+D: sem jitter em regime
+PASS: W+D: mira logica do ataque intacta
+PASS: W+A: move na direcao relativa a camera
+PASS: W+A: modelo olha para o movimento
+PASS: W+A: sem jitter em regime
+PASS: W+A: mira logica do ataque intacta
+PASS: S+D: move na direcao relativa a camera
+PASS: S+D: modelo olha para o movimento
+PASS: S+D: sem jitter em regime
+PASS: S+D: mira logica do ataque intacta
+PASS: S+A: move na direcao relativa a camera
+PASS: S+A: modelo olha para o movimento
+PASS: S+A: sem jitter em regime
+PASS: S+A: mira logica do ataque intacta
+PASS: Parado: mantem ultima orientacao
+PASS: Camera nao gira com Player
+WildDinoEncontro recebeu 15 de dano. HP: 65/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Ataque atinge o lado do cursor, nao o do movimento
+PASS: Modelo encara o golpe momentaneamente
+PASS: Volta a seguir o movimento apos o golpe
+RESULT: 37/37
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2570)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

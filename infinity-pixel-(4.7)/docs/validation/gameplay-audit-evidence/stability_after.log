@@ -1,0 +1,31 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Territorial ocioso permanece estavel por 3 s
+@CharacterBody3D@344 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] @CharacterBody3D@344 domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Alvos quase equidistantes nao causam alternancia continua
+PASS: Ameaca claramente mais proxima ainda pode assumir prioridade
+PASS: Virada limitada por quadro, sem salto instantaneo
+PASS: Sem deslocamento real, pernas nao caminham por velocidade residual
+PASS: Dano negativo nao cura criatura
+[COLETA] +20 wood (total 20)
+[COLETA] +12 stone (total 12)
+PASS: Ataque guardado nao dispara durante construcao
+PASS: Ataque guardado nao dispara durante domesticacao
+[COLETA] Tree1 recebeu 30. HP: 0/30
+[COLETA] +10 wood (total 30)
+PASS: Amanhecer durante queda do recurso nao o esconde depois
+STABILITY RESULTS: 9 passed; 0 failed
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2570)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

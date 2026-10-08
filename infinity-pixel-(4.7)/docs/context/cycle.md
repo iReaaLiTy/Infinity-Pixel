@@ -158,3 +158,12 @@ segurar E 2 s recupera a região, e a área de construção cresce para ela. HUD
 "TERRITÓRIOS 1/3". territory 68/68 e regressões verdes nos dois modos. 013C,
 013D e 014 aprovadas manualmente; **015 implementada, aguardando playtest**.
 Spec 016 não iniciada.
+
+**Atualização 2026-10-08 — P0/P1 aprovadas manualmente:** depois da
+interrupção do GPT-6 Astra, o projeto foi estabilizado (conflito de merge,
+regressão da Spec 015, testes desatualizados e instáveis) e a tremedeira dos
+dinossauros foi corrigida na causa (destino de navegação defasado + rumo
+pelo avoidance). 17 suítes sem janela (635 checks) e 18 com janela (665)
+verdes; playtest manual aprovado. Próximas fases: P2 documentação e
+consolidação (em andamento), P3 tutorial jogável, P4 game design e UX, P5
+visual noturno, P6 QA final. Ver `../validation/p0-p1.md`.

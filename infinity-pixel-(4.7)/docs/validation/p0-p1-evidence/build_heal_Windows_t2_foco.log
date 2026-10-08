@@ -1,0 +1,3 @@
+FOCUS_WATCH inicio suite=build_heal focada=false
+FOCUS_WATCH t=43.9 pausado=true
+FOCUS_WATCH t=44.0 pausado=false

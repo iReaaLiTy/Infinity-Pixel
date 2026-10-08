@@ -3,6 +3,11 @@ extends Node
 # Spec 003: complementa acceptance.tscn com casos de entrada e ciclo de vida.
 # Usa a cena real, com atores parados apenas para isolar alcance e input.
 # Não representa aprovação humana de controle, câmera ou dificuldade.
+# Contratos atuais (Spec 013C): golpe do Player 15, WildDino 80 HP, elegível
+# com no máximo 30% (24 HP), domesticação concluída restaura 80/80. O mapa tem
+# dois encontros diurnos (013C), então contagens de selvagens são relativas.
+# Relatório: user:// por padrão (ou --report=<arquivo>); nunca sobrescreve a
+# evidência versionada em docs/ac1/evidence.
 var app: Node
 var player: Node3D
 var channel: Node
@@ -25,11 +30,15 @@ func key_e(pressed: bool, physical: bool = true) -> void:
 	Input.parse_input_event(event)
 	Input.flush_buffered_events()
 
+# Spec 007: a mira segue o cursor, então o clique é feito sobre o alvo.
 func attack_click() -> void:
+	var camera: Camera3D = player.get_node("StrategicCamera")
+	var at := camera.unproject_position(dino.global_position + Vector3(0, 0.8, 0)) if is_instance_valid(dino) else Vector2.ZERO
 	for pressed in [true, false]:
 		var event := InputEventMouseButton.new()
 		event.button_index = MOUSE_BUTTON_LEFT
 		event.pressed = pressed
+		event.position = at
 		get_viewport().push_input(event, true)
 
 func press_test_spawn() -> void:
@@ -75,10 +84,11 @@ func _ready() -> void:
 	check(channel.get_progress() == 0 and dino.get_node("PromptLabel3D").text.is_empty(), "HP acima do limiar: sem aviso nem canalização")
 	key_e(false)
 	# Golpes reais por overlap; sem atribuir HP neste fluxo principal.
-	for i in range(3):
+	# Spec 013C: golpe de 15 -> 80, 65, 50, 35, 20 (elegível no 4º golpe).
+	for i in range(4):
 		player._try_attack()
 		await wait(0.85)
-	check(dino.hp == 20, "Três golpes deixam alvo vivo com 20/80 HP")
+	check(dino.hp == 20, "Quatro golpes (15) deixam alvo vivo com 20/80 HP")
 	check(not dino.get_node("PromptLabel3D").text.is_empty(), "Alvo enfraquecido próximo mostra opção")
 	key_e(true)
 	await wait(0.25)
@@ -104,10 +114,13 @@ func _ready() -> void:
 	await wait()
 	if is_instance_valid(dino):
 		check(channel.get_progress() == 0 and not dino.is_being_domesticated, "Soltar E alternativo cancela e libera criatura")
-		await wait(0.85)
-		if DisplayServer.get_name() != "headless": attack_click()
-		else: player._try_attack()
-		check(dino.hp <= 0, "Após soltar E, o quarto golpe volta a derrotar normalmente")
+		# Spec 013C: com 20 HP, dois golpes de 15 derrotam (20 -> 5 -> 0).
+		for i in range(2):
+			await wait(0.85)
+			if not is_instance_valid(dino): break
+			if DisplayServer.get_name() != "headless": attack_click()
+			else: player._try_attack()
+		check(not is_instance_valid(dino) or dino.hp <= 0, "Após soltar E, os golpes voltam a ferir e derrotam o alvo (20 -> 5 -> 0)")
 
 	await reset_case()
 	dino.take_damage(60)
@@ -123,20 +136,22 @@ func _ready() -> void:
 	await wait(1.5)
 	key_e(false)
 	await wait()
-	check(dino.is_domesticated and dino.hp == 20 and dino.is_in_group("domesticated") and not dino.is_in_group("wild_dino"), "Conversão mantém indivíduo e HP e troca grupos de hostilidade")
+	check(dino.is_domesticated and dino.hp == dino.MAX_HP and dino.is_in_group("domesticated") and not dino.is_in_group("wild_dino"), "Conversão mantém o indivíduo, restaura 80/80 HP (Spec 013C) e troca grupos de hostilidade")
 	check(dino.ally_state == 0 and dino.get_node("PromptLabel3D").text.is_empty(), "Aliado inicia seguindo e perde aviso de domesticação")
 	full.queue_free()
 	carno.queue_free()
 	second.queue_free()
 	await wait()
 	var trigger = app.world.get_node("WaveTestTrigger")
+	# Os encontros diurnos da 013C continuam no mapa: conta só o que o T muda.
+	var wild_before := get_tree().get_nodes_in_group("wild_dino").size()
 	press_test_spawn()
-	check(get_tree().get_nodes_in_group("wild_dino").is_empty(), "T desligado por padrão não cria inimigos")
+	check(get_tree().get_nodes_in_group("wild_dino").size() == wild_before, "T desligado por padrão não cria inimigos")
 	trigger.debug_enabled = true
 	for i in range(2):
 		press_test_spawn()
 		await wait()
-	check(is_instance_valid(dino) and dino.is_domesticated and get_tree().get_nodes_in_group("wild_dino").size() == 1, "T de depuração preserva aliado e substitui apenas selvagem de teste")
+	check(is_instance_valid(dino) and dino.is_domesticated and get_tree().get_nodes_in_group("wild_dino").size() == wild_before + 1, "T de depuração preserva aliado e substitui apenas selvagem de teste")
 
 	await reset_case()
 	dino.queue_free()
@@ -206,7 +221,10 @@ func _ready() -> void:
 	app.queue_free()
 	await wait(0.2)
 	var report := {"passed": passed, "failed": failed, "engine": Engine.get_version_info(), "display": DisplayServer.get_name(), "note": "Regressão automatizada da Unidade 3; playtest humano pendente."}
-	var file := FileAccess.open("res://docs/ac1/evidence/domestication_" + DisplayServer.get_name() + ".json", FileAccess.WRITE)
+	var destination := "user://domestication_" + DisplayServer.get_name() + ".json"
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--report="): destination = argument.trim_prefix("--report=")
+	var file := FileAccess.open(destination, FileAccess.WRITE)
 	file.store_string(JSON.stringify(report, "  ") + "\n")
 	print("DOMESTICATION RESULTS: %d passed; %d failed" % [passed.size(), failed.size()])
 	get_tree().quit(0 if failed.is_empty() else 1)
