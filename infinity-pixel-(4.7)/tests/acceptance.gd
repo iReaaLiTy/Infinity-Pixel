@@ -2,7 +2,8 @@ extends Node
 var app: Node
 var checks: Array[String] = []
 var failures: Array[String] = []
-var evidence := "res://docs/ac1/evidence/"
+# Permite guardar uma nova execução sem sobrescrever capturas históricas.
+var evidence := "res://docs/ac1/evidence/" if OS.get_environment("INFINITY_PIXEL_EVIDENCE_DIR").is_empty() else OS.get_environment("INFINITY_PIXEL_EVIDENCE_DIR").trim_suffix("/") + "/"
 
 func check(ok: bool, title: String) -> void:
 	(checks if ok else failures).append(title)

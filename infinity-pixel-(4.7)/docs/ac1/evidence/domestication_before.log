@@ -1,0 +1,86 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+PASS: HP acima do limiar: sem aviso nem canalização
+WildDinoEncontro recebeu 20 de dano. HP: 60/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 20 de dano. HP: 40/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 20 de dano. HP: 20/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Três golpes deixam alvo vivo com 20/80 HP
+PASS: Alvo enfraquecido próximo mostra opção
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: E físico inicia canalização e suspende hostilidade
+WildDinoEncontro recebeu 20 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[Player] ataque acionado — alvos atingidos: 1
+FAIL: Ataque durante E não fere alvo nem consome cooldown
+[Domesticacao] cancelada: alvo_invalido (progresso 0.2 s descartado)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: E lógico alternativo inicia canalização sem ação física do Input Map
+WildDinoEncontro recebeu 20 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[Player] ataque acionado — alvos atingidos: 1
+FAIL: Ataque direto respeita E reconhecido pelo caminho alternativo
+[Domesticacao] cancelada: alvo_invalido (progresso 0.2 s descartado)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: Selvagem saudável e Carnotauro mais próximos não ocultam elegível
+PASS: Não domesticável próximo não recebe aviso nem canalização
+PASS: Segundo elegível mais próximo não rouba canalização
+WildDinoEncontro foi domesticado com 20/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[Domesticacao] concluida: aliado=true hp=20/80
+[Domesticacao] canalizacao iniciada: alvo=@CharacterBody3D@86 hp=20/80
+[Domesticacao] cancelada: tecla_liberada (progresso 0.1 s descartado)
+PASS: Conversão mantém indivíduo e HP e troca grupos de hostilidade
+PASS: Aliado inicia seguindo e perde aviso de domesticação
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+PASS: E por mais de 2 s não domestica Carnotauro nem mostra falsa opção
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[Domesticacao] cancelada: fora_do_alcance (progresso 0.4 s descartado)
+PASS: Afastar cancela e libera alvo
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: Reaproximar reinicia progresso do zero
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.2 s descartado)
+PASS: Pausa cancela e soltar E durante pausa não prende alvo
+PASS: Retomar com E solto não reinicia canalização
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.2 s descartado)
+PASS: Perda de foco pausa e cancela domesticação
+PASS: Retorno de foco não conserva E preso
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro recebeu 20 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[Domesticacao] cancelada: alvo_invalido (progresso 0.3 s descartado)
+PASS: Morte por dano externo cancela sem converter ou ressuscitar alvo
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro foi domesticado com 20/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[Domesticacao] concluida: aliado=true hp=20/80
+FAIL: Remoção pendente cancela antes de emitir conversão no mesmo frame
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 5.0)
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+Base recebeu 100 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.3 s descartado)
+PASS: Derrota cancela canalização e libera criatura
+DOMESTICATION RESULTS: 19 passed; 3 failed

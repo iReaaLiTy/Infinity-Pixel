@@ -5,13 +5,13 @@ extends Node
 # RF-AGE-006 — Canalizacao da domesticacao (PROVISORIO)
 
 const CHANNEL_TIME := 2.0 # RF-AGE-006 valor inicial. Teto de teste: ate 4 s.
-# NAO esta na Spec 003: distancia de "aproximar" e de "afastar-se". Provisorio.
+# Spec 003: distancia provisoria no plano XZ, preservada nesta revisao.
 const INTERACTION_RANGE := 3.0
 
 # DIAGNOSTICO TEMPORARIO (remover apos a Unidade 3 ser validada).
 # true = logs [DEBUG DOMESTICACAO]; false = so os logs [Domesticacao] de estado.
 const DEBUG := false
-const SCRIPT_VERSION := "v5-alvo-elegivel"
+const SCRIPT_VERSION := "v6-entrada-e-ciclo-de-vida"
 
 @onready var _player: Node3D = get_parent() as Node3D
 
@@ -50,9 +50,13 @@ func _physics_process(delta: float) -> void:
 		reset_channel()
 		return
 
+<<<<<<< HEAD:infinity-pixel-(4.7)/scenes/player/domestication_channel.gd
 	var e_held := _is_domesticate_held()
 	if not e_held:
 		e_hold_owner = "" # soltou E: a proxima segurada esta livre
+=======
+	var e_held := is_domesticate_held()
+>>>>>>> b7ce48ddb459d63e6e1a936a0d86e96fabec0c2d:Tower Defense/scenes/player/domestication_channel.gd
 	if DEBUG and e_held != _last_e_state:
 		_last_e_state = e_held
 		_last_block_reason = ""
@@ -117,7 +121,7 @@ func _cancel(reason: String) -> void:
 	_last_progress_checkpoint = 0.0
 
 # Acao "domesticate" do Input Map, OU tecla E fisica (mesma checagem do WASD), OU evento de E.
-func _is_domesticate_held() -> bool:
+func is_domesticate_held() -> bool:
 	if InputMap.has_action("domesticate") and Input.is_action_pressed("domesticate"):
 		return true
 	return Input.is_physical_key_pressed(KEY_E) or _e_event_down
@@ -125,7 +129,7 @@ func _is_domesticate_held() -> bool:
 # Parametro sem tipo de proposito: o alvo pode ter sido liberado (queue_free pela
 # morte ou pela tecla T), e um parametro tipado rejeita objeto liberado com erro.
 func _is_alive(dino) -> bool:
-	return is_instance_valid(dino) and dino.is_inside_tree()
+	return is_instance_valid(dino) and dino.is_inside_tree() and not dino.is_queued_for_deletion()
 
 func _is_valid_target(dino) -> bool:
 	return _is_alive(dino) and dino.is_in_group("wild_dino") and dino.can_be_domesticated() \
