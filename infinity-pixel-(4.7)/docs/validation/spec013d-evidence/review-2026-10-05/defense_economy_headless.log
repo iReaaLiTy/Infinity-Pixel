@@ -1,0 +1,89 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: 6 pontos de defesa no mapa
+PASS: 2 pontos por rota { "Oeste": 2, "Ruína": 2, "Leste": 2 }
+PASS: Nenhum ponto colado no refugio (mais proximo a 14.2 m)
+PASS: [A] Novo jogo comeca com 40 Pontos de Defesa (HUD 40; 013C: era 30)
+PASS: Painel: PONTO DE CONSTRUCAO, Torre de Defesa Custo 30, CONSTRUIR habilitado
+[DEFESA] -30 pontos (restam 10)
+[DEFESA] Torre construida em SlotWestInner (rota Oeste)
+PASS: [E][G] C constroi: ponto ocupado, 40 -> 10
+PASS: [H] Segunda torre no mesmo ponto recusada
+PASS: [F] Sem pontos: botao desabilitado + 'Pontos insuficientes'
+PASS: [F] C com 10 pontos nao constroi (custa 30)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] Aplicando visual de NOITE
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@324
+@CharacterBody3D@324 recebeu 10 de dano. HP: 70/80
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@327
+@CharacterBody3D@324 recebeu 10 de dano. HP: 60/80
+PASS: Noite 1 com 3 inimigos da onda
+[DEFESA] +100 pontos (total 110)
+PASS: [P] Painel a noite: 'Construa durante o dia'
+PASS: [P] Construcao bloqueada a noite
+PASS: [P] Upgrade bloqueado a noite
+[DEFESA] -100 pontos (restam 10)
+WildDino recebeu 10 de dano. HP: 70/80
+PASS: [I] Torre L1 ataca inimigo da onda (10 por golpe, 80 -> 70)
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 25)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+PASS: [B] Inimigo da onda derrotado: +15 (total 25)
+PASS: [B] HUD mostra 25 e o '+15 PONTOS' temporario
+PASS: [C] Mesmo inimigo nao concede duas vezes
+@CharacterBody3D@324 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] @CharacterBody3D@324 domesticado
+[ALIADO] Modo: SEGUINDO
+[NOITE] Inimigo da wave domesticado. Restantes: 1
+PASS: [K] Torre nao ataca domesticado; domesticar nao paga
+[ALIADO] recebeu 100 de dano. HP: 0/80
+[ALIADO] DinoDomesticado foi derrotado
+[NOITE] Aliado já neutralizado anteriormente - contador da wave não alterado
+PASS: [C][K] Domesticado morto depois nao concede pontos
+PASS: [J] Torre sem alvo nao ataca o Player
+PASS: [J][K] Player, refugio e aliado nunca sao alvos validos
+PASS: [D] Torre ignora selvagem fora da onda
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+WildDinoEncontro recebeu 1000 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+PASS: [D] Selvagem comum e encontro derrotados nao concedem pontos
+@CharacterBody3D@327 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@327 foi derrotado.
+[DEFESA] +15 pontos (total 40)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Aplicando visual de DIA
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+PASS: Noite 1 vencida: Dia 2 com 40 pontos (10 + 15 + 15)
+PASS: [O] Torre e nivel persistem no amanhecer
+PASS: Painel da torre: NIVEL 1, MELHORAR — 30
+[DEFESA] -30 pontos (restam 10)
+[DEFESA] Torre melhorada para o nivel 2
+PASS: [L] Upgrade L1->L2 custa 30: dano 15, 0,85 s, 9 m
+[DEFESA] +34 pontos (total 44)
+PASS: [M] 44 pontos nao bastam para o L3
+[DEFESA] +1 pontos (total 45)
+[DEFESA] -45 pontos (restam 0)
+[DEFESA] Torre melhorada para o nivel 3
+PASS: [M] Upgrade L2->L3 custa 45: dano 20, 0,70 s, 10 m
+[DEFESA] +100 pontos (total 100)
+PASS: [N] L3 nao melhora de novo; painel 'NIVEL MAXIMO'
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: [Q] Reiniciar: 40 pontos, pontos vazios, Dia 1
+PASS: [R] Slider 0: mudo (icone de mudo)
+PASS: [S] Slider 1%: som volta (icone de som)
+PASS: [T] Icone com som 60: mudo, slider 0
+PASS: [T] Icone de novo: volta para 60
+SPEC013B RESULTS: 35 passed; 0 failed

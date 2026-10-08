@@ -1,0 +1,40 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[COLETA] +80 wood (total 80)
+[COLETA] +40 stone (total 40)
+[SPEC015] 01_oeste_selvagem_entrada  territorios 1/3  { &"center": 2, &"west": 0, &"east": 0 }
+[SPEC015] 02_oeste_marco_apagado_guardiao  territorios 1/3  { &"center": 2, &"west": 0, &"east": 0 }
+[SPEC015] 03_construcao_recusada_oeste_selvagem  territorios 1/3  { &"center": 2, &"west": 0, &"east": 0 }
+WildDinoEncontro recebeu 80 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[TERRITORIO] FLORESTA OESTE: guardiao derrotado -> PRONTO PARA SER RECUPERADO
+[SPEC015] 04_oeste_pronto_marco_dourado  territorios 1/3  { &"center": 2, &"west": 1, &"east": 0 }
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[SPEC015] 05_oeste_recuperando  territorios 1/3  { &"center": 2, &"west": 1, &"east": 0 }
+[TERRITORIO] FLORESTA OESTE RECUPERADA (2/3)
+[SPEC015] 06_oeste_recuperada_anel  territorios 2/3  { &"center": 2, &"west": 2, &"east": 0 }
+[SPEC015] 07_oeste_controlada_hud_2de3  territorios 2/3  { &"center": 2, &"west": 2, &"east": 0 }
+[SPEC015] 08_fantasma_valido_oeste  territorios 2/3  { &"center": 2, &"west": 2, &"east": 0 }
+[COLETA] -20 madeira, -12 pedra (restam 60 / 28)
+[CONSTRUCAO] FOGUEIRA DE CURA em (-11.0, 0.0, 15.5)
+[SPEC015] 09_fogueira_no_oeste  territorios 2/3  { &"center": 2, &"west": 2, &"east": 0 }
+[SPEC015] 10_leste_guardiao  territorios 2/3  { &"center": 2, &"west": 2, &"east": 0 }
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro2 hp=20/80
+WildDinoEncontro2 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro2 domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] REGIÃO ROCHOSA: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[Domesticacao] concluida: aliado=true hp=80/80
+[SPEC015] 11_leste_pronto_aliado  territorios 2/3  { &"center": 2, &"west": 2, &"east": 1 }
+[TERRITORIO] REGIÃO ROCHOSA: recuperando...
+[TERRITORIO] REGIÃO ROCHOSA RECUPERADA (3/3)
+[SPEC015] 12_leste_recuperada_hud_3de3  territorios 3/3  { &"center": 2, &"west": 2, &"east": 2 }
+[SPEC015] 13_leste_noite  territorios 3/3  { &"center": 2, &"west": 2, &"east": 2 }
+[SPEC015] 14_oeste_noite_fogueira  territorios 3/3  { &"center": 2, &"west": 2, &"east": 2 }
+[SPEC015] capturas salvas em C:/Users/ppfti/OneDrive/Desktop/TDnovo/Infinity-Pixel/infinity-pixel-(4.7)/docs/delivery/ac1/evidence/territory_showcase_Windows/

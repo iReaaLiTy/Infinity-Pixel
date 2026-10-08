@@ -1,0 +1,125 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+PASS: N no menu bloqueado
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: Encontro diurno sem T e territorial
+PASS: Base preservada durante preparação
+WildDinoEncontro recebeu 15 de dano. HP: 65/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 50/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 35/80
+[Player] ataque acionado — alvos atingidos: 1
+WildDinoEncontro recebeu 15 de dano. HP: 20/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Quatro ataques (15) deixam 20/80 HP
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: E inicia canalização
+[Domesticacao] cancelada: tecla_liberada (progresso 0.6 s descartado)
+PASS: Soltar E cancela sem remover criatura
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.5 s descartado)
+PASS: Pausa cancela canalização e libera alvo
+PASS: N e movimento bloqueados na pausa
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: Alvo permanece travado com outro elegível próximo
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[Domesticacao] concluida: aliado=true hp=80/80
+[Domesticacao] canalizacao iniciada: alvo=WildDino hp=20/80
+PASS: Conversão restaura a vida (80, Spec 013C) e inicia seguir
+PASS: Domesticação atualiza visual do aliado
+[Domesticacao] cancelada: alvo_invalido (progresso 0.1 s descartado)
+[Player] ataque acionado — alvos atingidos: 0
+PASS: Ataque do jogador não fere aliado
+PASS: Aliado segue fisicamente
+[ALIADO] Modo alterado: FICAR
+[ALIADO] Posição de defesa definida: (-9.212008, 0.000153, 12.26696)
+PASS: F posiciona aliado em ficar
+[ALIADO] Inimigo detectado: WildDino
+[ALIADO] Atacando: WildDino
+DinoDomesticado atacou WildDino.
+WildDino recebeu 15 de dano. HP: 65/80
+PASS: Aliado em ficar detecta e ataca hostil
+[ALIADO] Retornando à posição de defesa
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] Aplicando visual de NOITE
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+PASS: Primeiro spawn no início da noite
+WildDino recebeu 60 de dano. HP: 20/80
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+[NOITE] Inimigo da wave domesticado. Restantes: 0
+[ALIADO] recebeu 100 de dano. HP: 0/80
+[ALIADO] DinoDomesticado2 foi derrotado
+[NOITE] Aliado já neutralizado anteriormente - contador da wave não alterado
+PASS: Domesticação e morte posterior contam uma neutralização
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDino recebeu 80 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDino recebeu 80 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Aplicando visual de DIA
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+PASS: Três spawns escalonados em aproximadamente 2 segundos
+PASS: Vitória após três ameaças volta ao dia sem pausar
+PASS: Vitória não abre modal
+PASS: Vitória preserva aliado existente
+PASS: Novo dia repõe somente encontro necessário
+Base recebeu 100 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: Derrota real da base — tentativa 0
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: Reinício limpa estado — tentativa 0
+Base recebeu 100 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: Derrota real da base — tentativa 1
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: Reinício limpa estado — tentativa 1
+WildDinoEncontro recebeu 60 de dano. HP: 20/80
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[Domesticacao] cancelada: fora_do_alcance (progresso 0.4 s descartado)
+PASS: Sair do alcance cancela e solta alvo
+Carnotauro recebeu 60 de dano. HP: 20/80
+PASS: Carnotauro enfraquecido continua não domesticável
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] Aplicando visual de NOITE
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+WildDino recebeu 80 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+Base recebeu 100 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: Base e último inimigo no mesmo quadro: derrota tem prioridade
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: Menu→jogar mantém um único diretor de áudio
+PASS: Reinícios não acumulam conexões de dia
+PASS: Música real tocando em loop
+PASS: Silenciar atua no bus real
+AC1 RESULTS: 33 passed; 0 failed

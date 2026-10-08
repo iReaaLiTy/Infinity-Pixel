@@ -1,0 +1,23 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[COLETA] +40 wood (total 40)
+[COLETA] +18 stone (total 18)
+[COLETA] -20 madeira, -12 pedra (restam 20 / 6)
+[CONSTRUCAO] FOGUEIRA DE CURA em (8.5, 0.0, -17.0)
+PASS: Cura iniciou antes da acao incompativel
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+[FOGUEIRA] cura cancelada: ação incompatível
+PASS: Iniciar domesticacao cancela cura em andamento
+PASS: Cura nao recomeca enquanto domestica; sem gasto ou cura parcial
+[Domesticacao] cancelada: tecla_liberada (progresso 0.8 s descartado)
+[FOGUEIRA] cura cancelada: ação incompatível
+PASS: Iniciar posicionamento cancela cura em andamento
+PASS: H durante posicionamento nao cura nem consome carga
+PASS: Cancelar posicionamento permite nova canalizacao completa
+PASS: Remover fogueira interrompe cura sem efeito atrasado
+HEALING ACTIONS: 7 passed; 0 failed

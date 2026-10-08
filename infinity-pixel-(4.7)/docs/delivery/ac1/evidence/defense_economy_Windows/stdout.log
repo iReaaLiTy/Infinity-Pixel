@@ -1,0 +1,24 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: 6 pontos de defesa no mapa
+PASS: 2 pontos por rota { "Oeste": 2, "Ruína": 2, "Leste": 2 }
+PASS: Nenhum ponto colado no refugio (mais proximo a 14.2 m)
+PASS: [A] Novo jogo comeca com 40 Pontos de Defesa (HUD 40; 013C: era 30)
+PASS: Painel: PONTO DE CONSTRUCAO, Torre de Defesa Custo 30, CONSTRUIR habilitado
+[DEFESA] -30 pontos (restam 10)
+[DEFESA] Torre construida em SlotWestInner (rota Oeste)
+PASS: [E][G] C constroi: ponto ocupado, 40 -> 10
+PASS: [H] Segunda torre no mesmo ponto recusada
+PASS: [F] Sem pontos: botao desabilitado + 'Pontos insuficientes'
+PASS: [F] C com 10 pontos nao constroi (custa 30)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+FAIL: Noite 1 com 3 inimigos da onda

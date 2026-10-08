@@ -1,0 +1,57 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[COLETA] +60 wood (total 60)
+[COLETA] +30 stone (total 30)
+[COLETA] -20 madeira, -12 pedra (restam 40 / 18)
+[CONSTRUCAO] FOGUEIRA DE CURA em (5.0, 0.0, -12.5)
+[COLETA] -15 madeira, -6 pedra (restam 25 / 12)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, -3.0)
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@431
+WildDino recebeu 10 de dano. HP: 70/80
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@433
+WildDino recebeu 10 de dano. HP: 60/80
+[SPEC014] 01_0800_manha  relogio 08:00  visual 8.00 h
+[SPEC014] 02_1200_dia  relogio 12:00  visual 12.00 h
+[SPEC014] 03_1630_fim_de_tarde  relogio 16:30  visual 16.50 h
+[SPEC014] 04_1700_fim_de_tarde  relogio 17:00  visual 17.00 h
+[SPEC014] 05_1730_por_do_sol  relogio 17:30  visual 17.50 h
+[SPEC014] 06_1800_por_do_sol  relogio 18:00  visual 18.00 h
+[SPEC014] 07_1830_anoitecer  relogio 18:30  visual 18.50 h
+[SPEC014] 08_2100_noite  relogio 21:00  visual 21.00 h
+[SPEC014] 09_0000_noite_profunda  relogio 00:00  visual 0.00 h
+[SPEC014] 10_0430_madrugada  relogio 04:30  visual 4.50 h
+[SPEC014] 11_0530_amanhecer  relogio 05:30  visual 5.50 h
+[SPEC014] 12_0559_segurando  relogio 05:59  visual 5.98 h
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[SPEC014] 13_novo_dia_t0  relogio 08:00  visual 6.03 h
+WildDino recebeu 10 de dano. HP: 50/80
+[SPEC014] 14_novo_dia_t1_3s  relogio 08:09  visual 7.02 h
+WildDino recebeu 10 de dano. HP: 40/80
+WildDino recebeu 10 de dano. HP: 30/80
+[SPEC014] 15_novo_dia_t3_3s  relogio 08:22  visual 8.38 h
+[SPEC014] ceu_1200  relogio 12:00  visual 12.00 h
+[SPEC014] ceu_1800  relogio 18:00  visual 18.00 h
+[SPEC014] ceu_2100  relogio 21:00  visual 21.00 h
+[SPEC014] ceu_0000  relogio 00:00  visual 0.00 h
+[SPEC014] ceu_0530  relogio 05:30  visual 5.50 h
+[SPEC014] capturas salvas em C:/Users/ppfti/OneDrive/Desktop/TDnovo/Infinity-Pixel/infinity-pixel-(4.7)/docs/delivery/ac1/evidence/sky_showcase_Windows/

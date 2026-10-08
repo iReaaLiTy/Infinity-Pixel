@@ -1,1 +1,0 @@
-[{"name":"get_godot_version","arguments":{}},{"name":"read_project_config","arguments":{}},{"name":"get_status","arguments":{}},{"name":"run_project","arguments":{"headless":true}},{"name":"monitor_output","arguments":{}},{"name":"stop_project","arguments":{}}]

@@ -1,0 +1,36 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: Player: camada 2; mascara mundo/criaturas/construcoes
+PASS: WildDino: mascara mundo/player/construcoes, sem criaturas
+PASS: Carnotauro compartilha contrato fisico
+PASS: 66 obstaculos estaticos com primitivas e escala unitaria
+PASS: Area de ataque detecta apenas criaturas e nao e corpo solido
+PASS: Camera estrategica preservada
+PASS: Camera nao gira com Player
+PASS: W real move na direcao da camera apesar da rotacao do Player
+PASS: Capsula bloqueada por Trunk0
+PASS: move_and_slide nao atravessa Trunk0
+PASS: Capsula bloqueada por Rock0
+PASS: move_and_slide nao atravessa Rock0
+PASS: Capsula bloqueada por ArchPillar-1
+PASS: move_and_slide nao atravessa ArchPillar-1
+PASS: Capsula bloqueada por RefugeCore
+PASS: move_and_slide nao atravessa RefugeCore
+PASS: Movimento diagonal desliza ao longo da parede
+PASS: Clique em painel HUD nao inicia ataque
+PASS: Controles da pausa abre mantendo pausa
+PASS: Voltar de Controles retorna a pausa
+WildDino chegou ao territorio.
+WildDino atacou Territory.
+Base recebeu 15 de dano. HP: 85/100
+PASS: IA direta percorre corredor spawn-base e causa dano real
+PASS: Colisor do nucleo permite alcance atual de ataque a base
+WildDino recebeu 60 de dano. HP: 20/80
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Domesticar preserva mascara fisica e restaura a vida (Spec 013C)
+SPEC009 RESULTS: 23 passed; 0 failed

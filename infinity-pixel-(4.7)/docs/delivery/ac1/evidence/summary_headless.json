@@ -1,0 +1,86 @@
+[
+  {
+    "suite": "territory",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "sky_cycle",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "build_heal",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "healing_actions",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "combat_collect",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "defense_economy",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "day_cycle",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "day_cycle_real",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "world_layout",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "player_health",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "player_facing",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "physics_contracts",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "navigation_contracts",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  },
+  {
+    "suite": "acceptance",
+    "mode": "headless",
+    "exit": 0,
+    "passed": true
+  }
+]

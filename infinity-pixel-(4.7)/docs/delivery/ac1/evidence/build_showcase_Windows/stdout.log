@@ -1,0 +1,23 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[COLETA] +40 wood (total 40)
+[COLETA] +18 stone (total 18)
+[COLETA] -20 madeira, -12 pedra (restam 20 / 6)
+[CONSTRUCAO] FOGUEIRA DE CURA em (8.5, 0.0, -17.0)
+[Player] curou 25. HP: 80/100
+[FOGUEIRA] cura +25 (cargas 1/2, recarga 25 s)
+[COLETA] -15 madeira, -6 pedra (restam 5 / 0)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 2.0)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[ARMADILHA] WildDino recebeu 15 (cargas 2/3)
+WildDino recebeu 15 de dano. HP: 65/80
+[SPEC013D] capturas salvas em C:/Users/ppfti/OneDrive/Desktop/TDnovo/Infinity-Pixel/infinity-pixel-(4.7)/docs/delivery/ac1/evidence/build_showcase_Windows/

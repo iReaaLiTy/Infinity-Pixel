@@ -1,0 +1,101 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+PASS: HP inicial 100/100
+PASS: HUD mostra JOGADOR 100 / 100 com barra sincronizada
+PASS: REFÚGIO 100 / 100 distinto do jogador
+PASS: Player segue o contrato damageable/take_damage (ADR 0001)
+[Player] recebeu 15.0 de dano. HP: 85.0/100
+PASS: take_damage(15) reduz para 85
+PASS: HUD atualiza imediatamente apos dano
+PASS: Hits dentro de 0,6 s sao ignorados
+PASS: Hit a 0,3 s ainda ignorado
+[Player] recebeu 15.0 de dano. HP: 70.0/100
+PASS: Hit apos a janela volta a causar dano
+PASS: Dano zero/negativo/NaN/infinito ignorado sem abrir janela
+[Player] recebeu 15.0 de dano. HP: 55.0/100
+PASS: Tres hits simultaneos aplicam um so
+WildDino atacou Player.
+[Player] recebeu 15.0 de dano. HP: 40.0/100
+WildDino atacou Player.
+[Player] recebeu 15.0 de dano. HP: 25.0/100
+PASS: WildDino real causa 15 de dano de dia (valor preservado)
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: Canalizacao em andamento antes da morte
+[Player] recebeu 1000.0 de dano. HP: 0.0/100
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.6 s descartado)
+[Player] morreu. Respawn em 2.0 s.
+PASS: HP chega a 0 sem ficar negativo e Player morre
+PASS: Sinal died emitido uma vez
+PASS: Morte cancela a domesticacao sem domesticar
+PASS: HUD mostra JOGADOR 0 / 100 na morte
+PASS: Aviso discreto de morte aparece
+PASS: Morte nao abre modal nem pausa
+PASS: Morto nao inicia domesticacao (E segurado)
+PASS: Morto nao recebe dano nem morre de novo
+PASS: Morto sai do grupo player e nao e corpo solido
+PASS: Morto nao anda
+PASS: Morto nao ataca
+PASS: IA nao fica mirando o Player morto
+PASS: Um unico timer de respawn
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+PASS: Respawn apos ~2 s (2.00 s)
+PASS: Respawn restaura 100/100
+PASS: Respawn no PlayerSpawn
+PASS: Respawn volta ao grupo player e a camada 2
+PASS: HUD atualiza apos respawn
+PASS: Aviso de morte some no respawn
+PASS: Protecao de respawn ignora dano a 1,0 s
+[Player] recebeu 15.0 de dano. HP: 85.0/100
+PASS: Dano volta apos 1,5 s
+PASS: Anda depois do respawn
+PASS: Orientacao visual segue o movimento apos respawn
+WildDinoEncontro recebeu 20 de dano. HP: 60/80
+[Player] ataque acionado — alvos atingidos: 1
+PASS: Ataca (20 de dano) depois do respawn
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro foi domesticado com 20/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[Domesticacao] concluida: aliado=true hp=20/80
+PASS: Domestica depois do respawn (HP preservado)
+PASS: Carnotauro continua nao domesticavel
+PASS: Camera nao gira com o Player
+[Player] recebeu 1000.0 de dano. HP: 0.0/100
+[Player] morreu. Respawn em 2.0 s.
+PASS: Segunda morte registrada
+PASS: Respawn nao corre com o jogo pausado
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+PASS: Respawn conclui apos retomar
+[DIA/NOITE] Iniciar Noite acionado. Estado: NOITE
+[NOITE] Onda iniciada: 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] Aplicando visual de NOITE
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@68
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@69
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@68 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@68 foi derrotado.
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@69 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@69 foi derrotado.
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Vitoria da noite. Estado: DIA
+[VISUAL DIA/NOITE] Aplicando visual de DIA
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+PASS: Noite vencida volta ao dia sem pausar
+PASS: Onda sem inimigos ativos
+Base recebeu 30 de dano. HP: 70/100
+PASS: Refugio recebe dano e HUD atualiza
+Base recebeu 1000 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: Refugio em 0 abre 'O refúgio caiu'
+SPEC011 RESULTS: 47 passed; 0 failed

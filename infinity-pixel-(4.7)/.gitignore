@@ -1,0 +1,12 @@
+# Godot local cache (keep .gd.uid and asset .import settings)
+.godot/
+.DS_Store
+Thumbs.db
+# Local editor/integration configuration
+.vscode/
+# Generated exports and presentation staging
+*.pck
+*.exe
+*.zip
+*.avi
+docs/delivery/ac1/.build/

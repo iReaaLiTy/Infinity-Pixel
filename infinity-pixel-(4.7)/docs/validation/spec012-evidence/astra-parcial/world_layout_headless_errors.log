@@ -1,0 +1,6 @@
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2570)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "arrived" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tests/world_layout.gd:104)
+ERROR: Failed to load script "res://tests/world_layout.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)

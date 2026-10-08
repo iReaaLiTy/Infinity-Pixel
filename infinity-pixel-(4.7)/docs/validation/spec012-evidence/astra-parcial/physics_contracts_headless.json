@@ -1,0 +1,41 @@
+{
+  "display": "headless",
+  "engine": {
+    "build": "official",
+    "hash": "71f334935c000924d403448e698df4441130df18",
+    "hex": 263682,
+    "major": 4,
+    "minor": 6,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.6.2-stable (official)",
+    "timestamp": 0
+  },
+  "failed": [
+    "Movimento diagonal desliza ao longo da parede"
+  ],
+  "passed": [
+    "Player: camada 2; mascara mundo/criaturas/construcoes",
+    "WildDino: mascara mundo/player/construcoes, sem criaturas",
+    "Carnotauro compartilha contrato fisico",
+    "66 obstaculos estaticos com primitivas e escala unitaria",
+    "Area de ataque detecta apenas criaturas e nao e corpo solido",
+    "Camera estrategica preservada",
+    "Camera nao gira com Player",
+    "W real move na direcao da camera apesar da rotacao do Player",
+    "Capsula bloqueada por Trunk0",
+    "move_and_slide nao atravessa Trunk0",
+    "Capsula bloqueada por Rock0",
+    "move_and_slide nao atravessa Rock0",
+    "Capsula bloqueada por ArchPillar-1",
+    "move_and_slide nao atravessa ArchPillar-1",
+    "Capsula bloqueada por RefugeCore",
+    "move_and_slide nao atravessa RefugeCore",
+    "Clique em painel HUD nao inicia ataque",
+    "Controles da pausa abre mantendo pausa",
+    "Voltar de Controles retorna a pausa",
+    "IA direta percorre corredor spawn-base e causa dano real",
+    "Colisor do nucleo permite alcance atual de ataque a base",
+    "Domesticar preserva mascara fisica e HP"
+  ]
+}

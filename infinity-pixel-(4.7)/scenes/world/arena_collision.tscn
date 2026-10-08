@@ -1,0 +1,732 @@
+[gd_scene format=3]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hjqyf"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xuf2"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7aspu"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1rjb"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e1t17"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7jdd1"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m1ttq"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7m0m0"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7cwd1"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l4bdr"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_brafp"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4mobd"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_als6m"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gcwtl"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_47fl4"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yk7lh"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ncmdx"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mjbyi"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0eaui"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_15vec"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w46qg"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oprc2"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w6qmf"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yq58l"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dy7j7"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n3vs2"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5n8wf"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t61fd"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0ao8f"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0vl56"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5fx8x"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcrrb"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ivjq1"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_76t3q"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev8lj"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_meh1e"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_61cqv"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7gas"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oum14"]
+radius = 0.25
+height = 3.06
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_44ake"]
+radius = 0.25
+height = 3.33
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u855q"]
+radius = 0.25
+height = 2.52
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4efsd"]
+radius = 0.25
+height = 2.79
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cu4eh"]
+height = 0.99
+radius = 0.6936616
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_af8vu"]
+height = 0.99
+radius = 0.40738052
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1h2gr"]
+height = 1.35
+radius = 0.99
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lbbv0"]
+height = 0.99
+radius = 0.656973
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1x7cf"]
+height = 0.99
+radius = 0.78016496
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nkwyo"]
+height = 0.99
+radius = 0.6930405
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0ntec"]
+height = 0.99
+radius = 0.597195
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8k1b7"]
+height = 0.99
+radius = 0.6730155
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6qm1e"]
+height = 1.71
+radius = 1.1700001
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j0cis"]
+height = 1.53
+radius = 1.08
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_web61"]
+height = 1.3500001
+radius = 1.08
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3wjgt"]
+height = 1.8
+radius = 1.26
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0j63n"]
+height = 1.53
+radius = 1.035
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3hnkw"]
+height = 1.62
+radius = 1.125
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fd4nh"]
+height = 0.99
+radius = 0.3853035
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ocv37"]
+height = 1.44
+radius = 0.94499993
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5wnf4"]
+size = Vector3(1.2, 4.2, 1.3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rhl1x"]
+radius = 0.14
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ld5sh"]
+size = Vector3(1.2, 4.2, 1.3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1hywy"]
+radius = 0.14
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xy8iy"]
+size = Vector3(7.3, 0.9, 1.3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r3jk4"]
+height = 2.6
+radius = 0.55
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y7imb"]
+height = 3.2
+radius = 0.075
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_676bj"]
+height = 3.2
+radius = 0.075
+
+[node name="ArenaCollision" type="Node3D" unique_id=838239096]
+
+[node name="Trunk0" type="StaticBody3D" parent="." unique_id=1943852976 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1.204, -19)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk0" unique_id=369069640]
+shape = SubResource("CapsuleShape3D_hjqyf")
+
+[node name="Trunk1" type="StaticBody3D" parent="." unique_id=791629845 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.333, -21)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk1" unique_id=1298411912]
+shape = SubResource("CapsuleShape3D_1xuf2")
+
+[node name="Trunk2" type="StaticBody3D" parent="." unique_id=1330384013 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.462, -17)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk2" unique_id=18396970]
+shape = SubResource("CapsuleShape3D_7aspu")
+
+[node name="Trunk3" type="StaticBody3D" parent="." unique_id=1427374348 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.591, -11)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk3" unique_id=1208760474]
+shape = SubResource("CapsuleShape3D_p1rjb")
+
+[node name="Trunk4" type="StaticBody3D" parent="." unique_id=847104531 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.204, -8)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk4" unique_id=1637350201]
+shape = SubResource("CapsuleShape3D_e1t17")
+
+[node name="Trunk5" type="StaticBody3D" parent="." unique_id=1061716263 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.333, -5)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk5" unique_id=935671925]
+shape = SubResource("CapsuleShape3D_7jdd1")
+
+[node name="Trunk6" type="StaticBody3D" parent="." unique_id=1780809645 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1.462, -2)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk6" unique_id=1174187542]
+shape = SubResource("CapsuleShape3D_m1ttq")
+
+[node name="Trunk7" type="StaticBody3D" parent="." unique_id=70658318 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1.591, 7)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk7" unique_id=1528362892]
+shape = SubResource("CapsuleShape3D_7m0m0")
+
+[node name="Trunk8" type="StaticBody3D" parent="." unique_id=1525004764 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1.204, 11)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk8" unique_id=370414090]
+shape = SubResource("CapsuleShape3D_7cwd1")
+
+[node name="Trunk9" type="StaticBody3D" parent="." unique_id=1186769166 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.333, 16)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk9" unique_id=85991705]
+shape = SubResource("CapsuleShape3D_l4bdr")
+
+[node name="Trunk10" type="StaticBody3D" parent="." unique_id=759390526 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.462, 20)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk10" unique_id=1046402899]
+shape = SubResource("CapsuleShape3D_brafp")
+
+[node name="Trunk11" type="StaticBody3D" parent="." unique_id=65480015 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.591, 24)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk11" unique_id=581193649]
+shape = SubResource("CapsuleShape3D_4mobd")
+
+[node name="Trunk12" type="StaticBody3D" parent="." unique_id=666793630 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.204, 25)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk12" unique_id=502541897]
+shape = SubResource("CapsuleShape3D_als6m")
+
+[node name="Trunk13" type="StaticBody3D" parent="." unique_id=178286620 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.333, 21)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk13" unique_id=1442733549]
+shape = SubResource("CapsuleShape3D_gcwtl")
+
+[node name="Trunk14" type="StaticBody3D" parent="." unique_id=1684553064 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.462, 25)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk14" unique_id=1982785816]
+shape = SubResource("CapsuleShape3D_47fl4")
+
+[node name="Trunk15" type="StaticBody3D" parent="." unique_id=2125857978 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.591, 20)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk15" unique_id=1412285535]
+shape = SubResource("CapsuleShape3D_yk7lh")
+
+[node name="Trunk16" type="StaticBody3D" parent="." unique_id=1361427461 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.204, 26)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk16" unique_id=1367646609]
+shape = SubResource("CapsuleShape3D_ncmdx")
+
+[node name="Trunk17" type="StaticBody3D" parent="." unique_id=564659966 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.333, 26)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk17" unique_id=2037162975]
+shape = SubResource("CapsuleShape3D_mjbyi")
+
+[node name="Trunk18" type="StaticBody3D" parent="." unique_id=319705802 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.462, 19)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk18" unique_id=144030275]
+shape = SubResource("CapsuleShape3D_0eaui")
+
+[node name="Trunk19" type="StaticBody3D" parent="." unique_id=119381583 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.591, 14)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk19" unique_id=2109768336]
+shape = SubResource("CapsuleShape3D_15vec")
+
+[node name="Trunk20" type="StaticBody3D" parent="." unique_id=1373293765 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1.204, 25)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk20" unique_id=342877918]
+shape = SubResource("CapsuleShape3D_w46qg")
+
+[node name="Trunk21" type="StaticBody3D" parent="." unique_id=84538237 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.333, 22)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk21" unique_id=1360078550]
+shape = SubResource("CapsuleShape3D_oprc2")
+
+[node name="Trunk22" type="StaticBody3D" parent="." unique_id=509541334 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.462, 16)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk22" unique_id=2091310986]
+shape = SubResource("CapsuleShape3D_w6qmf")
+
+[node name="Trunk23" type="StaticBody3D" parent="." unique_id=525547532 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.591, 11)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk23" unique_id=1732437744]
+shape = SubResource("CapsuleShape3D_yq58l")
+
+[node name="Trunk24" type="StaticBody3D" parent="." unique_id=1630060894 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.204, 7)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk24" unique_id=970477911]
+shape = SubResource("CapsuleShape3D_dy7j7")
+
+[node name="Trunk25" type="StaticBody3D" parent="." unique_id=1673687654 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.333, -2)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk25" unique_id=853471187]
+shape = SubResource("CapsuleShape3D_n3vs2")
+
+[node name="Trunk26" type="StaticBody3D" parent="." unique_id=1361394606 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1.462, -6)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk26" unique_id=919967166]
+shape = SubResource("CapsuleShape3D_5n8wf")
+
+[node name="Trunk27" type="StaticBody3D" parent="." unique_id=218045438 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.591, -11)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk27" unique_id=393846483]
+shape = SubResource("CapsuleShape3D_t61fd")
+
+[node name="Trunk28" type="StaticBody3D" parent="." unique_id=1144755488 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.204, -17)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk28" unique_id=196956558]
+shape = SubResource("CapsuleShape3D_0ao8f")
+
+[node name="Trunk29" type="StaticBody3D" parent="." unique_id=155913330 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.333, -21)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk29" unique_id=583334589]
+shape = SubResource("CapsuleShape3D_0vl56")
+
+[node name="Trunk30" type="StaticBody3D" parent="." unique_id=1531182354 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.462, -19)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk30" unique_id=766273474]
+shape = SubResource("CapsuleShape3D_5fx8x")
+
+[node name="Trunk31" type="StaticBody3D" parent="." unique_id=1158039159 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.591, -23)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk31" unique_id=1611796634]
+shape = SubResource("CapsuleShape3D_tcrrb")
+
+[node name="Trunk32" type="StaticBody3D" parent="." unique_id=1240117256 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.204, -23)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk32" unique_id=151279316]
+shape = SubResource("CapsuleShape3D_ivjq1")
+
+[node name="Trunk33" type="StaticBody3D" parent="." unique_id=835589890 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.333, 15)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk33" unique_id=1171078384]
+shape = SubResource("CapsuleShape3D_76t3q")
+
+[node name="Trunk34" type="StaticBody3D" parent="." unique_id=1127723647 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.462, 16)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk34" unique_id=1318013558]
+shape = SubResource("CapsuleShape3D_ev8lj")
+
+[node name="Trunk35" type="StaticBody3D" parent="." unique_id=950074728 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.591, 7)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk35" unique_id=1568973251]
+shape = SubResource("CapsuleShape3D_meh1e")
+
+[node name="Trunk36" type="StaticBody3D" parent="." unique_id=1475714637 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2, 1.204, -3.9)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk36" unique_id=1351867727]
+shape = SubResource("CapsuleShape3D_61cqv")
+
+[node name="Trunk37" type="StaticBody3D" parent="." unique_id=549363017 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.333, 13.5)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk37" unique_id=1060470417]
+shape = SubResource("CapsuleShape3D_n7gas")
+
+[node name="Trunk38" type="StaticBody3D" parent="." unique_id=540288824 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 1.462, 23)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk38" unique_id=667034743]
+shape = SubResource("CapsuleShape3D_oum14")
+
+[node name="Trunk39" type="StaticBody3D" parent="." unique_id=1939719252 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1.591, 12)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk39" unique_id=626402079]
+shape = SubResource("CapsuleShape3D_44ake")
+
+[node name="Trunk40" type="StaticBody3D" parent="." unique_id=1945410167 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.204, 27)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk40" unique_id=1415894271]
+shape = SubResource("CapsuleShape3D_u855q")
+
+[node name="Trunk41" type="StaticBody3D" parent="." unique_id=793607416 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.333, -10)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk41" unique_id=1901061627]
+shape = SubResource("CapsuleShape3D_4efsd")
+
+[node name="Rock0" type="StaticBody3D" parent="." unique_id=1683605732 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.38, 3.3)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock0" unique_id=326791024]
+shape = SubResource("CylinderShape3D_cu4eh")
+
+[node name="Rock3" type="StaticBody3D" parent="." unique_id=509279077 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.38, -13)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock3" unique_id=2111363482]
+shape = SubResource("CylinderShape3D_af8vu")
+
+[node name="Rock6" type="StaticBody3D" parent="." unique_id=1733416043 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.54, -3.9)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock6" unique_id=1197326224]
+shape = SubResource("CylinderShape3D_1h2gr")
+
+[node name="Rock9" type="StaticBody3D" parent="." unique_id=1736122530 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.38, -15)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock9" unique_id=1343094914]
+shape = SubResource("CylinderShape3D_lbbv0")
+
+[node name="Rock12" type="StaticBody3D" parent="." unique_id=10040262 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.38, 3)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock12" unique_id=721914185]
+shape = SubResource("CylinderShape3D_1x7cf")
+
+[node name="Rock15" type="StaticBody3D" parent="." unique_id=1321474617 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.38, 17)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock15" unique_id=1245013570]
+shape = SubResource("CylinderShape3D_nkwyo")
+
+[node name="Rock18" type="StaticBody3D" parent="." unique_id=1538051911 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.38, 23)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock18" unique_id=1096944919]
+shape = SubResource("CylinderShape3D_0ntec")
+
+[node name="Rock21" type="StaticBody3D" parent="." unique_id=627703492 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46, 0.38, 0.74)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock21" unique_id=1263030456]
+shape = SubResource("CylinderShape3D_8k1b7")
+
+[node name="Rock24" type="StaticBody3D" parent="." unique_id=1791408741 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0.684, 9)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock24" unique_id=122860240]
+shape = SubResource("CylinderShape3D_6qm1e")
+
+[node name="Rock27" type="StaticBody3D" parent="." unique_id=1952891515 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.612, 26)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock27" unique_id=1699224102]
+shape = SubResource("CylinderShape3D_j0cis")
+
+[node name="Rock30" type="StaticBody3D" parent="." unique_id=1318385228 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.54, 13)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock30" unique_id=1833880043]
+shape = SubResource("CylinderShape3D_web61")
+
+[node name="Rock33" type="StaticBody3D" parent="." unique_id=1725281343 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.72, 17.5)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock33" unique_id=730255258]
+shape = SubResource("CylinderShape3D_3wjgt")
+
+[node name="Rock36" type="StaticBody3D" parent="." unique_id=1649177370 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0.612, 22.8)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock36" unique_id=739905510]
+shape = SubResource("CylinderShape3D_0j63n")
+
+[node name="Rock39" type="StaticBody3D" parent="." unique_id=10399034 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2, 0.648, 19.5)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock39" unique_id=1909777456]
+shape = SubResource("CylinderShape3D_3hnkw")
+
+[node name="Rock42" type="StaticBody3D" parent="." unique_id=1997392799 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.38, 17)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock42" unique_id=391865558]
+shape = SubResource("CylinderShape3D_fd4nh")
+
+[node name="Rock45" type="StaticBody3D" parent="." unique_id=1509245102 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6, 0.57600003, 3.4)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock45" unique_id=1053339059]
+shape = SubResource("CylinderShape3D_ocv37")
+
+[node name="ArchPillar-1" type="StaticBody3D" parent="." unique_id=1820541222 groups=["solid_obstacles"]]
+transform = Transform3D(0.98288673, -0.13813575, -0.12186935, 0.13917312, 0.99026805, 0, 0.12068332, -0.016960938, 0.99254614, -3, 2.1, 16)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArchPillar-1" unique_id=257248248]
+shape = SubResource("BoxShape3D_5wnf4")
+
+[node name="FirePost-1" type="StaticBody3D" parent="." unique_id=1301519102 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 1, -14.3)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirePost-1" unique_id=82978362]
+shape = SubResource("CylinderShape3D_rhl1x")
+
+[node name="ArchPillar1" type="StaticBody3D" parent="." unique_id=1824518975 groups=["solid_obstacles"]]
+transform = Transform3D(0.98288673, 0.13813575, 0.12186935, -0.13917312, 0.99026805, 0, -0.12068332, -0.016960938, 0.99254614, 3, 2.1, 16)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArchPillar1" unique_id=1618703877]
+shape = SubResource("BoxShape3D_ld5sh")
+
+[node name="FirePost1" type="StaticBody3D" parent="." unique_id=1360043266 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 1, -14.3)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirePost1" unique_id=1179141186]
+shape = SubResource("CylinderShape3D_1hywy")
+
+[node name="ArchTop" type="StaticBody3D" parent="." unique_id=46299398 groups=["solid_obstacles"]]
+transform = Transform3D(0.9961947, 0.08715573, 0, -0.08715573, 0.9961947, 0, 0, 0, 1, 0, 4, 16)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArchTop" unique_id=2066920093]
+shape = SubResource("BoxShape3D_xy8iy")
+
+[node name="RefugeCore" type="StaticBody3D" parent="." unique_id=230662876 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -15)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RefugeCore" unique_id=1441608330]
+shape = SubResource("CylinderShape3D_r3jk4")
+
+[node name="BannerPole-2" type="StaticBody3D" parent="." unique_id=1770018328 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.6, -16)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BannerPole-2" unique_id=1443038628]
+shape = SubResource("CylinderShape3D_y7imb")
+
+[node name="BannerPole2" type="StaticBody3D" parent="." unique_id=302338209 groups=["solid_obstacles"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.6, -16)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BannerPole2" unique_id=873961950]
+shape = SubResource("CylinderShape3D_676bj")

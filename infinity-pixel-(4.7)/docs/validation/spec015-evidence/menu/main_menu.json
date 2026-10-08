@@ -1,0 +1,32 @@
+{
+  "failed": [],
+  "passed": [
+    "Menu abre com o vale do jogo ao fundo",
+    "Camera do fundo do menu ativa",
+    "Textos institucionais fora da tela principal",
+    "Logo INFINITY PIXEL presente",
+    "Botao JOGAR visivel em 1280x720",
+    "Botao CONTROLES visivel em 1280x720",
+    "Botao CRÉDITOS visivel em 1280x720",
+    "Botao SAIR visivel em 1280x720",
+    "JOGAR e o maior botao e tem o foco",
+    "CONTROLES abre a tela de controles",
+    "Voltar fecha Controles",
+    "CRÉDITOS abre e contem a informacao academica",
+    "Voltar fecha Creditos",
+    "ESC fecha a tela secundaria",
+    "Icone de audio no canto com o slider visivel abaixo",
+    "Volume altera o bus de musica",
+    "Clique no icone silencia o bus (slider 0)",
+    "Segundo clique devolve o som em 30",
+    "Botoes e audio visiveis em 1920x1080",
+    "Botoes e audio visiveis em 1024x768",
+    "Botoes e audio visiveis em 960x540",
+    "JOGAR carrega o mapa",
+    "Fundo do menu liberado ao jogar",
+    "Camera estrategica ativa no jogo",
+    "HUD do jogo aparece",
+    "Player anda (gameplay ativo)",
+    "Menu volta com o fundo recriado"
+  ]
+}

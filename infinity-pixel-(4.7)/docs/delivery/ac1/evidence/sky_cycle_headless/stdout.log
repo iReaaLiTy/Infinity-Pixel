@@ -1,0 +1,76 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Tempos preservados: dia 90 s, noite 45 s, aviso 20 s, contagem 10 s
+PASS: [A] DayNightVisual existe e controla luz, Environment e ceu (shader)
+PASS: [A] Environment duplicado por mundo (nada vaza entre partidas)
+PASS: [B] Inicio: relogio 08:00 e visual na mesma hora (8.015 h)
+PASS: [B] Com o jogo andando, o visual segue clock_hours() (8.126 h = 8.126 h)
+PASS: [B] Mudar o DayNightManager muda o visual (13:00)
+PASS: [C] Relogio parado = Sol, luz e hora visual parados (sem relogio proprio)
+PASS: [C] Controlador nao le relogio do sistema nem usa Timer
+PASS: [D] Altura do Sol: 12:00 (0.87) > 08:00 (0.50) > 17:30 (0.14)
+PASS: [D] Sol a leste de manha (x 0.75) e a oeste no fim da tarde (x -0.98)
+PASS: [D] 08:00 e manha (Sol a 30 graus, nao meio-dia)
+PASS: [E] Intensidade: 12:00 0.64 > 18:00 0.50 > 00:00 0.32 (> 0: noite jogavel)
+PASS: [E] Meio-dia sem estourar (energia 0.64)
+PASS: [F] Por do sol mais quente que o meio-dia
+PASS: [F] Luz da Lua fria (azulada)
+PASS: [G] Ambiente: dia claro, noite azul e mais escura, mas nao preta
+PASS: [H] Estrelas (ceu e chao) invisiveis de 08:00 a 17:30
+PASS: [H] Estrelas surgem aos poucos ao anoitecer (18:00 0.00, 18:48 0.19)
+PASS: [I] Noite: estrelas no ceu e no chao (120 pontos, 1 MultiMesh)
+PASS: [I] Estrelas somem aos poucos no amanhecer (05:30 0.16)
+PASS: [J] 00:00: Lua visivel e alta, luz direcional = Lua
+PASS: [J] Lua se move ao longo da noite
+PASS: [K] Dia: Lua apagada, luz direcional = Sol
+[COLETA] +60 wood (total 60)
+[COLETA] +30 stone (total 30)
+[COLETA] -20 madeira, -12 pedra (restam 40 / 18)
+[CONSTRUCAO] FOGUEIRA DE CURA em (8.5, 0.0, -17.0)
+[COLETA] -15 madeira, -6 pedra (restam 25 / 12)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, -3.0)
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+PASS: [Refugio] De dia a luz noturna do refugio fica apagada
+PASS: [Refugio] A noite o refugio ganha luz local (sem sombra)
+PASS: [Fogueira] A noite a luz da Fogueira fica mais perceptivel
+PASS: [Torre] A noite o cristal brilha mais
+PASS: [Armadilha] Leve brilho nas pontas, sem luz propria
+PASS: [P] Fogueira: +25, 3 s, 2,5 m, 2 cargas, 25 s (inalterados)
+PASS: [P] Luz noturna maior nao amplia o alcance da cura (Player a 4 m fora)
+[Player] curou 25. HP: 75/100
+[FOGUEIRA] cura +25 (cargas 1/2, recarga 25 s)
+PASS: [P] Cura a noite continua +25 em 3 s e gasta 1 carga (HP 75)
+PASS: [Q] Torre: dano, alcance e cadencia iguais de dia e de noite
+PASS: [R] Inimigos: HP 80, dano 15, velocidade 4, buff noturno 1,30/1,20 inalterados
+[COLETA] Tree1 recebeu 30. HP: 0/30
+[COLETA] +10 wood (total 35)
+PASS: [S] Coleta: arvore da +10 Madeira
+PASS: [M] Pausa congela relogio, Sol/Lua, ceu e estrelas
+PASS: [M] Ao despausar, o ciclo visual continua de onde parou
+PASS: [O] Segurando em 05:59: visual de amanhecer (5.98 h)
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: [O] Relogio salta para 08:00; visual nao salta (6.00 h)
+PASS: [O] Transicao suave: maior variacao por quadro 0.008
+PASS: [O] Em ~4 s o visual alcanca o relogio: sem estrelas, Lua ou brilho noturno presos
+Base recebeu 1000 de dano. HP: 0/100
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: [N] Derrota congela relogio e ambiente
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: [L] Reinicios nao acumulam conexoes do visual nos sinais do DayNightManager
+PASS: [L] Reiniciar: Dia 1 08:00 com Environment novo
+PASS: [L] Reiniciar: sem Lua, estrelas ou brilho noturno
+PASS: [L] Reiniciar: luz e ambiente de manha (8.01 h)
+SPEC014 RESULTS: 45 passed; 0 failed
