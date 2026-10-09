@@ -28,6 +28,13 @@ var objective: Label
 var phase_text: Label
 var channel_bar: ProgressBar
 var hint: Label
+var _cycle_icon: Control # sol / lua ao lado do relogio
+var _cycle_bar: ProgressBar
+var _cycle_fill: StyleBoxFlat
+var _cycle_night := false
+var _focus_ring: MeshInstance3D # destaque do coletavel ao alcance
+const NIGHT_VIOLET := Color("9aa6f0")
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 
 func build(main: Node, game_world: Node3D) -> void:
 	app = main
@@ -35,17 +42,27 @@ func build(main: Node, game_world: Node3D) -> void:
 	name = "Hud"
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# Spec 017B/020: vida com icone (jogador / cristal do Refugio) e barras mais
+	# legiveis; os textos continuam os mesmos.
 	var health = VBoxContainer.new()
-	health.add_theme_constant_override("separation", 2)
-	health.custom_minimum_size.x = 200
+	health.add_theme_constant_override("separation", 3)
+	health.custom_minimum_size.x = 220
+	var player_row = HBoxContainer.new()
+	player_row.add_theme_constant_override("separation", 7)
+	player_row.add_child(_hud_icon(&"player", 16))
 	player_text = app._label("JOGADOR  100 / 100", 13, CREAM)
-	health.add_child(player_text)
+	player_row.add_child(player_text)
+	health.add_child(player_row)
 	player_bar = _hud_bar(health, EMBER)
 	var gap = Control.new()
-	gap.custom_minimum_size.y = 3
+	gap.custom_minimum_size.y = 4
 	health.add_child(gap)
+	var base_row = HBoxContainer.new()
+	base_row.add_theme_constant_override("separation", 7)
+	base_row.add_child(_hud_icon(&"refuge", 16))
 	base_text = app._label("REFÚGIO  100 / 100", 13, CREAM)
-	health.add_child(base_text)
+	base_row.add_child(base_text)
+	health.add_child(base_row)
 	base_bar = _hud_bar(health, JADE)
 	var left = _hud_panel(self, health)
 	left.name = "HealthPanel"
@@ -58,6 +75,8 @@ func build(main: Node, game_world: Node3D) -> void:
 	phase_row.alignment = BoxContainer.ALIGNMENT_CENTER
 	phase_row.add_theme_constant_override("separation", 8)
 	phase.add_child(phase_row)
+	_cycle_icon = _hud_icon(&"cycle", 18)
+	phase_row.add_child(_cycle_icon)
 	phase_text = app._label("DIA 1", 17, GOLD)
 	phase_text.add_theme_font_override("font", app._display_font())
 	phase_row.add_child(phase_text)
@@ -77,6 +96,15 @@ func build(main: Node, game_world: Node3D) -> void:
 	countdown_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	countdown_text.hide()
 	phase.add_child(countdown_text)
+	# Spec 017B/020: quanto do dia (ou da noite) ja passou — ambar de dia,
+	# violeta a noite. So leitura do DayNightManager.
+	var cycle_gap = Control.new()
+	cycle_gap.custom_minimum_size.y = 4
+	phase.add_child(cycle_gap)
+	_cycle_bar = _hud_bar(phase, GOLD)
+	_cycle_bar.custom_minimum_size = Vector2(190, 4)
+	_cycle_bar.max_value = 1.0
+	_cycle_fill = _cycle_bar.get_theme_stylebox("fill") as StyleBoxFlat
 	var center = _hud_panel(self, phase)
 	center.name = "PhasePanel"
 	center.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
@@ -137,6 +165,8 @@ func build(main: Node, game_world: Node3D) -> void:
 	player.died.connect(_on_player_died)
 	player.respawned.connect(_on_player_respawned)
 	_on_player_health(player.current_hp, player.max_hp)
+	# Spec 017B/020: alerta curto quando a noite comeca (a onda esta a caminho).
+	DayNightManager.night_started.connect(_on_night_started)
 
 # ---------------------------------------------------------------------------
 # Spec 013B — Pontos de Defesa e pontos de construcao (HUD so exibe/encaminha)
@@ -157,17 +187,23 @@ var onda_text: Label
 var _resource_items = {} # kind -> Control (posicao do "+N")
 
 # Painel compacto (margens menores que _panel) para a HUD de jogo.
+# Spec 017B/020: vidro verde-escuro com filete jade no topo e sombra leve,
+# o mesmo estilo em todos os paineis da partida.
 func _hud_panel(parent: Node, box: Control) -> PanelContainer:
 	var p = PanelContainer.new()
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color(.04, .12, .115, .82)
-	style.border_color = Color("456c59")
+	style.bg_color = Color(.03, .095, .09, .86)
+	style.border_color = Color("3d6a57")
 	style.set_border_width_all(1)
-	style.set_corner_radius_all(7)
+	style.border_width_top = 2
+	style.set_corner_radius_all(8)
+	style.shadow_color = Color(0, 0, 0, .22)
+	style.shadow_size = 5
+	style.shadow_offset = Vector2(0, 2)
 	style.content_margin_left = 12
 	style.content_margin_right = 12
-	style.content_margin_top = 6
-	style.content_margin_bottom = 7
+	style.content_margin_top = 7
+	style.content_margin_bottom = 8
 	p.add_theme_stylebox_override("panel", style)
 	parent.add_child(p)
 	p.add_child(box)
@@ -175,18 +211,42 @@ func _hud_panel(parent: Node, box: Control) -> PanelContainer:
 
 func _hud_bar(parent: Node, color: Color) -> ProgressBar:
 	var bar = ProgressBar.new()
-	bar.custom_minimum_size.y = 6
+	bar.custom_minimum_size.y = 8
 	bar.show_percentage = false
 	var fill = StyleBoxFlat.new()
 	fill.bg_color = color
-	fill.set_corner_radius_all(3)
+	fill.set_corner_radius_all(4)
 	var back = StyleBoxFlat.new()
-	back.bg_color = Color("17332f")
-	back.set_corner_radius_all(3)
+	back.bg_color = Color("12292a")
+	back.border_color = Color("24413b")
+	back.set_border_width_all(1)
+	back.set_corner_radius_all(4)
 	bar.add_theme_stylebox_override("fill", fill)
 	bar.add_theme_stylebox_override("background", back)
 	parent.add_child(bar)
 	return bar
+
+## Icones vetoriais da HUD: jogador, cristal do Refugio, sol/lua do ciclo.
+func _hud_icon(kind: StringName, size: float) -> Control:
+	if kind == &"refuge":
+		return app._crystal(size)
+	var c = Control.new()
+	c.custom_minimum_size = Vector2(size, size)
+	c.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	c.draw.connect(func():
+		var s: Vector2 = c.size
+		if kind == &"player": # cabeca + ombros, na cor da barra de vida
+			c.draw_circle(Vector2(s.x * .5, s.y * .3), s.y * .22, EMBER)
+			c.draw_colored_polygon(PackedVector2Array([Vector2(s.x * .14, s.y), Vector2(s.x * .22, s.y * .62), Vector2(s.x * .78, s.y * .62), Vector2(s.x * .86, s.y)]), EMBER)
+		elif _cycle_night: # lua crescente
+			c.draw_circle(s * .5, s.y * .42, NIGHT_VIOLET)
+			c.draw_circle(s * .5 + Vector2(s.x * .2, -s.y * .12), s.y * .36, Color(.03, .095, .09))
+		else: # sol com raios
+			for i in 8:
+				var a := TAU * i / 8.0
+				c.draw_line(s * .5 + Vector2(cos(a), sin(a)) * s.y * .3, s * .5 + Vector2(cos(a), sin(a)) * s.y * .48, GOLD, 2.0)
+			c.draw_circle(s * .5, s.y * .24, GOLD))
+	return c
 
 # Icones vetoriais pequenos: tora (madeira) e bloco (pedra).
 func _resource_icon(kind: StringName, size: float) -> Control:
@@ -282,11 +342,16 @@ func _show_gain(node_name: String, kind: StringName, text: String, color: Color)
 	gain.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	self.add_child(gain)
 	gain.name = node_name # depois do add_child, como os avisos (senao vira @Label@N)
-	var item: Control = _resource_items.get(kind, points_box)
-	# Abaixo do "ESC pausa" e nunca passando da borda direita da tela.
+	# Spec 017B/020: os "+N" empilham a esquerda do painel de recursos, no alto
+	# (antes "+12 MADEIRA" e "+4 PEDRA" se sobrepunham e cobriam o inventario).
+	var stacked := 0
+	for other in get_children():
+		if other != gain and other.has_meta("gain") and not other.is_queued_for_deletion():
+			stacked += 1
+	gain.set_meta("gain", true)
 	var width = gain.get_minimum_size().x
-	var x = minf(item.global_position.x, self.size.x - width - 12.0)
-	gain.global_position = Vector2(x, points_box.global_position.y + points_box.size.y + 34)
+	var x = points_box.global_position.x - width - 12.0
+	gain.global_position = Vector2(x, points_box.global_position.y + 4.0 + 20.0 * stacked)
 	var t = gain.create_tween().set_parallel()
 	t.tween_property(gain, "position:y", gain.position.y - 14, 1.0)
 	t.tween_property(gain, "modulate:a", 0.0, 1.0).set_delay(.4)
@@ -358,15 +423,19 @@ var _recipe_rows = {} # painel -> {recipe_id: {"button", "status"}}
 func _placer() -> Node:
 	return world.get_node("BuildPlacer") if is_instance_valid(world) else null
 
-func _cost_line(parent: Node, wood: int, stone: int) -> void:
+## Linha de custo; devolve os rotulos [madeira, pedra] para colorir o que falta.
+func _cost_line(parent: Node, wood: int, stone: int) -> Array:
 	var row = HBoxContainer.new()
 	row.add_theme_constant_override("separation", 5)
 	row.add_child(_resource_icon(&"wood", 15))
-	row.add_child(app._label("%d Madeira" % wood, 13, Color("e6c79a")))
+	var wood_label = app._label("%d Madeira" % wood, 13, Color("e6c79a"))
+	row.add_child(wood_label)
 	row.add_child(app._label("•", 13, Color(CREAM, .6)))
 	row.add_child(_resource_icon(&"stone", 15))
-	row.add_child(app._label("%d Pedra" % stone, 13, Color("c9d3cc")))
+	var stone_label = app._label("%d Pedra" % stone, 13, Color("c9d3cc"))
+	row.add_child(stone_label)
 	parent.add_child(row)
+	return [wood_label, stone_label]
 
 func _recipe_list(box: VBoxContainer, rows: Dictionary) -> void:
 	for id in BuildRecipes.order():
@@ -374,7 +443,7 @@ func _recipe_list(box: VBoxContainer, rows: Dictionary) -> void:
 		var entry = VBoxContainer.new()
 		entry.add_theme_constant_override("separation", 2)
 		entry.add_child(app._label(r.name, 15, GOLD))
-		_cost_line(entry, r.wood, r.stone)
+		var costs: Array = _cost_line(entry, r.wood, r.stone)
 		var line = HBoxContainer.new()
 		var status = app._label("", 12, EMBER)
 		status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -383,7 +452,7 @@ func _recipe_list(box: VBoxContainer, rows: Dictionary) -> void:
 		button.focus_mode = Control.FOCUS_NONE
 		entry.add_child(line)
 		box.add_child(entry)
-		rows[id] = {"button": button, "status": status}
+		rows[id] = {"button": button, "status": status, "wood": costs[0], "stone": costs[1], "need": Vector2i(r.wood, r.stone)}
 
 func _side_panel(title: String, box: VBoxContainer) -> PanelContainer:
 	box.add_theme_constant_override("separation", 8)
@@ -468,11 +537,20 @@ func _refresh_inventory() -> void:
 	inv_wood_text.text = str(stock.get_amount(&"wood"))
 	inv_stone_text.text = str(stock.get_amount(&"stone"))
 	var placer = _placer()
+	var have := Vector2i(stock.get_amount(&"wood"), stock.get_amount(&"stone"))
 	for panel in _recipe_rows:
 		for id in _recipe_rows[panel]:
+			var row: Dictionary = _recipe_rows[panel][id]
 			var reason: String = placer.recipe_block_reason(id)
-			_recipe_rows[panel][id].status.text = reason
-			_recipe_rows[panel][id].button.disabled = reason != ""
+			row.status.text = reason
+			row.button.disabled = reason != ""
+			# Spec 017B/020: o custo que falta fica em vermelho, com quanto falta.
+			var need: Vector2i = row.need
+			for k in [["wood", "Madeira", have.x, need.x, Color("e6c79a")], ["stone", "Pedra", have.y, need.y, Color("c9d3cc")]]:
+				var label: Label = row[k[0]]
+				var short: int = k[3] - k[2]
+				label.text = "%d %s" % [k[3], k[1]] + ("  (faltam %d)" % short if short > 0 else "")
+				label.add_theme_color_override("font_color", EMBER if short > 0 else k[4])
 
 func toggle_inventory() -> void:
 	build_menu_panel.hide()
@@ -579,17 +657,27 @@ func _show_toast(toast_name: String, text: String, color: Color) -> void:
 		return
 	var box = VBoxContainer.new()
 	box.add_child(app._label(text, 20, color))
+	# Spec 017B/020: avisos simultaneos empilham (antes ficavam um sobre o outro).
+	var stacked := 0
+	for other in get_children():
+		if other.has_meta("toast") and not other.is_queued_for_deletion() and other.modulate.a > 0.05:
+			stacked += 1
 	var toast = app._panel(self, box)
 	toast.name = toast_name
+	toast.set_meta("toast", true)
 	toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	toast.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	toast.offset_top = 112
-	toast.offset_bottom = 112
+	toast.offset_top = 112 + 58 * mini(stacked, 3)
+	toast.offset_bottom = toast.offset_top
 	app._ignore_mouse(toast) # aviso nunca bloqueia cliques no mundo
 	var fade = toast.create_tween()
 	fade.tween_interval(DAWN_TOAST_TIME)
 	fade.tween_property(toast, "modulate:a", 0.0, 0.5)
 	fade.tween_callback(toast.queue_free)
+
+## Spec 017B/020: a noite comecou — a onda esta a caminho (alerta curto).
+func _on_night_started() -> void:
+	_show_toast("NightStartToast", "NOITE %d  ·  INVASORES A CAMINHO" % DayNightManager.day_number, NIGHT_VIOLET)
 
 func _process(_delta: float) -> void:
 	if not is_instance_valid(world) or not is_instance_valid(self):
@@ -670,6 +758,9 @@ func _process(_delta: float) -> void:
 				0: hint.text = "%s  ·  Marco inativo  ·  Derrote ou domestique o guardião" % title
 				1: hint.text = ("TERRITÓRIO PRONTO PARA SER RECUPERADO  ·  Segure E para ativar" if DayNightManager.is_day() else "TERRITÓRIO PRONTO  ·  Recupere durante o dia")
 				_: hint.text = "%s  ·  Território controlado" % title
+	# Spec 017B/020: coletavel ao alcance — anel no chao e dica com a recompensa
+	# (so leitura: o golpe continua sendo o ataque normal).
+	_update_collect_focus(player)
 	hint.visible = hint.text != ""
 	channel_bar.visible = channel.get_progress() > 0.0 or healing > 0.0 or claim > 0.0
 	if healing > 0.0:
@@ -677,3 +768,43 @@ func _process(_delta: float) -> void:
 	if claim > 0.0:
 		channel_bar.value = claim
 	_update_build_ui()
+	_update_cycle()
+
+## Sol/lua e barra do periodo atual (fracao do dia ou da noite ja passada).
+func _update_cycle() -> void:
+	if not is_instance_valid(_cycle_bar):
+		return
+	var night: bool = DayNightManager.is_night()
+	var duration: float = DayNightManager.night_duration_seconds if night else DayNightManager.day_duration_seconds
+	_cycle_bar.value = clampf(DayNightManager.phase_elapsed / maxf(duration, 0.001), 0.0, 1.0)
+	if night != _cycle_night:
+		_cycle_night = night
+		_cycle_fill.bg_color = NIGHT_VIOLET if night else GOLD
+		_cycle_icon.queue_redraw()
+
+func _update_collect_focus(player: Node3D) -> void:
+	var best: Node3D = null
+	var best_d := 2.8
+	for item in get_tree().get_nodes_in_group("collectable"):
+		if item.depleted:
+			continue
+		var d: float = Vector2(item.global_position.x - player.global_position.x, item.global_position.z - player.global_position.z).length()
+		if d < best_d:
+			best_d = d
+			best = item
+	if best == null:
+		if is_instance_valid(_focus_ring):
+			_focus_ring.visible = false
+		return
+	if not is_instance_valid(_focus_ring):
+		_focus_ring = MeshInstance3D.new()
+		_focus_ring.name = "CollectFocus"
+		_focus_ring.mesh = CombatFX.ring_mesh()
+		_focus_ring.material_override = CombatFX.fx_material(Color("e9c27a"), 0.7)
+		_focus_ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		world.add_child(_focus_ring)
+	_focus_ring.visible = true
+	_focus_ring.global_position = Vector3(best.global_position.x, 0.06, best.global_position.z)
+	_focus_ring.scale = Vector3.ONE * (1.25 if best.kind == "stone" else 0.95) * (1.0 + 0.05 * sin(Time.get_ticks_msec() * 0.006))
+	if hint.text == "":
+		hint.text = "%s  ·  Golpeie para coletar  ·  +%d %s" % ["ÁRVORE" if best.kind == "wood" else "ROCHA COM MINÉRIO", best.reward(), best.label()]
