@@ -32,8 +32,23 @@ const CLIFF_LIGHT := Color("a39c8f")
 const CLIFF := Color("857e72")
 const CLIFF_DARK := Color("6f6a60")
 const CLIFF_TOP := Color("4f8a4a")
-# Ameaca noturna (referencia; inimigos fora da 017A)
+# Ameaca noturna (inimigos da onda, entradas das rotas noturnas)
 const NIGHT := [Color("18244d"), Color("25214f"), Color("332452"), Color("6678c8")]
+const NIGHT_STONE := Color("2c2a45") # monolitos das entradas
+const NIGHT_RUNE := Color("6678c8")
+# Spec 018 — biomas (chao). Floresta Oeste: verde-azulado escuro, sub-bosque.
+const FOREST_FLOOR := Color("3c6650")
+const FOREST_MOSS := Color("4b7a52")
+const FOREST_DARK := Color("2b4d40")
+# Regiao Rochosa: verde-acinzentado com liquens.
+const HEATH := Color("7d8a6c")
+const HEATH_DARK := Color("616e58")
+const LICHEN := Color("a8ab6e")
+# Montanhas distantes (perspectiva atmosferica).
+const MOUNTAIN := Color("6d7d82")
+const MOUNTAIN_TOP := Color("8fa39c")
+# Flores e detalhes de campo (pequenos, com parcimonia).
+const FLOWERS := [Color("efe9d6"), Color("e9a23b"), Color("a58bd6"), Color("a8e6cf")]
 
 # As cores acima sao o tom DESEJADO NA TELA. Medido na linha de base (12:00,
 # GL Compatibility): face ao sol sai ~3,6x mais clara que o albedo em luz
@@ -58,6 +73,19 @@ static func toon(band := 0.22, rim := 0.18) -> StandardMaterial3D:
 		m.rim_enabled = true
 		m.rim = rim
 		m.rim_tint = 0.6
+	return m
+
+## Toon de cor unica, para malhas sem cor por vertice (primitivas antigas).
+static func toon_flat(color: Color, band := 0.3) -> StandardMaterial3D:
+	var m := toon(band, 0.1)
+	m.vertex_color_use_as_albedo = false
+	m.albedo_color = Color(color.r * ALBEDO_SCALE.r, color.g * ALBEDO_SCALE.g, color.b * ALBEDO_SCALE.b)
+	return m
+
+## Toon de duas faces (laminas de grama, tecido): normais para cima/frente.
+static func toon_double(band := 0.3) -> StandardMaterial3D:
+	var m := toon(band, 0.0)
+	m.cull_mode = BaseMaterial3D.CULL_DISABLED
 	return m
 
 ## Toon com emissao (cristal, runas): a energia sobe a noite via night_glow.

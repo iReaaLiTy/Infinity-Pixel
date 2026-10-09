@@ -12,6 +12,7 @@ extends StaticBody3D
 # com o grupo navigation_source): a IA desvia pelo NavigationObstacle3D. Assim
 # esgotar o recurso nao deixa buraco na navmesh e nao exige rebake.
 
+const Nature := preload("res://scenes/visuals/nature_meshes.gd")
 const WORLD := 1 << 0
 const INTERACTABLES := 1 << 4
 const KINDS := {
@@ -167,42 +168,33 @@ func _mesh(parent: Node3D, mesh: Mesh, pos: Vector3, scale_v: Vector3, color: Co
 	parent.add_child(mi)
 	return mi
 
-# Arvore coletavel: mesma familia das arvores do mapa, um pouco mais baixa e
-# com copa mais quente e um corte claro no tronco ("da para lenhar").
+# Spec 018: arvore coletavel da mesma familia facetada das arvores do mapa, mais
+# baixa, com copa amarelo-esverdeada (diferente da decoracao) e o corte claro de
+# machado no tronco: "da para lenhar".
 func _build_tree() -> Node3D:
 	var root := Node3D.new()
 	add_child(root)
-	var trunk := CylinderMesh.new()
-	trunk.top_radius = 0.42
-	trunk.bottom_radius = 0.5
-	trunk.radial_segments = 7
-	trunk.rings = 1
-	_mesh(root, trunk, Vector3(0, 1.1, 0), Vector3(0.62, 2.2, 0.62), Color("7a5a3a"))
-	var notch := BoxMesh.new()
-	_mesh(root, notch, Vector3(0, 0.75, 0.25), Vector3(0.36, 0.16, 0.12), Color("d9b98a"))
-	var crown := SphereMesh.new()
-	crown.radius = 0.5
-	crown.height = 1.0
-	crown.radial_segments = 8
-	crown.rings = 4
-	_mesh(root, crown, Vector3(0, 2.45, 0), Vector3(2.3, 1.8, 2.3), Color("6f9a4e"))
-	_mesh(root, crown, Vector3(0.1, 3.05, -0.05), Vector3(1.6, 1.3, 1.6), Color("82ab58"))
+	var trunk := MeshInstance3D.new()
+	trunk.mesh = Nature.harvest_trunk()
+	trunk.material_override = Nature.material()
+	root.add_child(trunk)
+	for spec in [[Vector3(0, 2.45, 0), Vector3(2.3, 1.8, 2.3), 0], [Vector3(0.1, 3.05, -0.05), Vector3(1.6, 1.3, 1.6), 1]]:
+		var crown := MeshInstance3D.new()
+		crown.mesh = Nature.crown(Nature.Kind.BROADLEAF, spec[2], Nature.HARVEST_LEAVES)
+		crown.material_override = Nature.material()
+		crown.position = spec[0]
+		crown.scale = spec[1]
+		root.add_child(crown)
 	return root
 
-# Pedra coletavel: bloco com veios minerais (azul-acinzentado e ambar).
+# Pedra coletavel: bloco facetado escuro com cristais de minerio (azul e ambar)
+# saindo da rocha: le diferente das rochas decorativas (cinza, sem cristal).
 func _build_stone() -> Node3D:
 	var root := Node3D.new()
 	add_child(root)
-	var rock := SphereMesh.new()
-	rock.radius = 0.5
-	rock.height = 1.0
-	rock.radial_segments = 7
-	rock.rings = 4
-	var body := _mesh(root, rock, Vector3(0, 0.5, 0), Vector3(1.7, 1.15, 1.5), Color("8d9a8f"))
+	var body := MeshInstance3D.new()
+	body.mesh = Nature.ore_stone()
+	body.material_override = Nature.material()
 	body.rotation.y = 0.6
-	var vein := PrismMesh.new()
-	vein.size = Vector3(0.22, 0.34, 0.22)
-	_mesh(root, vein, Vector3(0.35, 0.85, 0.42), Vector3.ONE, Color("6e8aa3")).rotation.z = 0.5
-	_mesh(root, vein, Vector3(-0.45, 0.7, 0.2), Vector3.ONE * 0.8, Color("c9a35f")).rotation.z = -0.6
-	_mesh(root, vein, Vector3(0.05, 1.0, -0.35), Vector3.ONE * 0.7, Color("6e8aa3"))
+	root.add_child(body)
 	return root

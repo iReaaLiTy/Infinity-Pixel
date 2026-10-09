@@ -17,6 +17,8 @@ const LEVELS := [
 const RETARGET_INTERVAL := 0.15 # busca por grupos, como a IA (Spec 010)
 const BOLT_TIME := 0.18 # s do "dardo" ate o alvo
 const RangeRing := preload("res://scenes/world/range_ring.gd")
+const Palette := preload("res://scenes/visuals/palette.gd")
+const Facets := preload("res://scenes/visuals/facets.gd")
 # Spec 013C (RF-CMB-007): opacidade do anel de alcance.
 const RING_FOCUS := 0.8 # Player interagindo com esta torre
 const RING_NEAR := 0.45 # Player perto do alcance
@@ -183,27 +185,64 @@ func _cylinder(top: float, bottom: float, height: float, sides := 7) -> Cylinder
 	c.rings = 1
 	return c
 
+# Spec 017A: torre facetada (mesma silhueta, alturas e partes de antes): base de
+# pedra em 2 niveis, 3 postes de madeira, coroa, anel ambar (L2+) e cristal jade.
+# _crystal, _ring, _crown e _glow_mats continuam com o mesmo papel.
 func _build_visual() -> void:
-	var stone := _material(STONE)
-	var wood := _material(WOOD)
-	_part(_cylinder(0.82, 0.95, 0.55), Vector3(0, 0.27, 0), stone)
-	_part(_cylinder(0.64, 0.74, 0.5), Vector3(0, 0.79, 0), stone)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 4013
+	var tones := [Palette.STONE_LIGHT, Palette.STONE, Palette.STONE_DARK]
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var paint_stone := func(c: Vector3, n: Vector3) -> Color:
+		if c.y > 0.5 and c.y < 0.62 and n.y < 0.7:
+			return Facets.facet_shade(Palette.JADE_DARK, n) # friso jade
+		return Facets.by_height(tones, n, c.y, 0.0, 1.05, c.x + c.z)
+	Facets.loft(st, [
+		Facets.ring(8, 0.95, -0.02, rng, 0.03, PI / 8.0),
+		Facets.ring(8, 0.88, 0.5, rng, 0.03, PI / 8.0),
+		Facets.ring(8, 0.8, 0.6, rng, 0.02, PI / 8.0),
+		Facets.ring(8, 0.72, 0.62, rng, 0.02, 0.1),
+		Facets.ring(8, 0.64, 1.0, rng, 0.02, 0.1),
+		Facets.ring(8, 0.7, 1.06, rng, 0.02, 0.1),
+	], true, null, paint_stone)
+	var paint_wood := func(c: Vector3, n: Vector3) -> Color:
+		return Facets.by_height([Palette.WOOD, Palette.WOOD, Palette.WOOD_DARK], n, c.y, 0.9, 2.5, c.x)
 	for i in 3:
 		var a := TAU * i / 3.0
-		var post := _part(_cylinder(0.1, 0.13, 1.45, 5), Vector3(sin(a) * 0.46, 1.72, cos(a) * 0.46), wood)
-		post.rotation.z = sin(a) * 0.12
-		post.rotation.x = -cos(a) * 0.12
+		var foot := Vector3(sin(a) * 0.5, 1.0, cos(a) * 0.5)
+		var head := Vector3(sin(a) * 0.36, 2.45, cos(a) * 0.36)
+		var basis := Basis(Quaternion(Vector3.UP, (head - foot).normalized()))
+		Facets.loft(st, [Facets.ring(5, 0.12, 0.0, rng, 0.05, a, 0.0, Transform3D(basis, foot)),
+			Facets.ring(5, 0.1, (head - foot).length(), rng, 0.05, a, 0.0, Transform3D(basis, foot))], true, null, paint_wood)
+	var body := MeshInstance3D.new()
+	body.mesh = st.commit()
+	body.material_override = Palette.toon(0.3, 0.12)
+	add_child(body)
 	_crown = Node3D.new()
 	_crown.position.y = 2.5
 	add_child(_crown)
-	_part(_cylinder(0.58, 0.42, 0.2), Vector3.ZERO, wood, _crown)
-	_ring = _part(_cylinder(0.66, 0.66, 0.1, 8), Vector3(0, 0.14, 0), _material(Color("e7ae58")), _crown)
-	var gem := PrismMesh.new() # cristal facetado (duas piramides)
-	gem.size = Vector3(0.55, 0.8, 0.55)
-	_crystal = _part(gem, Vector3(0, 0.62, 0), _material(CRYSTAL, true), _crown)
-	var tip := _part(gem, Vector3(0, -0.8, 0), _material(CRYSTAL.darkened(0.2), true), _crystal)
-	tip.rotation.z = PI
-	_glow_mats.assign([_crystal.material_override, tip.material_override])
+	st = SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	Facets.loft(st, [Facets.ring(7, 0.44, -0.1, rng, 0.03), Facets.ring(7, 0.6, 0.08, rng, 0.03), Facets.ring(7, 0.56, 0.12, rng, 0.02)], true, true, paint_wood)
+	_part(st.commit(), Vector3.ZERO, Palette.toon(0.3, 0.1), _crown)
+	st = SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var paint_gold := func(_c: Vector3, n: Vector3) -> Color:
+		return Facets.facet_shade(Palette.AMBER, n)
+	Facets.loft(st, [Facets.ring(8, 0.68, -0.05, rng, 0.0), Facets.ring(8, 0.66, 0.05, rng, 0.0)], true, true, paint_gold)
+	_ring = _part(st.commit(), Vector3(0, 0.14, 0), Palette.toon(0.3, 0.2), _crown)
+	# Cristal jade facetado (bipiramide), centrado na origem para o pulso.
+	st = SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var paint_gem := func(c: Vector3, n: Vector3) -> Color:
+		var col := Palette.JADE_DARK.lerp(Palette.JADE_LIGHT, clampf((c.y + 0.45) / 0.95, 0.0, 1.0))
+		return col.lightened(0.1) if fposmod(atan2(n.z, n.x) / TAU * 6.0, 2.0) < 1.0 else col.darkened(0.08)
+	Facets.loft(st, [Facets.ring(6, 0.27, -0.05, rng, 0.04), Facets.ring(6, 0.25, 0.12, rng, 0.04, 0.1)],
+		Vector3(0.02, 0.55, 0), Vector3(0, -0.45, 0), paint_gem)
+	var glow := Palette.toon_glow(CRYSTAL, 0.18, 0.4)
+	_crystal = _part(st.commit(), Vector3(0, 0.62, 0), glow, _crown)
+	_glow_mats.assign([glow])
 
 # Spec 014 RF-CEU-009: a noite o cristal e o disparo brilham mais. So visual:
 # dano, alcance, cadencia e alvo nao leem isto.

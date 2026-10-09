@@ -8,6 +8,7 @@ extends Node3D
 const ART := preload("res://scenes/visuals/arena_art.tscn")
 const REGIONS := preload("res://scenes/world/world_regions.tscn")
 const REFUGE_ART := preload("res://scenes/visuals/refuge_art.tscn") # Spec 017A
+const VALLEY_ART := preload("res://scenes/visuals/valley_art.tscn") # Spec 017A/018
 const GUARDIAN := preload("res://scenes/visuals/guardian.tscn")
 const DINO := preload("res://scenes/visuals/dino.tscn")
 const CARNO := preload("res://scenes/visuals/carno.tscn")
@@ -45,7 +46,8 @@ func _ready() -> void:
 		art.get_node("PostLabel").visible = false
 	add_child(art)
 	add_child(REGIONS.instantiate())
-	add_child(REFUGE_ART.instantiate()) # cristal novo (o antigo foi ocultado na arte)
+	add_child(VALLEY_ART.instantiate()) # chao, trilhas e paredoes (os antigos foram ocultados)
+	add_child(REFUGE_ART.instantiate()) # cristal, plataforma, braseiros, estandartes
 	# Pequena cena de vida no caminho do refugio: guardiao, aliado e selvagens.
 	_actor(GUARDIAN, Vector3(8.1, 0, -12.6), 2.6)
 	var ally := _actor(DINO, Vector3(9.0, 0, -10.8), 2.2)

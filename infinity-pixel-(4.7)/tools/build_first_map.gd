@@ -5,11 +5,23 @@ extends SceneTree
 # Spec 017A: this tool also writes refuge_art.tscn (tools/build_refuge_art.gd,
 # visual only) and hides the old meshes it replaces. Hidden nodes keep their
 # transforms: build_collisions.gd still reads RefugeCore from here.
+# Spec 017A/018: the ground, trails and valley walls are drawn by
+# tools/build_valley_art.gd (valley_art.tscn). The old patches and trail meshes
+# stay in world_regions.tscn as hidden DATA (tests read the trail stretches);
+# old ridges, cliffs and mountains are hidden or no longer created.
 # Never rewrites actors, gameplay scripts, lighting or camera.
 const ART := "res://scenes/visuals/arena_art.tscn"
 const RefugeArt := preload("res://tools/build_refuge_art.gd")
-# Spec 017A prototype: south ridge pieces replaced by RefugeArt/SouthWall.
-const SOUTH_WALL_PIECES := [2, 3, 4]
+const ValleyArt := preload("res://tools/build_valley_art.gd")
+const Layout := preload("res://tools/valley_layout.gd")
+const Nature := preload("res://scenes/visuals/nature_meshes.gd")
+const Palette := preload("res://scenes/visuals/palette.gd")
+# Spec 017A: old art replaced by RefugeArt/ValleyArt. Hidden, never deleted:
+# build_collisions.gd reads Arch* (transform + mesh size), FirePost*, BannerPole*
+# and RefugeCore transforms.
+const REPLACED := ["ArchPillar-1", "ArchPillar1", "ArchTop", "Clearing", "RefugeCore", "RefugeCap", "RefugePlatform", "RefugeRing",
+	"FirePost-1", "FirePost1", "Flame-1", "Flame1", "BannerPole-2", "BannerPole2",
+	"Banner-2", "Banner2", "BannerEmblem-2", "BannerEmblem2", "Post", "PostInner"]
 const REGIONS := "res://scenes/world/world_regions.tscn"
 const TREES := [
 	Vector2(-13,-19), Vector2(-17,-21), Vector2(-21,-17), Vector2(-20,-11),
@@ -87,6 +99,7 @@ func polygon(parent: Node, label: String, points: Array, mat: Material, height: 
 	node.name = label
 	node.mesh = surface.commit()
 	node.material_override = mat
+	node.visible = false # Spec 017A/018: data only; ValleyArt draws the ground
 	parent.add_child(node)
 
 func patch(parent: Node, label: String, center: Vector2, size: Vector2, mat: Material, height: float) -> void:
@@ -115,29 +128,32 @@ func build() -> void:
 	clearing.mesh.size = Vector3(48, 1, 52)
 	clearing.position = Vector3(0, -.5, 2)
 	clearing.material_override = material("56774f")
-	var bark := material("665239")
-	var leaves := [material("36765a"),material("438567"),material("547a4d")]
 	var stone := material("7c8980")
 	art.get_node("MainPath").visible = false
 	# Spec 013C: sem texto 3D "POSTO DE DEFESA" (parecia debug no playtest).
 	if art.has_node("PostLabel"):
 		art.get_node("PostLabel").free()
 	art.get_node("MeetingPath").visible = false
-	# Spec 017A: old white crystal -> RefugeArt/Crystal (same solid, same node).
-	for label in ["RefugeCore", "RefugeCap"]:
+	# Spec 017A: old meshes -> RefugeArt/ValleyArt (same solids, same nodes).
+	for label in REPLACED:
 		art.get_node(label).visible = false
+	# Spec 018: same nodes and transforms (colliders/tests read them); only the
+	# mesh and material change to faceted species (scenes/visuals/nature_meshes.gd).
 	for i in TREES.size():
 		var p: Vector2 = TREES[i]
 		var h := 2.8 + (i % 4) * .3 # canopies kept low; no camera change
 		var trunk: MeshInstance3D = art.get_node("Trunk%d" % i)
 		trunk.position = Vector3(p.x, h * .43, p.y)
 		trunk.scale = Vector3(.5, h * .9, .5)
-		trunk.material_override = bark
+		trunk.mesh = Nature.trunk()
+		trunk.material_override = Nature.material()
+		var kind := tree_kind(i, p)
 		for j in 2:
 			var crown: MeshInstance3D = art.get_node("Crown%d_%d" % [i,j])
 			crown.position = Vector3(p.x, h * .76 + j * .6, p.y)
 			crown.scale = Vector3(2.5-j*.5, 2.0-j*.4, 2.5-j*.5)
-			crown.material_override = leaves[i%3]
+			crown.mesh = Nature.crown(kind, j)
+			crown.material_override = Nature.material()
 	for i in ROCKS.size():
 		var p: Vector2 = ROCKS[i]
 		var rock: MeshInstance3D = art.get_node("Rock%d" % (i*3))
@@ -146,16 +162,21 @@ func build() -> void:
 			rock.scale = BOULDERS[i] # keeps the authored rotation
 			y = BOULDERS[i].y * .36 # slightly buried, like the small rocks
 		rock.position = Vector3(p.x, y, p.y)
-		rock.material_override = stone
+		# Heath rocks carry lichen, woodland rocks moss, the rest bare stone.
+		rock.mesh = Nature.rock(1 if p.x > 6 and p.y > 4 else (0 if p.x < -6 or i % 2 == 0 else 2))
+		rock.material_override = Nature.material()
 	# Low vegetation forms clusters beside routes, never rigid blockers.
+	var fern := Palette.toon_flat(Nature.MOSS)
 	var fern_index := 0
 	for node in art.get_children():
 		if String(node.name).begins_with("Fern"):
 			var anchor: Vector2 = TREES[(fern_index / 3 + 7) % TREES.size()]
 			node.position = Vector3(anchor.x + .8 + (fern_index%3)*.25, .3, anchor.y - .6)
+			node.material_override = fern
 			fern_index += 1
 		elif String(node.name).begins_with("Cliff"):
 			node.material_override = stone
+			node.visible = false # Spec 017A: ValleyArt/Cliffs
 			# Escarpment outside the walls: slight jitter so it reads as rock, not a fence.
 			var k := int(String(node.name).trim_prefix("Cliff").split("_")[0])
 			var side := signf(node.position.x)
@@ -165,28 +186,14 @@ func build() -> void:
 			node.scale = Vector3(4, 3.4 + .6 * absf(sin(k * 1.3 + side)) * 2.0, 5)
 		elif String(node.name).begins_with("Mountain"):
 			node.material_override = stone
+			node.visible = false # Spec 018: ValleyArt/Mountains
 			var i := int(String(node.name).trim_prefix("Mountain"))
 			var a := TAU * i / 22.0
 			node.position = Vector3(sin(a)*47, 1, cos(a)*47+2)
 		elif String(node.name).begins_with("BorderRidge"):
 			node.free() # idempotent regeneration, not runtime mutation
-	# Visible natural edges for the existing north/south world bounds.
-	for side in [-1,1]:
-		for i in 7:
-			if side < 0 and i in SOUTH_WALL_PIECES:
-				continue
-			var ridge := MeshInstance3D.new()
-			ridge.name = "BorderRidge%s_%d" % ["South" if side<0 else "North",i]
-			var mesh := SphereMesh.new()
-			mesh.radius=.5
-			mesh.height=1
-			mesh.radial_segments=8
-			mesh.rings=4
-			ridge.mesh=mesh
-			ridge.scale=Vector3(8,3,4)
-			ridge.position=Vector3(-24+i*8, .5, -25 if side<0 else 29)
-			ridge.material_override=stone
-			art.add_child(ridge)
+	# Spec 017A: the north/south ridges (old smooth spheres) are now
+	# ValleyArt/Cliffs, drawn around the whole valley.
 	# Existing bounds now coincide with visible escarpments at the edge of the valley.
 	var bounds := [Vector3(24.2,1,2),Vector3(-24.2,1,2),Vector3(0,1,28.2),Vector3(0,1,-24.2)]
 	for i in 4:
@@ -223,13 +230,11 @@ func build() -> void:
 	marker(resources,"WoodlandReserve",Vector2(-17,20),Vector2(9,10))
 	marker(resources,"StoneReserve",Vector2(17,17),Vector2(9,12))
 	marker(wild,"Center",Vector2(0,22),Vector2(38,12))
-	path(routes,"RuinRoad",[Vector2(0,-13),Vector2(0,-5),Vector2(0,4),Vector2(0,14),Vector2(0,26)],4.6,trail)
-	path(routes,"WestTrail",[Vector2(0,-9),Vector2(-7,-5),Vector2(-13,0),Vector2(-21,2)],3.8,trail)
-	path(routes,"EastTrail",[Vector2(0,-9),Vector2(7,-5),Vector2(14,0),Vector2(21,2)],3.8,trail)
-	# Both wild trails leave the road at the same fork, past the meadow.
-	path(wild,"GladeTrail",[Vector2(0,6),Vector2(-6,8),Vector2(-10,10),Vector2(-12,17)],2.8,sand)
-	path(wild,"HeathTrail",[Vector2(0,6),Vector2(7,9),Vector2(13,13),Vector2(14,22)],2.6,sand)
-	patch(wild,"ForkPaving",Vector2(0,6),Vector2(5.2,4.2),sand,.036)
+	# Trails come from tools/valley_layout.gd (shared with ValleyArt). Both
+	# wild trails leave the road at the same fork, past the meadow.
+	for t in Layout.PATHS:
+		path(routes if t.group == "NightRoutes" else wild, t.name, t.points, t.width, trail if t.group == "NightRoutes" else sand)
+	patch(wild,"ForkPaving",Layout.FORK,Layout.FORK_SIZE,sand,.036)
 	marker(routes,"RuinEntry",Vector2(0,23))
 	marker(routes,"WestEntry",Vector2(-20,2))
 	marker(routes,"EastEntry",Vector2(20,2))
@@ -248,5 +253,15 @@ func build() -> void:
 	save_scene(regions, REGIONS)
 	regions.free()
 	RefugeArt.generate()
+	ValleyArt.generate()
 	print("[MAP012] authored valley: 48 x 52 m, 42 trees, 16 rocks, 3 night routes")
 	quit()
+
+## Spec 018: species by place. Jade trees frame the Refuge (the valley's
+## namesake), pines dominate the West Forest, broadleaf elsewhere.
+static func tree_kind(i: int, p: Vector2) -> int:
+	if p.y < -8.0:
+		return Nature.Kind.JADE if i % 2 == 0 else Nature.Kind.BROADLEAF
+	if p.x < -6.0:
+		return Nature.Kind.PINE if i % 3 != 0 else Nature.Kind.BROADLEAF
+	return Nature.Kind.BROADLEAF if i % 3 != 0 else Nature.Kind.JADE

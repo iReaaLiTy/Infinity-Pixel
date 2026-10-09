@@ -166,10 +166,15 @@ static func is_sun_hour(hour: float) -> bool:
 
 ## Direcao PARA o Sol: nasce a leste (+X), passa ao sul (+Z, atras da camera,
 ## sombras para o norte) e se poe a oeste. 30 graus as 08:00, 60 ao meio-dia.
+## Spec 017A: o arco e girado SUN_AZIMUTH_OFFSET para o leste. Com o Sol exatamente
+## atras da camera ao meio-dia a luz era frontal e o cenario ficava chapado; agora
+## ela vem de tras e da direita (~40 graus), e as faces oeste ganham sombra.
+## So direcao: horarios, energia, cores, ambiente e relogio nao mudam.
+const SUN_AZIMUTH_OFFSET := -0.7
 static func sun_direction(hour: float) -> Vector3:
 	var s := (fposmod(hour, 24.0) - 6.0) / 12.0
 	var elevation := deg_to_rad(maxf(6.0, 60.0 * sin(PI * clampf(s, 0.0, 1.0))))
-	var a := PI * clampf(s, -0.1, 1.1)
+	var a := PI * clampf(s, -0.1, 1.1) + SUN_AZIMUTH_OFFSET
 	return (Vector3(cos(a), 0.0, sin(a)) * cos(elevation) + Vector3.UP * sin(elevation)).normalized()
 
 ## Direcao PARA a Lua: nasce ~18:30 a leste, alta perto da 00:00, se poe ~06:00.

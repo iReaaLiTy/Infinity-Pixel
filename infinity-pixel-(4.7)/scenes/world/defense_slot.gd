@@ -13,8 +13,8 @@ const Facets := preload("res://scenes/visuals/facets.gd")
 
 ## Rota que o ponto cobre (so informativo: "Oeste", "Ruina", "Leste").
 @export var route := ""
-## Spec 017A (prototipo): "jade" = visual novo facetado/toon; "" = visual atual.
-@export var style := ""
+## Spec 017A: "jade" (padrao) = visual facetado/toon; "classic" = visual antigo.
+@export var style := "jade"
 
 var tower: StaticBody3D
 var _marker: Node3D
@@ -191,6 +191,25 @@ func _jade_base() -> void:
 	inlay.set_meta("glow", Vector2(0.4, 1.0))
 	add_child(inlay)
 	_glow.append(inlay)
+	# Anel jade tracejado, rente, em volta da base: o ponto se le de longe,
+	# ate ao meio-dia sobre a terra das trilhas (achado da Etapa 2).
+	st = SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var paint_rim := func(_c: Vector3, n: Vector3) -> Color:
+		return Palette.JADE if n.y > 0.7 else Palette.JADE_DARK
+	for i in 12:
+		var a0 := TAU * i / 12.0 + 0.07
+		var a1 := TAU * (i + 1) / 12.0 - 0.07
+		var lo := PackedVector3Array()
+		var hi := PackedVector3Array()
+		for q in [Vector2(1.44, a0), Vector2(1.62, a0), Vector2(1.62, a1), Vector2(1.44, a1)]:
+			lo.append(Vector3(cos(q.y) * q.x, -0.01, sin(q.y) * q.x))
+			hi.append(Vector3(cos(q.y) * q.x, 0.035, sin(q.y) * q.x))
+		Facets.loft(st, [lo, hi], true, null, paint_rim)
+	var rim := Facets.instance("JadeRim", st.commit(), Palette.toon_glow(Palette.CRYSTAL_GLOW, 0.3, 0.0), Vector3.ZERO, false)
+	rim.set_meta("glow", Vector2(0.3, 1.0))
+	add_child(rim)
+	_glow.append(rim)
 
 func _jade_gem() -> MeshInstance3D:
 	var rng := RandomNumberGenerator.new()

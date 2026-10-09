@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=4]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8r2dd"]
 cull_mode = 2
@@ -34,536 +34,115 @@ height = 1.0
 radial_segments = 7
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ege7e"]
-cull_mode = 2
-albedo_color = Color(0.4, 0.32156864, 0.22352941, 1)
-
-[sub_resource type="CylinderMesh" id="r18"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uaucn"]
-cull_mode = 2
-albedo_color = Color(0.21176471, 0.4627451, 0.3529412, 1)
-
-[sub_resource type="SphereMesh" id="r19"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r20"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r21"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldhii"]
-cull_mode = 2
-albedo_color = Color(0.2627451, 0.52156866, 0.40392157, 1)
-
-[sub_resource type="SphereMesh" id="r22"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r23"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r24"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wqcw"]
-cull_mode = 2
-albedo_color = Color(0.32941177, 0.47843137, 0.3019608, 1)
-
-[sub_resource type="SphereMesh" id="r25"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r26"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r27"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r28"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r29"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r30"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r31"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r32"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r33"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r34"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r35"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r36"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r37"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r38"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r39"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r40"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r41"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r42"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r43"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r44"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r45"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r46"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r47"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r48"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r49"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r50"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r51"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r52"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r53"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r54"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r55"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r56"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r57"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r58"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r59"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r60"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r61"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r62"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r63"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r64"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r65"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r66"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r67"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r68"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r69"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r70"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r71"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r72"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r73"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r74"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r75"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r76"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r77"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r78"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r79"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r80"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r81"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r82"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r83"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r84"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r85"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r86"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r87"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r88"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r89"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r90"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r91"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r92"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r93"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r94"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r95"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r96"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r97"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r98"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r99"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r100"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r101"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r102"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r103"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r104"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r105"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r106"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r107"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r108"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r109"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r110"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r111"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r112"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r113"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r114"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r115"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r116"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r117"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r118"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r119"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r120"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r121"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r122"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r123"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r124"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r125"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r126"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r127"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r128"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r129"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r130"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r131"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r132"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r133"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r134"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r135"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r136"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r137"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r138"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r139"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r140"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="CylinderMesh" id="r141"]
-height = 1.0
-radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r142"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="r143"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkhl5"]
-cull_mode = 2
-albedo_color = Color(0.4862745, 0.5372549, 0.5019608, 1)
-
-[sub_resource type="SphereMesh" id="r144"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="StandardMaterial3D" id="r7"]
-albedo_color = Color(0.4745098, 0.5921569, 0.36078432, 1)
-roughness = 0.88
+diffuse_mode = 3
+specular_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.62, 0.62, 0.62, 1)
+metallic_specular = 0.0
+roughness = 0.3
+rim_enabled = true
+rim = 0.14
+rim_tint = 0.6
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uaucn"]
+_surfaces = [{
+"aabb": AABB(-0.48261407, -0.5, -0.42759246, 0.962571, 1, 0.8617479),
+"attribute_data": PackedByteArray("VTkj/1U5I/9VOSP/XT4n/10+J/9dPif/TzUh/081If9PNSH/WDwl/1g8Jf9YPCX/RC4c/0QuHP9ELhz/SDAe/0gwHv9IMB7/TDYl/0w2Jf9MNiX/Tzck/083JP9PNyT/VDwo/1Q8KP9UPCj/Wj8q/1o/Kv9aPyr/Wj8q/1o/Kv9aPyr/Y0Uu/2NFLv9jRS7/b0wv/29ML/9vTC//dlM3/3ZTN/92Uzf/bEku/2xJLv9sSS7/bUwy/21MMv9tTDL/Y0cw/2NHMP9jRzD/YEMs/2BDLP9gQyz/X0Mt/19DLf9fQy3/XkIs/15CLP9eQiz/bk41/25ONf9uTjX/a0sx/2tLMf9rSzH/d1Q5/3dUOf93VDn/bksv/25LL/9uSy//hFk4/4RZOP+EWTj/j2VE/49lRP+PZUT/kGZF/5BmRf+QZkX/kGZF/5BmRf+QZkX/kGdG/5BnRv+QZ0b/kGZF/5BmRf+QZkX/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 90,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ldhii"]
+_surfaces = [{
+"aabb": AABB(-0.45041534, -0.5, -0.48272645, 0.8641689, 1, 1.017601),
+"attribute_data": PackedByteArray("LltL/y5bS/8uW0v/OGNT/zhjU/84Y1P/LlpK/y5aSv8uWkr/LlRG/y5URv8uVEb/KE9C/yhPQv8oT0L/JUc7/yVHO/8lRzv/Jko9/yZKPf8mSj3/LlFE/y5RRP8uUUT/NF5Q/zReUP80XlD/NVxO/zVcTv81XE7/L1xM/y9cTP8vXEz/OWRU/zlkVP85ZFT/SIZu/0iGbv9Ihm7/RXZi/0V2Yv9FdmL/Qntl/0J7Zf9Ce2X/OmNS/zpjUv86Y1L/RHZi/0R2Yv9EdmL/OmJR/zpiUf86YlH/PXFc/z1xXP89cVz/OGRS/zhkUv84ZFL/Q35n/0N+Z/9Dfmf/PnBb/z5wW/8+cFv/VZJ6/1WSev9Vknr/QHRf/0B0X/9AdF//aamN/2mpjf9pqY3/YZyD/2Gcg/9hnIP/VpB3/1aQd/9WkHf/Wpd8/1qXfP9al3z/X6CE/1+ghP9foIT/YqSH/2Kkh/9ipIf/Hj0z/x49M/8ePTP/Hz00/x89NP8fPTT/Hjwy/x48Mv8ePDL/I0E3/yNBN/8jQTf/JkM6/yZDOv8mQzr/JUQ6/yVEOv8lRDr/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 108,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5wqcw"]
+_surfaces = [{
+"aabb": AABB(-0.45475525, -0.5, -0.5296509, 0.9132995, 1, 1.0171362),
+"attribute_data": PackedByteArray("MWBQ/zFgUP8xYFD/L1pK/y9aSv8vWkr/OGVV/zhlVf84ZVX/KU9B/ylPQf8pT0H/Jks+/yZLPv8mSz7/Jkk8/yZJPP8mSTz/K05C/ytOQv8rTkL/LFBC/yxQQv8sUEL/Nl9R/zZfUf82X1H/LFNE/yxTRP8sU0T/OmhY/zpoWP86aFj/N2JS/zdiUv83YlL/UY52/1GOdv9Rjnb/O2pX/ztqV/87alf/S4Jt/0uCbf9Lgm3/MltL/zJbS/8yW0v/RXlk/0V5ZP9FeWT/MFdI/zBXSP8wV0j/PXJd/z1yXf89cl3/QG1a/0BtWv9AbVr/TYZv/02Gb/9Nhm//PnBb/z5wW/8+cFv/UI51/1COdf9QjnX/QHNe/0BzXv9Ac17/aqmO/2qpjv9qqY7/Yp2D/2Kdg/9inYP/XZh//12Yf/9dmH//ZKGG/2Shhv9koYb/a6uP/2urj/9rq4//a66R/2uukf9rrpH/JUQ6/yVEOv8lRDr/Hjwz/x48M/8ePDP/HTox/x06Mf8dOjH/I0E3/yNBN/8jQTf/HTsy/x07Mv8dOzL/JEM5/yRDOf8kQzn/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 108,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gkhl5"]
+_surfaces = [{
+"aabb": AABB(-0.47256088, -0.5, -0.51199794, 0.9454402, 1, 1.0362366),
+"attribute_data": PackedByteArray("MVhD/zFYQ/8xWEP/MlhA/zJYQP8yWED/LlI+/y5SPv8uUj7/MFU+/zBVPv8wVT7/LE47/yxOO/8sTjv/JEQw/yREMP8kRDD/ID8u/yA/Lv8gPy7/IUAt/yFALf8hQC3/JEEx/yRBMf8kQTH/J0Uy/ydFMv8nRTL/JkQz/yZEM/8mRDP/KUo2/ylKNv8pSjb/K006/ytNOv8rTTr/Jkkz/yZJM/8mSTP/J0w4/ydMOP8nTDj/MldA/zJXQP8yV0D/R3tZ/0d7Wf9He1n/NmJE/zZiRP82YkT/PG9N/zxvTf88b03/O2VI/ztlSP87ZUj/P25P/z9uT/8/bk//LlQ6/y5UOv8uVDr/OGBG/zhgRv84YEb/NFhA/zRYQP80WED/L1g9/y9YPf8vWD3/M1c+/zNXPv8zVz7/QG1P/0BtT/9AbU//MFg9/zBYPf8wWD3/QXJR/0FyUf9BclH/PWpL/z1qS/89akv/PG9N/zxvTf88b03/OGZH/zhmR/84Zkf/S4JZ/0uCWf9Lgln/Vopi/1aKYv9WimL/VYhi/1WIYv9ViGL/UYRd/1GEXf9RhF3/TH5Z/0x+Wf9Mfln/R3FR/0dxUf9HcVH/QnJP/0JyT/9Cck//Qm9M/0JvTP9Cb0z/Tn9b/05/W/9Of1v/TXtY/017WP9Ne1j/SHxW/0h8Vv9IfFb/SnxV/0p8Vf9KfFX/TINa/0yDWv9Mg1r/W5Bn/1uQZ/9bkGf/W5Jp/1uSaf9bkmn/TIFZ/0yBWf9MgVn/V5Fj/1eRY/9XkWP/YZlt/2GZbf9hmW3/Uohe/1KIXv9SiF7/Uohe/1KIXv9SiF7/YZdt/2GXbf9hl23/Vo9i/1aPYv9Wj2L/WZNl/1mTZf9Zk2X/WJFk/1iRZP9YkWT/JUEz/yVBM/8lQTP/Ij4x/yI+Mf8iPjH/IDwv/yA8L/8gPC//GjQn/xo0J/8aNCf/GTMn/xkzJ/8ZMyf/Ijwv/yI8L/8iPC//Gzcp/xs3Kf8bNyn/IT0w/yE9MP8hPTD/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 192,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pij3q"]
+_surfaces = [{
+"aabb": AABB(-0.49246463, -0.5, -0.4924655, 0.96310663, 1, 0.98908126),
+"attribute_data": PackedByteArray("K1M9/ytTPf8rUz3/KU43/ylON/8pTjf/LVA9/y1QPf8tUD3/KEw2/yhMNv8oTDb/KUs4/ylLOP8pSzj/JUcy/yVHMv8lRzL/KUo4/ylKOP8pSjj/J0Uz/ydFM/8nRTP/JEEx/yRBMf8kQTH/KUc0/ylHNP8pRzT/KUg3/ylIN/8pSDf/JEUx/yRFMf8kRTH/K006/ytNOv8rTTr/KEs1/yhLNf8oSzX/Jko2/yZKNv8mSjb/MFY//zBWP/8wVj//PXFO/z1xTv89cU7/QG5O/0BuTv9Abk7/QXBR/0FwUf9BcFH/OF1D/zhdQ/84XUP/NWJE/zViRP81YkT/NVxB/zVcQf81XEH/MFo+/zBaPv8wWj7/MFE6/zBROv8wUTr/Nl1D/zZdQ/82XUP/LVM5/y1TOf8tUzn/P2xO/z9sTv8/bE7/MFc8/zBXPP8wVzz/OGhI/zhoSP84aEj/N2VG/zdlRv83ZUb/SHtZ/0h7Wf9Ie1n/OmlJ/zppSf86aUn/WZBn/1mQZ/9ZkGf/TYJa/02CWv9Nglr/RHRQ/0R0UP9EdFD/VYlh/1WJYf9ViWH/R3pU/0d6VP9HelT/OWFD/zlhQ/85YUP/SHVT/0h1U/9IdVP/UYBc/1GAXP9RgFz/Tn1a/059Wv9OfVr/SXVT/0l1U/9JdVP/SHxV/0h8Vf9IfFX/UoJd/1KCXf9Sgl3/Voxk/1aMZP9WjGT/S35X/0t+V/9Lflf/V49l/1ePZf9Xj2X/U4Vf/1OFX/9ThV//YZtt/2Gbbf9hm23/YJls/2CZbP9gmWz/XJNo/1yTaP9ck2j/U4pf/1OKX/9Til//U4le/1OJXv9TiV7/YZpt/2Gabf9hmm3/Y51w/2OdcP9jnXD/V5Bj/1eQY/9XkGP/HDgr/xw4K/8cOCv/Gzcq/xs3Kv8bNyr/Iz4x/yM+Mf8jPjH/GjMn/xozJ/8aMyf/GTMm/xkzJv8ZMyb/GjQn/xo0J/8aNCf/GzYp/xs2Kf8bNin/HDgq/xw4Kv8cOCr/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 192,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_n27g6"]
+_surfaces = [{
+"aabb": AABB(-0.4684176, -0.42000002, -0.4814272, 0.94033635, 0.94, 0.9768488),
+"attribute_data": PackedByteArray("LldM/y5XTP8uV0z/IEY8/yBGPP8gRjz/IktA/yJLQP8iS0D/H0Q6/x9EOv8fRDr/LlRK/y5USv8uVEr/HD00/xw9NP8cPTT/HUA3/x1AN/8dQDf/HT81/x0/Nf8dPzX/JklA/yZJQP8mSUD/Hjw0/x48NP8ePDT/IUg+/yFIPv8hSD7/Jkk//yZJP/8mST//L1ZM/y9WTP8vVkz/KlNI/ypTSP8qU0j/NGZX/zRmV/80Zlf/LWBQ/y1gUP8tYFD/MWJT/zFiU/8xYlP/KVlK/ylZSv8pWUr/K1dJ/ytXSf8rV0n/LVZJ/y1WSf8tVkn/I0xA/yNMQP8jTED/I0w//yNMP/8jTD//JVBD/yVQQ/8lUEP/JlJF/yZSRf8mUkX/MWFS/zFhUv8xYVL/NGNV/zRjVf80Y1X/NmhZ/zZoWf82aFn/Om1e/zptXv86bV7/Rnxp/0Z8af9GfGn/QXVi/0F1Yv9BdWL/MV9P/zFfT/8xX0//L1xM/y9cTP8vXEz/Omta/zprWv86a1r/NmpY/zZqWP82alj/OnFe/zpxXv86cV7/GjMt/xozLf8aMy3/GjMt/xozLf8aMy3/GjIs/xoyLP8aMiz/FS4n/xUuJ/8VLif/FS4n/xUuJ/8VLif/GjIs/xoyLP8aMiz/GjMt/xozLf8aMy3/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 126,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vfggj"]
+_surfaces = [{
+"aabb": AABB(-0.48100975, -0.42000002, -0.5018715, 1.0128404, 0.94, 0.99992657),
+"attribute_data": PackedByteArray("LFNJ/yxTSf8sU0n/IEY8/yBGPP8gRjz/KlNJ/ypTSf8qU0n/IUI5/yFCOf8hQjn/IEc9/yBHPf8gRz3/HkE4/x5BOP8eQTj/J01E/ydNRP8nTUT/GDUt/xg1Lf8YNS3/Kk1E/ypNRP8qTUT/H0Q6/x9EOv8fRDr/Iko//yJKP/8iSj//JkxC/yZMQv8mTEL/I0xC/yNMQv8jTEL/JE5D/yROQ/8kTkP/K15P/yteT/8rXk//OWtc/zlrXP85a1z/KVpL/ylaS/8pWkv/NmhZ/zZoWf82aFn/JlJF/yZSRf8mUkX/L1hL/y9YS/8vWEv/K1RI/ytUSP8rVEj/I01A/yNNQP8jTUD/I01B/yNNQf8jTUH/JlJE/yZSRP8mUkT/J1ZI/ydWSP8nVkj/KVhK/ylYSv8pWEr/K11O/ytdTv8rXU7/K11O/ytdTv8rXU7/Q3lm/0N5Zv9DeWb/Q3dl/0N3Zf9Dd2X/PGpa/zxqWv88alr/MF1N/zBdTf8wXU3/PWxb/z1sW/89bFv/QHRh/0B0Yf9AdGH/Q3pm/0N6Zv9Demb/FS0n/xUtJ/8VLSf/FS0n/xUtJ/8VLSf/FS0n/xUtJ/8VLSf/FS0n/xUtJ/8VLSf/FS0n/xUtJ/8VLSf/FS0n/xUtJ/8VLSf/FS0n/xUtJ/8VLSf/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 126,
+"vertex_data": PackedByteArray("DSYIPz0K174A4Tu7/VSSPj0K175O/rs+FQ1GPpqZmb7urc8+DSYIPz0K174A4Tu7FQ1GPpqZmb7urc8+DX3fPpqZmb6aTsk9/VSSPj0K175O/rs+NCb1vT0K174TAf8+GZEhvpqZmb4SKMI+/VSSPj0K175O/rs+GZEhvpqZmb4SKMI+FQ1GPpqZmb7urc8+NCb1vT0K174TAf8+6Ub2vj0K177PH2M+IE3dvpqZmb5+k7w9NCb1vT0K174TAf8+IE3dvpqZmb5+k7w9GZEhvpqZmb4SKMI+6Ub2vj0K177PH2M+gE31vj0K1773fnK+XbadvpqZmb7x/Xa+6Ub2vj0K177PH2M+XbadvpqZmb7x/Xa+IE3dvpqZmb5+k7w9gE31vj0K1773fnK+/AzWvT0K176negC/vTyRvJqZmb5flde+gE31vj0K1773fnK+vTyRvJqZmb5flde+XbadvpqZmb7x/Xa+/AzWvT0K176negC/DzKpPj0K174BGtm+NbibPpqZmb6BboS+/AzWvT0K176negC/NbibPpqZmb6BboS+vTyRvJqZmb5flde+DzKpPj0K174BGtm+DSYIPz0K174A4Tu7DX3fPpqZmb6aTsk9DzKpPj0K174BGtm+DX3fPpqZmb6aTsk9NbibPpqZmb6BboS+DX3fPpqZmb6aTsk9FQ1GPpqZmb7urc8+FX9QPY/C9T3yjzk+DX3fPpqZmb6aTsk9FX9QPY/C9T3yjzk+MBI5Po/C9T2zJZI9FQ1GPpqZmb7urc8+GZEhvpqZmb4SKMI+l0sCvo/C9T0yii8+FQ1GPpqZmb7urc8+l0sCvo/C9T0yii8+FX9QPY/C9T3yjzk+GZEhvpqZmb4SKMI+IE3dvpqZmb5+k7w97e1Wvo/C9T09pYg8GZEhvpqZmb4SKMI+7e1Wvo/C9T09pYg8l0sCvo/C9T0yii8+IE3dvpqZmb5+k7w9XbadvpqZmb7x/Xa+C8oEvo/C9T0c+Bq+IE3dvpqZmb5+k7w9C8oEvo/C9T0c+Bq+7e1Wvo/C9T09pYg8XbadvpqZmb7x/Xa+vTyRvJqZmb5flde+5jITPY/C9T0vOV2+XbadvpqZmb7x/Xa+5jITPY/C9T0vOV2+C8oEvo/C9T0c+Bq+vTyRvJqZmb5flde+NbibPpqZmb6BboS+Jes9Po/C9T3RUOK9vTyRvJqZmb5flde+Jes9Po/C9T3RUOK95jITPY/C9T0vOV2+NbibPpqZmb6BboS+DX3fPpqZmb6aTsk9MBI5Po/C9T2zJZI9NbibPpqZmb6BboS+MBI5Po/C9T2zJZI9Jes9Po/C9T3RUOK9MBI5Po/C9T2zJZI9FX9QPY/C9T3yjzk+CtejPLgeBT8AAAAAFX9QPY/C9T3yjzk+l0sCvo/C9T0yii8+CtejPLgeBT8AAAAAl0sCvo/C9T0yii8+7e1Wvo/C9T09pYg8CtejPLgeBT8AAAAA7e1Wvo/C9T09pYg8C8oEvo/C9T0c+Bq+CtejPLgeBT8AAAAAC8oEvo/C9T0c+Bq+5jITPY/C9T0vOV2+CtejPLgeBT8AAAAA5jITPY/C9T0vOV2+Jes9Po/C9T3RUOK9CtejPLgeBT8AAAAAJes9Po/C9T3RUOK9MBI5Po/C9T2zJZI9CtejPLgeBT8AAAAADSYIPz0K174A4Tu7CaWpuz4K174O2De8/VSSPj0K175O/rs+/VSSPj0K175O/rs+CaWpuz4K174O2De8NCb1vT0K174TAf8+NCb1vT0K174TAf8+CaWpuz4K174O2De86Ub2vj0K177PH2M+6Ub2vj0K177PH2M+CaWpuz4K174O2De8gE31vj0K1773fnK+gE31vj0K1773fnK+CaWpuz4K174O2De8/AzWvT0K176negC//AzWvT0K176negC/CaWpuz4K174O2De8DzKpPj0K174BGtm+DzKpPj0K174BGtm+CaWpuz4K174O2De8DSYIPz0K174A4Tu7m7kVoEVN/MKbuRWgRU38wpu5FaBFTfzCtsKCiA5VwLK2woKIDlXAsrbCgogOVcCyGZHnuTtGrLMZkee5O0assxmR57k7RqyzYHmuXhBYE4Ngea5eEFgTg2B5rl4QWBOD/mBwuDVjqKb+YHC4NWOopv5gcLg1Y6imfE4on1eTV6V8TiifV5NXpXxOKJ9Xk1elGEtQy4FFhasYS1DLgUWFqxhLUMuBRYWrVwD+on1g+LlXAP6ifWD4uVcA/qJ9YPi5cDSv4MUyKZ1wNK/gxTIpnXA0r+DFMimd8SvX37U6upnxK9fftTq6mfEr19+1OrqZHros9x0Yj50euiz3HRiPnR66LPcdGI+dN+pf3FmtCJQ36l/cWa0IlDfqX9xZrQiUtcYo0PtLW9q1xijQ+0tb2rXGKND7S1vagdMUw/pxjdmB0xTD+nGN2YHTFMP6cY3ZIrIzpo9HzcIisjOmj0fNwiKyM6aPR83CpqySnlpNE7WmrJKeWk0Ttaaskp5aTRO143mjqPZyWpnjeaOo9nJameN5o6j2clqZhXsFqqNwj5qFewWqo3CPmoV7BaqjcI+a0U/EoduPb6TRT8Sh249vpNFPxKHbj2+kljsMlzeYFK6WOwyXN5gUrpY7DJc3mBSuZSLNu3RZOqxlIs27dFk6rGUizbt0WTqsjx1evY5X26uPHV69jlfbq48dXr2OV9urNCG729tFU5g0Ibvb20VTmDQhu9vbRVOYdhvA4+9M6pF2G8Dj70zqkXYbwOPvTOqRS+Cz3zCzRY1L4LPfMLNFjUvgs98ws0WNyOcO1UOzUp7I5w7VQ7NSnsjnDtVDs1Kes9mOvuGCwNaz2Y6+4YLA1rPZjr7hgsDWgOLtmqd2o8yA4u2ap3ajzIDi7ZqndqPMzK0PnPhOp7PMrQ+c+E6ns8ytD5z4TqezUnsypnJ0l5dSezKmcnSXl1J7MqZydJeX70Pao4+JQqjvQ9qjj4lCqO9D2qOPiUKo8SIDwVtUPqrxIgPBW1Q+qvEiA8FbVD6qDiPi5cVE/5IOI+LlxUT/kg4j4uXFRP+SA+BF2B23SpcD4EXYHbdKlwPgRdgdt0qXWdlRpMVwJtBZ2VGkxXAm0FnZUaTFcCbQ/38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+/")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mm5dy"]
+_surfaces = [{
+"aabb": AABB(-0.51492137, -0.48, -0.47218418, 0.95250726, 0.9247126, 0.9315773),
+"attribute_data": PackedByteArray("XWFa/11hWv9dYVr/X2Jb/19iW/9fYlv/TVBK/01QSv9NUEr/VFdR/1RXUf9UV1H/SUxH/0lMR/9JTEf/QEI9/0BCPf9AQj3/PkE8/z5BPP8+QTz/QkVA/0JFQP9CRUD/TE9K/0xPSv9MT0r/TE9J/0xPSf9MT0n/VFhS/1RYUv9UWFL/WVxW/1lcVv9ZXFb/WV1X/1ldV/9ZXVf/XmFa/15hWv9eYVr/f4N6/3+Dev9/g3r/eHtz/3h7c/94e3P/bHBn/2xwZ/9scGf/YGNb/2BjW/9gY1v/Y2Ze/2NmXv9jZl7/W11W/1tdVv9bXVb/Wl1W/1pdVv9aXVb/W15X/1teV/9bXlf/bnJq/25yav9ucmr/ZWhg/2VoYP9laGD/am5l/2puZf9qbmX/eHty/3h7cv94e3L/c3hu/3N4bv9zeG7/fYF4/32BeP99gXj/kJOI/5CTiP+Qk4j/kpWK/5KViv+SlYr/aYhb/2mIW/9piFv/goV6/4KFev+ChXr/Y4BV/2OAVf9jgFX/fX91/31/df99f3X/YX5U/2F+VP9hflT/jY+F/42Phf+Nj4X/g4Z8/4OGfP+Dhnz/jY+E/42PhP+Nj4T/lJeM/5SXjP+Ul4z/jI6E/4yOhP+MjoT/kZWJ/5GVif+RlYn/kJOI/5CTiP+Qk4j/cJBg/3CQYP9wkGD/b49g/2+PYP9vj2D/cJFh/3CRYf9wkWH/b49g/2+PYP9vj2D/cZJh/3GSYf9xkmH/cJJh/3CSYf9wkmH/cJFh/3CRYf9wkWH/PkE9/z5BPf8+QT3/PUA8/z1APP89QDz/PkE8/z5BPP8+QTz/Nzo1/zc6Nf83OjX/ODs2/zg7Nv84Ozb/QEM+/0BDPv9AQz7/Nzo2/zc6Nv83Ojb/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 168,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33w2e"]
+diffuse_mode = 3
+specular_mode = 2
+vertex_color_is_srgb = true
+albedo_color = Color(0.2309804, 0.33552942, 0.18964706, 1)
+metallic_specular = 0.0
+roughness = 0.3
+rim_enabled = true
+rim = 0.1
+rim_tint = 0.6
 
 [sub_resource type="CylinderMesh" id="r145"]
 top_radius = 0.0
@@ -595,10 +174,6 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r151"]
-radial_segments = 8
-rings = 4
-
 [sub_resource type="CylinderMesh" id="r152"]
 top_radius = 0.0
 height = 1.0
@@ -628,10 +203,6 @@ radial_segments = 7
 top_radius = 0.0
 height = 1.0
 radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r158"]
-radial_segments = 8
-rings = 4
 
 [sub_resource type="CylinderMesh" id="r159"]
 top_radius = 0.0
@@ -663,9 +234,16 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r165"]
-radial_segments = 8
-rings = 4
+[sub_resource type="ArrayMesh" id="ArrayMesh_3h36n"]
+_surfaces = [{
+"aabb": AABB(-0.48290265, -0.48, -0.4891894, 1.0218303, 0.92515373, 0.96102583),
+"attribute_data": PackedByteArray("T1JM/09STP9PUkz/TVBK/01QSv9NUEr/TlJL/05SS/9OUkv/UlZQ/1JWUP9SVlD/R0tF/0dLRf9HS0X/Q0ZB/0NGQf9DRkH/QEQ+/0BEPv9ARD7/QEM+/0BDPv9AQz7/PUA7/z1AO/89QDv/Sk1H/0pNR/9KTUf/TE9J/0xPSf9MT0n/UFNN/1BTTf9QU03/S05I/0tOSP9LTkj/WV1W/1ldVv9ZXVb/eX10/3l9dP95fXT/d3ty/3d7cv93e3L/dnpx/3Z6cf92enH/YWRd/2FkXf9hZF3/X2Nb/19jW/9fY1v/ZGdg/2RnYP9kZ2D/YWRd/2FkXf9hZF3/W15X/1teV/9bXlf/Y2de/2NnXv9jZ17/ZWhh/2VoYf9laGH/dnpx/3Z6cf92enH/c3Zu/3N2bv9zdm7/foJ5/36Cef9+gnn/gIR6/4CEev+AhHr/oaSY/6GkmP+hpJj/j5KH/4+Sh/+Pkof/e350/3t+dP97fnT/lpmO/5aZjv+WmY7/kpWK/5KViv+SlYr/cHJp/3Byaf9wcmn/i46E/4uOhP+LjoT/gIJ4/4CCeP+Agnj/g4Z7/4OGe/+Dhnv/j5KH/4+Sh/+Pkof/kJOI/5CTiP+Qk4j/i42C/4uNgv+LjYL/pKeb/6Snm/+kp5v/oqWZ/6Klmf+ipZn/qq2g/6qtoP+qraD/q66h/6uuof+rrqH/m56S/5uekv+bnpL/m56R/5uekf+bnpH/qq2g/6qtoP+qraD/m56S/5uekv+bnpL/qKuf/6irn/+oq5//P0I9/z9CPf8/Qj3/QEM+/0BDPv9AQz7/Nzo1/zc6Nf83OjX/P0I9/z9CPf8/Qj3/P0E9/z9BPf8/QT3/PUA8/z1APP89QDz/ODs3/zg7N/84Ozf/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 168,
+"vertex_data": PackedByteArray("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")
+}]
 
 [sub_resource type="CylinderMesh" id="r166"]
 top_radius = 0.0
@@ -697,10 +275,6 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r172"]
-radial_segments = 8
-rings = 4
-
 [sub_resource type="CylinderMesh" id="r173"]
 top_radius = 0.0
 height = 1.0
@@ -730,10 +304,6 @@ radial_segments = 7
 top_radius = 0.0
 height = 1.0
 radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r179"]
-radial_segments = 8
-rings = 4
 
 [sub_resource type="CylinderMesh" id="r180"]
 top_radius = 0.0
@@ -765,10 +335,6 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r186"]
-radial_segments = 8
-rings = 4
-
 [sub_resource type="CylinderMesh" id="r187"]
 top_radius = 0.0
 height = 1.0
@@ -783,10 +349,6 @@ radial_segments = 7
 top_radius = 0.0
 height = 1.0
 radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r190"]
-radial_segments = 8
-rings = 4
 
 [sub_resource type="CylinderMesh" id="r191"]
 top_radius = 0.0
@@ -818,9 +380,16 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r197"]
-radial_segments = 8
-rings = 4
+[sub_resource type="ArrayMesh" id="ArrayMesh_77ip3"]
+_surfaces = [{
+"aabb": AABB(-0.46746847, -0.48, -0.5283368, 0.97695744, 0.91869867, 1.0507518),
+"attribute_data": PackedByteArray("UVVO/1FVTv9RVU7/TlJL/05SS/9OUkv/VllT/1ZZU/9WWVP/SUxG/0lMRv9JTEb/S05I/0tOSP9LTkj/PUA7/z1AO/89QDv/RkpE/0ZKRP9GSkT/PUA6/z1AOv89QDr/PkE8/z5BPP8+QTz/Sk1H/0pNR/9KTUf/S09I/0tPSP9LT0j/VFdR/1RXUf9UV1H/Wl5Y/1peWP9aXlj/UlZP/1JWT/9SVk//dXlv/3V5b/91eW//bHBn/2xwZ/9scGf/bHBn/2xwZ/9scGf/c3du/3N3bv9zd27/YmVe/2JlXv9iZV7/YGNb/2BjW/9gY1v/Wl5W/1peVv9aXlb/UVRN/1FUTf9RVE3/YmZd/2JmXf9iZl3/Z2pj/2dqY/9namP/ZGhf/2RoX/9kaF//b3Nq/29zav9vc2r/dHhv/3R4b/90eG//Zmph/2ZqYf9mamH/jI+E/4yPhP+Mj4T/hYh+/4WIfv+FiH7/iIuA/4iLgP+Ii4D/h4l//4eJf/+HiX//gIN5/4CDef+Ag3n/f4F3/3+Bd/9/gXf/enxz/3p8c/96fHP/cXNq/3Fzav9xc2r/kpVq/5KVav+SlWr/goV7/4KFe/+ChXv/kJOH/5CTh/+Qk4f/naCU/52glP+doJT/k5aK/5OWiv+Tlor/l5mO/5eZjv+XmY7/p6p5/6eqef+nqnn/pql4/6apeP+mqXj/p6p5/6eqef+nqnn/qKt5/6iref+oq3n/p6p5/6eqef+nqnn/pql4/6apeP+mqXj/pqh4/6aoeP+mqHj/ODs2/zg7Nv84Ozb/Nzo2/zc6Nv83Ojb/Nzo2/zc6Nv83Ojb/Nzo1/zc6Nf83OjX/Nzo2/zc6Nv83Ojb/Nzo1/zc6Nf83OjX/P0I9/z9CPf8/Qj3/"),
+"format": 34359738383,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 168,
+"vertex_data": PackedByteArray("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")
+}]
 
 [sub_resource type="CylinderMesh" id="r198"]
 top_radius = 0.0
@@ -852,10 +421,6 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r204"]
-radial_segments = 8
-rings = 4
-
 [sub_resource type="CylinderMesh" id="r205"]
 top_radius = 0.0
 height = 1.0
@@ -870,10 +435,6 @@ radial_segments = 7
 top_radius = 0.0
 height = 1.0
 radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r208"]
-radial_segments = 8
-rings = 4
 
 [sub_resource type="CylinderMesh" id="r209"]
 top_radius = 0.0
@@ -905,10 +466,6 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r215"]
-radial_segments = 8
-rings = 4
-
 [sub_resource type="CylinderMesh" id="r216"]
 top_radius = 0.0
 height = 1.0
@@ -938,10 +495,6 @@ radial_segments = 7
 top_radius = 0.0
 height = 1.0
 radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r222"]
-radial_segments = 8
-rings = 4
 
 [sub_resource type="CylinderMesh" id="r223"]
 top_radius = 0.0
@@ -973,10 +526,6 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r229"]
-radial_segments = 8
-rings = 4
-
 [sub_resource type="CylinderMesh" id="r230"]
 top_radius = 0.0
 height = 1.0
@@ -1006,10 +555,6 @@ radial_segments = 7
 top_radius = 0.0
 height = 1.0
 radial_segments = 7
-
-[sub_resource type="SphereMesh" id="r236"]
-radial_segments = 8
-rings = 4
 
 [sub_resource type="CylinderMesh" id="r237"]
 top_radius = 0.0
@@ -1041,9 +586,9 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 7
 
-[sub_resource type="SphereMesh" id="r243"]
-radial_segments = 8
-rings = 4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mtib"]
+cull_mode = 2
+albedo_color = Color(0.4862745, 0.5372549, 0.5019608, 1)
 
 [sub_resource type="SphereMesh" id="r244"]
 radial_segments = 8
@@ -1207,16 +752,16 @@ size = Vector3(0.75, 0.9, 0.07)
 radial_segments = 8
 rings = 4
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pij3q"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ug01"]
 size = Vector3(0.4, 2, 52)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_n27g6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_h4wpb"]
 size = Vector3(0.4, 2, 52)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vfggj"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vr6m2"]
 size = Vector3(48, 2, 0.4)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mm5dy"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgu30"]
 size = Vector3(48, 2, 0.4)
 
 [sub_resource type="StandardMaterial3D" id="r1"]
@@ -1314,54 +859,11 @@ rings = 4
 radial_segments = 8
 rings = 4
 
-[sub_resource type="SphereMesh" id="SphereMesh_33w2e"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_3h36n"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_77ip3"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_3mtib"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_3ug01"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_h4wpb"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_vr6m2"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_hgu30"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_5ycbl"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_juvbd"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_rmwpd"]
-radial_segments = 8
-rings = 4
-
 [node name="ArenaArt" type="Node3D" unique_id=73889143]
 
 [node name="Clearing" type="MeshInstance3D" parent="." unique_id=201343640]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2)
+visible = false
 material_override = SubResource("StandardMaterial3D_8r2dd")
 mesh = SubResource("BoxMesh_rg4qe")
 
@@ -1379,11 +881,13 @@ mesh = SubResource("r15")
 
 [node name="Post" type="MeshInstance3D" parent="." unique_id=1919752909]
 transform = Transform3D(2.8, 0, 0, 0, 0.08, 0, 0, 0, 2.8, 0, 0.08, -7)
+visible = false
 material_override = SubResource("r9")
 mesh = SubResource("r16")
 
 [node name="PostInner" type="MeshInstance3D" parent="." unique_id=477146931]
 transform = Transform3D(2.25, 0, 0, 0, 0.08, 0, 0, 0, 2.25, 0, 0.13, -7)
+visible = false
 material_override = SubResource("r10")
 mesh = SubResource("r17")
 
@@ -1391,1378 +895,1399 @@ mesh = SubResource("r17")
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -13, 1.204, -19)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r18")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown0_0" type="MeshInstance3D" parent="." unique_id=1458535564]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -13, 2.128, -19)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r19")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown0_1" type="MeshInstance3D" parent="." unique_id=1174479589]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -13, 2.728, -19)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r20")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk1" type="MeshInstance3D" parent="." unique_id=1653347837]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -17, 1.333, -21)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r21")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown1_0" type="MeshInstance3D" parent="." unique_id=539096670]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -17, 2.356, -21)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r22")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown1_1" type="MeshInstance3D" parent="." unique_id=1710127551]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -17, 2.956, -21)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r23")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk2" type="MeshInstance3D" parent="." unique_id=782339261]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -21, 1.462, -17)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r24")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown2_0" type="MeshInstance3D" parent="." unique_id=47979062]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -21, 2.584, -17)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r25")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown2_1" type="MeshInstance3D" parent="." unique_id=694632788]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -21, 3.184, -17)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r26")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk3" type="MeshInstance3D" parent="." unique_id=230657967]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -20, 1.591, -11)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r27")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown3_0" type="MeshInstance3D" parent="." unique_id=16670573]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -20, 2.812, -11)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r28")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown3_1" type="MeshInstance3D" parent="." unique_id=982059179]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -20, 3.412, -11)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r29")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk4" type="MeshInstance3D" parent="." unique_id=492446970]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -15, 1.204, -8)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r30")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown4_0" type="MeshInstance3D" parent="." unique_id=1331975450]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -15, 2.128, -8)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r31")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown4_1" type="MeshInstance3D" parent="." unique_id=259911685]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -15, 2.728, -8)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r32")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk5" type="MeshInstance3D" parent="." unique_id=2032832802]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -18, 1.333, -5)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r33")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown5_0" type="MeshInstance3D" parent="." unique_id=1548230192]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -18, 2.356, -5)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r34")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown5_1" type="MeshInstance3D" parent="." unique_id=447028666]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -18, 2.956, -5)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r35")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk6" type="MeshInstance3D" parent="." unique_id=824672442]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -22, 1.462, -2)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r36")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown6_0" type="MeshInstance3D" parent="." unique_id=2020304770]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -22, 2.584, -2)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r37")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown6_1" type="MeshInstance3D" parent="." unique_id=388999475]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -22, 3.184, -2)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r38")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk7" type="MeshInstance3D" parent="." unique_id=33435848]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -22, 1.591, 7)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r39")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown7_0" type="MeshInstance3D" parent="." unique_id=656566779]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -22, 2.812, 7)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r40")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown7_1" type="MeshInstance3D" parent="." unique_id=1816205244]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -22, 3.412, 7)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r41")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk8" type="MeshInstance3D" parent="." unique_id=741243841]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -19, 1.204, 11)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r42")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown8_0" type="MeshInstance3D" parent="." unique_id=2012896902]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -19, 2.128, 11)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r43")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown8_1" type="MeshInstance3D" parent="." unique_id=1125759997]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -19, 2.728, 11)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r44")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk9" type="MeshInstance3D" parent="." unique_id=124197786]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -21, 1.333, 16)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r45")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown9_0" type="MeshInstance3D" parent="." unique_id=257142580]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -21, 2.356, 16)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r46")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown9_1" type="MeshInstance3D" parent="." unique_id=74513181]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -21, 2.956, 16)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r47")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk10" type="MeshInstance3D" parent="." unique_id=1777739168]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -18, 1.462, 20)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r48")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown10_0" type="MeshInstance3D" parent="." unique_id=299910392]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -18, 2.584, 20)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r49")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown10_1" type="MeshInstance3D" parent="." unique_id=1162535185]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -18, 3.184, 20)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r50")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk11" type="MeshInstance3D" parent="." unique_id=1336477466]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -21, 1.591, 24)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r51")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown11_0" type="MeshInstance3D" parent="." unique_id=1283372395]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -21, 2.812, 24)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r52")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown11_1" type="MeshInstance3D" parent="." unique_id=1685361526]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -21, 3.412, 24)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r53")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk12" type="MeshInstance3D" parent="." unique_id=1232947025]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -15, 1.204, 25)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r54")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown12_0" type="MeshInstance3D" parent="." unique_id=6757520]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -15, 2.128, 25)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r55")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown12_1" type="MeshInstance3D" parent="." unique_id=1894271684]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -15, 2.728, 25)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r56")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk13" type="MeshInstance3D" parent="." unique_id=768180486]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -12, 1.333, 21)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r57")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown13_0" type="MeshInstance3D" parent="." unique_id=1660963251]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -12, 2.356, 21)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r58")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown13_1" type="MeshInstance3D" parent="." unique_id=1798500605]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -12, 2.956, 21)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r59")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk14" type="MeshInstance3D" parent="." unique_id=1404087926]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -9, 1.462, 25)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r60")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown14_0" type="MeshInstance3D" parent="." unique_id=1068252000]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -9, 2.584, 25)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r61")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown14_1" type="MeshInstance3D" parent="." unique_id=1072338381]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -9, 3.184, 25)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r62")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk15" type="MeshInstance3D" parent="." unique_id=670442603]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -6, 1.591, 20)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r63")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown15_0" type="MeshInstance3D" parent="." unique_id=1536680382]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -6, 2.812, 20)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r64")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown15_1" type="MeshInstance3D" parent="." unique_id=1162631779]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -6, 3.412, 20)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r65")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk16" type="MeshInstance3D" parent="." unique_id=684446466]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -5, 1.204, 26)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r66")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown16_0" type="MeshInstance3D" parent="." unique_id=323583276]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -5, 2.128, 26)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r67")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown16_1" type="MeshInstance3D" parent="." unique_id=1329808646]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -5, 2.728, 26)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r68")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk17" type="MeshInstance3D" parent="." unique_id=925420775]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 5, 1.333, 26)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r69")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown17_0" type="MeshInstance3D" parent="." unique_id=1422068960]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 5, 2.356, 26)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r70")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown17_1" type="MeshInstance3D" parent="." unique_id=1046785846]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 5, 2.956, 26)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r71")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk18" type="MeshInstance3D" parent="." unique_id=597948532]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -9, 1.462, 19)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r72")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown18_0" type="MeshInstance3D" parent="." unique_id=922870636]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -9, 2.584, 19)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r73")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown18_1" type="MeshInstance3D" parent="." unique_id=751273146]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -9, 3.184, 19)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r74")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk19" type="MeshInstance3D" parent="." unique_id=1389621422]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -4, 1.591, 14)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r75")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown19_0" type="MeshInstance3D" parent="." unique_id=1078409494]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -4, 2.812, 14)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r76")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown19_1" type="MeshInstance3D" parent="." unique_id=945835976]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -4, 3.412, 14)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r77")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk20" type="MeshInstance3D" parent="." unique_id=553800466]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 19, 1.204, 25)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r78")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown20_0" type="MeshInstance3D" parent="." unique_id=54714896]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 19, 2.128, 25)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r79")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown20_1" type="MeshInstance3D" parent="." unique_id=1835732646]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 19, 2.728, 25)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r80")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk21" type="MeshInstance3D" parent="." unique_id=1986662519]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 22, 1.333, 22)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r81")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown21_0" type="MeshInstance3D" parent="." unique_id=1322462538]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.356, 22)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r82")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown21_1" type="MeshInstance3D" parent="." unique_id=1784757280]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 2.956, 22)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r83")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk22" type="MeshInstance3D" parent="." unique_id=1302204997]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, 22, 1.462, 16)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r84")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown22_0" type="MeshInstance3D" parent="." unique_id=313974346]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.584, 16)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r85")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown22_1" type="MeshInstance3D" parent="." unique_id=1460371003]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 3.184, 16)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r86")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk23" type="MeshInstance3D" parent="." unique_id=2141471114]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, 21, 1.591, 11)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r87")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown23_0" type="MeshInstance3D" parent="." unique_id=1089187979]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 21, 2.812, 11)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r88")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown23_1" type="MeshInstance3D" parent="." unique_id=836791075]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 21, 3.412, 11)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r89")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk24" type="MeshInstance3D" parent="." unique_id=1023300168]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 22, 1.204, 7)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r90")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown24_0" type="MeshInstance3D" parent="." unique_id=2141060853]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.128, 7)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r91")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown24_1" type="MeshInstance3D" parent="." unique_id=854587083]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 2.728, 7)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r92")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk25" type="MeshInstance3D" parent="." unique_id=1711999215]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 22, 1.333, -2)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r93")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown25_0" type="MeshInstance3D" parent="." unique_id=903478743]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.356, -2)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r94")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown25_1" type="MeshInstance3D" parent="." unique_id=1954649227]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 2.956, -2)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r95")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk26" type="MeshInstance3D" parent="." unique_id=1783796009]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, 19, 1.462, -6)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r96")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown26_0" type="MeshInstance3D" parent="." unique_id=365650964]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 19, 2.584, -6)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r97")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown26_1" type="MeshInstance3D" parent="." unique_id=1558332956]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 19, 3.184, -6)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r98")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk27" type="MeshInstance3D" parent="." unique_id=1446197185]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, 22, 1.591, -11)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r99")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown27_0" type="MeshInstance3D" parent="." unique_id=1532846589]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.812, -11)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r100")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown27_1" type="MeshInstance3D" parent="." unique_id=94557427]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 3.412, -11)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r101")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk28" type="MeshInstance3D" parent="." unique_id=1746128788]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 21, 1.204, -17)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r102")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown28_0" type="MeshInstance3D" parent="." unique_id=1475268838]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 21, 2.128, -17)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r103")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown28_1" type="MeshInstance3D" parent="." unique_id=1810934316]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 21, 2.728, -17)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r104")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk29" type="MeshInstance3D" parent="." unique_id=465302494]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 16, 1.333, -21)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r105")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown29_0" type="MeshInstance3D" parent="." unique_id=1626046979]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 16, 2.356, -21)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r106")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown29_1" type="MeshInstance3D" parent="." unique_id=1960717070]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 16, 2.956, -21)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r107")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk30" type="MeshInstance3D" parent="." unique_id=503481031]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, 12, 1.462, -19)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r108")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown30_0" type="MeshInstance3D" parent="." unique_id=1986437423]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 12, 2.584, -19)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r109")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown30_1" type="MeshInstance3D" parent="." unique_id=384739677]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 12, 3.184, -19)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r110")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk31" type="MeshInstance3D" parent="." unique_id=1222887883]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -9, 1.591, -23)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r111")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown31_0" type="MeshInstance3D" parent="." unique_id=968733629]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -9, 2.812, -23)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r112")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown31_1" type="MeshInstance3D" parent="." unique_id=840874277]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -9, 3.412, -23)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r113")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk32" type="MeshInstance3D" parent="." unique_id=1024822702]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 7, 1.204, -23)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r114")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown32_0" type="MeshInstance3D" parent="." unique_id=1869523755]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 7, 2.128, -23)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r115")
+mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown32_1" type="MeshInstance3D" parent="." unique_id=787942560]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 7, 2.728, -23)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r116")
+mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk33" type="MeshInstance3D" parent="." unique_id=498450518]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -16, 1.333, 15)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r117")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown33_0" type="MeshInstance3D" parent="." unique_id=1503858455]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -16, 2.356, 15)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r118")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown33_1" type="MeshInstance3D" parent="." unique_id=2078194054]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -16, 2.956, 15)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r119")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk34" type="MeshInstance3D" parent="." unique_id=159107335]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -8, 1.462, 16)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r120")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown34_0" type="MeshInstance3D" parent="." unique_id=451773878]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -8, 2.584, 16)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r121")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown34_1" type="MeshInstance3D" parent="." unique_id=1765786463]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -8, 3.184, 16)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r122")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk35" type="MeshInstance3D" parent="." unique_id=362258727]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -17, 1.591, 7)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r123")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown35_0" type="MeshInstance3D" parent="." unique_id=1256750248]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -17, 2.812, 7)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r124")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown35_1" type="MeshInstance3D" parent="." unique_id=491391136]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -17, 3.412, 7)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r125")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk36" type="MeshInstance3D" parent="." unique_id=431125003]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -14.2, 1.204, -3.9)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r126")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown36_0" type="MeshInstance3D" parent="." unique_id=236548946]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -14.2, 2.128, -3.9)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r127")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown36_1" type="MeshInstance3D" parent="." unique_id=2010198650]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -14.2, 2.728, -3.9)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r128")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk37" type="MeshInstance3D" parent="." unique_id=304744001]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -7, 1.333, 13.5)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r129")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown37_0" type="MeshInstance3D" parent="." unique_id=1149518944]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -7, 2.356, 13.5)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r130")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown37_1" type="MeshInstance3D" parent="." unique_id=1187316077]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -7, 2.956, 13.5)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r131")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk38" type="MeshInstance3D" parent="." unique_id=743685416]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -3.8, 1.462, 23)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r132")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown38_0" type="MeshInstance3D" parent="." unique_id=1257132462]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -3.8, 2.584, 23)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r133")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown38_1" type="MeshInstance3D" parent="." unique_id=1252165894]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -3.8, 3.184, 23)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r134")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk39" type="MeshInstance3D" parent="." unique_id=1616972209]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -23, 1.591, 12)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r135")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown39_0" type="MeshInstance3D" parent="." unique_id=354007882]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -23, 2.812, 12)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r136")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown39_1" type="MeshInstance3D" parent="." unique_id=1323700933]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -23, 3.412, 12)
-material_override = SubResource("StandardMaterial3D_uaucn")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r137")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk40" type="MeshInstance3D" parent="." unique_id=1600360007]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -12, 1.204, 27)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r138")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown40_0" type="MeshInstance3D" parent="." unique_id=261938819]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -12, 2.128, 27)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r139")
+mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown40_1" type="MeshInstance3D" parent="." unique_id=177904622]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -12, 2.728, 27)
-material_override = SubResource("StandardMaterial3D_ldhii")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r140")
+mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk41" type="MeshInstance3D" parent="." unique_id=616483579]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 16, 1.333, -10)
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r141")
+mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown41_0" type="MeshInstance3D" parent="." unique_id=1088500109]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 16, 2.356, -10)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r142")
+mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown41_1" type="MeshInstance3D" parent="." unique_id=866460944]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 16, 2.956, -10)
-material_override = SubResource("StandardMaterial3D_5wqcw")
+material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
-mesh = SubResource("r143")
+mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Rock0" type="MeshInstance3D" parent="." unique_id=95398996]
 transform = Transform3D(-0.10821965, 0.010853413, 1.2744949, 0.21453117, 1.0892949, 0, -1.5226276, 0.15270521, -0.09058381, -15, 0.38, 3.3)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r144")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern1_0" type="MeshInstance3D" parent="." unique_id=107424208]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -21.2, 0.3, 6.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r145")
 
 [node name="Fern1_1" type="MeshInstance3D" parent="." unique_id=1029971324]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -20.95, 0.3, 6.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r146")
 
 [node name="Fern1_2" type="MeshInstance3D" parent="." unique_id=1625704465]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -20.7, 0.3, 6.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r147")
 
 [node name="Fern2_0" type="MeshInstance3D" parent="." unique_id=227122305]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -18.2, 0.3, 10.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r148")
 
 [node name="Fern2_1" type="MeshInstance3D" parent="." unique_id=1407479701]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -17.95, 0.3, 10.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r149")
 
 [node name="Fern2_2" type="MeshInstance3D" parent="." unique_id=2089456943]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -17.7, 0.3, 10.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r150")
 
 [node name="Rock3" type="MeshInstance3D" parent="." unique_id=1328789075]
 transform = Transform3D(-0.85576415, 0.15228935, 0.09249058, 0.12090246, 1.0892949, 0, -0.087890595, 0.01564076, -0.9005529, -16, 0.38, -13)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r151")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern4_0" type="MeshInstance3D" parent="." unique_id=707074194]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -20.2, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r152")
 
 [node name="Fern4_1" type="MeshInstance3D" parent="." unique_id=183509135]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -19.95, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r153")
 
 [node name="Fern4_2" type="MeshInstance3D" parent="." unique_id=213784873]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -19.7, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r154")
 
 [node name="Fern5_0" type="MeshInstance3D" parent="." unique_id=2129178281]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -17.2, 0.3, 19.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r155")
 
 [node name="Fern5_1" type="MeshInstance3D" parent="." unique_id=1033121644]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -16.95, 0.3, 19.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r156")
 
 [node name="Fern5_2" type="MeshInstance3D" parent="." unique_id=2055414907]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -16.7, 0.3, 19.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r157")
 
 [node name="Rock6" type="MeshInstance3D" parent="." unique_id=814877280]
-transform = Transform3D(-0.8302449, 0.07955685, 1.7566198, 0.30618092, 1.4854021, -2.112101e-08, -2.0141864, 0.19300604, -0.72407633, 14, 0.54, -3.9)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r158")
+transform = Transform3D(-0.8302449, 0.07955685, 1.7566198, 0.30618092, 1.4854021, -2.1121014e-08, -2.0141864, 0.19300604, -0.72407633, 14, 0.54, -3.9)
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern7_0" type="MeshInstance3D" parent="." unique_id=203169665]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -20.2, 0.3, 23.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r159")
 
 [node name="Fern7_1" type="MeshInstance3D" parent="." unique_id=1223525916]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -19.95, 0.3, 23.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r160")
 
 [node name="Fern7_2" type="MeshInstance3D" parent="." unique_id=88513148]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -19.7, 0.3, 23.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r161")
 
 [node name="Fern8_0" type="MeshInstance3D" parent="." unique_id=931296738]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -14.2, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r162")
 
 [node name="Fern8_1" type="MeshInstance3D" parent="." unique_id=600107455]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -13.95, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r163")
 
 [node name="Fern8_2" type="MeshInstance3D" parent="." unique_id=1121102365]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -13.7, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r164")
 
 [node name="Rock9" type="MeshInstance3D" parent="." unique_id=642041609]
 transform = Transform3D(0.8990922, -0.15297046, 0.05778011, 0.12645826, 1.0892949, 0, -0.035611313, 0.006058866, 1.4587961, 18, 0.38, -15)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r165")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_3h36n")
 
 [node name="Fern10_0" type="MeshInstance3D" parent="." unique_id=679228132]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -11.2, 0.3, 20.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r166")
 
 [node name="Fern10_1" type="MeshInstance3D" parent="." unique_id=108033483]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -10.95, 0.3, 20.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r167")
 
 [node name="Fern10_2" type="MeshInstance3D" parent="." unique_id=1350990087]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -10.7, 0.3, 20.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r168")
 
 [node name="Fern11_0" type="MeshInstance3D" parent="." unique_id=152800473]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -8.2, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r169")
 
 [node name="Fern11_1" type="MeshInstance3D" parent="." unique_id=1151002351]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -7.95, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r170")
 
 [node name="Fern11_2" type="MeshInstance3D" parent="." unique_id=504224217]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -7.7, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r171")
 
 [node name="Rock12" type="MeshInstance3D" parent="." unique_id=179934610]
 transform = Transform3D(-0.69469494, 0.06194631, 0.908752, 0.24128442, 1.0892949, 0, -1.5699989, 0.1399976, -0.4021057, -7, 0.38, 3)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r172")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern13_0" type="MeshInstance3D" parent="." unique_id=324451073]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -5.2, 0.3, 19.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r173")
 
 [node name="Fern13_1" type="MeshInstance3D" parent="." unique_id=1949225981]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -4.95, 0.3, 19.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r174")
 
 [node name="Fern13_2" type="MeshInstance3D" parent="." unique_id=1725699587]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -4.7, 0.3, 19.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r175")
 
 [node name="Fern14_0" type="MeshInstance3D" parent="." unique_id=673080150]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -4.2, 0.3, 25.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r176")
 
 [node name="Fern14_1" type="MeshInstance3D" parent="." unique_id=37537114]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -3.95, 0.3, 25.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r177")
 
 [node name="Fern14_2" type="MeshInstance3D" parent="." unique_id=324135136]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -3.7, 0.3, 25.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r178")
 
 [node name="Rock15" type="MeshInstance3D" parent="." unique_id=1781656452]
 transform = Transform3D(0.5103459, -0.06637353, 1.3878149, 0.16543229, 1.0892949, 0, -1.0607259, 0.13795373, 0.6677178, -14, 0.38, 17)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r179")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern16_0" type="MeshInstance3D" parent="." unique_id=2138601599]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 5.8, 0.3, 25.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r180")
 
 [node name="Fern16_1" type="MeshInstance3D" parent="." unique_id=2082643620]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 6.05, 0.3, 25.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r181")
 
 [node name="Fern16_2" type="MeshInstance3D" parent="." unique_id=1726472331]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 6.3, 0.3, 25.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r182")
 
 [node name="Fern17_0" type="MeshInstance3D" parent="." unique_id=1052756592]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -8.2, 0.3, 18.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r183")
 
 [node name="Fern17_1" type="MeshInstance3D" parent="." unique_id=616865355]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -7.95, 0.3, 18.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r184")
 
 [node name="Fern17_2" type="MeshInstance3D" parent="." unique_id=2130313481]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -7.7, 0.3, 18.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r185")
 
 [node name="Rock18" type="MeshInstance3D" parent="." unique_id=1265508632]
 transform = Transform3D(-0.7679268, 0.15277791, 0.08475366, 0.10814585, 1.0892949, 0, -0.04914305, 0.009776937, -1.3243909, -18, 0.38, 23)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r186")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern19_0" type="MeshInstance3D" parent="." unique_id=268138854]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -3.2, 0.3, 13.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r187")
 
 [node name="Fern19_1" type="MeshInstance3D" parent="." unique_id=669638483]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -2.95, 0.3, 13.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r188")
 
 [node name="Fern19_2" type="MeshInstance3D" parent="." unique_id=258096249]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -2.7, 0.3, 13.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r189")
 
 [node name="Rock21" type="MeshInstance3D" parent="." unique_id=1562197655]
 transform = Transform3D(1.0281544, -0.13323677, 0.73657346, 0.16602935, 1.0892949, 0, -0.5818162, 0.07539656, 1.3016331, 8.46, 0.38, 0.74)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r190")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_3h36n")
 
 [node name="Fern22_0" type="MeshInstance3D" parent="." unique_id=2051772049]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 19.8, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r191")
 
 [node name="Fern22_1" type="MeshInstance3D" parent="." unique_id=367999681]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 20.05, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r192")
 
 [node name="Fern22_2" type="MeshInstance3D" parent="." unique_id=613376500]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 20.3, 0.3, 24.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r193")
 
 [node name="Fern23_0" type="MeshInstance3D" parent="." unique_id=434996631]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, 21.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r194")
 
 [node name="Fern23_1" type="MeshInstance3D" parent="." unique_id=1501686051]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, 21.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r195")
 
 [node name="Fern23_2" type="MeshInstance3D" parent="." unique_id=601642664]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, 21.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r196")
 
 [node name="Rock24" type="MeshInstance3D" parent="." unique_id=772017436]
-transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 7.338336e-09, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r197")
+transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 1.0090213e-08, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern25_0" type="MeshInstance3D" parent="." unique_id=1963715629]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r198")
 
 [node name="Fern25_1" type="MeshInstance3D" parent="." unique_id=56254331]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r199")
 
 [node name="Fern25_2" type="MeshInstance3D" parent="." unique_id=1148232849]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r200")
 
 [node name="Fern26_0" type="MeshInstance3D" parent="." unique_id=792713231]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 21.8, 0.3, 10.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r201")
 
 [node name="Fern26_1" type="MeshInstance3D" parent="." unique_id=1335241913]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 22.05, 0.3, 10.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r202")
 
 [node name="Fern26_2" type="MeshInstance3D" parent="." unique_id=453605959]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 22.3, 0.3, 10.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r203")
 
 [node name="Rock27" type="MeshInstance3D" parent="." unique_id=552763740]
 transform = Transform3D(-2.3592243, 0.23486021, 0.24170095, 0.33401546, 1.6834557, 6.299782e-09, -0.28721848, 0.028592538, -1.9853414, 14, 0.612, 26)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r204")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern29_0" type="MeshInstance3D" parent="." unique_id=379095524]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, 6.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r205")
 
 [node name="Fern29_1" type="MeshInstance3D" parent="." unique_id=1863995549]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, 6.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r206")
 
 [node name="Fern29_2" type="MeshInstance3D" parent="." unique_id=669772515]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, 6.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r207")
 
 [node name="Rock30" type="MeshInstance3D" parent="." unique_id=702117131]
-transform = Transform3D(1.6086876, -0.1695649, 1.3999475, 0.27834648, 1.4854021, 3.4886218e-09, -1.1552694, 0.121772006, 1.9493967, 18, 0.54, 13)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r208")
+transform = Transform3D(1.6086876, -0.16956495, 1.3999475, 0.27834657, 1.4854021, -1.1267521e-08, -1.1552694, 0.121772066, 1.9493967, 18, 0.54, 13)
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern31_0" type="MeshInstance3D" parent="." unique_id=487397211]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, -2.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r209")
 
 [node name="Fern31_1" type="MeshInstance3D" parent="." unique_id=1395755652]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, -2.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r210")
 
 [node name="Fern31_2" type="MeshInstance3D" parent="." unique_id=1875126745]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, -2.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r211")
 
 [node name="Fern32_0" type="MeshInstance3D" parent="." unique_id=1517916061]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 19.8, 0.3, -6.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r212")
 
 [node name="Fern32_1" type="MeshInstance3D" parent="." unique_id=1332416799]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 20.05, 0.3, -6.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r213")
 
 [node name="Fern32_2" type="MeshInstance3D" parent="." unique_id=480161468]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 20.3, 0.3, -6.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r214")
 
 [node name="Rock33" type="MeshInstance3D" parent="." unique_id=542011947]
 transform = Transform3D(-1.8719852, 0.18792176, 1.7704628, 0.38968483, 1.9805361, 0, -2.045438, 0.20533405, -1.6203278, 20.5, 0.72, 17.5)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r215")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern34_0" type="MeshInstance3D" parent="." unique_id=1204942459]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, -11.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r216")
 
 [node name="Fern34_1" type="MeshInstance3D" parent="." unique_id=57160980]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, -11.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r217")
 
 [node name="Fern34_2" type="MeshInstance3D" parent="." unique_id=379614019]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, -11.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r218")
 
 [node name="Fern35_0" type="MeshInstance3D" parent="." unique_id=1016741230]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 21.8, 0.3, -17.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r219")
 
 [node name="Fern35_1" type="MeshInstance3D" parent="." unique_id=1318479520]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 22.05, 0.3, -17.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r220")
 
 [node name="Fern35_2" type="MeshInstance3D" parent="." unique_id=881163807]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 22.3, 0.3, -17.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r221")
 
 [node name="Rock36" type="MeshInstance3D" parent="." unique_id=690400592]
-transform = Transform3D(0.5510016, -0.05723704, 2.0376217, 0.32009816, 1.6834557, 1.0172296e-07, -2.2099626, 0.22956651, 0.50803256, 16.5, 0.612, 22.8)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r222")
+transform = Transform3D(0.5510016, -0.05723706, 2.0376217, 0.32009816, 1.6834557, 1.1831368e-07, -2.2099626, 0.22956651, 0.50803256, 16.5, 0.612, 22.8)
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern37_0" type="MeshInstance3D" parent="." unique_id=1293415767]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 16.8, 0.3, -21.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r223")
 
 [node name="Fern37_1" type="MeshInstance3D" parent="." unique_id=1579324396]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 17.05, 0.3, -21.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r224")
 
 [node name="Fern37_2" type="MeshInstance3D" parent="." unique_id=1048440888]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 17.3, 0.3, -21.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r225")
 
 [node name="Fern38_0" type="MeshInstance3D" parent="." unique_id=440577272]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 12.8, 0.3, -19.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r226")
 
 [node name="Fern38_1" type="MeshInstance3D" parent="." unique_id=729757292]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 13.05, 0.3, -19.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r227")
 
 [node name="Fern38_2" type="MeshInstance3D" parent="." unique_id=28810758]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 13.3, 0.3, -19.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r228")
 
 [node name="Rock39" type="MeshInstance3D" parent="." unique_id=348639069]
-transform = Transform3D(-0.49722728, 0.05031411, 2.1551704, 0.34793285, 1.7824825, 4.0559538e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r229")
+transform = Transform3D(-0.49722728, 0.0503141, 2.1551704, 0.34793285, 1.7824825, 5.6691626e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern40_0" type="MeshInstance3D" parent="." unique_id=465260939]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -8.2, 0.3, -23.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r230")
 
 [node name="Fern40_1" type="MeshInstance3D" parent="." unique_id=1067879130]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -7.95, 0.3, -23.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r231")
 
 [node name="Fern40_2" type="MeshInstance3D" parent="." unique_id=1579722260]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -7.7, 0.3, -23.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r232")
 
 [node name="Fern41_0" type="MeshInstance3D" parent="." unique_id=1792668474]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 7.8, 0.3, -23.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r233")
 
 [node name="Fern41_1" type="MeshInstance3D" parent="." unique_id=1193877973]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 8.05, 0.3, -23.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r234")
 
 [node name="Fern41_2" type="MeshInstance3D" parent="." unique_id=1720448060]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 8.3, 0.3, -23.6)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r235")
 
 [node name="Rock42" type="MeshInstance3D" parent="." unique_id=1343818523]
 transform = Transform3D(-0.8172488, 0.14755675, 0.21365479, 0.11916419, 1.0892949, 0, -0.22590728, 0.040788244, -0.7729238, -5, 0.38, 17)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r236")
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern43_0" type="MeshInstance3D" parent="." unique_id=402283045]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -15.2, 0.3, 14.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r237")
 
 [node name="Fern43_1" type="MeshInstance3D" parent="." unique_id=217897576]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -14.95, 0.3, 14.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r238")
 
 [node name="Fern43_2" type="MeshInstance3D" parent="." unique_id=4682765]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -14.7, 0.3, 14.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r239")
 
 [node name="Fern44_0" type="MeshInstance3D" parent="." unique_id=199772247]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -7.2, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r240")
 
 [node name="Fern44_1" type="MeshInstance3D" parent="." unique_id=2117106830]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -6.95, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r241")
 
 [node name="Fern44_2" type="MeshInstance3D" parent="." unique_id=387560664]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -6.7, 0.3, 15.4)
-material_override = SubResource("r7")
+material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r242")
 
 [node name="Rock45" type="MeshInstance3D" parent="." unique_id=968983789]
-transform = Transform3D(1.0943596, -0.11718279, 1.700666, 0.2922636, 1.5844289, 1.3409172e-07, -1.7683208, 0.18934958, 1.0524901, 14.6, 0.57600003, 3.4)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("r243")
+transform = Transform3D(1.0943596, -0.117182806, 1.700666, 0.2922636, 1.5844289, 1.6635587e-07, -1.7683208, 0.18934956, 1.0524901, 14.6, 0.57600003, 3.4)
+material_override = SubResource("StandardMaterial3D_ege7e")
+mesh = SubResource("ArrayMesh_3h36n")
 
 [node name="Cliff0_-1" type="MeshInstance3D" parent="." unique_id=831511450]
 transform = Transform3D(4, 0, 0, 0, 4.4097652, 0, 0, 0, 5, -26.095118, 1, -21.567759)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r244")
 
 [node name="Cliff0_1" type="MeshInstance3D" parent="." unique_id=1832300755]
 transform = Transform3D(4, 0, 0, 0, 4.4097652, 0, 0, 0, 5, 27.104883, 1, -21.567759)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r245")
 
 [node name="Cliff1_-1" type="MeshInstance3D" parent="." unique_id=1024043659]
 transform = Transform3D(4, 0, 0, 0, 3.7546244, 0, 0, 0, 5, -27.069996, 1, -15.786001)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r246")
 
 [node name="Cliff1_1" type="MeshInstance3D" parent="." unique_id=1832480462]
 transform = Transform3D(4, 0, 0, 0, 4.294846, 0, 0, 0, 5, 26.74355, 1, -16.789984)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r247")
 
 [node name="Cliff2_-1" type="MeshInstance3D" parent="." unique_id=218505957]
 transform = Transform3D(4, 0, 0, 0, 4.5994883, 0, 0, 0, 5, -26.800993, 1, -10.717406)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r248")
 
 [node name="Cliff2_1" type="MeshInstance3D" parent="." unique_id=838274210]
 transform = Transform3D(4, 0, 0, 0, 3.9310246, 0, 0, 0, 5, 26.002302, 1, -9.379547)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r249")
 
 [node name="Cliff3_-1" type="MeshInstance3D" parent="." unique_id=1690776870]
 transform = Transform3D(4, 0, 0, 0, 3.6870992, 0, 0, 0, 5, -26.000046, 1, -3.2580173)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r250")
 
 [node name="Cliff3_1" type="MeshInstance3D" parent="." unique_id=1933564422]
 transform = Transform3D(4, 0, 0, 0, 4.5789433, 0, 0, 0, 5, 26.84291, 1, -4.036802)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r251")
 
 [node name="Cliff4_-1" type="MeshInstance3D" parent="." unique_id=1349938533]
 transform = Transform3D(4, 0, 0, 0, 4.445891, 0, 0, 0, 5, -26.786924, 1, 1.7286761)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r252")
 
 [node name="Cliff4_1" type="MeshInstance3D" parent="." unique_id=1090871811]
 transform = Transform3D(4, 0, 0, 0, 3.4997072, 0, 0, 0, 5, 27.040638, 1, 1.4285874)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r253")
 
 [node name="Cliff5_-1" type="MeshInstance3D" parent="." unique_id=2099011018]
 transform = Transform3D(4, 0, 0, 0, 4.2466483, 0, 0, 0, 5, -27.079092, 1, 7.6195703)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r254")
 
 [node name="Cliff5_1" type="MeshInstance3D" parent="." unique_id=26057762]
 transform = Transform3D(4, 0, 0, 0, 4.5256, 0, 0, 0, 5, 26.072182, 1, 8.798239)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r255")
 
 [node name="Cliff6_-1" type="MeshInstance3D" parent="." unique_id=145479051]
 transform = Transform3D(4, 0, 0, 0, 3.9929361, 0, 0, 0, 5, -26.103304, 1, 14.778266)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r256")
 
 [node name="Cliff6_1" type="MeshInstance3D" parent="." unique_id=1672926340]
 transform = Transform3D(4, 0, 0, 0, 4.1019006, 0, 0, 0, 5, 26.500637, 1, 13.507718)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r257")
 
 [node name="Cliff7_-1" type="MeshInstance3D" parent="." unique_id=599035025]
 transform = Transform3D(4, 0, 0, 0, 4.5638676, 0, 0, 0, 5, -26.44206, 1, 19.34335)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r258")
 
 [node name="Cliff7_1" type="MeshInstance3D" parent="." unique_id=1697096087]
 transform = Transform3D(4, 0, 0, 0, 4.150085, 0, 0, 0, 5, 27.192062, 1, 19.857752)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r259")
 
 [node name="Cliff8_-1" type="MeshInstance3D" parent="." unique_id=775693952]
 transform = Transform3D(4, 0, 0, 0, 3.4297304, 0, 0, 0, 5, -27.198816, 1, 26.096754)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r260")
 
 [node name="Cliff8_1" type="MeshInstance3D" parent="." unique_id=226584609]
 transform = Transform3D(4, 0, 0, 0, 4.5031943, 0, 0, 0, 5, 26.316547, 1, 26.681833)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 visibility_range_begin = 3.5
 mesh = SubResource("r261")
 
 [node name="ArchPillar-1" type="MeshInstance3D" parent="." unique_id=1297435509]
 transform = Transform3D(0.98288673, -0.13813573, -0.12186935, 0.1391731, 0.99026805, 0, 0.12068332, -0.016960936, 0.99254614, -3, 2.1, 16)
+visible = false
 material_override = SubResource("r3")
 mesh = SubResource("r262")
 
 [node name="FirePost-1" type="MeshInstance3D" parent="." unique_id=2131774412]
 transform = Transform3D(0.28, 0, 0, 0, 2, 0, 0, 0, 0.28, -3.3, 1, -14.3)
+visible = false
 material_override = SubResource("r4")
 mesh = SubResource("r263")
 
 [node name="Flame-1" type="MeshInstance3D" parent="." unique_id=1961813836]
 transform = Transform3D(0.6, 0, 0, 0, 0.9, 0, 0, 0, 0.6, -3.3, 2.2, -14.3)
+visible = false
 material_override = SubResource("r11")
 mesh = SubResource("r264")
 
@@ -2773,16 +2298,19 @@ omni_range = 7.0
 
 [node name="ArchPillar1" type="MeshInstance3D" parent="." unique_id=1684446717]
 transform = Transform3D(0.98288673, 0.13813573, 0.12186935, -0.1391731, 0.99026805, 0, -0.12068332, -0.016960936, 0.99254614, 3, 2.1, 16)
+visible = false
 material_override = SubResource("r3")
 mesh = SubResource("r265")
 
 [node name="FirePost1" type="MeshInstance3D" parent="." unique_id=1809583634]
 transform = Transform3D(0.28, 0, 0, 0, 2, 0, 0, 0, 0.28, 3.3, 1, -14.3)
+visible = false
 material_override = SubResource("r4")
 mesh = SubResource("r266")
 
 [node name="Flame1" type="MeshInstance3D" parent="." unique_id=1093499575]
 transform = Transform3D(0.6, 0, 0, 0, 0.9, 0, 0, 0, 0.6, 3.3, 2.2, -14.3)
+visible = false
 material_override = SubResource("r11")
 mesh = SubResource("r267")
 
@@ -2793,16 +2321,19 @@ omni_range = 7.0
 
 [node name="ArchTop" type="MeshInstance3D" parent="." unique_id=1350365783]
 transform = Transform3D(0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 0, 0, 1, 0, 4, 16)
+visible = false
 material_override = SubResource("r3")
 mesh = SubResource("r268")
 
 [node name="RefugePlatform" type="MeshInstance3D" parent="." unique_id=600455388]
 transform = Transform3D(5, 0, 0, 0, 0.25, 0, 0, 0, 5, 0, 0.12, -15)
+visible = false
 material_override = SubResource("r3")
 mesh = SubResource("r269")
 
 [node name="RefugeRing" type="MeshInstance3D" parent="." unique_id=973304472]
 transform = Transform3D(3.8, 0, 0, 0, 0.25, 0, 0, 0, 3.8, 0, 0.3, -15)
+visible = false
 material_override = SubResource("r12")
 mesh = SubResource("r270")
 
@@ -2820,31 +2351,37 @@ mesh = SubResource("r272")
 
 [node name="BannerPole-2" type="MeshInstance3D" parent="." unique_id=1194147234]
 transform = Transform3D(0.15, 0, 0, 0, 3.2, 0, 0, 0, 0.15, -2, 1.6, -16)
+visible = false
 material_override = SubResource("r4")
 mesh = SubResource("r273")
 
 [node name="Banner-2" type="MeshInstance3D" parent="." unique_id=41966027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65, 2.65, -16)
+visible = false
 material_override = SubResource("r9")
 mesh = SubResource("r274")
 
 [node name="BannerEmblem-2" type="MeshInstance3D" parent="." unique_id=1175676069]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.025, -1.65, 2.65, -15.94)
+visible = false
 material_override = SubResource("r8")
 mesh = SubResource("r275")
 
 [node name="BannerPole2" type="MeshInstance3D" parent="." unique_id=554428909]
 transform = Transform3D(0.15, 0, 0, 0, 3.2, 0, 0, 0, 0.15, 2, 1.6, -16)
+visible = false
 material_override = SubResource("r4")
 mesh = SubResource("r276")
 
 [node name="Banner2" type="MeshInstance3D" parent="." unique_id=1529091831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35, 2.65, -16)
+visible = false
 material_override = SubResource("r9")
 mesh = SubResource("r277")
 
 [node name="BannerEmblem2" type="MeshInstance3D" parent="." unique_id=1549617751]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.025, 2.35, 2.65, -15.94)
+visible = false
 material_override = SubResource("r8")
 mesh = SubResource("r278")
 
@@ -2853,28 +2390,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2, 1, 2)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary0" unique_id=127155899]
-shape = SubResource("BoxShape3D_pij3q")
+shape = SubResource("BoxShape3D_3ug01")
 
 [node name="Boundary1" type="StaticBody3D" parent="." unique_id=1130532348]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2, 1, 2)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary1" unique_id=1543309951]
-shape = SubResource("BoxShape3D_n27g6")
+shape = SubResource("BoxShape3D_h4wpb")
 
 [node name="Boundary2" type="StaticBody3D" parent="." unique_id=332798807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 28.2)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary2" unique_id=737767125]
-shape = SubResource("BoxShape3D_vfggj")
+shape = SubResource("BoxShape3D_vr6m2")
 
 [node name="Boundary3" type="StaticBody3D" parent="." unique_id=1018223844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -24.2)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary3" unique_id=1551877482]
-shape = SubResource("BoxShape3D_mm5dy")
+shape = SubResource("BoxShape3D_hgu30")
 
 [node name="BackdropGround" type="MeshInstance3D" parent="." unique_id=1175387046]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0)
@@ -2883,165 +2420,132 @@ mesh = SubResource("r283")
 
 [node name="Mountain0" type="MeshInstance3D" parent="." unique_id=2134678818]
 transform = Transform3D(17.200157, -3.1382067, 0, 3.6560066, 14.764101, 0, 0, 0, 22.85151, 0, 1, 49)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r284")
 
 [node name="Mountain1" type="MeshInstance3D" parent="." unique_id=1012489051]
 transform = Transform3D(21.225233, -2.9941032, 6.045811, 4.717704, 14.729769, 0, -6.4892044, 0.9153892, 19.77496, 13.24143, 1, 47.09617)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r285")
 
 [node name="Mountain2" type="MeshInstance3D" parent="." unique_id=1184738751]
 transform = Transform3D(16.206455, -1.8422147, 9.615725, 4.155165, 10.454217, 0, -10.931392, 1.2425895, 14.255899, 25.410118, 1, 41.538918)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r286")
 
 [node name="Mountain3" type="MeshInstance3D" parent="." unique_id=1685423187]
 transform = Transform3D(12.751127, -2.0635002, 17.785862, 4.306766, 15.42617, 0, -15.746328, 2.5482101, 14.402709, 35.52023, 1, 32.778454)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r287")
 
 [node name="Mountain4" type="MeshInstance3D" parent="." unique_id=2143547617]
 transform = Transform3D(7.146935, -1.0226314, 20.664564, 4.0552616, 12.843079, 0, -17.689283, 2.5311012, 8.349027, 42.752705, 1, 21.524506)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r288")
 
 [node name="Mountain5" type="MeshInstance3D" parent="." unique_id=638257977]
 transform = Transform3D(1.5938863, -0.2609861, 20.521133, 3.887188, 14.087909, 0, -18.218191, 2.9830825, 1.7953677, 46.521606, 1, 8.688797)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r289")
 
 [node name="Mountain6" type="MeshInstance3D" parent="." unique_id=1138071012]
 transform = Transform3D(-3.986679, 0.5333215, 17.559628, 4.075745, 12.068013, 0, -18.755857, 2.5090811, -3.7324128, 46.521606, 1, -4.6887975)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r290")
 
 [node name="Mountain7" type="MeshInstance3D" parent="." unique_id=992444400]
 transform = Transform3D(-8.477855, 1.1878158, 20.0558, 3.7169724, 11.526658, 0, -15.294457, 2.1428766, -11.117109, 42.752705, 1, -17.524506)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r291")
 
 [node name="Mountain8" type="MeshInstance3D" parent="." unique_id=691840515]
 transform = Transform3D(-15.418736, 1.5034193, 14.961944, 4.5560584, 9.832672, 0, -14.889705, 1.4518355, -15.493543, 35.52023, 1, -28.778454)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r292")
 
 [node name="Mountain9" type="MeshInstance3D" parent="." unique_id=679569038]
 transform = Transform3D(-15.555007, 2.4929388, 10.225099, 3.7107687, 13.16304, 0, -7.925674, 1.270216, -20.06788, 25.410118, 1, -37.538918)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r293")
 
 [node name="Mountain10" type="MeshInstance3D" parent="." unique_id=692774120]
 transform = Transform3D(-21.609127, 3.1369047, 3.98639, 4.6640186, 14.985642, 0, -3.8102748, 0.5531213, -22.607925, 13.24143, 1, -43.09617)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r294")
 
 [node name="Mountain11" type="MeshInstance3D" parent="." unique_id=253351264]
 transform = Transform3D(-20.182983, 2.102428, -2.2574494, 4.3222427, 9.965426, 0, 2.478156, -0.25814542, -18.38547, 2.6627843e-14, 1, -45)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r295")
 
 [node name="Mountain12" type="MeshInstance3D" parent="." unique_id=1858246513]
 transform = Transform3D(-18.778374, 2.5782933, -9.140537, 4.369204, 13.277845, 0, 8.360668, -1.1479298, -20.52999, -13.24143, 1, -43.09617)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r296")
 
 [node name="Mountain13" type="MeshInstance3D" parent="." unique_id=885572059]
 transform = Transform3D(-13.304663, 2.4036958, -13.426977, 3.747128, 14.983911, 0, 11.565568, -2.0895011, -15.445969, -25.410118, 1, -37.538918)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r297")
 
 [node name="Mountain14" type="MeshInstance3D" parent="." unique_id=560376259]
 transform = Transform3D(-10.655332, 1.1817746, -16.22616, 4.273972, 10.491807, 0, 17.05209, -1.891234, -10.139234, -35.52023, 1, -28.778454)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r298")
 
 [node name="Mountain15" type="MeshInstance3D" parent="." unique_id=1229056480]
 transform = Transform3D(-5.084973, 0.78180784, -20.362131, 4.1760626, 14.211155, 0, 18.97738, -2.9177473, -5.456015, -42.752705, 1, -17.524506)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r299")
 
 [node name="Mountain16" type="MeshInstance3D" parent="." unique_id=1859016163]
 transform = Transform3D(0.7116503, -0.103492185, -19.105356, 4.334354, 13.951349, 0, 20.379108, -2.9636445, 0.6671701, -46.521606, 1, -4.6887975)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r300")
 
 [node name="Mountain17" type="MeshInstance3D" parent="." unique_id=264903680]
 transform = Transform3D(6.054548, -1.0741427, -19.877638, 3.9528856, 15.521921, 0, 17.583681, -3.1195364, 6.8444204, -46.521606, 1, 8.688797)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r301")
 
 [node name="Mountain18" type="MeshInstance3D" parent="." unique_id=1273331739]
 transform = Transform3D(11.705353, -1.9303563, -17.953342, 4.232924, 15.450565, 0, 16.111044, -2.6569088, 13.043861, -42.752705, 1, 21.524506)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r302")
 
 [node name="Mountain19" type="MeshInstance3D" parent="." unique_id=2134438818]
 transform = Transform3D(16.659645, -2.6352396, -11.617714, 4.433958, 15.523761, 0, 12.55394, -1.9857953, 15.417229, -35.52023, 1, 32.778454)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r303")
 
 [node name="Mountain20" type="MeshInstance3D" parent="." unique_id=283728903]
 transform = Transform3D(20.729717, -2.6298954, -6.688509, 4.68902, 13.166738, 0, 7.5450053, -0.95720434, 18.376514, -25.410118, 1, 41.538918)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r304")
 
 [node name="Mountain21" type="MeshInstance3D" parent="." unique_id=910307736]
 transform = Transform3D(18.962423, -2.1374137, -1.1682235, 4.0361195, 10.069541, 0, 0.9937787, -0.112017125, 22.291029, -13.24143, 1, 47.09617)
-material_override = SubResource("StandardMaterial3D_gkhl5")
+visible = false
+material_override = SubResource("StandardMaterial3D_3mtib")
 mesh = SubResource("r305")
-
-[node name="BorderRidgeSouth_0" type="MeshInstance3D" parent="." unique_id=2016364511]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -24, 0.5, -25)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_33w2e")
-
-[node name="BorderRidgeSouth_1" type="MeshInstance3D" parent="." unique_id=613922139]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -16, 0.5, -25)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_3h36n")
-
-[node name="BorderRidgeSouth_5" type="MeshInstance3D" parent="." unique_id=1679212939]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 16, 0.5, -25)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_77ip3")
-
-[node name="BorderRidgeSouth_6" type="MeshInstance3D" parent="." unique_id=746750446]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 24, 0.5, -25)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_3mtib")
-
-[node name="BorderRidgeNorth_0" type="MeshInstance3D" parent="." unique_id=1947705069]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -24, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_3ug01")
-
-[node name="BorderRidgeNorth_1" type="MeshInstance3D" parent="." unique_id=248110803]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -16, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_h4wpb")
-
-[node name="BorderRidgeNorth_2" type="MeshInstance3D" parent="." unique_id=430295161]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -8, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_vr6m2")
-
-[node name="BorderRidgeNorth_3" type="MeshInstance3D" parent="." unique_id=1994384489]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_hgu30")
-
-[node name="BorderRidgeNorth_4" type="MeshInstance3D" parent="." unique_id=1510080268]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 8, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_5ycbl")
-
-[node name="BorderRidgeNorth_5" type="MeshInstance3D" parent="." unique_id=408856792]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 16, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_juvbd")
-
-[node name="BorderRidgeNorth_6" type="MeshInstance3D" parent="." unique_id=556279892]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 24, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_rmwpd")

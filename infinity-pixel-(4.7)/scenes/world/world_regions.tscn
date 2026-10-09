@@ -492,277 +492,323 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AACgwDEIrDwAACBB/eGxwDEIrDyVBklBkrXzwDEIrDzZEWJBAACgwDEIrDwAACBBkrXzwDEIrDzZEWJBAAAgwTEIrDzNp3RBAACgwDEIrDwAACBBAAAgwTEIrDzNp3RBUKVFwTEIrDxRNGFBAACgwDEIrDwAACBBUKVFwTEIrDxRNGFBkZ9owTEIrDzY7UlBAACgwDEIrDwAACBBkZ9owTEIrDzY7UlBfbttwTEIrDwAACBBAACgwDEIrDwAACBBfbttwTEIrDwAACBB3H1lwTEIrDwKwu9AAACgwDEIrDwAACBB3H1lwTEIrDwKwu9APupIwTEIrDwqRLJAAACgwDEIrDwAACBBPupIwTEIrDwqRLJAAAAgwTEIrDwVGqdAAACgwDEIrDwAACBBAAAgwTEIrDwVGqdAzmjrwDEIrDwZfK1AAACgwDEIrDwAACBBzmjrwDEIrDwZfK1Akam9wDEIrDziv/RA/3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/")
 }]
 
-[node name="WorldRegions" type="Node3D" unique_id=1867616037]
+[node name="WorldRegions" type="Node3D" unique_id=1692697187]
 
-[node name="SafeZone" type="Node3D" parent="." unique_id=1387450728]
+[node name="SafeZone" type="Node3D" parent="." unique_id=867068173]
 
-[node name="RefugeClearing" type="MeshInstance3D" parent="SafeZone" unique_id=938565735]
+[node name="RefugeClearing" type="MeshInstance3D" parent="SafeZone" unique_id=1445731190]
+visible = false
 material_override = SubResource("StandardMaterial3D_6luj3")
 mesh = SubResource("ArrayMesh_q0kdk")
 
-[node name="BuildClearing" type="MeshInstance3D" parent="SafeZone" unique_id=650033412]
+[node name="BuildClearing" type="MeshInstance3D" parent="SafeZone" unique_id=1971015962]
+visible = false
 material_override = SubResource("StandardMaterial3D_4mx30")
 mesh = SubResource("ArrayMesh_4paml")
 
-[node name="BuildZone" type="Marker3D" parent="SafeZone" unique_id=564524018]
+[node name="BuildZone" type="Marker3D" parent="SafeZone" unique_id=1717499388]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -15)
 metadata/size_xz = Vector2(8, 10)
 
-[node name="Center" type="Marker3D" parent="SafeZone" unique_id=1016907152]
+[node name="Center" type="Marker3D" parent="SafeZone" unique_id=1297280705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 metadata/size_xz = Vector2(24, 18)
 
-[node name="Paving0" type="MeshInstance3D" parent="SafeZone" unique_id=1735507642]
+[node name="Paving0" type="MeshInstance3D" parent="SafeZone" unique_id=1350256914]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_5xrup")
 
-[node name="Paving1" type="MeshInstance3D" parent="SafeZone" unique_id=1015521584]
+[node name="Paving1" type="MeshInstance3D" parent="SafeZone" unique_id=1735364796]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_vedac")
 
-[node name="Paving2" type="MeshInstance3D" parent="SafeZone" unique_id=1150792709]
+[node name="Paving2" type="MeshInstance3D" parent="SafeZone" unique_id=8238763]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_js1cc")
 
-[node name="Paving3" type="MeshInstance3D" parent="SafeZone" unique_id=552929721]
+[node name="Paving3" type="MeshInstance3D" parent="SafeZone" unique_id=1447049154]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_hfl3k")
 
-[node name="Paving4" type="MeshInstance3D" parent="SafeZone" unique_id=1831554467]
+[node name="Paving4" type="MeshInstance3D" parent="SafeZone" unique_id=2030063682]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_ywaao")
 
-[node name="Paving5" type="MeshInstance3D" parent="SafeZone" unique_id=88530297]
+[node name="Paving5" type="MeshInstance3D" parent="SafeZone" unique_id=1647308047]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_63v2a")
 
-[node name="Paving6" type="MeshInstance3D" parent="SafeZone" unique_id=858344196]
+[node name="Paving6" type="MeshInstance3D" parent="SafeZone" unique_id=1335103537]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_d8nsa")
 
-[node name="Paving7" type="MeshInstance3D" parent="SafeZone" unique_id=1419809398]
+[node name="Paving7" type="MeshInstance3D" parent="SafeZone" unique_id=72680558]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_rceva")
 
-[node name="Paving8" type="MeshInstance3D" parent="SafeZone" unique_id=706120262]
+[node name="Paving8" type="MeshInstance3D" parent="SafeZone" unique_id=1840837660]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_px2i6")
 
-[node name="Paving9" type="MeshInstance3D" parent="SafeZone" unique_id=266639025]
+[node name="Paving9" type="MeshInstance3D" parent="SafeZone" unique_id=1291569812]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_vtipn")
 
-[node name="Paving10" type="MeshInstance3D" parent="SafeZone" unique_id=691455667]
+[node name="Paving10" type="MeshInstance3D" parent="SafeZone" unique_id=1480450988]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_bsvum")
 
-[node name="Paving11" type="MeshInstance3D" parent="SafeZone" unique_id=2006268033]
+[node name="Paving11" type="MeshInstance3D" parent="SafeZone" unique_id=634039375]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_jvxmu")
 
-[node name="TransitionZone" type="Node3D" parent="." unique_id=338318973]
+[node name="TransitionZone" type="Node3D" parent="." unique_id=1448521704]
 
-[node name="Meadow" type="MeshInstance3D" parent="TransitionZone" unique_id=516628198]
+[node name="Meadow" type="MeshInstance3D" parent="TransitionZone" unique_id=818902129]
+visible = false
 material_override = SubResource("StandardMaterial3D_h6s7c")
 mesh = SubResource("ArrayMesh_yjxyf")
 
-[node name="Center" type="Marker3D" parent="TransitionZone" unique_id=1316911754]
+[node name="Center" type="Marker3D" parent="TransitionZone" unique_id=1825043529]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 metadata/size_xz = Vector2(30, 16)
 
-[node name="WildZone" type="Node3D" parent="." unique_id=1942645249]
+[node name="WildZone" type="Node3D" parent="." unique_id=2078408499]
 
-[node name="WoodlandFloor" type="MeshInstance3D" parent="WildZone" unique_id=1552503057]
+[node name="WoodlandFloor" type="MeshInstance3D" parent="WildZone" unique_id=30673703]
+visible = false
 material_override = SubResource("StandardMaterial3D_dihvh")
 mesh = SubResource("ArrayMesh_wwjyw")
 
-[node name="StoneHeath" type="MeshInstance3D" parent="WildZone" unique_id=1322773773]
+[node name="StoneHeath" type="MeshInstance3D" parent="WildZone" unique_id=1306647035]
+visible = false
 material_override = SubResource("StandardMaterial3D_ql7ru")
 mesh = SubResource("ArrayMesh_oaqnf")
 
-[node name="Center" type="Marker3D" parent="WildZone" unique_id=1287886758]
+[node name="Center" type="Marker3D" parent="WildZone" unique_id=959217467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22)
 metadata/size_xz = Vector2(38, 12)
 
-[node name="GladeTrail" type="Node3D" parent="WildZone" unique_id=1721923988]
+[node name="GladeTrail" type="Node3D" parent="WildZone" unique_id=504593860]
 
-[node name="Stretch0" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=90165300]
+[node name="Stretch0" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=2013446872]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_i3grc")
 
-[node name="Stretch1" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=1292297041]
+[node name="Stretch1" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=1459541361]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_vol4f")
 
-[node name="Stretch2" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=320892518]
+[node name="Stretch2" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=2043120436]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_m1tt7")
 
-[node name="Bend1" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=1728809417]
+[node name="Bend1" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=1679140263]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_8jq60")
 
-[node name="Bend2" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=743431426]
+[node name="Bend2" type="MeshInstance3D" parent="WildZone/GladeTrail" unique_id=444362551]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_p4kqy")
 
-[node name="HeathTrail" type="Node3D" parent="WildZone" unique_id=579121765]
+[node name="HeathTrail" type="Node3D" parent="WildZone" unique_id=381769701]
 
-[node name="Stretch0" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=1644646713]
+[node name="Stretch0" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=121257962]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_ouvgb")
 
-[node name="Stretch1" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=533819629]
+[node name="Stretch1" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=1160822337]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_4k1vm")
 
-[node name="Stretch2" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=286598620]
+[node name="Stretch2" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=1057069318]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_1akbp")
 
-[node name="Bend1" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=904007657]
+[node name="Bend1" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=589700666]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_664hs")
 
-[node name="Bend2" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=1034493593]
+[node name="Bend2" type="MeshInstance3D" parent="WildZone/HeathTrail" unique_id=3981687]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_a2rry")
 
-[node name="ForkPaving" type="MeshInstance3D" parent="WildZone" unique_id=1209902545]
+[node name="ForkPaving" type="MeshInstance3D" parent="WildZone" unique_id=2026708151]
+visible = false
 material_override = SubResource("StandardMaterial3D_l5igu")
 mesh = SubResource("ArrayMesh_ea5k0")
 
-[node name="NightRoutes" type="Node3D" parent="." unique_id=1369849369]
+[node name="NightRoutes" type="Node3D" parent="." unique_id=1535451662]
 
-[node name="RuinRoad" type="Node3D" parent="NightRoutes" unique_id=178869183]
+[node name="RuinRoad" type="Node3D" parent="NightRoutes" unique_id=1883706551]
 
-[node name="Stretch0" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=973370769]
+[node name="Stretch0" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=633879590]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_omg5i")
 
-[node name="Stretch1" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=1417641294]
+[node name="Stretch1" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=1606898146]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_vdqul")
 
-[node name="Stretch2" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=1008071316]
+[node name="Stretch2" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=576647426]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_wc3tb")
 
-[node name="Stretch3" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=343810224]
+[node name="Stretch3" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=1397735431]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_4mkd4")
 
-[node name="Bend1" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=232567385]
+[node name="Bend1" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=1119005288]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_awkp6")
 
-[node name="Bend2" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=377626423]
+[node name="Bend2" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=1303520803]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_o7fu2")
 
-[node name="Bend3" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=721230621]
+[node name="Bend3" type="MeshInstance3D" parent="NightRoutes/RuinRoad" unique_id=1655767620]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_81j50")
 
-[node name="WestTrail" type="Node3D" parent="NightRoutes" unique_id=1088466553]
+[node name="WestTrail" type="Node3D" parent="NightRoutes" unique_id=22788893]
 
-[node name="Stretch0" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=624431563]
+[node name="Stretch0" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=1344441716]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_gocog")
 
-[node name="Stretch1" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=1126111916]
+[node name="Stretch1" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=795457701]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_2ugcj")
 
-[node name="Stretch2" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=282118467]
+[node name="Stretch2" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=1050920612]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_p1ksq")
 
-[node name="Bend1" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=88728770]
+[node name="Bend1" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=823099793]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_28n54")
 
-[node name="Bend2" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=1324640043]
+[node name="Bend2" type="MeshInstance3D" parent="NightRoutes/WestTrail" unique_id=1686387416]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_ghqvg")
 
-[node name="EastTrail" type="Node3D" parent="NightRoutes" unique_id=1339568113]
+[node name="EastTrail" type="Node3D" parent="NightRoutes" unique_id=1074629553]
 
-[node name="Stretch0" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=205726651]
+[node name="Stretch0" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=103207719]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_gwur2")
 
-[node name="Stretch1" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=1637759250]
+[node name="Stretch1" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=2049130145]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_c0x3r")
 
-[node name="Stretch2" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=1471976307]
+[node name="Stretch2" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=1358626860]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_rwbe0")
 
-[node name="Bend1" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=903353746]
+[node name="Bend1" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=1223447465]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_ug51g")
 
-[node name="Bend2" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=334983642]
+[node name="Bend2" type="MeshInstance3D" parent="NightRoutes/EastTrail" unique_id=986372231]
+visible = false
 material_override = SubResource("StandardMaterial3D_crms8")
 mesh = SubResource("ArrayMesh_rcjeh")
 
-[node name="RuinEntry" type="Marker3D" parent="NightRoutes" unique_id=667764558]
+[node name="RuinEntry" type="Marker3D" parent="NightRoutes" unique_id=1281782598]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23)
 
-[node name="WestEntry" type="Marker3D" parent="NightRoutes" unique_id=738237927]
+[node name="WestEntry" type="Marker3D" parent="NightRoutes" unique_id=1808414487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 2)
 
-[node name="EastEntry" type="Marker3D" parent="NightRoutes" unique_id=1981713272]
+[node name="EastEntry" type="Marker3D" parent="NightRoutes" unique_id=61075353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 2)
 
-[node name="ResourceZones" type="Node3D" parent="." unique_id=365431588]
+[node name="ResourceZones" type="Node3D" parent="." unique_id=1077629250]
 
-[node name="WoodlandReserve" type="Marker3D" parent="ResourceZones" unique_id=483185847]
+[node name="WoodlandReserve" type="Marker3D" parent="ResourceZones" unique_id=334009902]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 20)
 metadata/size_xz = Vector2(9, 10)
 
-[node name="StoneReserve" type="Marker3D" parent="ResourceZones" unique_id=1244693850]
+[node name="StoneReserve" type="Marker3D" parent="ResourceZones" unique_id=845375978]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 17)
 metadata/size_xz = Vector2(9, 12)
 
-[node name="CreatureZones" type="Node3D" parent="." unique_id=333822258]
+[node name="CreatureZones" type="Node3D" parent="." unique_id=1006582470]
 
-[node name="EncounterGlade" type="MeshInstance3D" parent="CreatureZones" unique_id=894460394]
+[node name="EncounterGlade" type="MeshInstance3D" parent="CreatureZones" unique_id=1537218347]
+visible = false
 material_override = SubResource("StandardMaterial3D_0uosv")
 mesh = SubResource("ArrayMesh_adveq")
 
-[node name="CommonTerritory" type="Marker3D" parent="CreatureZones" unique_id=1076764889]
+[node name="CommonTerritory" type="Marker3D" parent="CreatureZones" unique_id=1172300912]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
 metadata/size_xz = Vector2(10, 10)
 
-[node name="DistantTerritory" type="Marker3D" parent="CreatureZones" unique_id=2006704373]
+[node name="DistantTerritory" type="Marker3D" parent="CreatureZones" unique_id=717059009]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 22)
 metadata/size_xz = Vector2(8, 7)
 
-[node name="Landmarks" type="Node3D" parent="." unique_id=878836754]
+[node name="Landmarks" type="Node3D" parent="." unique_id=1760360861]
 
-[node name="Refuge" type="Marker3D" parent="Landmarks" unique_id=1206614452]
+[node name="Refuge" type="Marker3D" parent="Landmarks" unique_id=1887558594]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
-[node name="DefensePost" type="Marker3D" parent="Landmarks" unique_id=230411997]
+[node name="DefensePost" type="Marker3D" parent="Landmarks" unique_id=248908831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
-[node name="OldArch" type="Marker3D" parent="Landmarks" unique_id=18182957]
+[node name="OldArch" type="Marker3D" parent="Landmarks" unique_id=1391903599]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
 
-[node name="StoneGarden" type="Marker3D" parent="Landmarks" unique_id=392125693]
+[node name="StoneGarden" type="Marker3D" parent="Landmarks" unique_id=1774370043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 17)
 
-[node name="Fork" type="Marker3D" parent="Landmarks" unique_id=885104446]
+[node name="Fork" type="Marker3D" parent="Landmarks" unique_id=1803288306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 
-[node name="WestChoke" type="Marker3D" parent="Landmarks" unique_id=1386142513]
+[node name="WestChoke" type="Marker3D" parent="Landmarks" unique_id=1371386915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0.2)
 
-[node name="EastChoke" type="Marker3D" parent="Landmarks" unique_id=1492937280]
+[node name="EastChoke" type="Marker3D" parent="Landmarks" unique_id=728918650]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2, 0, -0.2)
 
-[node name="HeathGate" type="Marker3D" parent="Landmarks" unique_id=2138067237]
+[node name="HeathGate" type="Marker3D" parent="Landmarks" unique_id=1713484929]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 0, 20.6)

@@ -189,6 +189,30 @@ func _ready() -> void:
 			if not (mi.has_meta("on_solid") and not space.intersect_point(probe, 1).is_empty()):
 				tall.append(String(mi.name))
 		check(tall.is_empty(), "Nenhuma peca alta sem solido no chao andavel %s" % [tall])
+	# Spec 017A/018: a arte do vale junta muitas pecas numa malha (chao, paredoes,
+	# tufos), entao a regra 4 e conferida VERTICE a vertice: dentro da area
+	# andavel (face interna dos Boundary), nada acima de 0,3 m fora de um solido.
+	var valley_art := world.get_node_or_null("ValleyArt")
+	if valley_art != null:
+		check(valley_art.find_children("*", "CollisionObject3D", true, false).is_empty() \
+			and not valley_art.is_in_group("navigation_source"), "ValleyArt sem corpo fisico e fora de navigation_source")
+		var space := world.get_world_3d().direct_space_state
+		var probe := PhysicsPointQueryParameters3D.new()
+		probe.collision_mask = 1 | 8
+		var loose := {}
+		var vertices := 0
+		for mi: MeshInstance3D in valley_art.find_children("*", "MeshInstance3D", true, false):
+			if not mi.is_visible_in_tree():
+				continue
+			for v in mi.mesh.get_faces():
+				var g := mi.global_transform * v
+				vertices += 1
+				if g.y <= 0.3 or absf(g.x) >= 24.0 or g.z <= -24.0 or g.z >= 28.0:
+					continue
+				probe.position = g
+				if space.intersect_point(probe, 1).is_empty():
+					loose[String(mi.name)] = int(loose.get(String(mi.name), 0)) + 1
+		check(loose.is_empty(), "ValleyArt: nenhum vertice acima de 0,3 m fora de solido na area andavel (%d vertices; soltos %s)" % [vertices, loose])
 	var slot = world.get_node("DefenseSlots/SlotWestInner")
 	check(slot.preview_ring != null and slot.has_method("build") and slot.is_empty(), "API do ponto de defesa preservada (preview_ring, build, tower)")
 	print("RESULT: %d passed, %d failed" % [passed.size(), failed.size()])
