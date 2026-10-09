@@ -20,6 +20,8 @@
 | 013D | `013d-inventario-construcao-cura.md` | Inventário (I), construção com Madeira/Pedra (B: fantasma, validação, zonas), Fogueira de Cura, Armadilha de Espinhos | Ciclo 1 — aprovada manualmente (2026-10-06) |
 | 014 | `014-ceu-iluminacao-progressiva.md` | Céu, Sol/Lua, estrelas, luz ambiente e fontes locais acompanhando o relógio (manhã → noite → amanhecer), transição contínua | Ciclo 1 — aprovada manualmente (2026-10-06) |
 | 015 | `015-territorios-controlados.md` | Territórios (Refúgio, Floresta Oeste, Região Rochosa): guardião derrotado ou domesticado, marco com E, HUD 1/3, área de construção expandida | Ciclo 1 — implementada, aguardando playtest manual/aprovação |
+| 017A | `017a-fundacao-visual-refugio.md` | Fundação visual "Vale de Jade": Refúgio, chão, trilhas, paredões, pontos de defesa, luz do meio-dia | Etapas 1–4 implementadas e testadas; aguardando playtest manual |
+| 022 | `022-tutorial-jogavel.md` | Tutorial jogável integrado ao jogo real (13 etapas, instância isolada) | Implementada e testada; aguardando playtest manual |
 
 ## Padrão
 

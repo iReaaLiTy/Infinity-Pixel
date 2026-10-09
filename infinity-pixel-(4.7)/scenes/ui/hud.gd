@@ -33,6 +33,7 @@ var _cycle_bar: ProgressBar
 var _cycle_fill: StyleBoxFlat
 var _cycle_night := false
 var _focus_ring: MeshInstance3D # destaque do coletavel ao alcance
+var objective_override := "" # Spec 022: passo do tutorial (vazio = objetivo normal)
 const NIGHT_VIOLET := Color("9aa6f0")
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 
@@ -726,6 +727,10 @@ func _process(_delta: float) -> void:
 			if terr.state_of(id) == 1:
 				objective.text = "%s pronta: segure E no marco para recuperar" % terr.info(id).name
 				break
+	# Spec 022: no tutorial, o objetivo e o passo atual (o painel do tutorial
+	# explica; aqui fica so o titulo curto).
+	if objective_override != "":
+		objective.text = objective_override
 	for dino in get_tree().get_nodes_in_group("wild_dino"):
 		if dino.global_position.distance_to(player.global_position) < 3.2:
 			if dino.can_be_domesticated(): hint.text = "SEGURE E  ·  %.1f / 2.0 s  ·  Soltar ou afastar cancela" % (channel.get_progress()*2)

@@ -106,6 +106,7 @@ func _cancel_channel() -> void:
 		world.get_node("Player/DomesticationChannel").reset_channel()
 
 func show_menu() -> void:
+	tutorial_mode = false
 	_cancel_channel()
 	get_tree().paused = false
 	DayNightManager.reset_session(false)
@@ -325,6 +326,8 @@ func _build_main_menu() -> void:
 	column.add_child(row)
 	_menu_button(row, "CONTROLES", 22, Color("5f7468"), Color("2c3b34"), 7, 13, 26, 8, func(): show_info(false))
 	_menu_button(row, "CRÉDITOS", 22, Color("5f7468"), Color("2c3b34"), 7, 13, 26, 8, func(): show_info(true))
+	# Spec 022: tutorial jogavel (mesmo jogo, instancia isolada).
+	_menu_button(row, "TUTORIAL", 22, Color("3f8f73"), Color("1e4d3f"), 7, 13, 26, 8, start_tutorial).name = "TutorialButton"
 	var gap3 := Control.new()
 	gap3.custom_minimum_size.y = 26
 	column.add_child(gap3)
@@ -465,6 +468,7 @@ func _is_showing_controls() -> bool:
 	return _controls_back.is_valid() and is_instance_valid(overlay)
 
 func start_game() -> void:
+	tutorial_mode = false # start_tutorial() liga de novo depois
 	_cancel_channel()
 	get_tree().paused = false
 	DayNightManager.reset_session(true)
@@ -544,8 +548,8 @@ func _show_pause_menu() -> void:
 	_button(box, "Retomar", resume_game).grab_focus()
 	_button(box, "Controles", func(): show_controls(_show_pause_menu))
 	_add_volume(box)
-	_button(box, "Reiniciar", start_game)
-	_button(box, "Menu", show_menu)
+	_button(box, "Reiniciar", restart)
+	_button(box, "Sair do tutorial" if tutorial_mode else "Menu", show_menu)
 
 func resume_game() -> void:
 	_controls_back = Callable()
@@ -565,7 +569,7 @@ func _defeat() -> void:
 	audio.result(false)
 	var box := _modal("O refúgio caiu")
 	box.add_child(_label("A base perdeu toda a vida.\nPrepare aliados e lute ao lado deles na próxima tentativa.", 20))
-	_button(box, "Reiniciar", start_game).grab_focus()
+	_button(box, "Reiniciar", restart).grab_focus()
 	_button(box, "Menu", show_menu)
 
 # Spec 008 (RF-UI-001): vencer a noite nao pausa nem abre modal. O estado ja
@@ -704,3 +708,38 @@ func _placer() -> Node:
 func _show_toast(toast_name: String, text: String, color: Color) -> void:
 	if is_instance_valid(hud):
 		hud._show_toast(toast_name, text, color)
+
+# ---------------------------------------------------------------------------
+# Spec 022 — Tutorial jogavel: a mesma partida, com um TutorialDirector so
+# neste mundo. Reiniciar repete o modo atual; Menu/JOGAR voltam ao jogo normal
+# (DayNightManager.reset_session() solta o relogio).
+# ---------------------------------------------------------------------------
+const TutorialDirector := preload("res://scenes/world/tutorial_director.gd")
+var tutorial_mode := false
+var tutorial: Node
+
+func start_tutorial() -> void:
+	start_game()
+	tutorial_mode = true
+	tutorial = TutorialDirector.new()
+	tutorial.name = "Tutorial"
+	world.add_child(tutorial)
+	tutorial.setup(self, world)
+
+func restart() -> void:
+	if tutorial_mode:
+		start_tutorial()
+	else:
+		start_game()
+
+func tutorial_finished() -> void:
+	_cancel_channel()
+	_controls_back = Callable()
+	screen = "tutorial_done"
+	get_tree().paused = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	audio.result(true)
+	var box := _modal("Tutorial concluído!")
+	box.add_child(_label("Você andou, lutou, domesticou, coletou, construiu,\nergueu uma torre, posicionou um aliado e defendeu o Refúgio.\n\nA partida normal começa com 2 guardiões, 3 invasores\nna primeira noite e o relógio correndo desde as 08:00.", 18))
+	_button(box, "Jogar partida", start_game).grab_focus()
+	_button(box, "Menu", show_menu)

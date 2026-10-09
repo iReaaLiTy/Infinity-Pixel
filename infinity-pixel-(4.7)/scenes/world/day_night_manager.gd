@@ -45,6 +45,10 @@ var day_number := 1 # Dia N e Noite N compartilham o numero
 var nights_defended := 0
 var phase_elapsed := 0.0 # segundos de gameplay desde o inicio do periodo atual
 var _warning_sent := false
+## Spec 022 (tutorial): segura SO o relogio (criaturas, torres e combate seguem
+## normais) enquanto o jogador aprende. reset_session() sempre zera: sair do
+## tutorial ou comecar outra partida nunca deixa o relogio parado.
+var clock_hold := false
 
 func reset_session(active: bool = false) -> void:
 	state = State.DAY
@@ -54,6 +58,7 @@ func reset_session(active: bool = false) -> void:
 	nights_defended = 0
 	phase_elapsed = 0.0
 	_warning_sent = false
+	clock_hold = false
 
 func can_play() -> bool:
 	return gameplay_enabled and not is_game_over and not get_tree().paused
@@ -62,6 +67,8 @@ func can_play() -> bool:
 # congelam. Usa o delta do jogo, nunca o relogio do sistema.
 func _process(delta: float) -> void:
 	if not can_play():
+		return
+	if clock_hold:
 		return
 	phase_elapsed += delta
 	if state == State.DAY:
