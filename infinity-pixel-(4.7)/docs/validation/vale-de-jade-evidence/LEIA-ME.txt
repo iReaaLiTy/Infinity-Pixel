@@ -1,0 +1,23 @@
+Evidencias - Vale de Jade (017A etapas 3-4, 018, 019), HUD (017B/020) e Tutorial (022) - 09/10/2026
+Godot 4.6.2, GL Compatibility, Intel Iris Xe. Capturas REAIS do jogo (ferramentas em tools/), reduzidas para JPG.
+Registro: ../visual-hud-tutorial.md. Pasta ignorada pelo Godot (.gdignore).
+
+comparacao/   ANTES (esquerda, commit a3f8d41) | DEPOIS (direita), mesma camera e hora.
+              01_padrao_* = vista padrao nas 6 horas de referencia; 03 Refugio; 04 caminho;
+              05 ponto de defesa; 06 area de construcao; 07 Noite 1; 08 vista de cima;
+              10 cristal; 12 paredao; hud_* = HUD (1280x720 e 1920x1080).
+              Fontes: antes = docs/validation/017a-evidence/depois (estado de a3f8d41) e
+              tools/hud_capture rodado em a3f8d41+refatoracao; depois = tools/visual_capture e
+              tools/hud_capture no codigo final.
+cenario/      Floresta Oeste (12:00, 17:30, 21:00), Regiao Rochosa, ruina, entrada oeste (dia e
+              noite, monolitos), arvore e rocha coletaveis, ponto de defesa vazio/com torre.
+criaturas/    tools/creature_capture: tipos lado a lado (guardiao, selvagem domesticavel,
+              invasor, aliado FICAR) de dia e de noite, canalizacao, domesticacao concluida,
+              torre mirando, impacto, eliminacao.
+hud/          tools/hud_capture: construcao, posicionamento invalido/valido, ponto de defesa
+              (1920), entardecer com vida baixa, noite com onda.
+tutorial/     tools/tutorial_capture: menu com TUTORIAL, passos 1, 2, 4, 5, 6, 9, 12 e conclusao.
+desempenho/   tests/perf_probe.tscn --live, com janela, sem vsync, 10 s por vista:
+              antes_r1/r2 (copia de a3f8d41), depois_r1/r2 (1a versao, antes da otimizacao),
+              depois_opt_r1/r2 (codigo final).
+regressao/    Resumos das suites: sem janela (20) e com janela (21, copia com observador de foco).

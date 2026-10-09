@@ -7,7 +7,7 @@ Protótipo acadêmico da **Inity Pixel** para AC1 da FIAP School. **Jadefall: Gu
 1. Use **Godot 4.6.2**, renderer GL Compatibility. “(4.7)” é apenas o rótulo da pasta/aplicação.
 2. Importe o `project.godot` **desta pasta**. Não use as cópias vizinhas.
 3. Aguarde a importação e pressione F6 apenas para cena isolada ou **F5 para o projeto completo** (`scenes/ui/main.tscn`).
-4. Clique **JOGAR**. Explore de dia; a noite começa automaticamente após 90 s. Defenda até neutralizar toda a onda. A destruição do Refúgio encerra a sessão.
+4. Clique **JOGAR** (ou **TUTORIAL** para aprender jogando). Explore de dia; a noite começa automaticamente após 90 s. Defenda até neutralizar toda a onda. A destruição do Refúgio encerra a sessão.
 
 | Entrada | Ação |
 |---|---|

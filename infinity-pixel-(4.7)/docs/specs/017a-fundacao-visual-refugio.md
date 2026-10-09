@@ -1,11 +1,13 @@
 # 017A — Fundação Visual e Refúgio (fatia vertical)
 
 Reformulação visual — direção "Vale de Jade" aprovada em 2026-10-08.
-Base: commit `345f70a` (P0/P1 aprovadas). **Status: aprovada pelo usuário;
-Etapas 1 (linha de base) e 2 (protótipo em 3 objetos) executadas e aguardando
-a avaliação dele — Etapas 3–5 NÃO autorizadas.** Registro:
-`docs/validation/017a.md`. A HUD (extração de `main.gd` e redesenho) fica
-fora: subetapa própria.
+Base: commit `345f70a` (P0/P1 aprovadas). **Status (09/10/2026): Etapas 1–4
+implementadas e testadas (sem e com janela), junto com a Spec 018; aguardando
+playtest manual. Registro: `docs/validation/visual-hud-tutorial.md`.**
+Histórico: Etapas 1 (linha de base) e 2 (protótipo em 3 objetos) registradas em
+`docs/validation/017a.md`; as Etapas 3–4 (Refúgio inteiro, chão e trilhas) foram
+autorizadas na execução autônoma de 09/10/2026. A HUD (extração de `main.gd` e
+redesenho) foi feita como subetapa própria (017B/020).
 
 ## Objetivo visual
 

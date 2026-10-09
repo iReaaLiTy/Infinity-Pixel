@@ -1131,3 +1131,28 @@ falhas; com janela 18 suítes, 665 checks verdes na execução válida (falhas
 da 1ª tentativa = pausa por perda de foco). Passos curtos: 25 reversões e 57
 inversões de giro → 0 e 8. Detalhes, limitações e evidências em
 `docs/validation/p0-p1.md`.
+
+## Spec 017A (etapas 1–2) e inimigo noturno (2026-10-09)
+
+**Status:** implementados e testados (`a3f8d41`, enviado pelo usuário);
+aguardando playtest manual. Registros: `docs/validation/017a.md` e
+`docs/validation/night-enemy.md`.
+
+## Execução autônoma — Vale de Jade, criaturas, HUD e tutorial (2026-10-09)
+
+**Status:** implementado; testado sem janela (20/20 suítes, 700 checks) e com
+janela (21/21, 730 checks); **aguardando playtest manual**. Nenhuma spec foi
+marcada como aprovada. Registro completo, desempenho e roteiro de playtest:
+`docs/validation/visual-hud-tutorial.md`. Commits locais (sem push):
+
+| Commit | Conteúdo | Spec |
+|---|---|---|
+| `b9ce6b7` | Refúgio, chão, trilhas, paredões, natureza, coletáveis, marcos, luz do meio-dia | 017A (3–4), 018 |
+| `e474fe9` | Feedback visual de criaturas e combate, rótulos por tipo, anel de domesticação | 019 |
+| `a888114` | HUD extraída de `main.gd` para `scenes/ui/hud.gd` (sem mudar comportamento) | 017B (refatoração) |
+| `a94207e` | Redesenho da HUD e leitura de recursos | 017B/020 |
+| `f545741` | Tutorial jogável | 022 |
+| (último) | Otimização de desempenho da arte do vale + evidências e documentação | 018 / QA |
+
+Pendências: playtest; propostas de economia G1–G6 não implementadas (fora do
+autorizado). A Spec 015 continua aguardando aprovação formal.

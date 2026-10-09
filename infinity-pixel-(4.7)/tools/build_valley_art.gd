@@ -38,13 +38,12 @@ static func generate() -> void:
 	var noise := _noises()
 	root.add_child(_ground(noise, trees))
 	root.add_child(_path_stones(noise))
-	root.add_child(_tufts(noise, trees))
 	root.add_child(_cliffs())
 	root.add_child(_entry_stones())
 	root.add_child(_entry_runes())
 	root.add_child(_mountains())
 	_arch(root)
-	for child in root.get_children():
+	for child in root.find_children("*", "", true, false): # inclui blocos aninhados
 		child.owner = root
 	var packed := PackedScene.new()
 	assert(packed.pack(root) == OK)
@@ -141,7 +140,18 @@ static func ground_color(p: Vector2, noise: Array, trees: Array[Vector2]) -> Col
 		col = col.lerp(Palette.CLIFF_DARK.darkened(0.2), clampf((outside + 0.4) / 2.0, 0.0, 0.7))
 	return col
 
-static func _ground(noise: Array, trees: Array[Vector2]) -> MeshInstance3D:
+## Desempenho (Iris Xe): o chao e os tufos saem em blocos 3 x 3 para o culling
+## por camera descartar o que esta fora da tela; uma malha so era desenhada
+## inteira todo quadro. Sem sombra projetada (so recebe).
+const CHUNKS := Vector2i(3, 3)
+
+static func _chunk(p: Vector2) -> int:
+	var size := (AREA_MAX - AREA_MIN) / Vector2(CHUNKS)
+	var cx := clampi(int((p.x - AREA_MIN.x) / size.x), 0, CHUNKS.x - 1)
+	var cz := clampi(int((p.y - AREA_MIN.y) / size.y), 0, CHUNKS.y - 1)
+	return cz * CHUNKS.x + cx
+
+static func _ground(noise: Array, trees: Array[Vector2]) -> Node3D:
 	var nx := int(ceil((AREA_MAX.x - AREA_MIN.x) / CELL))
 	var nz := int(ceil((AREA_MAX.y - AREA_MIN.y) / CELL))
 	var grid := []
@@ -157,8 +167,11 @@ static func _ground(noise: Array, trees: Array[Vector2]) -> MeshInstance3D:
 			tones.append(ground_color(p, noise, trees))
 		grid.append(column)
 		colors.append(tones)
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var sts := []
+	for k in CHUNKS.x * CHUNKS.y:
+		var st := SurfaceTool.new()
+		st.begin(Mesh.PRIMITIVE_TRIANGLES)
+		sts.append(st)
 	for i in nx:
 		for j in nz:
 			var q := [Vector2i(i, j), Vector2i(i + 1, j), Vector2i(i + 1, j + 1), Vector2i(i, j + 1)]
@@ -171,6 +184,7 @@ static func _ground(noise: Array, trees: Array[Vector2]) -> MeshInstance3D:
 					pts.append(grid[g.x][g.y])
 					cols.append(colors[g.x][g.y])
 				var c3: Vector3 = (pts[0] + pts[1] + pts[2]) / 3.0
+				var st: SurfaceTool = sts[_chunk(Vector2(c3.x, c3.z))]
 				var v := _hash(Vector2(c3.x, c3.z)) # variacao por triangulo
 				var f := 1.0 + 0.07 * (v - 0.5)
 				# Frente para cima: o Godot desenha a frente no sentido horario.
@@ -180,8 +194,13 @@ static func _ground(noise: Array, trees: Array[Vector2]) -> MeshInstance3D:
 					st.set_color(Color(col.r * f, col.g * f, col.b * f))
 					st.set_normal(Vector3.UP)
 					st.add_vertex(pts[k])
-	var mi := Facets.instance("Ground", st.commit(), Palette.toon(0.4, 0.0), Vector3.ZERO, false)
-	return mi
+	_tufts(noise, trees, sts)
+	var holder := Node3D.new()
+	holder.name = "Ground"
+	var mat := Palette.toon(0.4, 0.0) # um material para todos os blocos
+	for k in sts.size():
+		holder.add_child(Facets.instance("Ground%d" % k, sts[k].commit(), mat, Vector3.ZERO, false))
+	return holder
 
 # --- Pedras rentes nas bordas das rotas noturnas ---------------------------------
 static func _path_stones(noise: Array) -> MeshInstance3D:
@@ -230,11 +249,9 @@ static func _up_tri(st: SurfaceTool, pts: Array, cols: Array) -> void:
 			st.set_color(cols[k])
 			st.add_vertex(pts[k])
 
-static func _tufts(noise: Array, trees: Array[Vector2]) -> MeshInstance3D:
+static func _tufts(noise: Array, trees: Array[Vector2], sts: Array) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 18202
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var placed := 0
 	for attempt in 5200:
 		var p := Vector2(rng.randf_range(-Layout.BOUND_X + 0.4, Layout.BOUND_X - 0.4), rng.randf_range(Layout.BOUND_SOUTH + 0.4, Layout.BOUND_NORTH - 0.4))
@@ -253,6 +270,7 @@ static func _tufts(noise: Array, trees: Array[Vector2]) -> MeshInstance3D:
 		if rng.randf() > keep:
 			continue
 		var base_col: Color = ground_color(p, noise, trees)
+		var st: SurfaceTool = sts[_chunk(p)] # tufo vai no bloco do chao dele
 		var flower := not near_tree and rng.randf() < 0.16 and Layout.patch_distance(p, Layout.HEATH) > 1.0
 		var blades := rng.randi_range(3, 5)
 		for k in blades:
@@ -277,22 +295,33 @@ static func _tufts(noise: Array, trees: Array[Vector2]) -> MeshInstance3D:
 						Vector3(p.x + tri_pts[1].x, fy, p.y + tri_pts[1].y)], [fc, fc, fc])
 		placed += 1
 	print("[018] %d tufos" % placed)
-	return Facets.instance("Tufts", st.commit(), Palette.toon(0.4, 0.0), Vector3.ZERO, false)
+
 
 # --- Paredoes em volta do vale ---------------------------------------------------
 # Colunas de rocha facetada em 3 fileiras (frente baixa, fundo alto), topo com
 # vegetacao. Tudo fora dos Boundary; nas entradas das ondas, so entulho baixo.
-static func _cliffs() -> MeshInstance3D:
+static func _cliffs() -> Node3D:
+	# Um lado por malha (culling: o paredao norte, atras da camera, quase nunca
+	# e desenhado) e sem sombra projetada: fica fora da area jogavel e as 4
+	# fatias da sombra direcional o redesenhariam inteiro (medido no Iris Xe).
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 25017
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var x := Layout.BOUND_X
-	_cliff_band(st, rng, Vector2(-31, Layout.BOUND_SOUTH), Vector2(31, Layout.BOUND_SOUTH), Vector2(0, -1))
-	_cliff_band(st, rng, Vector2(-31, Layout.BOUND_NORTH), Vector2(31, Layout.BOUND_NORTH), Vector2(0, 1))
-	_cliff_band(st, rng, Vector2(-x, Layout.BOUND_SOUTH - 1.0), Vector2(-x, Layout.BOUND_NORTH + 1.0), Vector2(-1, 0))
-	_cliff_band(st, rng, Vector2(x, Layout.BOUND_SOUTH - 1.0), Vector2(x, Layout.BOUND_NORTH + 1.0), Vector2(1, 0))
-	return Facets.instance("Cliffs", st.commit(), Palette.toon(0.3, 0.1))
+	var holder := Node3D.new()
+	holder.name = "Cliffs"
+	var mat := Palette.toon(0.3, 0.1)
+	var sides := [
+		["South", Vector2(-31, Layout.BOUND_SOUTH), Vector2(31, Layout.BOUND_SOUTH), Vector2(0, -1)],
+		["North", Vector2(-31, Layout.BOUND_NORTH), Vector2(31, Layout.BOUND_NORTH), Vector2(0, 1)],
+		["West", Vector2(-x, Layout.BOUND_SOUTH - 1.0), Vector2(-x, Layout.BOUND_NORTH + 1.0), Vector2(-1, 0)],
+		["East", Vector2(x, Layout.BOUND_SOUTH - 1.0), Vector2(x, Layout.BOUND_NORTH + 1.0), Vector2(1, 0)],
+	]
+	for side in sides:
+		var st := SurfaceTool.new()
+		st.begin(Mesh.PRIMITIVE_TRIANGLES)
+		_cliff_band(st, rng, side[1], side[2], side[3])
+		holder.add_child(Facets.instance("Cliffs" + side[0], st.commit(), mat, Vector3.ZERO, false))
+	return holder
 
 static func _gap(p: Vector2) -> float:
 	## 0 = fora de uma passagem; 1 = no centro dela.
