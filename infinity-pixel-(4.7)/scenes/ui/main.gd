@@ -46,6 +46,9 @@ func _ready() -> void:
 	ui.theme = _theme()
 	audio = preload("res://scenes/ui/audio_director.gd").new()
 	add_child(audio)
+	# Configuracoes salvas do jogador (volume, tela cheia, escala da interface).
+	Settings.load_settings()
+	Settings.apply(audio, get_window())
 	DayNightManager.game_over.connect(_defeat)
 	DayNightManager.day_started.connect(_victory)
 	DayNightManager.night_warning.connect(_night_warning)
@@ -331,7 +334,12 @@ func _build_main_menu() -> void:
 	var gap3 := Control.new()
 	gap3.custom_minimum_size.y = 26
 	column.add_child(gap3)
-	_menu_button(column, "SAIR", 17, Color("2a3d37"), Color("15211d"), 5, 10, 22, 4, func(): get_tree().quit())
+	var small := HBoxContainer.new()
+	small.alignment = BoxContainer.ALIGNMENT_CENTER
+	small.add_theme_constant_override("separation", 14)
+	column.add_child(small)
+	_menu_button(small, "CONFIGURAÇÕES", 17, Color("2a3d37"), Color("15211d"), 5, 10, 22, 4, func(): show_settings(_close_overlay)).name = "SettingsButton"
+	_menu_button(small, "SAIR", 17, Color("2a3d37"), Color("15211d"), 5, 10, 22, 4, func(): get_tree().quit())
 	_build_audio_corner()
 	play.grab_focus()
 	# Entrada suave do logo e "respiracao" do JOGAR.
@@ -406,6 +414,7 @@ func _draw_speaker(icon: Button) -> void:
 func _add_volume(box: Node) -> void:
 	var row := HBoxContainer.new()
 	box.add_child(row)
+	row.add_child(_label("Música", 18))
 	var volume := HSlider.new()
 	volume.min_value = 0
 	volume.max_value = 100
@@ -514,6 +523,8 @@ func _modal(title: String) -> VBoxContainer:
 	overlay.color = Color(.015,.045,.045,.82)
 	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	ui.add_child(overlay)
+	overlay.modulate.a = 0.0 # transicao discreta de entrada
+	overlay.create_tween().tween_property(overlay, "modulate:a", 1.0, 0.15)
 	var center := CenterContainer.new()
 	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.add_child(center)
@@ -547,6 +558,7 @@ func _show_pause_menu() -> void:
 	box.add_child(_label("A arena e a domesticação estão pausadas.", 18))
 	_button(box, "Retomar", resume_game).grab_focus()
 	_button(box, "Controles", func(): show_controls(_show_pause_menu))
+	_button(box, "Configurações", func(): show_settings(_show_pause_menu))
 	_add_volume(box)
 	_button(box, "Reiniciar", restart)
 	_button(box, "Sair do tutorial" if tutorial_mode else "Menu", show_menu)
@@ -743,3 +755,69 @@ func tutorial_finished() -> void:
 	box.add_child(_label("Você andou, lutou, domesticou, coletou, construiu,\nergueu uma torre, posicionou um aliado e defendeu o Refúgio.\n\nA partida normal começa com 2 guardiões, 3 invasores\nna primeira noite e o relógio correndo desde as 08:00.", 18))
 	_button(box, "Jogar partida", start_game).grab_focus()
 	_button(box, "Menu", show_menu)
+
+# ---------------------------------------------------------------------------
+# Configuracoes (menu principal e pausa). Cada mudanca vale na hora e e salva.
+# ESC/Voltar retornam para quem abriu (mesmo mecanismo da tela de Controles).
+# ---------------------------------------------------------------------------
+const Settings := preload("res://scenes/ui/settings.gd")
+var settings_controls := {} # nome -> controle (testes)
+
+func _settings_slider(box: Node, title: String, key: String) -> HSlider:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 16)
+	var label := _label(title, 19)
+	label.custom_minimum_size.x = 190
+	row.add_child(label)
+	var slider := HSlider.new()
+	slider.min_value = 0
+	slider.max_value = 100
+	slider.step = 5
+	slider.value = float(Settings.values[key]) * 100.0
+	slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	slider.custom_minimum_size = Vector2(260, 26)
+	var value := _label("%d%%" % int(slider.value), 17, GOLD)
+	value.custom_minimum_size.x = 56
+	slider.value_changed.connect(func(v):
+		value.text = "%d%%" % int(v)
+		Settings.set_value(key, v / 100.0, audio, get_window()))
+	row.add_child(slider)
+	row.add_child(value)
+	box.add_child(row)
+	settings_controls[key] = slider
+	return slider
+
+func show_settings(back: Callable) -> void:
+	var box := _modal("Configurações")
+	_controls_back = back
+	settings_controls = {}
+	box.add_child(_label("ÁUDIO", 15, JADE))
+	_settings_slider(box, "Volume geral", "master").grab_focus()
+	_settings_slider(box, "Música", "music")
+	_settings_slider(box, "Efeitos", "sfx")
+	box.add_child(_label("TELA", 15, JADE))
+	var full := CheckButton.new()
+	full.text = "Tela cheia"
+	full.add_theme_font_size_override("font_size", 19)
+	full.button_pressed = bool(Settings.values.fullscreen)
+	full.toggled.connect(func(on): Settings.set_value("fullscreen", on, audio, get_window()))
+	box.add_child(full)
+	settings_controls["fullscreen"] = full
+	var scale_row := HBoxContainer.new()
+	scale_row.add_theme_constant_override("separation", 16)
+	var scale_label := _label("Escala da interface", 19)
+	scale_label.custom_minimum_size.x = 190
+	scale_row.add_child(scale_label)
+	var scale := OptionButton.new()
+	for s in Settings.UI_SCALES:
+		scale.add_item("%d%%" % int(round(s * 100.0)))
+	scale.selected = maxi(0, Settings.UI_SCALES.find(float(Settings.values.ui_scale)))
+	scale.item_selected.connect(func(i): Settings.set_value("ui_scale", Settings.UI_SCALES[i], audio, get_window()))
+	scale_row.add_child(scale)
+	box.add_child(scale_row)
+	settings_controls["ui_scale"] = scale
+	box.add_child(_label("As mudanças valem na hora e ficam salvas.", 14, Color(CREAM, .6)))
+	_button(box, "Restaurar padrão", func():
+		Settings.reset(audio, get_window())
+		show_settings(back))
+	_button(box, "Voltar", _leave_controls)
