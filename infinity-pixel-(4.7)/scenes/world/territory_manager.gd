@@ -294,6 +294,7 @@ func _build_border(t: Dictionary) -> void:
 	var m := StandardMaterial3D.new()
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.cull_mode = BaseMaterial3D.CULL_DISABLED
 	m.albedo_color = Color(Color("c4848f"), BORDER_ALPHA)
 	_borders[t.id] = m
 	var r: Rect2 = t.rect
@@ -306,14 +307,27 @@ func _build_border(t: Dictionary) -> void:
 	for e in edges:
 		var a: Vector2 = e[0]
 		var b: Vector2 = e[1]
+		# Spec 018: linha tracejada de losangos rentes (marco de fronteira), em
+		# vez de uma faixa continua: le como limite desenhado, nao como fio.
+		var st := SurfaceTool.new()
+		st.begin(Mesh.PRIMITIVE_TRIANGLES)
+		var dir := (b - a).normalized()
+		var side := dir.orthogonal() * 0.09
+		var length := a.distance_to(b)
+		var s := 0.3
+		while s < length - 0.2:
+			var c := a + dir * s
+			var pts := [c - dir * 0.28, c + side, c + dir * 0.28, c - side]
+			for k in [0, 1, 2, 0, 2, 3]:
+				st.set_normal(Vector3.UP)
+				st.add_vertex(Vector3(pts[k].x, 0.0, pts[k].y))
+			s += 0.95
 		var strip := MeshInstance3D.new()
-		var box := BoxMesh.new()
-		box.size = Vector3(maxf(absf(b.x - a.x), 0.14), 0.02, maxf(absf(b.y - a.y), 0.14))
-		strip.mesh = box
+		strip.mesh = st.commit()
 		strip.material_override = m
 		strip.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		add_child(strip)
-		strip.global_position = Vector3((a.x + b.x) * 0.5, 0.04, (a.y + b.y) * 0.5)
+		strip.global_position = Vector3(0, 0.045, 0)
 
 func _flash_border(id: StringName, hold: bool, seconds := 0.0) -> void:
 	var m: StandardMaterial3D = _borders.get(id)

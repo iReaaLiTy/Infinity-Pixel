@@ -13,6 +13,7 @@ extends StaticBody3D
 # esgotar o recurso nao deixa buraco na navmesh e nao exige rebake.
 
 const Nature := preload("res://scenes/visuals/nature_meshes.gd")
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 const WORLD := 1 << 0
 const INTERACTABLES := 1 << 4
 const KINDS := {
@@ -133,19 +134,21 @@ func _hit_feedback() -> void:
 	t.tween_property(_visual, "rotation:z", -0.07, 0.06)
 	t.tween_property(_visual, "rotation:z", 0.0, 0.05)
 	t.parallel().tween_property(_visual, "scale", base.get_scale(), 0.16)
-	if kind == "stone":
-		_burst(3)
+	_burst(3)
 
-# Lascas simples que saltam e somem (sem particulas).
+# Lascas facetadas que saltam e somem (sem particulas): cinza-azuladas na pedra,
+# madeira clara na arvore (Spec 019: todo golpe que acerta mostra impacto).
 func _burst(count := 6) -> void:
+	var mat := _mat(Color("9aa3a8") if kind == "stone" else Color("d9b98a"))
 	for i in count:
 		var chip := MeshInstance3D.new()
-		var box := BoxMesh.new()
-		box.size = Vector3.ONE * randf_range(0.12, 0.22)
-		chip.mesh = box
-		chip.material_override = _mat(Color("8f9b92"))
+		chip.mesh = CombatFX.shard_mesh()
+		chip.material_override = mat
+		chip.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		chip.scale = Vector3.ONE * randf_range(1.2, 2.0)
+		chip.rotation = Vector3(randf() * TAU, randf() * TAU, 0)
 		add_child(chip)
-		chip.position = Vector3(0, 0.7, 0)
+		chip.position = Vector3(0, 0.7 if kind == "stone" else 0.8, 0)
 		var a := TAU * i / count + randf() * 0.5
 		var end := Vector3(sin(a) * 1.1, 0.15, cos(a) * 1.1)
 		var t := chip.create_tween()

@@ -1,5 +1,14 @@
 extends Node3D
 
+# Spec 019: apresentacao das criaturas. So visual: nada aqui muda velocidade,
+# rumo, alvo, dano ou tempo de ataque. Os indicadores (anel de domesticacao,
+# marcador de FICAR) ficam no corpo, fora deste no, para nao se misturarem com
+# as malhas do modelo.
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
+const JADE := Color("3fbf8f")
+const JADE_LIGHT := Color("a8e6cf")
+const HIT_WARM := Color("ffe2a8")
+
 var clock := 0.0
 var swing := 0.0
 var flash_time := 0.0
@@ -7,6 +16,13 @@ var ally := false
 ## Inimigo da onda noturna (Spec 019 antecipada): paleta azul-violeta propria.
 var night_threat := false
 var _day_materials := {} # malha -> material original (para voltar ao domesticar)
+var _flash_mat: StandardMaterial3D # lampejo do golpe (material_overlay, por ator)
+var _flashing := false
+var _tame_ring: MeshInstance3D
+var _tame_fill: MeshInstance3D
+var _tame_mat: StandardMaterial3D
+var _fill_mat: StandardMaterial3D
+var _stay_pin: MeshInstance3D
 
 func _process(delta: float) -> void:
 	var body := get_parent() as CharacterBody3D
@@ -20,19 +36,49 @@ func _process(delta: float) -> void:
 	$LegR.rotation.x = -sin(clock * 11.0) * 0.48 * pace
 	swing = maxf(0, swing - delta)
 	position.y = abs(sin(clock * 11)) * .04 * pace
-	rotation.x = -sin(swing * PI / .32) * .2
+	# Golpe + recuo visual curto ao receber dano (sem empurrar o corpo).
+	rotation.x = -sin(swing * PI / .32) * .2 + sin(flash_time / .22 * PI) * .1 * float(flash_time > 0.0 and flash_time <= .22)
 	if has_node("ArmR"):
 		$ArmR.rotation.x = -sin(swing * PI / .32) * 1.6
 	if has_node("Tail"):
-		$Tail.rotation.y = sin(clock * 3) * .13
+		$Tail.rotation.y = sin(clock * 3) * (.13 + .07 * (1.0 - pace))
 	flash_time = maxf(0, flash_time - delta)
-	scale = Vector3.ONE * (1.0 + sin(flash_time * 28) * .045)
+	# Respiracao em repouso: o peito sobe e desce devagar (some ao andar).
+	var breathe := sin(clock * 2.3) * 0.022 * (1.0 - pace)
+	var pulse := sin(flash_time * 28) * .045
+	scale = Vector3(1.0 + pulse, 1.0 + pulse + breathe, 1.0 + pulse)
+	if _flashing and flash_time <= 0.0:
+		_set_overlay(null)
+	elif _flashing:
+		_flash_mat.albedo_color.a = 0.3 * minf(flash_time / .22, 1.0)
+	if body.has_method("can_be_domesticated"):
+		_update_indicators(body, delta)
 
 func strike() -> void:
 	swing = .32
 
 func flash() -> void:
 	flash_time = .22
+	# Lampejo claro sobre o modelo (overlay por ator; os materiais nao mudam)
+	# e faisca no ponto do golpe.
+	if _flash_mat == null:
+		_flash_mat = CombatFX.fx_material(Color.WHITE, 0.3)
+	_flash_mat.albedo_color = Color(HIT_WARM if not night_threat else Color("c9d0ff"), 0.3)
+	_set_overlay(_flash_mat)
+	if is_inside_tree():
+		CombatFX.hit_spark(self, global_position + Vector3(0, 0.9, 0), HIT_WARM if not night_threat else Color("8f9cf0"))
+
+func _set_overlay(mat: Material) -> void:
+	_flashing = mat != null
+	for mi: MeshInstance3D in find_children("*", "MeshInstance3D", true, false):
+		mi.material_overlay = mat
+
+## Eliminacao: lascas na cor da criatura e anel no chao (o corpo some em seguida).
+func defeated() -> void:
+	if not is_inside_tree():
+		return
+	var color := Color("6678c8") if night_threat else (Color("69be9b") if ally else Color("c9805a"))
+	CombatFX.burst(self, global_position, color)
 
 func set_ally() -> void:
 	ally = true
@@ -44,6 +90,54 @@ func set_ally() -> void:
 	material.roughness = .85
 	$Crest.material_override = material
 	flash_time = .6
+	# Conclusao da domesticacao: dois aneis jade e lascas claras.
+	if is_inside_tree():
+		CombatFX.ring(self, global_position, JADE, 2.6, 0.7)
+		CombatFX.ring(self, global_position, JADE_LIGHT, 1.6, 0.45)
+		CombatFX.hit_spark(self, global_position + Vector3(0, 1.2, 0), JADE_LIGHT, 8)
+
+# --- Indicadores no corpo -------------------------------------------------------
+# Anel jade sob um selvagem que JA pode ser domesticado (vida <= 30%): discreto,
+# pulsando. Durante a canalizacao um segundo anel cresce com o progresso.
+# Aliado em FICAR: losango jade sobre a cabeca.
+func _update_indicators(body: Node3D, delta: float) -> void:
+	var eligible: bool = body.can_be_domesticated()
+	if eligible and _tame_ring == null:
+		_tame_mat = CombatFX.fx_material(JADE, 0.6)
+		_fill_mat = CombatFX.fx_material(JADE_LIGHT, 0.85)
+		_tame_ring = _indicator(body, CombatFX.ring_mesh(), _tame_mat, "TameRing")
+		_tame_fill = _indicator(body, CombatFX.ring_mesh(), _fill_mat, "TameFill")
+	if _tame_ring != null:
+		_tame_ring.visible = eligible
+		var progress := 0.0
+		if eligible:
+			var player := get_tree().get_first_node_in_group("player")
+			var channel := player.get_node_or_null("DomesticationChannel") if player != null else null
+			if channel != null and channel.get("_target") == body:
+				progress = channel.get_progress()
+			_tame_mat.albedo_color.a = 0.35 + 0.25 * (0.5 + 0.5 * sin(clock * 5.0))
+			_tame_ring.scale = Vector3.ONE * 1.15
+		_tame_fill.visible = eligible and progress > 0.0
+		_tame_fill.scale = Vector3.ONE * maxf(0.05, 1.15 * progress)
+	var staying: bool = body.get("is_domesticated") and body.get("ally_state") == 1 # AllyState.STAYING
+	if staying and _stay_pin == null:
+		var pin_mat := CombatFX.fx_material(JADE_LIGHT, 0.95)
+		_stay_pin = _indicator(body, CombatFX.shard_mesh(), pin_mat, "StayPin")
+		_stay_pin.scale = Vector3(2.8, 3.4, 2.8)
+	if _stay_pin != null:
+		_stay_pin.visible = staying
+		_stay_pin.position = Vector3(0, 2.75 + 0.08 * sin(clock * 3.0), 0)
+		_stay_pin.rotation.y += delta * 1.5
+
+func _indicator(body: Node3D, mesh: Mesh, mat: Material, label: String) -> MeshInstance3D:
+	var mi := MeshInstance3D.new()
+	mi.name = label
+	mi.mesh = mesh
+	mi.material_override = mat
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	mi.position = Vector3(0, 0.05, 0)
+	body.add_child(mi)
+	return mi
 
 # --- Inimigo da onda noturna ---------------------------------------------------
 # Paleta "ameaca noturna" da direcao Vale de Jade. Marcada pelo WaveManager no

@@ -87,6 +87,8 @@ func _spawn_enemy() -> void:
 	var look := enemy.get_node_or_null("Visual")
 	if look != null and look.has_method("set_night_threat"):
 		look.set_night_threat()
+		if enemy.has_method("_update_label"):
+			enemy._update_label() # Spec 019: rotulo INVASOR (violeta)
 	# RF-AGE-011: inimigo da onda deixa de ser ameaca ao morrer OU ao ser domesticado.
 	enemy.died.connect(_neutralize_wave_enemy.bind("morreu"))
 	enemy.domesticated.connect(_neutralize_wave_enemy.bind("domesticado"))

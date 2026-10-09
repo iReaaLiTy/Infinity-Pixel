@@ -194,6 +194,7 @@ func take_damage(amount: float) -> void:
 			remove_from_group("domesticated") # hostis param de mira-lo ja neste frame
 		else:
 			print("%s foi derrotado." % name)
+		$Visual.defeated() # Spec 019: so efeito visual
 		died.emit(self)
 		queue_free()
 
@@ -231,6 +232,12 @@ func domesticate() -> void:
 	domesticated.emit(self)
 
 func set_prompt(text: String) -> void:
+	# Spec 019: aviso de domesticacao em jade, do mesmo tamanho do rotulo.
+	prompt_label.font_size = 40
+	prompt_label.pixel_size = 0.0065
+	prompt_label.outline_size = 12
+	prompt_label.outline_modulate = Color(0.05, 0.07, 0.09, 0.85)
+	prompt_label.modulate = Color("a8e6cf")
 	prompt_label.text = text
 
 # RF-AGE-007/RF-AGE-008: comportamento de aliado (seguir/ficar + defesa por area).
@@ -252,10 +259,12 @@ func _process_ally(delta: float) -> void:
 				ally_state = AllyState.STAYING
 				_stay_position = global_position
 				print("[ALIADO] Modo alterado: FICAR")
+				_update_label()
 				print("[ALIADO] Posição de defesa definida: %s" % _stay_position)
 			else:
 				ally_state = AllyState.FOLLOWING
 				print("[ALIADO] Modo alterado: SEGUINDO")
+				_update_label()
 
 	match ally_state:
 		AllyState.FOLLOWING:
@@ -612,7 +621,24 @@ func set_guardian(territory_name: String) -> void:
 	guardian_of = territory_name
 	_update_label()
 
+## Spec 019: rotulo por tipo, com cor propria (leitura rapida de longe):
+## aliado jade (+ FICAR), guardiao ambar, invasor da onda noturna violeta,
+## selvagem creme. Texto antigo mantido para aliado/guardiao/selvagem.
 func _update_label() -> void:
-	var status := "ALIADO" if is_domesticated else ("GUARDIÃO" if guardian_of != "" else ("SELVAGEM" if is_domesticable else "CARNOTAURO • NÃO DOMESTICÁVEL"))
+	var night: bool = has_node("Visual") and $Visual.get("night_threat") == true
+	var status := "ALIADO" if is_domesticated else ("GUARDIÃO" if guardian_of != "" else ("INVASOR" if night else ("SELVAGEM" if is_domesticable else "CARNOTAURO • NÃO DOMESTICÁVEL")))
+	if is_domesticated and ally_state == AllyState.STAYING:
+		status += " · FICAR"
 	hp_label.text = "%s  ·  %d/%d" % [status, maxi(int(hp), 0), int(MAX_HP)]
-	hp_label.modulate = Color("a5e7c3") if is_domesticated else Color("fff0cf")
+	if is_domesticated:
+		hp_label.modulate = Color("a5e7c3")
+	elif guardian_of != "":
+		hp_label.modulate = Color("f2c86a")
+	elif night:
+		hp_label.modulate = Color("b4bcff")
+	else:
+		hp_label.modulate = Color("fff0cf")
+	hp_label.font_size = 40 # legivel da camera estrategica (~20 m)
+	hp_label.pixel_size = 0.0065
+	hp_label.outline_size = 12
+	hp_label.outline_modulate = Color(0.05, 0.07, 0.09, 0.85)

@@ -19,6 +19,7 @@ const BOLT_TIME := 0.18 # s do "dardo" ate o alvo
 const RangeRing := preload("res://scenes/world/range_ring.gd")
 const Palette := preload("res://scenes/visuals/palette.gd")
 const Facets := preload("res://scenes/visuals/facets.gd")
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 # Spec 013C (RF-CMB-007): opacidade do anel de alcance.
 const RING_FOCUS := 0.8 # Player interagindo com esta torre
 const RING_NEAR := 0.45 # Player perto do alcance
@@ -103,6 +104,30 @@ func ring_alpha_target() -> float:
 func _process(delta: float) -> void:
 	range_ring.position.y = RangeRing.LIFT - position.y # rente ao chao, nao a base
 	range_ring.set_strength(ring_alpha_target(), delta)
+	_update_target_mark(delta)
+
+# Spec 019: anel jade fino sob o inimigo que esta torre mira (so leitura; o alvo
+# continua sendo escolhido por _find_target). Fica no mundo, nao no inimigo.
+var _target_mark: MeshInstance3D
+var _mark_time := 0.0
+func _update_target_mark(delta: float) -> void:
+	var foe: Node3D = target if is_valid_target(target) else null
+	if foe == null:
+		if _target_mark != null:
+			_target_mark.visible = false
+		return
+	if _target_mark == null:
+		_target_mark = MeshInstance3D.new()
+		_target_mark.name = "TargetMark"
+		_target_mark.mesh = CombatFX.ring_mesh()
+		_target_mark.material_override = CombatFX.fx_material(CRYSTAL, 0.75)
+		_target_mark.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		_target_mark.top_level = true
+		add_child(_target_mark)
+	_mark_time += delta
+	_target_mark.visible = true
+	_target_mark.global_position = Vector3(foe.global_position.x, 0.07, foe.global_position.z)
+	_target_mark.scale = Vector3.ONE * (0.95 + 0.08 * sin(_mark_time * 8.0))
 
 func _physics_process(delta: float) -> void:
 	if not DayNightManager.can_play():
@@ -129,27 +154,44 @@ func _find_target() -> Node3D:
 				best = body
 	return best
 
-# Feedback: um dardo de cristal voa ate o alvo; o dano entra na chegada, se o
+# Feedback: uma lasca de cristal voa ate o alvo; o dano entra na chegada, se o
 # alvo ainda for valido (sem fisica balistica, sem colisao).
+# Spec 019: lasca jade facetada apontada para o alvo, com 2 ecos de rastro e
+# faisca no impacto. O tempo de voo (BOLT_TIME) e o instante do dano nao mudam.
 func _fire(foe: Node3D) -> void:
 	var damage: float = stats().damage
 	var bolt := MeshInstance3D.new()
-	var mesh := SphereMesh.new()
-	mesh.radius = 0.16
-	mesh.height = 0.32
-	bolt.mesh = mesh
+	bolt.mesh = CombatFX.shard_mesh()
 	var bolt_mat := _material(Color("c9fbe6"), true)
 	bolt_mat.emission_energy_multiplier = _glow_energy()
 	bolt.material_override = bolt_mat
+	bolt.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	bolt.scale = Vector3(1.6, 3.2, 1.6)
 	get_parent().add_child(bolt)
-	bolt.global_position = _crystal.global_position
+	var start := _crystal.global_position
+	bolt.global_position = start
 	var aim := foe.global_position + Vector3(0, 0.9, 0)
+	if not start.is_equal_approx(aim):
+		bolt.global_basis = Basis(Quaternion(Vector3.UP, (aim - start).normalized())).scaled(bolt.scale)
 	var t := bolt.create_tween()
 	t.tween_property(bolt, "global_position", aim, BOLT_TIME)
 	t.tween_callback(func():
 		if is_valid_target(foe):
 			foe.take_damage(damage)
+			CombatFX.hit_spark(bolt, aim, CRYSTAL, 5)
 		bolt.queue_free())
+	for k in 2: # ecos do rastro: seguem a lasca com atraso e somem
+		var echo := MeshInstance3D.new()
+		echo.mesh = bolt.mesh
+		echo.material_override = CombatFX.fx_material(CRYSTAL, 0.45 - 0.15 * k)
+		echo.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		get_parent().add_child(echo)
+		echo.global_transform = bolt.global_transform
+		echo.scale *= 0.8 - 0.2 * k
+		var te := echo.create_tween()
+		te.tween_interval(0.03 * (k + 1))
+		te.tween_property(echo, "global_position", aim, BOLT_TIME)
+		te.tween_callback(echo.queue_free)
 	var pulse := _crystal.create_tween()
 	_crystal.scale *= 1.25
 	pulse.tween_property(_crystal, "scale", _crystal_scale(), 0.2)
