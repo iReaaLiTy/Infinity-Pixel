@@ -12,6 +12,7 @@ extends Node3D
 signal triggered(enemy: Node3D)
 signal depleted
 
+const Facetize := preload("res://scenes/visuals/facetize.gd")
 const DAMAGE := 15.0
 const MAX_CHARGES := 3
 const REARM := 0.35 # s entre ativacoes (nada de dezenas de hits no mesmo quadro)
@@ -30,6 +31,7 @@ var _spike_mat: StandardMaterial3D # Spec 014: mesma cor, leve brilho a noite
 
 func _ready() -> void:
 	_build_visual()
+	Facetize.apply(self) # polimento: primitivas lisas -> facetadas (mesmas medidas)
 	if preview:
 		set_physics_process(false)
 		return

@@ -6,6 +6,7 @@ extends Node3D
 # Plataforma baixa de pedra com marco de cristal. Vazio: so visual (sem
 # colisao, nao bloqueia nada). Construido: recebe uma DefenseTower como filha.
 
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 const DefenseTower := preload("res://scenes/world/defense_tower.gd")
 const RangeRing := preload("res://scenes/world/range_ring.gd")
 const Palette := preload("res://scenes/visuals/palette.gd")
@@ -109,6 +110,7 @@ func build() -> StaticBody3D:
 	tower.position.y = 0.2
 	_marker.hide()
 	print("[DEFESA] Torre construida em %s (rota %s)" % [name, route])
+	CombatFX.burst(self, global_position, Color("7fd8b0"), 10) # torre erguida: lascas jade
 	return tower
 
 # Spec 013C (RF-CMB-008): marca no chao (losango verde-agua) — identifica o ponto

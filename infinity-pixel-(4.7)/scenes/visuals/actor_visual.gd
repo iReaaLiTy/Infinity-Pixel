@@ -24,6 +24,45 @@ var _tame_mat: StandardMaterial3D
 var _fill_mat: StandardMaterial3D
 var _stay_pin: MeshInstance3D
 
+const Facetize := preload("res://scenes/visuals/facetize.gd")
+var _cape: MeshInstance3D
+
+func _ready() -> void:
+	# Polimento (playtest 09/10/2026): primitivas lisas -> facetadas, mesmas
+	# medidas, nos e materiais (a paleta noturna por instancia continua igual).
+	Facetize.apply(self)
+	if has_node("Scarf"):
+		_build_cape() # so o Player (modelo com cachecol)
+
+## Capa jade curta nas costas do Player: silhueta reconhecivel de longe.
+func _build_cape() -> void:
+	var scarf := get_node("Scarf") as Node3D
+	var top := scarf.position + Vector3(0, -0.02, 0.3) # atras da tunica (fundo r 0,31)
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var xs := [-0.3, -0.1, 0.1, 0.3]
+	var bottom := [-0.72, -0.8, -0.8, -0.72]
+	for i in 3:
+		var a := Vector3(xs[i], 0, 0)
+		var b := Vector3(xs[i + 1], 0, 0)
+		var c := Vector3(xs[i + 1] * 1.25, bottom[i + 1], 0.14 + 0.03 * (i % 2))
+		var d := Vector3(xs[i] * 1.25, bottom[i], 0.14 + 0.03 * ((i + 1) % 2))
+		for tri in [[a, b, c], [a, c, d]]:
+			var n: Vector3 = (tri[1] - tri[0]).cross(tri[2] - tri[0]).normalized()
+			for v in tri:
+				st.set_normal(n)
+				st.add_vertex(v)
+	_cape = MeshInstance3D.new()
+	_cape.name = "Cape"
+	_cape.mesh = st.commit()
+	var m := StandardMaterial3D.new()
+	m.albedo_color = Color("2f7d63")
+	m.roughness = 0.9
+	m.cull_mode = BaseMaterial3D.CULL_DISABLED
+	_cape.material_override = m
+	_cape.position = top
+	add_child(_cape)
+
 func _process(delta: float) -> void:
 	var body := get_parent() as CharacterBody3D
 	if body == null:
@@ -47,8 +86,15 @@ func _process(delta: float) -> void:
 	elif is_instance_valid(_telegraph) and _telegraph.visible:
 		_telegraph.visible = false
 	rotation.x = -sin(swing * PI / .32) * .2 + sin(flash_time / .22 * PI) * .1 * float(flash_time > 0.0 and flash_time <= .22) + 0.16 * wind
+	# Braços acompanham a passada (o direito so quando nao esta golpeando).
+	if has_node("ArmL"):
+		$ArmL.rotation.x = -sin(clock * 11.0) * 0.55 * pace
 	if has_node("ArmR"):
-		$ArmR.rotation.x = -sin(swing * PI / .32) * 1.6
+		$ArmR.rotation.x = -sin(swing * PI / .32) * 1.6 if swing > 0.0 else sin(clock * 11.0) * 0.55 * pace
+	# Leve inclinacao a frente correndo; capa balanca com o passo.
+	rotation.x -= 0.07 * pace
+	if is_instance_valid(_cape):
+		_cape.rotation.x = 0.12 + 0.4 * pace + sin(clock * 7.0) * 0.05 * (0.3 + pace)
 	if has_node("Tail"):
 		$Tail.rotation.y = sin(clock * 3) * (.13 + .07 * (1.0 - pace))
 	flash_time = maxf(0, flash_time - delta)

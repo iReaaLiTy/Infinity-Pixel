@@ -80,6 +80,7 @@ func upgrade() -> void:
 	_apply_level_visual()
 	range_ring.set_radius(stats().range) # RF-CMB-007: mesmo valor da logica
 	print("[DEFESA] Torre melhorada para o nivel %d" % level)
+	CombatFX.ring(self, global_position, Color("e9a23b"), 2.4, 0.6) # melhoria: anel ambar
 
 static func is_valid_target(body) -> bool:
 	return is_instance_valid(body) and body.is_inside_tree() and body.is_in_group("wave_enemy") \

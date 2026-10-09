@@ -15,6 +15,7 @@ extends StaticBody3D
 signal heal_completed(amount: float)
 signal heal_cancelled(reason: String)
 
+const Facetize := preload("res://scenes/visuals/facetize.gd")
 const HEAL_AMOUNT := 25.0
 const CHANNEL_TIME := 3.0
 const RANGE := 2.5
@@ -39,6 +40,7 @@ var _flame_mat: StandardMaterial3D
 
 func _ready() -> void:
 	_build_visual()
+	Facetize.apply(self) # polimento: primitivas lisas -> facetadas (mesmas medidas)
 	if preview:
 		set_physics_process(false)
 		set_process(false)

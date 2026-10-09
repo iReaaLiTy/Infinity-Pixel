@@ -92,6 +92,7 @@ func _deplete() -> void:
 	var stock := get_node_or_null(stock_path)
 	if stock != null:
 		stock.add(StringName(kind), reward())
+	CombatFX.ring(self, global_position, Color("e6c79a") if kind == "wood" else Color("c9d3cc"), 1.8, 0.45) # coletado
 	if is_instance_valid(_feedback_tween): _feedback_tween.kill()
 	var t := create_tween()
 	_feedback_tween = t

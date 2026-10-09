@@ -13,6 +13,7 @@ signal placement_changed(active: bool)
 signal structure_built(recipe_id: StringName, node: Node3D)
 signal notice(text: String)
 
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 const Recipes := preload("res://scenes/world/build_recipes.gd")
 const WORLD := 1 << 0
 const PLAYER := 1 << 1
@@ -266,6 +267,7 @@ func confirm() -> Node3D:
 	var id := recipe_id
 	cancel()
 	print("[CONSTRUCAO] %s em %s" % [r.name, pos])
+	CombatFX.burst(node, pos, Color("e9c27a"), 8) # poeira/lascas: "construido aqui"
 	notice.emit(r.built)
 	structure_built.emit(id, node)
 	return node

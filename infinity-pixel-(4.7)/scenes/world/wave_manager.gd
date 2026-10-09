@@ -6,6 +6,7 @@ extends Node
 # Disparado pelo sinal night_started do DayNightManager — desde a Spec 013
 # (docs/specs/013-relogio-ciclo-ataques-noturnos.md) automaticamente as 18:00.
 
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 @export var enemy_scene: PackedScene
 @export var spawn_point_path: NodePath
 # Spec 013 RF-CIC-006: quantidade por noite = base + extra x (noite - 1).
@@ -80,6 +81,8 @@ func _spawn_enemy() -> void:
 	var enemy := enemy_scene.instantiate() as Node3D
 	get_parent().add_child(enemy)
 	enemy.global_position = spawn_position
+	# Alerta visual: de onde vem a ameaca (anel violeta na entrada).
+	CombatFX.ring(enemy, spawn_position, Color("6678c8"), 3.0, 0.9)
 	_active_wave_enemies[enemy] = true
 	enemy.add_to_group("wave_enemy") # Spec 013B: alvo valido das torres
 	# Identidade visual do inimigo noturno (paleta azul-violeta): decidida aqui,

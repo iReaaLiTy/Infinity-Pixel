@@ -163,7 +163,7 @@ static func _ground(noise: Array, trees: Array[Vector2]) -> Node3D:
 			var p := AREA_MIN + Vector2(i, j) * CELL
 			if i > 0 and i < nx and j > 0 and j < nz: # contorno reto, miolo irregular
 				p += Vector2(_hash(p) - 0.5, _hash(p + Vector2(7.1, 3.3)) - 0.5) * CELL * 0.55
-			column.append(Vector3(p.x, GROUND_Y, p.y))
+			column.append(Vector3(p.x, GROUND_Y + relief(p, noise), p.y))
 			tones.append(ground_color(p, noise, trees))
 		grid.append(column)
 		colors.append(tones)
@@ -187,14 +187,19 @@ static func _ground(noise: Array, trees: Array[Vector2]) -> Node3D:
 				var st: SurfaceTool = sts[_chunk(Vector2(c3.x, c3.z))]
 				var v := _hash(Vector2(c3.x, c3.z)) # variacao por triangulo
 				var f := 1.0 + 0.07 * (v - 0.5)
+				# Normal real da faceta (o microrrelevo pega luz), suavizada para cima.
+				var fn: Vector3 = (pts[1] - pts[0]).cross(pts[2] - pts[0]).normalized()
+				if fn.y < 0.0: fn = -fn
+				fn = fn.lerp(Vector3.UP, 0.3).normalized()
 				# Frente para cima: o Godot desenha a frente no sentido horario.
 				var order := [0, 1, 2] if (pts[1] - pts[0]).cross(pts[2] - pts[0]).y < 0.0 else [0, 2, 1]
 				for k in order:
 					var col: Color = cols[k]
 					st.set_color(Color(col.r * f, col.g * f, col.b * f))
-					st.set_normal(Vector3.UP)
+					st.set_normal(fn)
 					st.add_vertex(pts[k])
 	_tufts(noise, trees, sts)
+	_details(noise, trees, sts)
 	var holder := Node3D.new()
 	holder.name = "Ground"
 	var mat := Palette.toon(0.4, 0.0) # um material para todos os blocos
@@ -271,6 +276,7 @@ static func _tufts(noise: Array, trees: Array[Vector2], sts: Array) -> void:
 			continue
 		var base_col: Color = ground_color(p, noise, trees)
 		var st: SurfaceTool = sts[_chunk(p)] # tufo vai no bloco do chao dele
+		var base_y := GROUND_Y + relief(p, noise)
 		var flower := not near_tree and rng.randf() < 0.16 and Layout.patch_distance(p, Layout.HEATH) > 1.0
 		var blades := rng.randi_range(3, 5)
 		for k in blades:
@@ -280,11 +286,11 @@ static func _tufts(noise: Array, trees: Array[Vector2], sts: Array) -> void:
 			var w := rng.randf_range(0.025, 0.04)
 			var side := Vector2(-sin(a), cos(a)) * w
 			var root := p + Vector2(cos(a), sin(a)) * rng.randf_range(0.0, 0.06)
-			_up_tri(st, [Vector3(root.x - side.x, GROUND_Y, root.y - side.y), Vector3(root.x + side.x, GROUND_Y, root.y + side.y),
-				Vector3(root.x + lean.x, h, root.y + lean.y)], [base_col, base_col, base_col.lightened(0.18)])
+			_up_tri(st, [Vector3(root.x - side.x, base_y, root.y - side.y), Vector3(root.x + side.x, base_y, root.y + side.y),
+				Vector3(root.x + lean.x, base_y + h, root.y + lean.y)], [base_col, base_col, base_col.lightened(0.18)])
 		if flower:
 			var fc: Color = Palette.FLOWERS[rng.randi() % Palette.FLOWERS.size()]
-			var fy := rng.randf_range(0.1, 0.14)
+			var fy := base_y + rng.randf_range(0.08, 0.12)
 			var fs := rng.randf_range(0.045, 0.065)
 			for q in 2: # 4 petalas em cruz: dois losangos rentes
 				var turn := q * PI * 0.5 + rng.randf() * 0.3
@@ -518,3 +524,115 @@ static func _arch(root: Node3D) -> void:
 		mi.set_meta("on_solid", true)
 		root.add_child(mi)
 	art.free()
+
+# --- Microrrelevo e detalhes (polimento, playtest 09/10/2026) -------------------
+# So visual: a fisica continua plana em y = 0. O relevo sobe no maximo ~8 cm
+# (pes afundam de leve na grama, nunca flutuam) e some nas trilhas, no patio,
+# na area de construcao e nos pontos de defesa.
+const RELIEF_MAX := 0.075
+const SLOTS := [Vector2(-10.5, -5.5), Vector2(-18, -1.5), Vector2(-3.8, -1), Vector2(3.6, 12.5), Vector2(10.5, -5.5), Vector2(18, -1.5)]
+const MARKERS := [Vector2(-14, 13), Vector2(13, 16)]
+
+static func relief(p: Vector2, noise: Array) -> float:
+	var nb: float = noise[0].get_noise_2d(p.x * 1.7 + 31.0, p.y * 1.7 - 12.0)
+	var nf: float = noise[1].get_noise_2d(p.x * 1.3 + 7.0, p.y * 1.3 + 3.0)
+	var h := RELIEF_MAX * clampf(0.55 + 0.35 * nb + 0.25 * nf, 0.0, 1.0)
+	var keep := smoothstep(0.0, 0.9, trail_edge(p, 0.0)[0])
+	keep *= smoothstep(6.0, 7.5, p.distance_to(Layout.REFUGE))
+	keep *= 0.0 if Layout.in_build_zone(p, 0.4) else 1.0
+	for s in SLOTS:
+		keep *= smoothstep(1.7, 2.3, p.distance_to(s))
+	return h * keep
+
+## Livre para um detalhe (fora de trilhas, patio, construcao, pontos, marcos,
+## passagens das ondas e da area andavel proxima aos paredoes).
+static func _free_spot(p: Vector2, clearance: float) -> bool:
+	if trail_edge(p, 0.0)[0] < clearance or p.distance_to(Layout.REFUGE) < 6.8 or Layout.in_build_zone(p, 0.6):
+		return false
+	for s in SLOTS:
+		if p.distance_to(s) < 2.2:
+			return false
+	for m in MARKERS:
+		if p.distance_to(m) < 2.0:
+			return false
+	for e in Layout.ENTRIES:
+		if p.distance_to(e) < 3.5:
+			return false
+	return absf(p.x) < Layout.BOUND_X - 0.6 and p.y > Layout.BOUND_SOUTH + 0.6 and p.y < Layout.BOUND_NORTH - 0.6
+
+static func _blob(st: SurfaceTool, rng: RandomNumberGenerator, c: Vector3, r: float, h: float, tones: Array, sides := 6) -> void:
+	var paint := func(f: Vector3, n: Vector3) -> Color:
+		return Facets.by_height(tones, n, f.y, c.y, c.y + h, f.x + f.z)
+	var rings := []
+	for spec in [[0.0, 0.85], [h * 0.45, 1.0], [h * 0.8, 0.7]]:
+		var ring := Facets.ring(sides, r * spec[1], spec[0], rng, 0.18, rng.randf() * TAU, 0.0)
+		for i in ring.size():
+			ring[i] += c
+		rings.append(ring)
+	Facets.loft(st, rings, c + Vector3(rng.randf_range(-0.05, 0.05), h, rng.randf_range(-0.05, 0.05)), true, paint)
+
+static func _details(noise: Array, trees: Array[Vector2], sts: Array) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 18606
+	var shrub_tones := [Color("5f9a62"), Color("41775a"), Color("2c5446")]
+	var heath_shrub := [Color("8e9a66"), Color("6f7c55"), Color("4f5a43")]
+	var count := 0
+	# Arbustos baixos: ao pe das arvores e espalhados pela mata e pelas bordas.
+	var spots: Array[Vector2] = []
+	for t in trees:
+		for k in 2:
+			var a := rng.randf() * TAU
+			spots.append(t + Vector2(cos(a), sin(a)) * rng.randf_range(0.9, 1.7))
+	for i in 220:
+		var p := Vector2(rng.randf_range(-23.0, 23.0), rng.randf_range(-23.0, 27.0))
+		var wood := 1.0 - smoothstep(0.65, 1.2, Layout.patch_distance(p, Layout.WOODLAND))
+		var edge := maxf(smoothstep(19.0, 23.0, absf(p.x)), smoothstep(-19.0, -23.0, p.y))
+		if rng.randf() < 0.15 + 0.6 * maxf(wood, edge):
+			spots.append(p)
+	for p in spots:
+		if not _free_spot(p, 0.5):
+			continue
+		var base := GROUND_Y + relief(p, noise)
+		var r := rng.randf_range(0.28, 0.5)
+		var h := minf(rng.randf_range(0.18, 0.27), 0.29 - base) # regra: nada acima de 0,3 m sem solido
+		var heath := Layout.patch_distance(p, Layout.HEATH) < 1.0
+		_blob(sts[_chunk(p)], rng, Vector3(p.x, base - 0.02, p.y), r, h, heath_shrub if heath else shrub_tones, 6)
+		if rng.randf() < 0.5: # segundo tufo colado: arbusto irregular
+			var q := p + Vector2(rng.randf_range(-0.35, 0.35), rng.randf_range(-0.35, 0.35))
+			_blob(sts[_chunk(q)], rng, Vector3(q.x, base - 0.02, q.y), r * 0.7, h * 0.8, heath_shrub if heath else shrub_tones, 5)
+		count += 1
+	# Troncos caidos na Floresta Oeste (baixos, deitados).
+	var bark := [Color("8a6a4a"), Color("6c4f37"), Color("4c3626")]
+	var logs := 0
+	for i in 40:
+		if logs >= 7:
+			break
+		var p := Vector2(rng.randf_range(-23.0, -8.0), rng.randf_range(4.0, 27.0))
+		if not _free_spot(p, 0.8):
+			continue
+		var yaw := rng.randf() * PI
+		var dir := Vector3(cos(yaw), 0, sin(yaw))
+		var length := rng.randf_range(1.2, 2.0)
+		var paint := func(f: Vector3, n: Vector3) -> Color:
+			if absf(n.dot(dir)) > 0.8:
+				return Color("c9a77a") # corte do tronco
+			return Facets.facet_shade(bark[1].lerp(bark[2], 0.5 * absf(sin(f.x * 5.0 + f.z * 3.0))), n)
+		var basis := Basis(Quaternion(Vector3.UP, dir))
+		var start := Vector3(p.x, GROUND_Y + 0.1, p.y) - dir * length * 0.5
+		var rings := []
+		for k in 2:
+			rings.append(Facets.ring(6, 0.12, length * k, rng, 0.08, 0.0, 0.0, Transform3D(basis, start)))
+		Facets.loft(st_for(sts, p), rings, true, true, paint)
+		logs += 1
+	# Cascalho na Regiao Rochosa: pedrinhas facetadas rentes.
+	var gravel := [Color("a7aa9c"), Color("86897f"), Color("62665d")]
+	for i in 260:
+		var p := Vector2(rng.randf_range(4.0, 23.0), rng.randf_range(6.0, 27.0))
+		if Layout.patch_distance(p, Layout.HEATH) > 1.05 or not _free_spot(p, 0.3):
+			continue
+		var s := rng.randf_range(0.07, 0.16)
+		_blob(sts[_chunk(p)], rng, Vector3(p.x, GROUND_Y + relief(p, noise) - 0.01, p.y), s, s * 0.9, gravel, 5)
+	print("[018] %d arbustos, %d troncos caidos" % [count, logs])
+
+static func st_for(sts: Array, p: Vector2) -> SurfaceTool:
+	return sts[_chunk(p)]
