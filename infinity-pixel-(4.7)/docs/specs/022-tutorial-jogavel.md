@@ -82,3 +82,16 @@ pausa.
 
 Narrativa, dublagem, setas na tela, tutorial de território (recuperar marco),
 armadilha, melhoria de torre e cura na Fogueira (aparecem na partida normal).
+
+## Revisão após o playtest de 09/10/2026 (combate difícil demais)
+
+- Só na instância do tutorial: os dinossauros hostis (guardião, selvagens de
+  reposição e os 2 invasores da noite) causam **metade do dano**
+  (`damage_scale = 0.5`; mordida de 7,5). A partida normal continua com 1,0.
+- Textos do passo 3 e 4 ensinam o combate revisado: clicar **em cima** do
+  alvo, alcance de ~2 m, **arco vermelho no chão = recue um passo** (a mordida
+  hostil agora tem preparação visível de 0,4 s).
+- Feedback de erro no painel (sem mudar o passo): golpe no vazio, alvo longe
+  demais e mordida chegando.
+- `tests/tutorial`: 40 checks (antes 35): metade do dano no tutorial e dano
+  normal depois dele; aviso de golpe no vazio.

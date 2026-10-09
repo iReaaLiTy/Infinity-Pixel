@@ -80,6 +80,14 @@ func _ready() -> void:
 	check(step_is(Director.Step.ATTACK), "Sem golpe novo, o passo 3 nao avanca")
 	player()._try_attack()
 	check(await until_step(Director.Step.WEAKEN), "Um golpe real conclui o passo 3")
+	# Feedback de erro: golpe no vazio durante o passo 4 explica como acertar.
+	player().global_position = tut.target.global_position + Vector3(6, 0.1, 6)
+	player().rotation.y = 0.0
+	player().get_node("AttackCooldownTimer").stop()
+	player()._try_attack()
+	await frames(6)
+	check(tut.note.contains("vazio"), "Golpe no vazio no passo 4: o painel explica como acertar (%s)" % tut.note)
+	check(is_equal_approx(tut.target._current_attack_damage(), 7.5), "Mordida do selvagem do tutorial: 7,5 (metade de 15)")
 
 	# --- enfraquecer / domesticar (com queda do selvagem no meio) ---
 	var first = tut.target

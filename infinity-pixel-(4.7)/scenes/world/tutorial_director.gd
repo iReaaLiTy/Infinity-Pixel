@@ -35,8 +35,8 @@ enum Step { MOVE, WALK, ATTACK, WEAKEN, TAME, WOOD, STONE, INVENTORY, CAMPFIRE, 
 const TEXT := {
 	Step.MOVE: ["Ande pelo Refúgio", "Use W A S D para andar. A câmera acompanha você.", "W A S D"],
 	Step.WALK: ["Vá até o sinal jade", "Caminhe até a coluna de luz jade na estrada.", "W A S D"],
-	Step.ATTACK: ["Ataque", "Mire com o mouse e clique com o botão esquerdo para golpear.", "CLIQUE"],
-	Step.WEAKEN: ["Enfraqueça o selvagem", "Golpeie o dinossauro marcado. Pare quando surgir o anel jade sob ele (vida baixa) — não o derrote.", "CLIQUE"],
+	Step.ATTACK: ["Ataque", "Clique com o botão esquerdo: o herói vira para onde você clicou e golpeia. Clique EM CIMA do alvo; o golpe alcança cerca de 2 m.", "CLIQUE"],
+	Step.WEAKEN: ["Enfraqueça o selvagem", "Golpeie o dinossauro marcado (4 golpes). Quando aparecer um ARCO VERMELHO no chão à frente dele, recue um passo: ele vai morder. Pare quando surgir o anel jade sob ele.", "CLIQUE · RECUE"],
 	Step.TAME: ["Domestique", "Fique perto dele e SEGURE E por 2 segundos. Soltar ou se afastar cancela.", "SEGURE E"],
 	Step.WOOD: ["Colete Madeira", "Golpeie árvores de copa amarelada (coletáveis) até juntar 20 Madeira.", "CLIQUE"],
 	Step.STONE: ["Colete Pedra", "Golpeie as rochas com cristais de minério até juntar 12 Pedra.", "CLIQUE"],
@@ -71,6 +71,11 @@ var _progress: Label
 var _note: Label
 var _keys: Label
 var _time := 0.0
+# Feedback de erro (combate): golpe no vazio, longe demais, mordida chegando.
+var _swings := 0
+var _miss_check := 0
+var _miss_hp := 0.0
+var _note_left := 0.0
 
 func setup(main: Node, game_world: Node3D) -> void:
 	app = main
@@ -82,6 +87,8 @@ func setup(main: Node, game_world: Node3D) -> void:
 	DayNightManager.clock_hold = true
 	world.get_node("WaveManager").base_enemy_count = NIGHT_ENEMIES
 	placer.structure_built.connect(_on_structure_built)
+	player.attack_out_of_range.connect(func(_t): _say("Longe demais: chegue mais perto (o golpe alcança cerca de 2 m)."))
+	_swings = player.attack_count
 	DayNightManager.day_started.connect(_on_dawn)
 	_build_card()
 	_build_beacon()
@@ -194,6 +201,7 @@ func _process(delta: float) -> void:
 	for foe in get_tree().get_nodes_in_group("wave_enemy"):
 		if foe.get("damage_scale") == 1.0:
 			foe.damage_scale = TUTORIAL_DAMAGE_SCALE
+	_combat_feedback(delta)
 	_update_beacon()
 	_refresh_progress()
 
@@ -358,3 +366,31 @@ func _refresh_progress() -> void:
 	_progress.visible = text != ""
 	_note.text = note
 	_note.visible = note != ""
+
+## Mensagem curta no painel por alguns segundos (nao muda o passo).
+func _say(message: String, seconds := 2.5) -> void:
+	note = message
+	_note_left = seconds
+
+## Ensina o combate com o que o jogador acabou de fazer: golpe no vazio perto
+## do alvo, alvo preparando a mordida (arco vermelho). So texto.
+func _combat_feedback(delta: float) -> void:
+	if _note_left > 0.0:
+		_note_left -= delta
+		if _note_left <= 0.0:
+			note = ""
+	if step != Step.WEAKEN and step != Step.TAME:
+		_swings = player.attack_count
+		return
+	if not _alive(target):
+		return
+	if player.attack_count != _swings:
+		_swings = player.attack_count
+		_miss_hp = target.hp
+		_miss_check = 3
+	elif _miss_check > 0:
+		_miss_check -= 1
+		if _miss_check == 0 and target.hp == _miss_hp and note == "":
+			_say("Golpe no vazio: clique EM CIMA do dinossauro, a até ~2 m dele.")
+	if target.get("_windup_left") != null and target._windup_left > 0.0 and _flat(target.global_position, player.global_position) < 3.0:
+		_say("Arco vermelho: ele vai morder — recue um passo!", 1.2)
