@@ -1,0 +1,28 @@
+{
+	"failed": [],
+	"metrics": {
+		"aliado_1x1_vence": true,
+		"aliado_1x1_vida_restante": 28.25,
+		"dia_1x1_enfraquecer_s": 2.68,
+		"dia_1x1_vida_perdida": 30.0,
+		"noite1_jogador_vida": 82.75,
+		"noite1_refugio": 100.0,
+		"noite1_tempo_s": 11.8,
+		"noite1_vencida": true,
+		"noite_1x3_esquiva_abatidos": 0,
+		"noite_1x3_esquiva_dano_causado": 150.0,
+		"noite_1x3_esquiva_s": 8.02,
+		"noite_1x3_esquiva_vida": 0.0,
+		"noite_1x3_parado_abatidos": 1,
+		"noite_1x3_parado_s": 6.02,
+		"noite_1x3_parado_vida": 0.0
+	},
+	"passed": [
+		"Domesticacao preservada: 4 golpes -> 20/80 HP (20)",
+		"Dia 1x1: enfraquece o selvagem e sobra vida (perdeu 30 em 2.7 s)",
+		"Noite 1x3 parado: o jogador nao cai em menos de 6 s (6.0 s)",
+		"Noite 1x3 recuando: resiste >= 7 s e causa >= 120 de dano (8.0 s, 150)",
+		"Aliado x inimigo noturno 1x1: o aliado vence (vida 28)",
+		"Primeira noite com 1 torre + 1 aliado: vencida com o Refugio >= 50 (100)"
+	]
+}

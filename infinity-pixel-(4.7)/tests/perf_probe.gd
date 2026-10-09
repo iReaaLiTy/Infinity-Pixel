@@ -150,6 +150,11 @@ func live_scenarios() -> Array:
 	DayNightManager.start_night()
 	await get_tree().create_timer(4.0, true, false, true).timeout
 	out.append(await measure("vivo_noite_3_torres_aliado"))
+	# 2b. A mesma noite com o inventario aberto (veu + cartao sobre a cena).
+	if app.has_method("toggle_inventory"):
+		app.toggle_inventory()
+		out.append(await measure("vivo_noite_3_inventario"))
+		app.toggle_inventory()
 	# 3. Onda maior: nova partida, 10 invasores, as mesmas 3 torres.
 	app.start_game()
 	for i in 30: await get_tree().physics_frame
@@ -171,5 +176,39 @@ func live_scenarios() -> Array:
 	DayNightManager.start_night()
 	await get_tree().create_timer(6.0, true, false, true).timeout
 	out.append(await measure("vivo_noite_10_torres"))
+	# 4. Onda de 10 com 3 torres e 3 aliados em combate.
+	app.start_game()
+	for i in 30: await get_tree().physics_frame
+	world = app.world
+	visual = world.get_node("DayNightVisual")
+	player = world.get_node("Player")
+	player.set_process_unhandled_input(false)
+	player.set_physics_process(false)
+	player._invulnerable_left = INF
+	player.get_node("StrategicCamera").follow_smoothing = 0.0
+	world.get_node("Territory").max_health = 100000
+	world.get_node("Territory").health = 100000
+	for slot_name in ["SlotRuinMeadow", "SlotWestInner", "SlotEastInner"]:
+		world.get_node("DefenseSlots/" + slot_name).build()
+	var wild_scene: PackedScene = load("res://scenes/enemies/wild_dino.tscn")
+	for k in 3:
+		var ally = wild_scene.instantiate()
+		world.add_child(ally)
+		ally.global_position = Vector3(-2.0 + k * 2.0, 0.5, -6.0)
+		ally.domesticate()
+		ally.ally_state = 1
+		ally._stay_position = ally.global_position
+	world.get_node("WaveManager").base_enemy_count = 10
+	world.get_node("WaveManager").spawn_interval = 0.6
+	player.global_position = Vector3(0.0, 0.1, -5.0)
+	DayNightManager.start_night()
+	await get_tree().create_timer(6.0, true, false, true).timeout
+	out.append(await measure("vivo_noite_10_torres_3aliados"))
+	# 5. Tutorial (dia, sinal jade e painel ativos).
+	if app.has_method("start_tutorial"):
+		app.start_tutorial()
+		for i in 30: await get_tree().physics_frame
+		app.world.get_node("Player").set_process_unhandled_input(false)
+		out.append(await measure("vivo_tutorial"))
 	DayNightManager.gameplay_enabled = false
 	return out

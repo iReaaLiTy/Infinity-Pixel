@@ -1,0 +1,11 @@
+Evidencias - Quality Overhaul 2.0 (09/10/2026). Capturas REAIS do Godot (tools/*_capture), JPG reduzido.
+Registro: ../quality-overhaul-2.md. Pasta ignorada pelo Godot (.gdignore).
+
+comparacao/  ANTES (esquerda, 1ccdae7) | DEPOIS (direita), mesma camera e hora: cenario, criaturas, inventario.
+combate/     tools/combat_capture: preparacao da mordida, aliado em SEGUIR atacando (combate real), rastro do golpe.
+inventario/  inventario em 1280x720, 1600x900 e 1920x1080.
+interface/   menu, configuracoes, pausa (1920), controles, derrota, coleta, ponto de defesa, noite.
+tutorial/    passos 1, 4, 9 e conclusao.
+desempenho/  tests/perf_probe.tscn --live alternado: q2antes (copia de 1ccdae7) x q2depois. ATENCAO: notebook na
+             bateria e editor do Godot aberto durante a medicao (ver o registro).
+regressao/   resumos sem janela (25) e com janela (26) e combat_balance antes/depois.

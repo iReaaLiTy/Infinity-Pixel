@@ -1156,3 +1156,22 @@ marcada como aprovada. Registro completo, desempenho e roteiro de playtest:
 
 Pendências: playtest; propostas de economia G1–G6 não implementadas (fora do
 autorizado). A Spec 015 continua aguardando aprovação formal.
+
+## Quality Overhaul 2.0 (2026-10-09, após o playtest da reformulação)
+
+**Status:** implementado; sem janela 25/25 suítes (760 checks), com janela
+26/26 (790 checks); **aguardando playtest manual**. Nenhuma spec aprovada
+manualmente. Registro: `docs/validation/quality-overhaul-2.md`.
+
+- Bug do aliado sem dano: causa = SEGUIR não tinha combate; corrigido.
+- Direção do ataque: alvo pela intenção do clique; giro sem salto.
+- Balanceamento: preparação visível da mordida, i-frames 1,0 s, recarga
+  0,6 s, bônus noturno 1,15, aliado 20; tutorial com dano hostil ×0,5.
+- Inventário grande centralizado (não pausa: contrato 013D).
+- Polimento visual: personagens/construções facetados, capa do herói,
+  microrrelevo, arbustos, troncos, efeitos com função.
+- Configurações (volumes, tela cheia, escala) salvas.
+- Documentos: `propostas-game-design.md`, `roadmap-steam.md`,
+  `audio-auditoria.md`.
+- Pendente: remedir desempenho na tomada com o editor fechado; arte de
+  personagens própria; áudio novo; decisões de economia (P1–P6).
