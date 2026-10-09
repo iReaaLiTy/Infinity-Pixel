@@ -20,6 +20,13 @@ const GRAVITY := 9.8
 const DOMESTICATION_HP_FRACTION := 0.3
 # RF-AGE-008 valor inicial: 8 m de raio de defesa a partir do ponto de "ficar".
 const DEFENSE_RADIUS := 8.0
+# SEGUIR: ameacas a ate ALLY_GUARD_RADIUS do jogador; larga o alvo se ele
+# passar de ALLY_GUARD_LEASH do jogador (nao persegue pelo mapa).
+const ALLY_GUARD_RADIUS := 7.0
+const ALLY_GUARD_LEASH := 10.0
+# Golpe do aliado num selvagem fora da onda nunca o deixa abaixo disto
+# (= vida apos 4 golpes do jogador): continua domesticavel.
+const ALLY_TAME_FLOOR := 20.0
 # NAO esta na Spec 004: distancia em que o aliado para de seguir o jogador. Provisorio.
 const ALLY_FOLLOW_STOP_DISTANCE := 2.5
 # NAO esta na Spec 004: alcance para o comando "ficar" atingir o aliado. Provisorio,
@@ -274,8 +281,15 @@ func _process_ally(delta: float) -> void:
 
 # RF-NAV-005: cada aliado tem o proprio slot ao redor do Player. Com histerese:
 # parado no slot, so volta a andar quando o slot se afasta ALLY_SLOT_RESUME.
+# Correcao do playtest (09/10/2026): em SEGUIR o aliado tambem DEFENDE o jogador.
+# Antes so andava atras dele e nunca atacava; como todo aliado comeca em SEGUIR
+# e o F fica bloqueado a noite, ele passava a noite sem causar dano. Agora ataca
+# ameacas reais perto do jogador (ver _is_threat) e volta a seguir depois.
 func _ally_follow(player: Node3D) -> void:
 	_face_target = null
+	if player != null and _guard_player(player):
+		_drive(_engage(_target))
+		return
 	var desired := Vector3.ZERO
 	if player != null:
 		var goal: Variant = _slot_goal(player, &"follow")
@@ -292,6 +306,51 @@ func _ally_follow(player: Node3D) -> void:
 		if _ally_moving:
 			desired = _navigate_to(goal, BASE_SPEED, stop)
 	_drive(desired)
+
+## SEGUIR: mantem/escolhe a ameaca mais proxima do jogador. false = nenhuma.
+func _guard_player(player: Node3D) -> bool:
+	if _target != null and (not is_instance_valid(_target) or not _is_threat(_target) \
+			or _flat_offset_from(player.global_position, _target.global_position).length() > ALLY_GUARD_LEASH):
+		_target = null
+		_release_slot()
+	_retarget_left -= _frame_delta
+	if _target == null and _retarget_left <= 0.0:
+		_retarget_left = RETARGET_INTERVAL
+		var best_d := ALLY_GUARD_RADIUS
+		for candidate in get_tree().get_nodes_in_group("wild_dino"):
+			if not _is_threat(candidate):
+				continue
+			var d := _flat_offset_from(player.global_position, candidate.global_position).length()
+			if d <= best_d:
+				best_d = d
+				_target = candidate
+		if _target != null:
+			_attack_announced = false
+			print("[ALIADO] Defendendo o jogador de %s" % _target.name)
+	return _target != null
+
+## Ameaca real: inimigo da onda, ou selvagem que esta atacando o jogador ou um
+## aliado. (O aliado nunca finaliza um selvagem fora da onda: ver _try_attack.)
+func _is_threat(dino) -> bool:
+	if not is_instance_valid(dino) or dino == self or not dino.is_in_group("wild_dino") \
+			or dino.is_queued_for_deletion() or dino.hp <= 0.0:
+		return false
+	var wave: bool = dino.is_in_group("wave_enemy")
+	if wave:
+		return true
+	var aim = dino._target
+	return is_instance_valid(aim) and (aim.is_in_group("player") or aim.is_in_group("domesticated"))
+
+## Aproxima-se do alvo pelo slot de ataque e golpeia ao alcance (SEGUIR e FICAR).
+func _engage(target: Node3D) -> Vector3:
+	var desired := _approach(target, &"attack", BASE_SPEED, ATTACK_REACH)
+	if _flat_offset(target.global_position).length() <= ATTACK_REACH:
+		_face_target = target
+		if not _attack_announced:
+			_attack_announced = true
+			print("[ALIADO] Atacando: %s" % target.name)
+		_try_attack(target)
+	return desired
 
 func _ally_defend(delta: float) -> void:
 	# Alvo atual deixa de valer se morreu, foi domesticado (saiu de "wild_dino") ou
@@ -316,14 +375,7 @@ func _ally_defend(delta: float) -> void:
 	_face_target = null
 	if _target != null:
 		# RF-NAV-005: aliados que defendem dividem os slots ao redor do hostil.
-		var to_target := _flat_offset(_target.global_position)
-		desired = _approach(_target, &"attack", BASE_SPEED, ATTACK_REACH)
-		if to_target.length() <= ATTACK_REACH:
-			_face_target = _target
-			if not _attack_announced:
-				_attack_announced = true
-				print("[ALIADO] Atacando: %s" % _target.name)
-			_try_attack(_target)
+		desired = _engage(_target)
 	else:
 		_release_slot()
 		var to_stay := _flat_offset(_stay_position)
@@ -540,7 +592,7 @@ func _find_nearest_wild_dino_in_radius(center: Vector3, radius: float) -> Node3D
 	var nearest_dist := radius
 	for candidate in get_tree().get_nodes_in_group("wild_dino"):
 		var dino := candidate as Node3D
-		if dino == null or not is_instance_valid(dino):
+		if dino == null or not is_instance_valid(dino) or dino == self:
 			continue
 		var dist := _flat_offset_from(center, dino.global_position).length()
 		if dist <= nearest_dist:
@@ -582,7 +634,13 @@ func _try_attack(target: Node3D) -> void:
 	$Visual.strike()
 	_attack_cooldown_left = ATTACK_COOLDOWN
 	print("%s atacou %s." % [name, target.name])
-	target.take_damage(_current_attack_damage())
+	var damage := _current_attack_damage()
+	# Aliado x selvagem que NAO e da onda: o golpe para no limiar da
+	# domesticacao (20 HP). O aliado ajuda a enfraquecer, mas nunca mata o
+	# candidato do jogador. Inimigos da onda recebem o dano inteiro.
+	if is_domesticated and not target.is_in_group("wave_enemy") and target.get("is_domesticable") == true:
+		damage = minf(damage, target.hp - ALLY_TAME_FLOOR)
+	target.take_damage(damage)
 
 # RF-AGE-018: dano/velocidade sempre calculados a partir do valor-base; nunca
 # acumulam entre noites. Aliados (is_domesticated) nunca recebem o buff, mesmo

@@ -91,7 +91,10 @@ func _ready() -> void:
 	player.get_node("AttackCooldownTimer").stop()
 	player._try_attack()
 	check(dummy.hp < hp_before, "Ataque atinge o lado do cursor, nao o do movimento")
-	check(visual_forward(player).dot(Vector3(-1, 0, 0)) > .99, "Modelo encara o golpe momentaneamente")
+	# Correcao do playtest: o modelo VIRA rapido (~0,1 s) em vez de saltar no
+	# mesmo quadro; o golpe logico (dano acima) continua imediato.
+	await frames(6)
+	check(visual_forward(player).dot(Vector3(-1, 0, 0)) > .99, "Modelo encara o golpe momentaneamente (giro rapido, sem salto)")
 	key(KEY_D, true)
 	await frames(40)
 	key(KEY_D, false)

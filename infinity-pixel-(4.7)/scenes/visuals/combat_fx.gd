@@ -119,3 +119,39 @@ static func ring(near: Node, pos: Vector3, color: Color, radius := 2.0, time := 
 	t.tween_property(mi, "scale", Vector3.ONE * radius, time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	t.tween_property(mat, "albedo_color:a", 0.0, time)
 	t.chain().tween_callback(mi.queue_free)
+
+static var _arc: ArrayMesh
+
+## Arco do golpe (meia-lua deitada, abrindo para -Z), ~110 graus.
+static func arc_mesh() -> ArrayMesh:
+	if _arc == null:
+		var st := SurfaceTool.new()
+		st.begin(Mesh.PRIMITIVE_TRIANGLES)
+		var n := 12
+		for i in n:
+			var a0 := deg_to_rad(-55.0 + 110.0 * i / n)
+			var a1 := deg_to_rad(-55.0 + 110.0 * (i + 1) / n)
+			# mais grosso no meio, fino nas pontas
+			var w0 := 0.28 * sin(PI * float(i) / n) + 0.04
+			var w1 := 0.28 * sin(PI * float(i + 1) / n) + 0.04
+			var p := [Vector3(sin(a0), 0, -cos(a0)) * (1.5 - w0), Vector3(sin(a0), 0, -cos(a0)) * 1.5,
+				Vector3(sin(a1), 0, -cos(a1)) * 1.5, Vector3(sin(a1), 0, -cos(a1)) * (1.5 - w1)]
+			for k in [0, 2, 1, 0, 3, 2]:
+				st.set_normal(Vector3.UP)
+				st.add_vertex(p[k])
+		_arc = st.commit()
+	return _arc
+
+## Rastro do golpe do jogador na direcao `yaw` (frente = -Z). ~0,18 s.
+static func slash(near: Node, pos: Vector3, yaw: float, color := Color("fff3d6")) -> void:
+	var host := _host(near)
+	if host == null:
+		return
+	var mat := fx_material(color, 0.75)
+	var mi := _instance(host, arc_mesh(), mat, pos)
+	mi.rotation = Vector3(deg_to_rad(-8.0), yaw, 0)
+	mi.scale = Vector3.ONE * 0.75
+	var t := mi.create_tween().set_parallel(true)
+	t.tween_property(mi, "scale", Vector3.ONE * 1.05, 0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(mat, "albedo_color:a", 0.0, 0.18)
+	t.chain().tween_callback(mi.queue_free)

@@ -34,6 +34,7 @@ var _cycle_fill: StyleBoxFlat
 var _cycle_night := false
 var _focus_ring: MeshInstance3D # destaque do coletavel ao alcance
 var objective_override := "" # Spec 022: passo do tutorial (vazio = objetivo normal)
+var _range_hint_left := 0.0 # aviso "fora de alcance" apos um clique longe do alvo
 const NIGHT_VIOLET := Color("9aa6f0")
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 
@@ -165,6 +166,7 @@ func build(main: Node, game_world: Node3D) -> void:
 	player.health_changed.connect(_on_player_health)
 	player.died.connect(_on_player_died)
 	player.respawned.connect(_on_player_respawned)
+	player.attack_out_of_range.connect(func(_t): _range_hint_left = 1.2)
 	_on_player_health(player.current_hp, player.max_hp)
 	# Spec 017B/020: alerta curto quando a noite comeca (a onda esta a caminho).
 	DayNightManager.night_started.connect(_on_night_started)
@@ -766,6 +768,9 @@ func _process(_delta: float) -> void:
 	# Spec 017B/020: coletavel ao alcance — anel no chao e dica com a recompensa
 	# (so leitura: o golpe continua sendo o ataque normal).
 	_update_collect_focus(player)
+	_range_hint_left = maxf(0.0, _range_hint_left - get_process_delta_time())
+	if _range_hint_left > 0.0:
+		hint.text = "FORA DE ALCANCE  ·  Chegue mais perto (o golpe alcança ~2 m)"
 	hint.visible = hint.text != ""
 	channel_bar.visible = channel.get_progress() > 0.0 or healing > 0.0 or claim > 0.0
 	if healing > 0.0:
