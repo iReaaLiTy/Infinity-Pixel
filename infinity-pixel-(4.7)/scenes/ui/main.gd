@@ -26,19 +26,6 @@ var world: Node3D
 var ui: Control
 var overlay: Control
 var hud: Control
-var base_text: Label
-var base_bar: ProgressBar
-var player_text: Label # Spec 011 (RF-VID-006)
-var player_bar: ProgressBar
-var death_toast: Control
-var death_text: Label
-var wave_text: Label
-var clock_text: Label # Spec 013
-var countdown_text: Label
-var objective: Label
-var phase_text: Label
-var channel_bar: ProgressBar
-var hint: Label
 var audio: Node
 var screen := "menu"
 # Spec 013: fonte unica e o DayNightManager; mantido como leitura para a HUD/testes.
@@ -112,7 +99,6 @@ func _clear_ui() -> void:
 		child.queue_free()
 	overlay = null
 	hud = null
-	death_toast = null
 	audio_popup = null
 
 func _cancel_channel() -> void:
@@ -512,553 +498,6 @@ func _panel(parent: Node, box: Control) -> PanelContainer:
 	p.add_child(box)
 	return p
 
-func _build_hud() -> void:
-	hud = Control.new()
-	hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui.add_child(hud)
-	# Spec 013C (RF-HUD-001): HUD compacta em tres grupos separados — esquerda
-	# (vida), centro (tempo), direita (recursos) — no lugar da faixa continua.
-	# Esquerda: JOGADOR / REFUGIO, rotulo e valor na mesma linha, barra fina.
-	var health := VBoxContainer.new()
-	health.add_theme_constant_override("separation", 2)
-	health.custom_minimum_size.x = 200
-	player_text = _label("JOGADOR  100 / 100", 13, CREAM)
-	health.add_child(player_text)
-	player_bar = _hud_bar(health, EMBER)
-	var gap := Control.new()
-	gap.custom_minimum_size.y = 3
-	health.add_child(gap)
-	base_text = _label("REFÚGIO  100 / 100", 13, CREAM)
-	health.add_child(base_text)
-	base_bar = _hud_bar(health, JADE)
-	var left := _hud_panel(hud, health)
-	left.name = "HealthPanel"
-	left.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-	left.position = Vector2(16, 14)
-	# Centro: "DIA 1 • 08:58" / "PREPARAÇÃO · Noites: 0" (+ onda a noite).
-	var phase := VBoxContainer.new()
-	phase.add_theme_constant_override("separation", 0)
-	var phase_row := HBoxContainer.new()
-	phase_row.alignment = BoxContainer.ALIGNMENT_CENTER
-	phase_row.add_theme_constant_override("separation", 8)
-	phase.add_child(phase_row)
-	phase_text = _label("DIA 1", 17, GOLD)
-	phase_text.add_theme_font_override("font", _display_font())
-	phase_row.add_child(phase_text)
-	phase_row.add_child(_label("•", 15, GOLD))
-	clock_text = _label("08:00", 17, CREAM)
-	clock_text.add_theme_font_override("font", _display_font())
-	phase_row.add_child(clock_text)
-	wave_text = _label("PREPARAÇÃO  ·  Noites: 0", 12, CREAM)
-	wave_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	phase.add_child(wave_text)
-	onda_text = _label("", 12, Color("f0c9a0"))
-	onda_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	onda_text.hide()
-	phase.add_child(onda_text)
-	countdown_text = _label("", 14, EMBER)
-	countdown_text.add_theme_font_override("font", _display_font())
-	countdown_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	countdown_text.hide()
-	phase.add_child(countdown_text)
-	var center := _hud_panel(hud, phase)
-	center.name = "PhasePanel"
-	center.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
-	center.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	center.offset_top = 14
-	center.offset_bottom = 14
-	# Direita: Pontos de Defesa, Madeira e Pedra, icone + numero + legenda curta.
-	_build_points_panel(hud)
-	# Spec 008 (RF-UI-002): sem tutorial permanente. So objetivo atual + dica de
-	# contexto (alvo/aliado proximo) + barra de canalizacao, num painel compacto
-	# centralizado que cresce conforme o texto.
-	var bottom := VBoxContainer.new()
-	bottom.add_theme_constant_override("separation", 6)
-	var panel := _panel(hud, bottom)
-	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	panel.offset_top = -16
-	panel.offset_bottom = -16
-	objective = _label("", 17, GOLD)
-	objective.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bottom.add_child(objective)
-	hint = _label("", 15)
-	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bottom.add_child(hint)
-	channel_bar = ProgressBar.new()
-	channel_bar.max_value = 1.0
-	channel_bar.show_percentage = false
-	channel_bar.custom_minimum_size = Vector2(320, 8)
-	bottom.add_child(channel_bar)
-	_build_defense_panel()
-	_ignore_mouse(hud)
-	# Spec 007 (RF-CAM-004): com o cursor visivel, clicar sobre os paineis da HUD
-	# e clicar na interface — o painel consome o clique e o Player nao ataca.
-	for p in hud.find_children("*", "PanelContainer", true, false):
-		p.mouse_filter = Control.MOUSE_FILTER_STOP
-	build_button.mouse_filter = Control.MOUSE_FILTER_STOP
-	_build_inventory_panels() # Spec 013D (depois do _ignore_mouse: botoes clicaveis)
-	# Spec 013B: a HUD so exibe os pontos (fonte: DefenseEconomy do mundo).
-	var economy = world.get_node("DefenseEconomy")
-	economy.points_changed.connect(_on_points_changed)
-	var stock = world.get_node("ResourceStock")
-	stock.resources_changed.connect(_on_resources_changed)
-	wood_text.text = str(stock.get_amount(&"wood"))
-	stone_text.text = str(stock.get_amount(&"stone"))
-	_on_points_changed(economy.points, 0)
-	world.get_node("DefenseSlots").notice.connect(_show_defense_notice)
-	# Spec 015: territorios (a HUD so exibe; fonte: TerritoryManager do mundo).
-	var territories = world.get_node("TerritoryManager")
-	territories.state_changed.connect(func(_id, _s): _update_territory_count())
-	territories.claimed.connect(func(_id, title: String): _show_toast("TerritoryNotice", "%s RECUPERADA" % title, JADE))
-	territories.region_entered.connect(_on_region_entered)
-	territories.claim_cancelled.connect(func(reason: String): _show_toast("TerritoryNotice", "Recuperação cancelada (%s)" % reason, EMBER))
-	_update_territory_count()
-	# Spec 011 (RF-VID-006): a vida do jogador reage a sinais, sem consulta por quadro.
-	var player = world.get_node("Player")
-	player.health_changed.connect(_on_player_health)
-	player.died.connect(_on_player_died)
-	player.respawned.connect(_on_player_respawned)
-	_on_player_health(player.current_hp, player.max_hp)
-
-# ---------------------------------------------------------------------------
-# Spec 013B — Pontos de Defesa e pontos de construcao (HUD so exibe/encaminha)
-# ---------------------------------------------------------------------------
-var points_text: Label
-var points_box: Control
-var build_panel: PanelContainer
-var build_title: Label
-var build_info: Label
-var build_note: Label
-var build_button: Button
-var _build_slot: Node3D
-
-var wood_text: Label # Spec 013C
-var stone_text: Label
-var territory_text: Label # Spec 015: "1/3"
-var onda_text: Label
-var _resource_items := {} # kind -> Control (posicao do "+N")
-
-# Painel compacto (margens menores que _panel) para a HUD de jogo.
-func _hud_panel(parent: Node, box: Control) -> PanelContainer:
-	var p := PanelContainer.new()
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(.04, .12, .115, .82)
-	style.border_color = Color("456c59")
-	style.set_border_width_all(1)
-	style.set_corner_radius_all(7)
-	style.content_margin_left = 12
-	style.content_margin_right = 12
-	style.content_margin_top = 6
-	style.content_margin_bottom = 7
-	p.add_theme_stylebox_override("panel", style)
-	parent.add_child(p)
-	p.add_child(box)
-	return p
-
-func _hud_bar(parent: Node, color: Color) -> ProgressBar:
-	var bar := ProgressBar.new()
-	bar.custom_minimum_size.y = 6
-	bar.show_percentage = false
-	var fill := StyleBoxFlat.new()
-	fill.bg_color = color
-	fill.set_corner_radius_all(3)
-	var back := StyleBoxFlat.new()
-	back.bg_color = Color("17332f")
-	back.set_corner_radius_all(3)
-	bar.add_theme_stylebox_override("fill", fill)
-	bar.add_theme_stylebox_override("background", back)
-	parent.add_child(bar)
-	return bar
-
-# Icones vetoriais pequenos: tora (madeira) e bloco (pedra).
-func _resource_icon(kind: StringName, size: float) -> Control:
-	if kind == &"defense":
-		return _crystal(size)
-	if kind == &"territory": # Spec 015: marco (pedestal + cristal)
-		var m := Control.new()
-		m.custom_minimum_size = Vector2(size, size)
-		m.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		m.draw.connect(func():
-			var s := m.size
-			m.draw_rect(Rect2(s.x * .2, s.y * .74, s.x * .6, s.y * .18), Color("8d9a8f"))
-			m.draw_rect(Rect2(s.x * .36, s.y * .5, s.x * .28, s.y * .26), Color("7c8980"))
-			m.draw_colored_polygon(PackedVector2Array([Vector2(s.x * .5, s.y * .04), Vector2(s.x * .7, s.y * .27), Vector2(s.x * .5, s.y * .5), Vector2(s.x * .3, s.y * .27)]), Color("7fe0b8")))
-		return m
-	var c := Control.new()
-	c.custom_minimum_size = Vector2(size, size)
-	c.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	c.draw.connect(func():
-		var s := c.size
-		if kind == &"wood":
-			c.draw_rect(Rect2(s.x * .08, s.y * .3, s.x * .72, s.y * .42), Color("8a6440"))
-			c.draw_circle(Vector2(s.x * .78, s.y * .51), s.y * .21, Color("d9b98a"))
-			c.draw_arc(Vector2(s.x * .78, s.y * .51), s.y * .11, 0, TAU, 10, Color("8a6440"), 1.5)
-		else:
-			var pts := PackedVector2Array()
-			for i in 6:
-				var a := TAU * i / 6.0 + .3
-				pts.append(s * .5 + Vector2(cos(a) * s.x * .42, sin(a) * s.y * .36))
-			c.draw_colored_polygon(pts, Color("9aa79d"))
-			c.draw_colored_polygon(PackedVector2Array([s * .5, s * .5 + Vector2(s.x * .3, -s.y * .2), s * .5 + Vector2(s.x * .1, s.y * .25)]), Color("6e8aa3")))
-	return c
-
-func _resource_item(row: Node, kind: StringName, caption: String, color: Color) -> Label:
-	var item := HBoxContainer.new()
-	item.add_theme_constant_override("separation", 5)
-	item.add_child(_resource_icon(kind, 20))
-	var col := VBoxContainer.new()
-	col.add_theme_constant_override("separation", -5)
-	var value := _label("0", 16, color)
-	value.add_theme_font_override("font", _display_font())
-	col.add_child(value)
-	col.add_child(_label(caption, 9, Color(CREAM, .75)))
-	item.add_child(col)
-	row.add_child(item)
-	_resource_items[kind] = item
-	return value
-
-func _build_points_panel(parent: Node) -> void:
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 14)
-	points_text = _resource_item(row, &"defense", "DEFESA", Color("aef0cf"))
-	wood_text = _resource_item(row, &"wood", "MADEIRA", Color("e6c79a"))
-	stone_text = _resource_item(row, &"stone", "PEDRA", Color("c9d3cc"))
-	territory_text = _resource_item(row, &"territory", "TERRITÓRIOS", Color("9fe0c0")) # Spec 015
-	points_box = _hud_panel(parent, row)
-	points_box.name = "PointsPanel"
-	points_box.tooltip_text = "Pontos de Defesa · Madeira · Pedra · Territórios recuperados"
-	points_box.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	points_box.grow_horizontal = Control.GROW_DIRECTION_BEGIN
-	points_box.offset_right = -16
-	points_box.offset_top = 14
-	var esc := _label("ESC  pausa", 11, Color(CREAM, .85))
-	esc.add_theme_color_override("font_outline_color", Color("10221e"))
-	esc.add_theme_constant_override("outline_size", 4) # legivel em fundo claro
-	esc.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	esc.grow_horizontal = Control.GROW_DIRECTION_BEGIN
-	esc.offset_right = -20
-	esc.offset_top = 66
-	parent.add_child(esc)
-
-func _on_points_changed(total: int, delta: int) -> void:
-	if not is_instance_valid(points_text):
-		return
-	points_text.text = str(total)
-	if delta > 0:
-		_show_gain("PointsGain", &"defense", "+%d PONTOS" % delta, GOLD)
-
-func _on_resources_changed(kind: StringName, total: int, delta: int) -> void:
-	var label: Label = wood_text if kind == &"wood" else stone_text
-	if not is_instance_valid(label):
-		return
-	label.text = str(total)
-	if delta > 0:
-		_show_gain("WoodGain" if kind == &"wood" else "StoneGain", kind, "+%d %s" % [delta, "MADEIRA" if kind == &"wood" else "PEDRA"], Color("e6c79a") if kind == &"wood" else Color("c9d3cc"))
-
-# RF-HUD-002: "+N" pequeno logo abaixo do item, ~1 s, sem mudar o painel.
-func _show_gain(node_name: String, kind: StringName, text: String, color: Color) -> void:
-	var gain := _label(text, 14, color)
-	gain.add_theme_font_override("font", _display_font())
-	gain.add_theme_color_override("font_outline_color", Color("10221e"))
-	gain.add_theme_constant_override("outline_size", 4)
-	gain.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	hud.add_child(gain)
-	gain.name = node_name # depois do add_child, como os avisos (senao vira @Label@N)
-	var item: Control = _resource_items.get(kind, points_box)
-	# Abaixo do "ESC pausa" e nunca passando da borda direita da tela.
-	var width := gain.get_minimum_size().x
-	var x := minf(item.global_position.x, hud.size.x - width - 12.0)
-	gain.global_position = Vector2(x, points_box.global_position.y + points_box.size.y + 34)
-	var t := gain.create_tween().set_parallel()
-	t.tween_property(gain, "position:y", gain.position.y - 14, 1.0)
-	t.tween_property(gain, "modulate:a", 0.0, 1.0).set_delay(.4)
-	t.chain().tween_callback(gain.queue_free)
-
-# Painel contextual: so aparece perto de um ponto de defesa. Fica acima do
-# painel de objetivo, nunca no centro da tela.
-func _build_defense_panel() -> void:
-	var box := VBoxContainer.new()
-	box.add_theme_constant_override("separation", 4)
-	build_title = _label("TORRE DE DEFESA", 18, GOLD)
-	build_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	box.add_child(build_title)
-	build_info = _label("", 15)
-	build_info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	box.add_child(build_info)
-	build_button = _menu_button(box, "CONSTRUIR", 18, Color("e9a23b"), Color("8a4f19"), 6, 12, 22, 4, func():
-		if is_instance_valid(_build_slot):
-			world.get_node("DefenseSlots").interact(_build_slot))
-	build_button.focus_mode = Control.FOCUS_NONE # C e clique; nao rouba teclas
-	build_note = _label("", 14, EMBER)
-	build_note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	box.add_child(build_note)
-	build_panel = _panel(hud, box)
-	build_panel.name = "DefensePanel"
-	build_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	build_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	build_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	build_panel.offset_top = -120
-	build_panel.offset_bottom = -120
-	build_panel.hide()
-
-func _update_defense_panel() -> void:
-	var slots = world.get_node("DefenseSlots")
-	_build_slot = slots.nearest_slot()
-	build_panel.visible = _build_slot != null
-	if _build_slot == null:
-		return
-	var reason: String = slots.block_reason(_build_slot)
-	var cost: int = slots.action_cost(_build_slot)
-	if _build_slot.is_empty():
-		build_title.text = "PONTO DE CONSTRUÇÃO"
-		build_info.text = "Torre de Defesa  ·  Custo: %d" % cost
-		build_button.text = "[C]  CONSTRUIR"
-	else:
-		var tower = _build_slot.tower
-		var s: Dictionary = tower.stats()
-		build_title.text = "TORRE DE DEFESA  ·  NÍVEL %d" % tower.level
-		build_info.text = "Dano: %d  ·  Alcance: %d" % [s.damage, s.range]
-		build_button.text = "NÍVEL MÁXIMO" if tower.is_max_level() else "MELHORAR — %d  (C)" % cost
-	build_button.disabled = reason != ""
-	build_note.text = reason if reason != "NÍVEL MÁXIMO" else ""
-	build_note.visible = build_note.text != ""
-
-# ---------------------------------------------------------------------------
-# Spec 013D — Inventario (I), menu de construcao (B) e posicionamento.
-# A HUD so exibe: recursos vem do ResourceStock; regras/limites do BuildPlacer.
-# ---------------------------------------------------------------------------
-const BuildRecipes := preload("res://scenes/world/build_recipes.gd")
-var inventory_panel: PanelContainer
-var build_menu_panel: PanelContainer
-var inv_wood_text: Label
-var inv_stone_text: Label
-var placement_panel: PanelContainer
-var placement_title: Label
-var placement_note: Label
-var _recipe_rows := {} # painel -> {recipe_id: {"button", "status"}}
-
-func _placer() -> Node:
-	return world.get_node("BuildPlacer") if is_instance_valid(world) else null
-
-func _cost_line(parent: Node, wood: int, stone: int) -> void:
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 5)
-	row.add_child(_resource_icon(&"wood", 15))
-	row.add_child(_label("%d Madeira" % wood, 13, Color("e6c79a")))
-	row.add_child(_label("•", 13, Color(CREAM, .6)))
-	row.add_child(_resource_icon(&"stone", 15))
-	row.add_child(_label("%d Pedra" % stone, 13, Color("c9d3cc")))
-	parent.add_child(row)
-
-func _recipe_list(box: VBoxContainer, rows: Dictionary) -> void:
-	for id in BuildRecipes.order():
-		var r := BuildRecipes.get_recipe(id)
-		var entry := VBoxContainer.new()
-		entry.add_theme_constant_override("separation", 2)
-		entry.add_child(_label(r.name, 15, GOLD))
-		_cost_line(entry, r.wood, r.stone)
-		var line := HBoxContainer.new()
-		var status := _label("", 12, EMBER)
-		status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		line.add_child(status)
-		var button := _menu_button(line, "CONSTRUIR", 14, Color("e9a23b"), Color("8a4f19"), 5, 9, 14, 2, func(): _start_placement(id))
-		button.focus_mode = Control.FOCUS_NONE
-		entry.add_child(line)
-		box.add_child(entry)
-		rows[id] = {"button": button, "status": status}
-
-func _side_panel(title: String, box: VBoxContainer) -> PanelContainer:
-	box.add_theme_constant_override("separation", 8)
-	box.custom_minimum_size.x = 260
-	var head := _label(title, 17, GOLD)
-	head.add_theme_font_override("font", _display_font())
-	box.add_child(head)
-	box.move_child(head, 0)
-	var p := _hud_panel(hud, box)
-	p.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	p.grow_horizontal = Control.GROW_DIRECTION_BEGIN
-	p.offset_right = -16
-	p.offset_top = 112 # abaixo dos recursos e do "+N"; nao cresce a HUD do topo
-	p.mouse_filter = Control.MOUSE_FILTER_STOP # clique no painel nao ataca
-	p.hide()
-	return p
-
-func _build_inventory_panels() -> void:
-	_recipe_rows = {} # a HUD e recriada a cada partida: nada da anterior (ja liberado)
-	# INVENTARIO (I): recursos + receitas. Nao pausa o mundo.
-	var inv := VBoxContainer.new()
-	for kind in [&"wood", &"stone"]:
-		var row := HBoxContainer.new()
-		row.add_theme_constant_override("separation", 8)
-		row.add_child(_resource_icon(kind, 20))
-		var name_label := _label("MADEIRA" if kind == &"wood" else "PEDRA", 15)
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		row.add_child(name_label)
-		var value := _label("0", 17, Color("e6c79a") if kind == &"wood" else Color("c9d3cc"))
-		value.add_theme_font_override("font", _display_font())
-		row.add_child(value)
-		inv.add_child(row)
-		if kind == &"wood": inv_wood_text = value
-		else: inv_stone_text = value
-	inv.add_child(_label("CONSTRUÇÕES", 12, JADE))
-	var inv_rows := {}
-	_recipe_list(inv, inv_rows)
-	inv.add_child(_label("I fecha  ·  B constrói direto", 11, Color(CREAM, .6)))
-	inventory_panel = _side_panel("INVENTÁRIO", inv)
-	inventory_panel.name = "InventoryPanel"
-	_recipe_rows[inventory_panel] = inv_rows
-	# CONSTRUCAO (B): so as receitas, compacto.
-	var bm := VBoxContainer.new()
-	var bm_rows := {}
-	_recipe_list(bm, bm_rows)
-	bm.add_child(_label("B fecha", 11, Color(CREAM, .6)))
-	build_menu_panel = _side_panel("CONSTRUIR", bm)
-	build_menu_panel.name = "BuildMenuPanel"
-	_recipe_rows[build_menu_panel] = bm_rows
-	# Dica do posicionamento (mesmo lugar do painel de ponto de defesa).
-	var pbox := VBoxContainer.new()
-	pbox.add_theme_constant_override("separation", 2)
-	placement_title = _label("", 16, GOLD)
-	placement_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	pbox.add_child(placement_title)
-	var keys := _label("Clique: construir  ·  R: girar  ·  Botão direito / ESC: cancelar", 12)
-	keys.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	pbox.add_child(keys)
-	placement_note = _label("", 13, EMBER)
-	placement_note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	pbox.add_child(placement_note)
-	placement_panel = _hud_panel(hud, pbox)
-	placement_panel.name = "PlacementPanel"
-	placement_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	placement_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	placement_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	placement_panel.offset_top = -100
-	placement_panel.offset_bottom = -100
-	_ignore_mouse(placement_panel) # dica nunca bloqueia o clique de construir
-	placement_panel.hide()
-	var stock = world.get_node("ResourceStock")
-	stock.resources_changed.connect(func(_k, _t, _d): _refresh_inventory()) # RF-INV-001: por sinal
-	var placer := _placer()
-	placer.notice.connect(func(text: String): _show_toast("BuildNotice", text, GOLD if text.ends_with("CONSTRUÍDA") else EMBER))
-	placer.structure_built.connect(_on_structure_built)
-	_refresh_inventory()
-
-func _refresh_inventory() -> void:
-	if not is_instance_valid(inv_wood_text) or not is_instance_valid(world):
-		return
-	var stock = world.get_node("ResourceStock")
-	inv_wood_text.text = str(stock.get_amount(&"wood"))
-	inv_stone_text.text = str(stock.get_amount(&"stone"))
-	var placer := _placer()
-	for panel in _recipe_rows:
-		for id in _recipe_rows[panel]:
-			var reason: String = placer.recipe_block_reason(id)
-			_recipe_rows[panel][id].status.text = reason
-			_recipe_rows[panel][id].button.disabled = reason != ""
-
-func toggle_inventory() -> void:
-	build_menu_panel.hide()
-	inventory_panel.visible = not inventory_panel.visible
-	_refresh_inventory()
-
-func toggle_build_menu() -> void:
-	inventory_panel.hide()
-	build_menu_panel.visible = not build_menu_panel.visible
-	_refresh_inventory()
-
-func _start_placement(id: StringName) -> void:
-	inventory_panel.hide()
-	build_menu_panel.hide()
-	_placer().begin(id)
-
-## ESC: fecha posicionamento/paineis antes de pausar. true = consumiu.
-func _close_build_ui() -> bool:
-	if not is_instance_valid(world) or not is_instance_valid(inventory_panel):
-		return false
-	if _placer().is_placing():
-		_placer().cancel()
-		return true
-	if inventory_panel.visible or build_menu_panel.visible:
-		inventory_panel.hide()
-		build_menu_panel.hide()
-		return true
-	return false
-
-func _update_build_ui() -> void:
-	if not is_instance_valid(placement_panel):
-		return
-	var placer := _placer()
-	placement_panel.visible = placer.is_placing()
-	if placer.is_placing():
-		build_panel.hide() # o painel de torre nao disputa o mesmo lugar
-		placement_title.text = "POSICIONANDO: %s" % BuildRecipes.get_recipe(placer.recipe_id).name
-		placement_note.text = "" if placer.ghost_valid else placer.ghost_reason
-	if inventory_panel.visible or build_menu_panel.visible:
-		_refresh_inventory() # status (dia/noite, limite) so com o painel aberto
-
-func _on_structure_built(id: StringName, node: Node3D) -> void:
-	_refresh_inventory()
-	if id == BuildRecipes.CAMPFIRE:
-		node.heal_completed.connect(func(amount): _show_toast("HealNotice", "CURADO  +%d" % amount, JADE))
-		node.heal_cancelled.connect(func(reason): _show_toast("HealNotice", "Cura cancelada (%s)" % reason, EMBER))
-
-# Spec 015 (RF-TER-012): "TERRITORIOS 1/3" no painel da direita.
-func _update_territory_count() -> void:
-	var territories = world.get_node_or_null("TerritoryManager")
-	if territories == null or not is_instance_valid(territory_text):
-		return
-	territory_text.text = "%d/%d" % [territories.controlled_count(), territories.total_count()]
-
-# Spec 015 (RF-TER-011): nome da regiao + estado, pequeno e temporario.
-func _on_region_entered(_id: StringName, title: String, state: int) -> void:
-	var controlled: bool = state == 2
-	_show_toast("RegionNotice", "%s  ·  %s" % [title, "Território controlado" if controlled else ("Pronto para ser recuperado" if state == 1 else "Território selvagem")], JADE if controlled else (GOLD if state == 1 else CREAM))
-
-func _show_defense_notice(text: String) -> void:
-	_show_toast("DefenseNotice", text, EMBER)
-
-func _on_player_health(current: float, maximum: float) -> void:
-	if not is_instance_valid(player_bar):
-		return
-	var hurt := current < player_bar.value and player_bar.max_value == maximum
-	player_bar.max_value = maximum
-	player_bar.value = current
-	player_text.text = "JOGADOR  %d / %d" % [ceili(current), int(maximum)]
-	if hurt: # tinta breve na barra e no texto; nada na camera
-		for node in [player_bar, player_text]:
-			node.modulate = Color(1.0, .45, .4)
-			node.create_tween().tween_property(node, "modulate", Color.WHITE, .35)
-
-# RF-VID-007: aviso pequeno e passageiro, sem modal e sem pausar.
-func _on_player_died() -> void:
-	if not is_instance_valid(hud):
-		return
-	var box := VBoxContainer.new()
-	death_text = _label("", 19, EMBER)
-	box.add_child(death_text)
-	death_toast = _panel(hud, box)
-	death_toast.name = "DeathToast"
-	death_toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
-	death_toast.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	death_toast.offset_top = 170
-	death_toast.offset_bottom = 170
-	_ignore_mouse(death_toast)
-	_update_death_toast()
-
-func _update_death_toast() -> void:
-	if not is_instance_valid(death_toast) or not is_instance_valid(world):
-		return
-	var left: float = world.get_node("Player").respawn_time_left()
-	death_text.text = "VOCÊ CAIU  ·  retornando ao ponto inicial em %d…" % maxi(ceili(left), 1)
-
-func _on_player_respawned() -> void:
-	if is_instance_valid(death_toast):
-		death_toast.queue_free()
-	death_toast = null
-
 func _ignore_mouse(control: Node) -> void:
 	if control is Control:
 		control.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -1140,23 +579,6 @@ func _victory() -> void:
 func _night_warning() -> void:
 	_show_toast("NightWarningToast", "A NOITE SE APROXIMA", EMBER)
 
-func _show_toast(toast_name: String, text: String, color: Color) -> void:
-	if not is_instance_valid(hud):
-		return
-	var box := VBoxContainer.new()
-	box.add_child(_label(text, 20, color))
-	var toast := _panel(hud, box)
-	toast.name = toast_name
-	toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
-	toast.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	toast.offset_top = 112
-	toast.offset_bottom = 112
-	_ignore_mouse(toast) # aviso nunca bloqueia cliques no mundo
-	var fade := toast.create_tween()
-	fade.tween_interval(DAWN_TOAST_TIME)
-	fade.tween_property(toast, "modulate:a", 0.0, 0.5)
-	fade.tween_callback(toast.queue_free)
-
 func _input(event: InputEvent) -> void:
 	# Spec 013D: I = inventario, B = construcao (nao pausam o mundo).
 	if screen == "playing" and is_instance_valid(inventory_panel) and not event.is_echo():
@@ -1184,89 +606,101 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and screen == "playing":
 		pause_game()
 
-func _process(_delta: float) -> void:
-	if not is_instance_valid(world) or not is_instance_valid(hud):
-		return
-	_update_death_toast() # so a contagem do aviso; nada roda sem o aviso aberto
-	_update_defense_panel() # Spec 013B: painel contextual do ponto de defesa
-	var base = world.get_node("Territory")
-	base_bar.max_value = base.max_health
-	base_bar.value = base.health
-	base_text.text = "REFÚGIO  %d / %d" % [base.health, base.max_health]
-	var wave: Dictionary = world.get_node("WaveManager").snapshot()
-	var day: int = DayNightManager.day_number
-	phase_text.text = ("NOITE %d" if DayNightManager.is_night() else "DIA %d") % day # 013C: "DIA 1 • 08:58"
-	clock_text.text = DayNightManager.clock_text()
-	if DayNightManager.is_night():
-		wave_text.text = "DEFESA  ·  Noites: %d" % victory_count
-		onda_text.text = "%d/%d criados  ·  %d neutralizados  ·  %d ativos" % [wave.spawned, wave.total, wave.resolved, wave.active]
-		onda_text.show()
-	else:
-		wave_text.text = "PREPARAÇÃO  ·  Noites: %d" % victory_count
-		onda_text.hide()
-	# RF-CIC-002: ultimos segundos antes das 18:00, sem modal nem bloqueio.
-	var left: float = DayNightManager.seconds_until_night()
-	countdown_text.visible = DayNightManager.is_day() and left > 0.0 and left <= DayNightManager.night_countdown_seconds
-	if countdown_text.visible:
-		countdown_text.text = "ANOITECE EM %d" % ceili(left)
-	var player = world.get_node("Player")
-	var channel = player.get_node("DomesticationChannel")
-	channel_bar.value = channel.get_progress()
-	var allies := get_tree().get_nodes_in_group("domesticated")
-	# Spec 008 (RF-UI-002): objetivo curto + dica so quando ha contexto (alvo ou
-	# aliado proximo). Instrucoes de controle ficam na tela Controles.
-	hint.text = ""
-	if DayNightManager.is_night():
-		objective.text = "Defenda o refúgio"
-	elif allies.is_empty():
-		objective.text = "Domestique o selvagem da clareira lateral"
-		if not world.get_node("EncounterSpawner").is_encounter_wild():
-			objective.text = "Encontro derrotado — prepare-se para a noite"
-	else:
-		objective.text = "Posicione aliados (F) antes do anoitecer  ·  Aliados: %d" % allies.size()
-	# Spec 015: guardiao neutralizado -> o objetivo do dia aponta o marco.
-	if DayNightManager.is_day():
-		var terr = world.get_node("TerritoryManager")
-		for id in terr.markers:
-			if terr.state_of(id) == 1:
-				objective.text = "%s pronta: segure E no marco para recuperar" % terr.info(id).name
-				break
-	for dino in get_tree().get_nodes_in_group("wild_dino"):
-		if dino.global_position.distance_to(player.global_position) < 3.2:
-			if dino.can_be_domesticated(): hint.text = "SEGURE E  ·  %.1f / 2.0 s  ·  Soltar ou afastar cancela" % (channel.get_progress()*2)
-			elif not dino.is_domesticable: hint.text = "CARNOTAURO  ·  Esta variante não pode ser domesticada."
-	for ally in allies:
-		if ally.global_position.distance_to(player.global_position) < 3.3:
-			hint.text = "ALIADO %d/80 HP  ·  %s  ·  %s" % [ally.hp, "SEGUINDO" if ally.ally_state == 0 else "DEFENDENDO POSTO", "F alterna seguir/ficar" if DayNightManager.is_day() else "Posicionamento bloqueado durante a noite"]
-	# Spec 013D: Fogueira de Cura — dica de uso e barra "CURANDO..."
-	var fire = get_tree().get_first_node_in_group("healing_campfire")
-	var healing := 0.0
-	if fire != null and fire.player_in_range():
-		healing = fire.progress()
-		var why: String = fire.block_reason()
-		if healing > 0.0:
-			hint.text = "CURANDO...  %.1f / 3.0 s  ·  Sair do alcance, apanhar ou soltar H cancela" % (healing * 3.0)
-		elif why != "":
-			hint.text = "FOGUEIRA  ·  %s  ·  Cargas %d/2" % [why, fire.charges]
-		else:
-			hint.text = "FOGUEIRA  ·  Segure H para curar (+25)  ·  Cargas %d/2" % fire.charges
-	# Spec 015: marco territorial — barra "RECUPERANDO..." e dica perto do marco.
-	var territories = world.get_node("TerritoryManager")
-	var claim: float = territories.claim_progress()
-	if claim > 0.0:
-		hint.text = "RECUPERANDO TERRITÓRIO...  %.1f / 2.0 s  ·  Soltar E ou afastar cancela" % (claim * 2.0)
-	elif hint.text == "":
-		var near: StringName = territories.marker_near(3.0)
-		if near != &"":
-			var title: String = territories.info(near).name
-			match territories.state_of(near):
-				0: hint.text = "%s  ·  Marco inativo  ·  Derrote ou domestique o guardião" % title
-				1: hint.text = ("TERRITÓRIO PRONTO PARA SER RECUPERADO  ·  Segure E para ativar" if DayNightManager.is_day() else "TERRITÓRIO PRONTO  ·  Recupere durante o dia")
-				_: hint.text = "%s  ·  Território controlado" % title
-	hint.visible = hint.text != ""
-	channel_bar.visible = channel.get_progress() > 0.0 or healing > 0.0 or claim > 0.0
-	if healing > 0.0:
-		channel_bar.value = healing
-	if claim > 0.0:
-		channel_bar.value = claim
-	_update_build_ui()
+# ---------------------------------------------------------------------------
+# HUD da partida: scenes/ui/hud.gd (uma nova a cada partida). Os campos abaixo
+# so encaminham para ela, para que menus, testes e ferramentas continuem lendo
+# app.wood_text, app.build_panel etc. como antes da extracao.
+# ---------------------------------------------------------------------------
+const GameHud := preload("res://scenes/ui/hud.gd")
+
+func _build_hud() -> void:
+	hud = GameHud.new()
+	ui.add_child(hud)
+	hud.build(self, world)
+
+func _hud_field(field: StringName) -> Variant:
+	return hud.get(field) if is_instance_valid(hud) else null
+
+var base_text: Label:
+	get: return _hud_field(&"base_text")
+var base_bar: ProgressBar:
+	get: return _hud_field(&"base_bar")
+var player_text: Label:
+	get: return _hud_field(&"player_text")
+var player_bar: ProgressBar:
+	get: return _hud_field(&"player_bar")
+var death_toast: Control:
+	get: return _hud_field(&"death_toast")
+var death_text: Label:
+	get: return _hud_field(&"death_text")
+var wave_text: Label:
+	get: return _hud_field(&"wave_text")
+var clock_text: Label:
+	get: return _hud_field(&"clock_text")
+var countdown_text: Label:
+	get: return _hud_field(&"countdown_text")
+var objective: Label:
+	get: return _hud_field(&"objective")
+var phase_text: Label:
+	get: return _hud_field(&"phase_text")
+var channel_bar: ProgressBar:
+	get: return _hud_field(&"channel_bar")
+var hint: Label:
+	get: return _hud_field(&"hint")
+var points_text: Label:
+	get: return _hud_field(&"points_text")
+var points_box: Control:
+	get: return _hud_field(&"points_box")
+var build_panel: PanelContainer:
+	get: return _hud_field(&"build_panel")
+var build_title: Label:
+	get: return _hud_field(&"build_title")
+var build_info: Label:
+	get: return _hud_field(&"build_info")
+var build_note: Label:
+	get: return _hud_field(&"build_note")
+var build_button: Button:
+	get: return _hud_field(&"build_button")
+var wood_text: Label:
+	get: return _hud_field(&"wood_text")
+var stone_text: Label:
+	get: return _hud_field(&"stone_text")
+var territory_text: Label:
+	get: return _hud_field(&"territory_text")
+var onda_text: Label:
+	get: return _hud_field(&"onda_text")
+var inventory_panel: PanelContainer:
+	get: return _hud_field(&"inventory_panel")
+var build_menu_panel: PanelContainer:
+	get: return _hud_field(&"build_menu_panel")
+var inv_wood_text: Label:
+	get: return _hud_field(&"inv_wood_text")
+var inv_stone_text: Label:
+	get: return _hud_field(&"inv_stone_text")
+var placement_panel: PanelContainer:
+	get: return _hud_field(&"placement_panel")
+var placement_title: Label:
+	get: return _hud_field(&"placement_title")
+var placement_note: Label:
+	get: return _hud_field(&"placement_note")
+var _recipe_rows: Dictionary:
+	get: return hud._recipe_rows if is_instance_valid(hud) else {}
+
+func toggle_inventory() -> void:
+	hud.toggle_inventory()
+
+func toggle_build_menu() -> void:
+	hud.toggle_build_menu()
+
+func _start_placement(id: StringName) -> void:
+	hud._start_placement(id)
+
+func _close_build_ui() -> bool:
+	return is_instance_valid(hud) and hud._close_build_ui()
+
+func _placer() -> Node:
+	return world.get_node("BuildPlacer") if is_instance_valid(world) else null
+
+func _show_toast(toast_name: String, text: String, color: Color) -> void:
+	if is_instance_valid(hud):
+		hud._show_toast(toast_name, text, color)
