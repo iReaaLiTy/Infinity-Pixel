@@ -130,7 +130,7 @@ func _ready() -> void:
 	var spider = load("res://scenes/enemies/wild_dino.tscn").instantiate()
 	world.add_child(spider)
 	spider.global_position = Vector3(0, .5, 40) # longe de tudo: so le o dano
-	check(is_equal_approx(spider._current_attack_damage(), 19.5), "Dano noturno 19,5 alimentado pelo estado automatico")
+	check(is_equal_approx(spider._current_attack_damage(), 17.25), "Dano noturno 17,25 alimentado pelo estado automatico (balanceamento 09/10/2026: era 19,5)")
 	# [I][J] 3 inimigos, 3 rotas
 	var routes1 := await watch_spawns(wave, 3, 6.0)
 	routes1.sort()

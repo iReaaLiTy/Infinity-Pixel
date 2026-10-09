@@ -126,6 +126,40 @@ func _ready() -> void:
 	check(not is_instance_valid(a1) and is_instance_valid(a2) and a2.hp < 80.0, "Alvo eliminado: o aliado troca para o proximo inimigo")
 
 
+	# 5. Dois aliados x dois inimigos da noite: vencem e a recompensa da onda sai.
+	await fresh_game()
+	player.global_position = Vector3(0, 0.1, -14)
+	var allies := [make_ally(Vector3(-2, 0.5, -6), true), make_ally(Vector3(2, 0.5, -6), true)]
+	DayNightManager.state = DayNightManager.State.NIGHT
+	var economy = world.get_node("DefenseEconomy")
+	var points0: int = economy.points
+	var wave = world.get_node("WaveManager")
+	var pair := [hostile(Vector3(-2, 0.5, -2), true), hostile(Vector3(2, 0.5, -2), true)]
+	for f in pair:
+		wave._active_wave_enemies[f] = true
+		f.died.connect(wave._neutralize_wave_enemy.bind("morreu"))
+	for i in 60 * 20:
+		if pair.all(func(f): return not is_instance_valid(f)):
+			break
+		await get_tree().physics_frame
+	check(pair.all(func(f): return not is_instance_valid(f)), "2 aliados x 2 inimigos da noite: os aliados vencem")
+	check(economy.points > points0, "Inimigo da onda eliminado por aliado paga a recompensa (%d -> %d)" % [points0, economy.points])
+	check(allies.any(func(a): return is_instance_valid(a) and a.is_in_group("domesticated")), "Pelo menos um aliado sobrevive e segue aliado")
+
+	# 5b. Dois aliados x tres inimigos: dividem os alvos (nao ficam todos num so).
+	await fresh_game()
+	player.global_position = Vector3(0, 0.1, -14)
+	allies = [make_ally(Vector3(-3, 0.5, -6), true), make_ally(Vector3(3, 0.5, -6), true)]
+	DayNightManager.state = DayNightManager.State.NIGHT
+	var trio := [hostile(Vector3(-3, 0.5, -2), true), hostile(Vector3(3, 0.5, -2), true), hostile(Vector3(0, 0.5, 0), true)]
+	var hurt := {}
+	for i in 60 * 8:
+		for f in trio:
+			if not is_instance_valid(f) or f.hp < 80.0:
+				hurt[f] = true
+		await get_tree().physics_frame
+	check(hurt.size() >= 2, "2 aliados x 3 inimigos: ferem inimigos diferentes (%d/3)" % hurt.size())
+
 	# 6. Cooldown: um golpe por segundo (dano 15).
 	await fresh_game()
 	player.global_position = Vector3(0, 0.1, -16)
@@ -136,7 +170,7 @@ func _ready() -> void:
 	await frames(30)
 	var h0: float = bag.hp
 	await frames(60 * 3)
-	var hits := int(round((h0 - bag.hp) / 15.0))
+	var hits := int(round((h0 - bag.hp) / 20.0)) # golpe do aliado: 20
 	check(hits >= 2 and hits <= 4, "Cooldown de 1 s respeitado (%d golpes em 3 s)" % hits)
 
 	# 7. Sem fogo amigo: aliados, jogador e Refugio intactos sem hostis.

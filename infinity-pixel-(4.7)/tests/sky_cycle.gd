@@ -205,7 +205,7 @@ func _ready() -> void:
 
 	# [R] Inimigos: valores intactos (inclusive o buff noturno ja existente).
 	var dino = world.get_node("EncounterSpawner").encounters[0]
-	check(dnm.night_damage_multiplier == 1.30 and dnm.night_speed_multiplier == 1.20 and dino.MAX_HP == 80.0 and dino.BASE_ATTACK_DAMAGE == 15.0 and dino.BASE_SPEED == 4.0, "[R] Inimigos: HP 80, dano 15, velocidade 4, buff noturno 1,30/1,20 inalterados")
+	check(dnm.night_damage_multiplier == 1.15 and dnm.night_speed_multiplier == 1.20 and dino.MAX_HP == 80.0 and dino.BASE_ATTACK_DAMAGE == 15.0 and dino.BASE_SPEED == 4.0, "[R] Inimigos: HP 80, dano 15, velocidade 4, buff noturno 1,15 (balanceamento 09/10/2026; era 1,30) / 1,20")
 
 	# [S] Coleta intacta (a noite visual nao interfere).
 	var tree: Node = null

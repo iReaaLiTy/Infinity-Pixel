@@ -108,7 +108,7 @@ func _ready() -> void:
 	var enemy = load("res://scenes/enemies/wild_dino.tscn").instantiate()
 	enemy.position = world.get_node("EnemySpawnPoint").position
 	world.add_child(enemy)
-	await frames(570)
+	await frames(570 + 30) # balanceamento 09/10/2026: o golpe sai apos 0,4 s de preparacao
 	check(world.get_node("Territory").health < 100, "IA direta percorre corredor spawn-base e causa dano real")
 	check(enemy.position.distance_to(world.get_node("Territory").position) < 1.6, "Colisor do nucleo permite alcance atual de ataque a base")
 	var ally_mask: int = enemy.collision_mask

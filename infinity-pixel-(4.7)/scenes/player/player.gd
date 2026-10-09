@@ -20,7 +20,7 @@ const GRAVITY := 9.8
 # Spec 013C (RF-CMB-001): valor unico do golpe do Player (criaturas e recursos).
 # Era 20; 15 deixa o WildDino 80 -> 65 -> 50 -> 35 -> 20 (elegivel).
 const ATTACK_DAMAGE := 15.0
-const ATTACK_COOLDOWN := 0.8 # RF-AGE-002: golpe que acerta
+const ATTACK_COOLDOWN := 0.6 # RF-AGE-002: golpe que acerta (balanceamento 09/10/2026: era 0,8)
 const WHIFF_COOLDOWN := 0.3 # RF-CMB-002: golpe no vazio recupera mais rapido
 const ATTACK_BUFFER := 0.35 # s: clique ate esse tempo antes do fim do cooldown e guardado
 const CREATURES := 1 << 2 # Spec 009: camada 3
@@ -42,7 +42,7 @@ const PROTECTION_BLINK := 0.16 # s: periodo do pisca da protecao pos-respawn (RF
 
 # Spec 011: valores iniciais de prototipo, ajustaveis no Inspector.
 @export var max_hp := 100.0 # RF-VID-001
-@export var hit_invulnerability := 0.6 # RF-VID-002: janela apos um hit valido (s)
+@export var hit_invulnerability := 1.0 # RF-VID-002: janela apos um hit valido (s; balanceamento 09/10/2026: era 0,6)
 @export var respawn_delay := 2.0 # RF-VID-004: morto ate renascer (s)
 @export var respawn_protection := 1.5 # RF-VID-005: invulneravel apos renascer (s)
 ## Ponto de respawn (Marker3D). Sem ele, usa a posicao inicial do Player.

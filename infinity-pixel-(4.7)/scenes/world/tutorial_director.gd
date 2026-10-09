@@ -22,6 +22,9 @@ const WOOD_GOAL := 20 # custo da Fogueira (build_recipes)
 const STONE_GOAL := 12
 const WALK_POINT := Vector3(0, 0, -1.5) # estrada, ao lado do posto central
 const NIGHT_ENEMIES := 2
+## Balanceamento do tutorial (so nesta instancia): os dinossauros hostis do
+## tutorial causam metade do dano. Ensinar, nao punir.
+const TUTORIAL_DAMAGE_SCALE := 0.5
 const JADE := Color("69be9b")
 const GOLD := Color("e7ae58")
 const CREAM := Color("f2e8ce")
@@ -92,6 +95,8 @@ func setup(main: Node, game_world: Node3D) -> void:
 		world.get_node("TerritoryManager").guardians.erase(&"east")
 		spawner.encounters[1].queue_free() # so nesta instancia: pedras sem guardiao
 	target = spawner.encounters[0] if not spawner.encounters.is_empty() else null
+	if target != null:
+		target.damage_scale = TUTORIAL_DAMAGE_SCALE
 	_enter(Step.MOVE)
 
 # --- etapas ----------------------------------------------------------------------
@@ -185,6 +190,10 @@ func _process(delta: float) -> void:
 					if ally.ally_state == 1: # AllyState.STAYING
 						_advance()
 						break
+	# Invasores da noite do tutorial tambem batem com metade da forca.
+	for foe in get_tree().get_nodes_in_group("wave_enemy"):
+		if foe.get("damage_scale") == 1.0:
+			foe.damage_scale = TUTORIAL_DAMAGE_SCALE
 	_update_beacon()
 	_refresh_progress()
 
@@ -214,6 +223,7 @@ func _new_target(message: String) -> void:
 	spot.z = clampf(spot.z, -18.0, 24.0)
 	dino.position = Vector3(spot.x, 0.5, spot.z)
 	world.add_child(dino, true)
+	dino.damage_scale = TUTORIAL_DAMAGE_SCALE
 	target = dino
 	note = message
 

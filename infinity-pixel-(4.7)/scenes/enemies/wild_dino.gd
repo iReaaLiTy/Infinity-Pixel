@@ -14,6 +14,15 @@ const DETECTION_RANGE := 8.0 # RF-AGE-004 valor inicial. Teto de teste: ate 12.
 const BASE_SPEED := 4.0 # RF-AGE-004 valor inicial. Teto de teste: 5,5 (sempre < 6 do jogador).
 # NAO esta na Spec 002: alcance do golpe do inimigo. Provisorio, espelha os 2 m do jogador.
 const ATTACK_REACH := 2.0
+# Balanceamento (playtest 09/10/2026): preparacao visivel do golpe hostil; o
+# dano sai no fim se o alvo continuar a ate ATTACK_REACH + WINDUP_GRACE.
+const ATTACK_WINDUP := 0.4
+const WINDUP_GRACE := 0.35
+# No maximo 2 hostis golpeiam o JOGADOR ao mesmo tempo; os outros esperam a vez.
+const MAX_PLAYER_ATTACKERS := 2
+# Aliado bate mais forte que o selvagem (antes 15, igual): sem isso perdia
+# sempre o 1x1 para o inimigo da noite, que tem bonus de dano.
+const ALLY_ATTACK_DAMAGE := 20.0
 const TERRITORY_ARRIVAL_DISTANCE := 1.5 # distancia em que considera ter "chegado" ao territorio
 const GRAVITY := 9.8
 # Spec 003 RF-AGE-005 valor inicial: 30% de vida restante. Faixa de teste: 20% a 40%.
@@ -83,6 +92,10 @@ var _stay_position: Vector3
 var _territory: Node3D
 var _target: Node3D
 var _attack_cooldown_left := 0.0
+var _windup_left := 0.0 # preparacao do golpe hostil em andamento (s)
+## Spec 022: so o tutorial muda (0,5) nos seus dinossauros; partida normal = 1.
+var damage_scale := 1.0
+var _windup_target: Node3D
 var _arrived := false
 var _attack_announced := false # log "[ALIADO] Atacando" uma vez por alvo
 var _returning_to_post := false # log "[ALIADO] Retornando" uma vez apos cada combate
@@ -127,6 +140,10 @@ func _physics_process(delta: float) -> void:
 		return
 	_attack_cooldown_left = maxf(_attack_cooldown_left - delta, 0.0)
 	_frame_delta = delta
+	if _windup_left > 0.0:
+		_windup_left -= delta
+		if _windup_left <= 0.0:
+			_resolve_windup()
 	_repath_left = maxf(_repath_left - delta, 0.0)
 
 	if is_on_floor():
@@ -142,6 +159,13 @@ func _physics_process(delta: float) -> void:
 		# RF-AGE-006: enquanto o Player canaliza a domesticacao, o WildDino fica
 		# parado e nao ataca (nem persegue), mas continua vivo e sem queue_free().
 		# Spec 010: sem avoidance aqui, para nao ser empurrado durante o canal.
+		_hold_still()
+		return
+
+	# Balanceamento: durante a preparacao do golpe o hostil firma os pes (para e
+	# encara o alvo). Recuar nesse instante e uma esquiva de verdade.
+	if _windup_left > 0.0:
+		_face_target = _windup_target if is_instance_valid(_windup_target) else null
 		_hold_still()
 		return
 
@@ -222,6 +246,7 @@ func domesticate() -> void:
 	hp = MAX_HP
 	is_being_domesticated = false
 	is_domesticated = true
+	_windup_left = 0.0 # golpe preparado como selvagem nao sai depois de domesticado
 	ally_state = AllyState.FOLLOWING # RF-AGE-007: comeca seguindo o jogador
 	_release_slot() # RF-NAV-003: deixa o slot de ataque ao redor do jogador
 	_target = null
@@ -631,8 +656,24 @@ func _try_attack(target: Node3D) -> void:
 		return # RF-AGE-004: cooldown ainda ativo, ataque nao e acionado
 	if not target.has_method("take_damage"):
 		return
-	$Visual.strike()
 	_attack_cooldown_left = ATTACK_COOLDOWN
+	if not is_domesticated:
+		# Balanceamento (playtest 09/10/2026): o hostil PREPARA o golpe por
+		# ATTACK_WINDUP (aviso visual) e o dano so sai no fim, se o alvo ainda
+		# estiver ao alcance. Da tempo de ver e recuar. O ritmo (1 golpe/s) nao muda.
+		if _windup_left <= 0.0:
+			if target.is_in_group("player") and not _claim_attack_token(target):
+				_attack_cooldown_left = 0.25 # espera a vez (ja ha 2 atacando o jogador)
+				return
+			_windup_left = ATTACK_WINDUP
+			_windup_target = target
+			$Visual.windup(ATTACK_WINDUP)
+		return
+	_land_attack(target)
+
+## O golpe acontece de fato (aliado: na hora; hostil: no fim da preparacao).
+func _land_attack(target: Node3D) -> void:
+	$Visual.strike()
 	print("%s atacou %s." % [name, target.name])
 	var damage := _current_attack_damage()
 	# Aliado x selvagem que NAO e da onda: o golpe para no limiar da
@@ -647,10 +688,10 @@ func _try_attack(target: Node3D) -> void:
 # chamando _try_attack/_current_attack_damage na defesa por area (RF-AGE-008).
 func _current_attack_damage() -> float:
 	if is_domesticated:
-		return BASE_ATTACK_DAMAGE
+		return ALLY_ATTACK_DAMAGE
 	if DayNightManager.is_night():
-		return BASE_ATTACK_DAMAGE * DayNightManager.night_damage_multiplier
-	return BASE_ATTACK_DAMAGE
+		return BASE_ATTACK_DAMAGE * DayNightManager.night_damage_multiplier * damage_scale
+	return BASE_ATTACK_DAMAGE * damage_scale
 
 func _current_speed() -> float:
 	if DayNightManager.is_night():
@@ -700,3 +741,33 @@ func _update_label() -> void:
 	hp_label.pixel_size = 0.0065
 	hp_label.outline_size = 12
 	hp_label.outline_modulate = Color(0.05, 0.07, 0.09, 0.85)
+
+## Fim da preparacao: o golpe acerta se o alvo ainda estiver perto (o Refugio
+## nao se move: sempre acerta). Recuar durante a preparacao = esquiva.
+func _resolve_windup() -> void:
+	var target := _windup_target
+	_windup_target = null
+	if is_domesticated or hp <= 0.0 or is_being_domesticated or not is_instance_valid(target) \
+			or not target.is_inside_tree() or target.is_queued_for_deletion():
+		return
+	if target.get("is_dead") == true:
+		return
+	if not target.is_in_group("territory") and _flat_offset(target.global_position).length() > ATTACK_REACH + WINDUP_GRACE:
+		$Visual.whiff()
+		return
+	_land_attack(target)
+
+## Vez de golpear o jogador: ate MAX_PLAYER_ATTACKERS ao mesmo tempo (cada
+## vez dura um ciclo de ataque). Evita varios golpes quase simultaneos.
+func _claim_attack_token(target: Node3D) -> bool:
+	var now := Time.get_ticks_msec() / 1000.0
+	var tokens: Dictionary = target.get_meta("attack_tokens", {})
+	for holder in tokens.keys():
+		if not is_instance_valid(holder) or tokens[holder] < now or holder.hp <= 0.0:
+			tokens.erase(holder)
+	if not tokens.has(self) and tokens.size() >= MAX_PLAYER_ATTACKERS:
+		target.set_meta("attack_tokens", tokens)
+		return false
+	tokens[self] = now + ATTACK_COOLDOWN + 0.1
+	target.set_meta("attack_tokens", tokens)
+	return true

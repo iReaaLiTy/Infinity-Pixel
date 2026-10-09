@@ -36,8 +36,17 @@ func _process(delta: float) -> void:
 	$LegR.rotation.x = -sin(clock * 11.0) * 0.48 * pace
 	swing = maxf(0, swing - delta)
 	position.y = abs(sin(clock * 11)) * .04 * pace
-	# Golpe + recuo visual curto ao receber dano (sem empurrar o corpo).
-	rotation.x = -sin(swing * PI / .32) * .2 + sin(flash_time / .22 * PI) * .1 * float(flash_time > 0.0 and flash_time <= .22)
+	# Golpe + recuo visual curto ao receber dano (sem empurrar o corpo) +
+	# inclinacao para tras durante a preparacao do golpe.
+	var wind := 0.0
+	if _windup_time > 0.0:
+		_windup_time = maxf(0.0, _windup_time - delta)
+		wind = 1.0 - _windup_time / maxf(_windup_total, 0.001)
+		if is_instance_valid(_telegraph):
+			_telegraph_mat.albedo_color.a = 0.15 + 0.45 * wind
+	elif is_instance_valid(_telegraph) and _telegraph.visible:
+		_telegraph.visible = false
+	rotation.x = -sin(swing * PI / .32) * .2 + sin(flash_time / .22 * PI) * .1 * float(flash_time > 0.0 and flash_time <= .22) + 0.16 * wind
 	if has_node("ArmR"):
 		$ArmR.rotation.x = -sin(swing * PI / .32) * 1.6
 	if has_node("Tail"):
@@ -56,6 +65,34 @@ func _process(delta: float) -> void:
 
 func strike() -> void:
 	swing = .32
+	_windup_time = 0.0
+	if is_instance_valid(_telegraph):
+		_telegraph.visible = false
+
+# Balanceamento (playtest 09/10/2026): preparacao do golpe hostil. O corpo
+# recua e ergue a cabeca, e um arco ambar-avermelhado no chao mostra a area do
+# golpe (alcance ~2 m) enquanto ele carrega. So visual.
+var _windup_time := 0.0
+var _windup_total := 0.0
+var _telegraph: MeshInstance3D
+var _telegraph_mat: StandardMaterial3D
+func windup(seconds: float) -> void:
+	_windup_time = seconds
+	_windup_total = seconds
+	var body := get_parent() as Node3D
+	if body == null:
+		return
+	if not is_instance_valid(_telegraph):
+		_telegraph_mat = CombatFX.fx_material(Color("e0795a"), 0.0)
+		_telegraph = _indicator(body, CombatFX.arc_mesh(), _telegraph_mat, "Telegraph")
+		_telegraph.scale = Vector3.ONE * 1.45 # arco 1,5 m -> ~2,2 m (alcance + folga)
+	_telegraph.visible = true
+
+## Preparou e errou (o alvo recuou): some o aviso, sem golpe.
+func whiff() -> void:
+	_windup_time = 0.0
+	if is_instance_valid(_telegraph):
+		_telegraph.visible = false
 
 func flash() -> void:
 	flash_time = .22

@@ -68,6 +68,7 @@ func _ready() -> void:
 	check(world.get_node("WaveManager").enemy_count_for_night(1) == 2, "Tutorial: primeira noite com 2 inimigos")
 	check(not world.get_node("TerritoryManager").guardians.has(&"east") and tut.target != null and tut.target.guardian_of != "", "Tutorial: sem guardiao rochoso; alvo = guardiao da Floresta Oeste")
 	check(app.hud.has_node("TutorialCard") and app.hud.objective_override.begins_with("TUTORIAL"), "Painel do tutorial e objetivo na HUD")
+	check(tut.target.damage_scale == 0.5, "Tutorial: o primeiro selvagem bate com metade da forca")
 	check(step_is(Director.Step.MOVE), "Passo 1: andar")
 	await frames(30)
 	check(step_is(Director.Step.MOVE), "Sem andar, o passo 1 nao avanca sozinho")
@@ -160,6 +161,8 @@ func _ready() -> void:
 	check(DayNightManager.is_night() and not DayNightManager.clock_hold, "Noite do tutorial: relogio solto")
 	var waves = world.get_node("WaveManager")
 	check(waves.enemy_count == 2, "Noite do tutorial com 2 inimigos (%d)" % waves.enemy_count)
+	await frames(5)
+	check(waves._active_wave_enemies.keys().all(func(f): return f.damage_scale == 0.5), "Invasores do tutorial com metade do dano")
 	for i in 600:
 		for foe in waves._active_wave_enemies.keys():
 			if is_instance_valid(foe) and foe.hp > 0.0:
@@ -179,6 +182,7 @@ func _ready() -> void:
 	var n0: float = DayNightManager.phase_elapsed
 	await frames(30)
 	check(not world.has_node("Tutorial") and DayNightManager.phase_elapsed > n0 and world.get_node("WaveManager").enemy_count_for_night(1) == 3, "Depois do tutorial: partida normal, relogio andando, 3 inimigos")
+	check(world.get_node("EncounterSpawner").encounters.all(func(d): return not is_instance_valid(d) or d.damage_scale == 1.0), "Depois do tutorial: dinossauros com dano normal (nada vaza para JOGAR)")
 
 	# --- reiniciar o tutorial pela pausa ---
 	await begin_tutorial()

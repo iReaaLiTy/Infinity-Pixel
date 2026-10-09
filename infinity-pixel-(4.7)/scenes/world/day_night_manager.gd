@@ -23,7 +23,7 @@ signal game_over
 # RF-AGE-018 — hipotese de protototipo: valor inicial 1.30/1.20, teto de
 # exploracao 1.50/1.40 nesta rodada. HP/resistencia (1.00) fora de escopo
 # neste ciclo — exposto para configuracao futura, ainda sem uso.
-@export var night_damage_multiplier := 1.30
+@export var night_damage_multiplier := 1.15 # balanceamento 09/10/2026: era 1,30
 @export var night_speed_multiplier := 1.20
 @export var night_health_multiplier := 1.00
 
