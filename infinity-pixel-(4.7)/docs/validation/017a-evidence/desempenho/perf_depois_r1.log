@@ -1,0 +1,13 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[PERF] {"draw_calls_avg":1115,"fps_1pct_low":91.8,"fps_avg":163.9,"frame_ms_avg":6.1,"frame_ms_max":15.44,"frames":1637,"primitives_avg":67497,"view":"padrao_1200"}
+[PERF] {"draw_calls_avg":562,"fps_1pct_low":137.7,"fps_avg":249.0,"frame_ms_avg":4.02,"frame_ms_max":9.04,"frames":2493,"primitives_avg":34911,"view":"padrao_1730"}
+[PERF] {"draw_calls_avg":1013,"fps_1pct_low":95.3,"fps_avg":172.3,"frame_ms_avg":5.8,"frame_ms_max":11.75,"frames":1723,"primitives_avg":62217,"view":"padrao_2100"}
+[PERF] {"draw_calls_avg":1045,"fps_1pct_low":96.9,"fps_avg":169.0,"frame_ms_avg":5.92,"frame_ms_max":13.05,"frames":1689,"primitives_avg":63349,"view":"refugio_1200"}
+[PERF] {"draw_calls_avg":1442,"fps_1pct_low":89.8,"fps_avg":158.4,"frame_ms_avg":6.31,"frame_ms_max":12.85,"frames":1584,"primitives_avg":86470,"view":"slot_oeste_2100"}
+RESULT: {"adapter":"Intel(R) Iris(R) Xe Graphics","renderer":"gl_compatibility","seconds_per_view":10.0,"vendor":"Intel","views":[{"draw_calls_avg":1115,"fps_1pct_low":91.8,"fps_avg":163.9,"frame_ms_avg":6.1,"frame_ms_max":15.44,"frames":1637,"primitives_avg":67497,"view":"padrao_1200"},{"draw_calls_avg":562,"fps_1pct_low":137.7,"fps_avg":249.0,"frame_ms_avg":4.02,"frame_ms_max":9.04,"frames":2493,"primitives_avg":34911,"view":"padrao_1730"},{"draw_calls_avg":1013,"fps_1pct_low":95.3,"fps_avg":172.3,"frame_ms_avg":5.8,"frame_ms_max":11.75,"frames":1723,"primitives_avg":62217,"view":"padrao_2100"},{"draw_calls_avg":1045,"fps_1pct_low":96.9,"fps_avg":169.0,"frame_ms_avg":5.92,"frame_ms_max":13.05,"frames":1689,"primitives_avg":63349,"view":"refugio_1200"},{"draw_calls_avg":1442,"fps_1pct_low":89.8,"fps_avg":158.4,"frame_ms_avg":6.31,"frame_ms_max":12.85,"frames":1584,"primitives_avg":86470,"view":"slot_oeste_2100"}],"vsync":0,"window":"(1280, 720)"}

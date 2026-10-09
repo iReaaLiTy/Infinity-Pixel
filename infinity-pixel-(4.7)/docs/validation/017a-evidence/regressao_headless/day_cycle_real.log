@@ -1,0 +1,192 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+PASS: Jogo normal: dia 90 s, relogio noturno 45 s
+PASS: Jogo normal: aviso 20 s, contagem 10 s
+PASS: Dia 1 comeca as 08:00
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: 30 s de dia ~ 11:20 (11:20)
+PASS: Pausa congela o relogio
+[CICLO] A noite se aproxima (20 s).
+PASS: Aviso dispara faltando 20 s (aos 70.02 s)
+PASS: Aviso por volta das 15:46 (15:46)
+PASS: Contagem oculta faltando mais de 10 s
+PASS: Contagem 'ANOITECE EM 10' (ANOITECE EM 10)
+PASS: Contagem chega a 'ANOITECE EM 1'
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+PASS: Noite 1 automatica aos 90 s, 18:00, 3 inimigos
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@350
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@351
+WildDino atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+PASS: Meio da noite (22,5 s) ~ 00:00 (00:00)
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+PASS: 45 s: 05:59 com inimigos vivos, noite continua
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+WildDino atacou Player.
+@CharacterBody3D@351 atacou Player.
+@CharacterBody3D@350 atacou Player.
+PASS: 55 s: ainda 05:59, noite nao termina pelo relogio
+WildDino recebeu 1000 de dano. HP: 0/80
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@350 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@350 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@351 recebeu 1000 de dano. HP: 0/80
+@CharacterBody3D@351 foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: Matar todos: amanhecer, Dia 2, 08:00
+SPEC013 REAL RESULTS: 15 passed; 0 failed

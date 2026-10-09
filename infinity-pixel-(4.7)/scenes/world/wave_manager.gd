@@ -82,6 +82,11 @@ func _spawn_enemy() -> void:
 	enemy.global_position = spawn_position
 	_active_wave_enemies[enemy] = true
 	enemy.add_to_group("wave_enemy") # Spec 013B: alvo valido das torres
+	# Identidade visual do inimigo noturno (paleta azul-violeta): decidida aqui,
+	# pela origem da criatura, nunca pelo horario. So visual.
+	var look := enemy.get_node_or_null("Visual")
+	if look != null and look.has_method("set_night_threat"):
+		look.set_night_threat()
 	# RF-AGE-011: inimigo da onda deixa de ser ameaca ao morrer OU ao ser domesticado.
 	enemy.died.connect(_neutralize_wave_enemy.bind("morreu"))
 	enemy.domesticated.connect(_neutralize_wave_enemy.bind("domesticado"))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/world/world_regions.tscn" id="map_012"]
 
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scenes/world/territory_manager.gd" id="territory_015"]
 
 [ext_resource type="PackedScene" path="res://scenes/visuals/arena_art.tscn" id="ac1_arena"]
+[ext_resource type="PackedScene" path="res://scenes/visuals/refuge_art.tscn" id="refuge_017a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(48, 1, 52)
@@ -116,6 +117,8 @@ navigation_mesh = ExtResource("nav_010")
 
 [node name="WorldRegions" parent="." instance=ExtResource("map_012")]
 
+[node name="RefugeArt" parent="." instance=ExtResource("refuge_017a")]
+
 [node name="DefenseEconomy" type="Node" parent="."]
 script = ExtResource("eco_013b")
 
@@ -126,6 +129,7 @@ script = ExtResource("slots_013b")
 position = Vector3(-10.5, 0, -5.5)
 script = ExtResource("slot_013b")
 route = "Oeste"
+style = "jade"
 
 [node name="SlotWestOuter" type="Node3D" parent="DefenseSlots"]
 position = Vector3(-18, 0, -1.5)

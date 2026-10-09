@@ -1,0 +1,48 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Territorial ocioso permanece estavel por 3 s
+@CharacterBody3D@334 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] @CharacterBody3D@334 domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Alvos quase equidistantes nao causam alternancia continua
+PASS: Ameaca claramente mais proxima ainda pode assumir prioridade
+PASS: Virada limitada por quadro, sem salto instantaneo
+PASS: Sem deslocamento real, pernas nao caminham por velocidade residual
+PASS: Dano negativo nao cura criatura
+[COLETA] +20 wood (total 20)
+[COLETA] +12 stone (total 12)
+PASS: Ataque guardado nao dispara durante construcao
+PASS: Ataque guardado nao dispara durante domesticacao
+[COLETA] Tree1 recebeu 30. HP: 0/30
+[COLETA] +10 wood (total 30)
+PASS: Amanhecer durante queda do recurso nao o esconde depois
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDinoEncontro recebeu 80 de dano. HP: 0/80
+WildDinoEncontro foi derrotado.
+[TERRITORIO] FLORESTA OESTE: guardiao derrotado -> PRONTO PARA SER RECUPERADO
+[TERRITORIO] FLORESTA OESTE: recuperando...
+[Player] ataque acionado — alvos atingidos: 0
+[TERRITORIO] recuperacao cancelada: atacou
+PASS: Clique real durante a recuperacao ataca uma vez e cancela (RF-TER-005)
+PASS: A mesma segurada de E nao recomeca o marco nem domestica
+[TERRITORIO] FLORESTA OESTE: recuperando...
+PASS: Nova segurada de E recomeca a recuperacao do zero
+[TERRITORIO] recuperacao cancelada: soltou E
+[Domesticacao] canalizacao iniciada: alvo=WildDino hp=20/80
+PASS: Clique real com E na domesticacao nao ataca nem consome cooldown
+[Domesticacao] cancelada: tecla_liberada (progresso 0.4 s descartado)
+[COLETA] +20 wood (total 20)
+[COLETA] +12 stone (total 12)
+PASS: Clique real durante o posicionamento nao ataca
+[Player] ataque acionado — alvos atingidos: 0
+PASS: Sem E e sem construcao, um clique = um golpe
+STABILITY RESULTS: 15 passed; 0 failed

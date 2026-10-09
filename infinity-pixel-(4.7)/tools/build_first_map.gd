@@ -2,8 +2,14 @@ extends SceneTree
 
 # Spec 012: deterministic authored layout. Reuses the CURRENT low-poly art.
 # Pipeline: this tool -> build_collisions.ps1 -> bake_navmesh.gd.
+# Spec 017A: this tool also writes refuge_art.tscn (tools/build_refuge_art.gd,
+# visual only) and hides the old meshes it replaces. Hidden nodes keep their
+# transforms: build_collisions.gd still reads RefugeCore from here.
 # Never rewrites actors, gameplay scripts, lighting or camera.
 const ART := "res://scenes/visuals/arena_art.tscn"
+const RefugeArt := preload("res://tools/build_refuge_art.gd")
+# Spec 017A prototype: south ridge pieces replaced by RefugeArt/SouthWall.
+const SOUTH_WALL_PIECES := [2, 3, 4]
 const REGIONS := "res://scenes/world/world_regions.tscn"
 const TREES := [
 	Vector2(-13,-19), Vector2(-17,-21), Vector2(-21,-17), Vector2(-20,-11),
@@ -117,6 +123,9 @@ func build() -> void:
 	if art.has_node("PostLabel"):
 		art.get_node("PostLabel").free()
 	art.get_node("MeetingPath").visible = false
+	# Spec 017A: old white crystal -> RefugeArt/Crystal (same solid, same node).
+	for label in ["RefugeCore", "RefugeCap"]:
+		art.get_node(label).visible = false
 	for i in TREES.size():
 		var p: Vector2 = TREES[i]
 		var h := 2.8 + (i % 4) * .3 # canopies kept low; no camera change
@@ -164,6 +173,8 @@ func build() -> void:
 	# Visible natural edges for the existing north/south world bounds.
 	for side in [-1,1]:
 		for i in 7:
+			if side < 0 and i in SOUTH_WALL_PIECES:
+				continue
 			var ridge := MeshInstance3D.new()
 			ridge.name = "BorderRidge%s_%d" % ["South" if side<0 else "North",i]
 			var mesh := SphereMesh.new()
@@ -236,5 +247,6 @@ func build() -> void:
 		patch(safe,"Paving%d"%i,Vector2(sin(a)*3.3,cos(a)*3.3-15),Vector2(.8,.6),sand,.035)
 	save_scene(regions, REGIONS)
 	regions.free()
+	RefugeArt.generate()
 	print("[MAP012] authored valley: 48 x 52 m, 42 trees, 16 rocks, 3 night routes")
 	quit()

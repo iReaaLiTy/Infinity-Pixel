@@ -1,0 +1,60 @@
+{
+	"adapter": "Intel(R) Iris(R) Xe Graphics",
+	"vendor": "Intel",
+	"renderer": "gl_compatibility",
+	"vsync": 0,
+	"window": "(1280, 720)",
+	"seconds_per_view": 10.0,
+	"views": [
+		{
+			"view": "padrao_1200",
+			"frames": 1637,
+			"fps_avg": 163.7,
+			"fps_1pct_low": 90.5,
+			"frame_ms_avg": 6.11,
+			"frame_ms_max": 14.42,
+			"draw_calls_avg": 1156,
+			"primitives_avg": 64474
+		},
+		{
+			"view": "padrao_1730",
+			"frames": 2483,
+			"fps_avg": 248.5,
+			"fps_1pct_low": 138.0,
+			"frame_ms_avg": 4.02,
+			"frame_ms_max": 8.09,
+			"draw_calls_avg": 600,
+			"primitives_avg": 31711
+		},
+		{
+			"view": "padrao_2100",
+			"frames": 1692,
+			"fps_avg": 169.2,
+			"fps_1pct_low": 95.8,
+			"frame_ms_avg": 5.91,
+			"frame_ms_max": 12.65,
+			"draw_calls_avg": 1055,
+			"primitives_avg": 57829
+		},
+		{
+			"view": "refugio_1200",
+			"frames": 1629,
+			"fps_avg": 163.0,
+			"fps_1pct_low": 91.5,
+			"frame_ms_avg": 6.14,
+			"frame_ms_max": 11.87,
+			"draw_calls_avg": 1085,
+			"primitives_avg": 60291
+		},
+		{
+			"view": "slot_oeste_2100",
+			"frames": 1575,
+			"fps_avg": 157.4,
+			"fps_1pct_low": 87.7,
+			"frame_ms_avg": 6.35,
+			"frame_ms_max": 13.1,
+			"draw_calls_avg": 1482,
+			"primitives_avg": 83412
+		}
+	]
+}

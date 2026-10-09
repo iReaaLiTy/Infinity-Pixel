@@ -1,0 +1,25 @@
+Evidencias Spec 017A - Etapas 1 e 2 (linha de base + prototipo em 3 objetos) - 09/10/2026
+Godot 4.6.2, GL Compatibility, Intel Iris Xe, janela 1280x720. Pasta ignorada pelo Godot (.gdignore).
+Registro: ../017a.md
+
+baseline/invariants_baseline.json   Linha de base fisica/gameplay ANTES (copia de tests/visual_invariants_baseline.json):
+                                    87 corpos estaticos (66 ArenaCollision), formas, camadas, transforms,
+                                    hash da navmesh, 44 posicoes de gameplay.
+baseline/hashes_antes.txt           sha256 dos arquivos de cena/ferramenta antes da Etapa 2.
+baseline/visual_invariants_antes_*  O teste visual_invariants rodado no estado de antes (9/9).
+antes/*.png                         Capturas (tools/visual_capture.tscn) do commit 345f70a, exportado com
+                                    git archive para uma pasta temporaria (mesma ferramenta do depois).
+depois/*.png                        As mesmas capturas, mesmas cameras e horas, com o prototipo.
+comparacao/*.jpg                    Antes | depois lado a lado (reduzidas a 50%).
+desempenho/perf_*.json/.log         tests/perf_probe.tscn com janela, --disable-vsync, 10 s por vista:
+                                    antes_r1/r2 (projeto real, antes da Etapa 2), antes_r3_head (copia do
+                                    345f70a, intercalada) e depois_r1/r2.
+ab_toon/*.jpg                       Mesmas malhas/cores: difusao padrao (esquerda) x toon (direita), so as
+                                    pecas novas; diferenca_media_pixels.txt quantifica (0-255).
+regressao_headless/                Suites sem janela, --fixed-fps 60 (como tools/test_ac1.ps1).
+regressao_janela/                   Suites com janela, copia do codigo final + observador de foco.
+
+Nomes das capturas: 01 vista padrao (6 horas), 03 Refugio pela camera do jogo, 04 caminho,
+05 SlotWestInner vazio/com torre (camera do jogo), 06 fantasma da Fogueira valido/invalido,
+07 Noite 1 com 3 inimigos, 08 vista de cima, 10 cristal (6 horas), 11 ponto de defesa vazio
+(6 horas), 12 paredao sul (6 horas), 13 ponto com torre. 10-13 usam camera de diagnostico.

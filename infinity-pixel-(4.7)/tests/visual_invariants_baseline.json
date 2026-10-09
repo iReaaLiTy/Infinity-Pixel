@@ -1,0 +1,5604 @@
+{
+	"arena_collision_count": 66,
+	"collision_scene_sha256": "2626dc9284c7e3a9e654e345024513632584f9d3642105850cf6cf2df065f777",
+	"collision_sources": {
+		"ArchPillar-1": {
+			"mesh_size": [
+				1.2,
+				4.2,
+				1.3
+			],
+			"transform": [
+				0.9829,
+				0.1392,
+				0.1207,
+				-0.1381,
+				0.9903,
+				-0.017,
+				-0.1219,
+				0.0,
+				0.9925,
+				-3.0,
+				2.1,
+				16.0
+			]
+		},
+		"ArchPillar1": {
+			"mesh_size": [
+				1.2,
+				4.2,
+				1.3
+			],
+			"transform": [
+				0.9829,
+				-0.1392,
+				-0.1207,
+				0.1381,
+				0.9903,
+				-0.017,
+				0.1219,
+				0.0,
+				0.9925,
+				3.0,
+				2.1,
+				16.0
+			]
+		},
+		"ArchTop": {
+			"mesh_size": [
+				7.3,
+				0.9,
+				1.3
+			],
+			"transform": [
+				0.9962,
+				-0.0872,
+				0.0,
+				0.0872,
+				0.9962,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				4.0,
+				16.0
+			]
+		},
+		"BannerPole-2": {
+			"transform": [
+				0.15,
+				0.0,
+				0.0,
+				0.0,
+				3.2,
+				0.0,
+				0.0,
+				0.0,
+				0.15,
+				-2.0,
+				1.6,
+				-16.0
+			]
+		},
+		"BannerPole2": {
+			"transform": [
+				0.15,
+				0.0,
+				0.0,
+				0.0,
+				3.2,
+				0.0,
+				0.0,
+				0.0,
+				0.15,
+				2.0,
+				1.6,
+				-16.0
+			]
+		},
+		"FirePost-1": {
+			"transform": [
+				0.28,
+				0.0,
+				0.0,
+				0.0,
+				2.0,
+				0.0,
+				0.0,
+				0.0,
+				0.28,
+				-3.3,
+				1.0,
+				-14.3
+			]
+		},
+		"FirePost1": {
+			"transform": [
+				0.28,
+				0.0,
+				0.0,
+				0.0,
+				2.0,
+				0.0,
+				0.0,
+				0.0,
+				0.28,
+				3.3,
+				1.0,
+				-14.3
+			]
+		},
+		"RefugeCore": {
+			"transform": [
+				-1.1,
+				0.0,
+				0.0,
+				0.0,
+				-1.9,
+				0.0,
+				0.0,
+				0.0,
+				1.1,
+				0.0,
+				1.2,
+				-15.0
+			]
+		},
+		"Rock0": {
+			"transform": [
+				-0.1082,
+				0.2145,
+				-1.5226,
+				0.0109,
+				1.0893,
+				0.1527,
+				1.2745,
+				0.0,
+				-0.0906,
+				-15.0,
+				0.38,
+				3.3
+			]
+		},
+		"Rock12": {
+			"transform": [
+				-0.6947,
+				0.2413,
+				-1.57,
+				0.0619,
+				1.0893,
+				0.14,
+				0.9088,
+				0.0,
+				-0.4021,
+				-7.0,
+				0.38,
+				3.0
+			]
+		},
+		"Rock15": {
+			"transform": [
+				0.5103,
+				0.1654,
+				-1.0607,
+				-0.0664,
+				1.0893,
+				0.138,
+				1.3878,
+				0.0,
+				0.6677,
+				-14.0,
+				0.38,
+				17.0
+			]
+		},
+		"Rock18": {
+			"transform": [
+				-0.7679,
+				0.1081,
+				-0.0491,
+				0.1528,
+				1.0893,
+				0.0098,
+				0.0848,
+				0.0,
+				-1.3244,
+				-18.0,
+				0.38,
+				23.0
+			]
+		},
+		"Rock21": {
+			"transform": [
+				1.0282,
+				0.166,
+				-0.5818,
+				-0.1332,
+				1.0893,
+				0.0754,
+				0.7366,
+				0.0,
+				1.3016,
+				8.46,
+				0.38,
+				0.74
+			]
+		},
+		"Rock24": {
+			"transform": [
+				-2.4715,
+				0.3619,
+				-0.7217,
+				0.2538,
+				1.8815,
+				0.0741,
+				0.6447,
+				0.0,
+				-2.2078,
+				17.0,
+				0.684,
+				9.0
+			]
+		},
+		"Rock27": {
+			"transform": [
+				-2.3592,
+				0.334,
+				-0.2872,
+				0.2349,
+				1.6835,
+				0.0286,
+				0.2417,
+				0.0,
+				-1.9853,
+				14.0,
+				0.612,
+				26.0
+			]
+		},
+		"Rock3": {
+			"transform": [
+				-0.8558,
+				0.1209,
+				-0.0879,
+				0.1523,
+				1.0893,
+				0.0156,
+				0.0925,
+				0.0,
+				-0.9006,
+				-16.0,
+				0.38,
+				-13.0
+			]
+		},
+		"Rock30": {
+			"transform": [
+				1.6087,
+				0.2783,
+				-1.1553,
+				-0.1696,
+				1.4854,
+				0.1218,
+				1.3999,
+				0.0,
+				1.9494,
+				18.0,
+				0.54,
+				13.0
+			]
+		},
+		"Rock33": {
+			"transform": [
+				-1.872,
+				0.3897,
+				-2.0454,
+				0.1879,
+				1.9805,
+				0.2053,
+				1.7705,
+				0.0,
+				-1.6203,
+				20.5,
+				0.72,
+				17.5
+			]
+		},
+		"Rock36": {
+			"transform": [
+				0.551,
+				0.3201,
+				-2.21,
+				-0.0572,
+				1.6835,
+				0.2296,
+				2.0376,
+				0.0,
+				0.508,
+				16.5,
+				0.612,
+				22.8
+			]
+		},
+		"Rock39": {
+			"transform": [
+				-0.4972,
+				0.3479,
+				-2.4252,
+				0.0503,
+				1.7825,
+				0.2454,
+				2.1552,
+				0.0,
+				-0.4419,
+				11.2,
+				0.648,
+				19.5
+			]
+		},
+		"Rock42": {
+			"transform": [
+				-0.8172,
+				0.1192,
+				-0.2259,
+				0.1476,
+				1.0893,
+				0.0408,
+				0.2137,
+				0.0,
+				-0.7729,
+				-5.0,
+				0.38,
+				17.0
+			]
+		},
+		"Rock45": {
+			"transform": [
+				1.0944,
+				0.2923,
+				-1.7683,
+				-0.1172,
+				1.5844,
+				0.1893,
+				1.7007,
+				0.0,
+				1.0525,
+				14.6,
+				0.576,
+				3.4
+			]
+		},
+		"Rock6": {
+			"transform": [
+				-0.8302,
+				0.3062,
+				-2.0142,
+				0.0796,
+				1.4854,
+				0.193,
+				1.7566,
+				0.0,
+				-0.7241,
+				14.0,
+				0.54,
+				-3.9
+			]
+		},
+		"Rock9": {
+			"transform": [
+				0.8991,
+				0.1265,
+				-0.0356,
+				-0.153,
+				1.0893,
+				0.0061,
+				0.0578,
+				0.0,
+				1.4588,
+				18.0,
+				0.38,
+				-15.0
+			]
+		},
+		"Trunk0": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-13.0,
+				1.204,
+				-19.0
+			]
+		},
+		"Trunk1": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-17.0,
+				1.333,
+				-21.0
+			]
+		},
+		"Trunk10": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-18.0,
+				1.462,
+				20.0
+			]
+		},
+		"Trunk11": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-21.0,
+				1.591,
+				24.0
+			]
+		},
+		"Trunk12": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-15.0,
+				1.204,
+				25.0
+			]
+		},
+		"Trunk13": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-12.0,
+				1.333,
+				21.0
+			]
+		},
+		"Trunk14": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-9.0,
+				1.462,
+				25.0
+			]
+		},
+		"Trunk15": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-6.0,
+				1.591,
+				20.0
+			]
+		},
+		"Trunk16": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-5.0,
+				1.204,
+				26.0
+			]
+		},
+		"Trunk17": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				5.0,
+				1.333,
+				26.0
+			]
+		},
+		"Trunk18": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-9.0,
+				1.462,
+				19.0
+			]
+		},
+		"Trunk19": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-4.0,
+				1.591,
+				14.0
+			]
+		},
+		"Trunk2": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-21.0,
+				1.462,
+				-17.0
+			]
+		},
+		"Trunk20": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				19.0,
+				1.204,
+				25.0
+			]
+		},
+		"Trunk21": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				22.0,
+				1.333,
+				22.0
+			]
+		},
+		"Trunk22": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				22.0,
+				1.462,
+				16.0
+			]
+		},
+		"Trunk23": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				21.0,
+				1.591,
+				11.0
+			]
+		},
+		"Trunk24": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				22.0,
+				1.204,
+				7.0
+			]
+		},
+		"Trunk25": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				22.0,
+				1.333,
+				-2.0
+			]
+		},
+		"Trunk26": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				19.0,
+				1.462,
+				-6.0
+			]
+		},
+		"Trunk27": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				22.0,
+				1.591,
+				-11.0
+			]
+		},
+		"Trunk28": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				21.0,
+				1.204,
+				-17.0
+			]
+		},
+		"Trunk29": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				16.0,
+				1.333,
+				-21.0
+			]
+		},
+		"Trunk3": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-20.0,
+				1.591,
+				-11.0
+			]
+		},
+		"Trunk30": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				12.0,
+				1.462,
+				-19.0
+			]
+		},
+		"Trunk31": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-9.0,
+				1.591,
+				-23.0
+			]
+		},
+		"Trunk32": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				7.0,
+				1.204,
+				-23.0
+			]
+		},
+		"Trunk33": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-16.0,
+				1.333,
+				15.0
+			]
+		},
+		"Trunk34": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-8.0,
+				1.462,
+				16.0
+			]
+		},
+		"Trunk35": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-17.0,
+				1.591,
+				7.0
+			]
+		},
+		"Trunk36": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-14.2,
+				1.204,
+				-3.9
+			]
+		},
+		"Trunk37": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-7.0,
+				1.333,
+				13.5
+			]
+		},
+		"Trunk38": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-3.8,
+				1.462,
+				23.0
+			]
+		},
+		"Trunk39": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-23.0,
+				1.591,
+				12.0
+			]
+		},
+		"Trunk4": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-15.0,
+				1.204,
+				-8.0
+			]
+		},
+		"Trunk40": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-12.0,
+				1.204,
+				27.0
+			]
+		},
+		"Trunk41": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				16.0,
+				1.333,
+				-10.0
+			]
+		},
+		"Trunk5": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-18.0,
+				1.333,
+				-5.0
+			]
+		},
+		"Trunk6": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.06,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-22.0,
+				1.462,
+				-2.0
+			]
+		},
+		"Trunk7": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				3.33,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-22.0,
+				1.591,
+				7.0
+			]
+		},
+		"Trunk8": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.52,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-19.0,
+				1.204,
+				11.0
+			]
+		},
+		"Trunk9": {
+			"transform": [
+				0.5,
+				0.0,
+				0.0,
+				0.0,
+				2.79,
+				0.0,
+				0.0,
+				0.0,
+				0.5,
+				-21.0,
+				1.333,
+				16.0
+			]
+		}
+	},
+	"gameplay": {
+		"Collectables/Stone1": [
+			9.0,
+			0.0,
+			16.5
+		],
+		"Collectables/Stone2": [
+			20.0,
+			0.0,
+			21.0
+		],
+		"Collectables/Stone3": [
+			17.5,
+			0.0,
+			15.5
+		],
+		"Collectables/Stone4": [
+			10.0,
+			0.0,
+			24.5
+		],
+		"Collectables/Stone5": [
+			21.5,
+			0.0,
+			26.0
+		],
+		"Collectables/Stone6": [
+			7.0,
+			0.0,
+			20.5
+		],
+		"Collectables/Tree1": [
+			-15.0,
+			0.0,
+			19.5
+		],
+		"Collectables/Tree2": [
+			-19.5,
+			0.0,
+			13.5
+		],
+		"Collectables/Tree3": [
+			-11.0,
+			0.0,
+			23.5
+		],
+		"Collectables/Tree4": [
+			-6.5,
+			0.0,
+			23.0
+		],
+		"Collectables/Tree5": [
+			-17.0,
+			0.0,
+			26.5
+		],
+		"Collectables/Tree6": [
+			-22.5,
+			0.0,
+			20.0
+		],
+		"Collectables/Tree7": [
+			-14.0,
+			0.0,
+			9.5
+		],
+		"Collectables/Tree8": [
+			-21.5,
+			0.0,
+			9.2
+		],
+		"DefenseSlots/SlotEastInner": [
+			[
+				10.5,
+				0.0,
+				-5.5
+			],
+			"Leste"
+		],
+		"DefenseSlots/SlotEastOuter": [
+			[
+				18.0,
+				0.0,
+				-1.5
+			],
+			"Leste"
+		],
+		"DefenseSlots/SlotRuinArch": [
+			[
+				3.6,
+				0.0,
+				12.5
+			],
+			"Ruína"
+		],
+		"DefenseSlots/SlotRuinMeadow": [
+			[
+				-3.8,
+				0.0,
+				-1.0
+			],
+			"Ruína"
+		],
+		"DefenseSlots/SlotWestInner": [
+			[
+				-10.5,
+				0.0,
+				-5.5
+			],
+			"Oeste"
+		],
+		"DefenseSlots/SlotWestOuter": [
+			[
+				-18.0,
+				0.0,
+				-1.5
+			],
+			"Oeste"
+		],
+		"EncounterSpawner": [
+			-10.0,
+			0.5,
+			10.0
+		],
+		"EnemySpawnPoint": [
+			0.0,
+			0.5,
+			23.0
+		],
+		"PlayerSpawn": [
+			0.0,
+			1.0,
+			-10.0
+		],
+		"Territory": [
+			0.0,
+			0.0,
+			-15.0
+		],
+		"WaveManager.spawn_offsets": [
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			[
+				-20.0,
+				0.0,
+				-21.0
+			],
+			[
+				20.0,
+				0.0,
+				-21.0
+			],
+			[
+				-1.6,
+				0.0,
+				-1.4
+			],
+			[
+				-18.4,
+				0.0,
+				-21.0
+			],
+			[
+				18.4,
+				0.0,
+				-21.0
+			],
+			[
+				1.6,
+				0.0,
+				-1.4
+			],
+			[
+				-20.0,
+				0.0,
+				-19.4
+			],
+			[
+				20.0,
+				0.0,
+				-19.4
+			]
+		],
+		"WorldRegions/CreatureZones/CommonTerritory": [
+			[
+				-10.0,
+				0.0,
+				10.0
+			],
+			[
+				10.0,
+				10.0
+			]
+		],
+		"WorldRegions/CreatureZones/DistantTerritory": [
+			[
+				13.0,
+				0.0,
+				22.0
+			],
+			[
+				8.0,
+				7.0
+			]
+		],
+		"WorldRegions/Landmarks/DefensePost": [
+			[
+				0.0,
+				0.0,
+				-7.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/EastChoke": [
+			[
+				14.2,
+				0.0,
+				-0.2
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/Fork": [
+			[
+				0.0,
+				0.0,
+				6.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/HeathGate": [
+			[
+				13.8,
+				0.0,
+				20.6
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/OldArch": [
+			[
+				0.0,
+				0.0,
+				16.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/Refuge": [
+			[
+				0.0,
+				0.0,
+				-15.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/StoneGarden": [
+			[
+				16.0,
+				0.0,
+				17.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/WestChoke": [
+			[
+				-14.0,
+				0.0,
+				0.2
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/NightRoutes/EastEntry": [
+			[
+				20.0,
+				0.0,
+				2.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/NightRoutes/RuinEntry": [
+			[
+				0.0,
+				0.0,
+				23.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/NightRoutes/WestEntry": [
+			[
+				-20.0,
+				0.0,
+				2.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/ResourceZones/StoneReserve": [
+			[
+				17.0,
+				0.0,
+				17.0
+			],
+			[
+				9.0,
+				12.0
+			]
+		],
+		"WorldRegions/ResourceZones/WoodlandReserve": [
+			[
+				-17.0,
+				0.0,
+				20.0
+			],
+			[
+				9.0,
+				10.0
+			]
+		],
+		"WorldRegions/SafeZone/BuildZone": [
+			[
+				7.0,
+				0.0,
+				-15.0
+			],
+			[
+				8.0,
+				10.0
+			]
+		],
+		"WorldRegions/SafeZone/Center": [
+			[
+				0.0,
+				0.0,
+				-12.0
+			],
+			[
+				24.0,
+				18.0
+			]
+		],
+		"WorldRegions/TransitionZone/Center": [
+			[
+				0.0,
+				0.0,
+				1.0
+			],
+			[
+				30.0,
+				16.0
+			]
+		],
+		"WorldRegions/WildZone/Center": [
+			[
+				0.0,
+				0.0,
+				22.0
+			],
+			[
+				38.0,
+				12.0
+			]
+		]
+	},
+	"navigation_source": [
+		"Ground",
+		"ArenaArt",
+		"ArenaCollision"
+	],
+	"navmesh_polygons": 532,
+	"navmesh_sha256": "4834ed6228ce1f4c3681895ce9293b9f76e98c5a6334debdd3f600e98f0c76fb",
+	"navmesh_vertices": 416,
+	"solids": {
+		"ArenaArt/Boundary0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				24.2,
+				1.0,
+				2.0
+			],
+			"groups": [],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "Collider",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						0.4,
+						2.0,
+						52.0
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"ArenaArt/Boundary1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-24.2,
+				1.0,
+				2.0
+			],
+			"groups": [],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "Collider",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						0.4,
+						2.0,
+						52.0
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"ArenaArt/Boundary2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				1.0,
+				28.2
+			],
+			"groups": [],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "Collider",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						48.0,
+						2.0,
+						0.4
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"ArenaArt/Boundary3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				1.0,
+				-24.2
+			],
+			"groups": [],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "Collider",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						48.0,
+						2.0,
+						0.4
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"ArenaCollision/ArchPillar-1": {
+			"class": "StaticBody3D",
+			"global": [
+				0.9829,
+				0.1392,
+				0.1207,
+				-0.1381,
+				0.9903,
+				-0.017,
+				-0.1219,
+				0.0,
+				0.9925,
+				-3.0,
+				2.1,
+				16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						1.2,
+						4.2,
+						1.3
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"ArenaCollision/ArchPillar1": {
+			"class": "StaticBody3D",
+			"global": [
+				0.9829,
+				-0.1392,
+				-0.1207,
+				0.1381,
+				0.9903,
+				-0.017,
+				0.1219,
+				0.0,
+				0.9925,
+				3.0,
+				2.1,
+				16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						1.2,
+						4.2,
+						1.3
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"ArenaCollision/ArchTop": {
+			"class": "StaticBody3D",
+			"global": [
+				0.9962,
+				-0.0872,
+				0.0,
+				0.0872,
+				0.9962,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				4.0,
+				16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						7.3,
+						0.9,
+						1.3
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"ArenaCollision/BannerPole-2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-2.0,
+				1.6,
+				-16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.2,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.075,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/BannerPole2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				2.0,
+				1.6,
+				-16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.2,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.075,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/FirePost-1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-3.3,
+				1.0,
+				-14.3
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.0,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.14,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/FirePost1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				3.3,
+				1.0,
+				-14.3
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.0,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.14,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/RefugeCore": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				1.3,
+				-15.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.55,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-15.0,
+				0.38,
+				3.3
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.6937,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock12": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-7.0,
+				0.38,
+				3.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.7802,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock15": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.0,
+				0.38,
+				17.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.693,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock18": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-18.0,
+				0.38,
+				23.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5972,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock21": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				8.46,
+				0.38,
+				0.74
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.673,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock24": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				17.0,
+				0.684,
+				9.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.71,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 1.17,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock27": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				14.0,
+				0.612,
+				26.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.53,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 1.08,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-16.0,
+				0.38,
+				-13.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.4074,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock30": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				18.0,
+				0.54,
+				13.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.35,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 1.08,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock33": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				20.5,
+				0.72,
+				17.5
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.8,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 1.26,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock36": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				16.5,
+				0.612,
+				22.8
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.53,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 1.035,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock39": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				11.2,
+				0.648,
+				19.5
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.62,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 1.125,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock42": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-5.0,
+				0.38,
+				17.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.3853,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock45": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				14.6,
+				0.576,
+				3.4
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.44,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.945,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock6": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				14.0,
+				0.54,
+				-3.9
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.35,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.99,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Rock9": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				18.0,
+				0.38,
+				-15.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.99,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.657,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-13.0,
+				1.204,
+				-19.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-17.0,
+				1.333,
+				-21.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk10": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-18.0,
+				1.462,
+				20.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk11": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-21.0,
+				1.591,
+				24.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk12": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-15.0,
+				1.204,
+				25.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk13": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-12.0,
+				1.333,
+				21.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk14": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-9.0,
+				1.462,
+				25.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk15": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-6.0,
+				1.591,
+				20.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk16": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-5.0,
+				1.204,
+				26.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk17": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				5.0,
+				1.333,
+				26.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk18": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-9.0,
+				1.462,
+				19.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk19": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-4.0,
+				1.591,
+				14.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-21.0,
+				1.462,
+				-17.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk20": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				19.0,
+				1.204,
+				25.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk21": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				22.0,
+				1.333,
+				22.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk22": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				22.0,
+				1.462,
+				16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk23": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				21.0,
+				1.591,
+				11.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk24": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				22.0,
+				1.204,
+				7.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk25": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				22.0,
+				1.333,
+				-2.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk26": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				19.0,
+				1.462,
+				-6.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk27": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				22.0,
+				1.591,
+				-11.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk28": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				21.0,
+				1.204,
+				-17.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk29": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				16.0,
+				1.333,
+				-21.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-20.0,
+				1.591,
+				-11.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk30": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				12.0,
+				1.462,
+				-19.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk31": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-9.0,
+				1.591,
+				-23.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk32": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				7.0,
+				1.204,
+				-23.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk33": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-16.0,
+				1.333,
+				15.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk34": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-8.0,
+				1.462,
+				16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk35": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-17.0,
+				1.591,
+				7.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk36": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.2,
+				1.204,
+				-3.9
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk37": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-7.0,
+				1.333,
+				13.5
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk38": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-3.8,
+				1.462,
+				23.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk39": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-23.0,
+				1.591,
+				12.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk4": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-15.0,
+				1.204,
+				-8.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk40": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-12.0,
+				1.204,
+				27.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk41": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				16.0,
+				1.333,
+				-10.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk5": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-18.0,
+				1.333,
+				-5.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk6": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-22.0,
+				1.462,
+				-2.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.06,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk7": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-22.0,
+				1.591,
+				7.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.33,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk8": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-19.0,
+				1.204,
+				11.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.52,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"ArenaCollision/Trunk9": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-21.0,
+				1.333,
+				16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.79,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.25,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Stone1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				9.0,
+				0.0,
+				16.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2,
+					"holder": "@CollisionShape3D@155",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.6,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"Collectables/Stone2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				20.0,
+				0.0,
+				21.0
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2,
+					"holder": "@CollisionShape3D@162",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.6,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"Collectables/Stone3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				17.5,
+				0.0,
+				15.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2,
+					"holder": "@CollisionShape3D@169",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.6,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"Collectables/Stone4": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				10.0,
+				0.0,
+				24.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2,
+					"holder": "@CollisionShape3D@176",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.6,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"Collectables/Stone5": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				21.5,
+				0.0,
+				26.0
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2,
+					"holder": "@CollisionShape3D@183",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.6,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"Collectables/Stone6": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				7.0,
+				0.0,
+				20.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2,
+					"holder": "@CollisionShape3D@190",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.6,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"Collectables/Tree1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-15.0,
+				0.0,
+				19.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@99",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Tree2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-19.5,
+				0.0,
+				13.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@106",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Tree3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-11.0,
+				0.0,
+				23.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@113",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Tree4": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-6.5,
+				0.0,
+				23.0
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@120",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Tree5": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-17.0,
+				0.0,
+				26.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@127",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Tree6": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-22.5,
+				0.0,
+				20.0
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@134",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Tree7": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.0,
+				0.0,
+				9.5
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@141",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Collectables/Tree8": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-21.5,
+				0.0,
+				9.2
+			],
+			"groups": [
+				"damageable",
+				"collectable"
+			],
+			"layer": 17,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.0,
+					"holder": "@CollisionShape3D@148",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.5,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.35,
+					"type": "CapsuleShape3D"
+				}
+			]
+		},
+		"Ground": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"groups": [
+				"navigation_source"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						-0.5,
+						2.0
+					],
+					"margin": 0.04,
+					"size": [
+						48.0,
+						1.0,
+						52.0
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"TerritoryManager/Marker_east": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				13.0,
+				0.0,
+				16.0
+			],
+			"groups": [
+				"territory_marker",
+				"night_glow"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.0,
+					"holder": "@CollisionShape3D@212",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.75,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"TerritoryManager/Marker_west": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.0,
+				0.0,
+				13.0
+			],
+			"groups": [
+				"territory_marker",
+				"night_glow"
+			],
+			"layer": 8,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.0,
+					"holder": "@CollisionShape3D@197",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						1.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.75,
+					"type": "CylinderShape3D"
+				}
+			]
+		}
+	}
+}

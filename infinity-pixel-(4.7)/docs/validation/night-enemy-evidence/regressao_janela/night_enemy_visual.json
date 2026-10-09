@@ -1,0 +1,21 @@
+{
+	"failed": [],
+	"passed": [
+		"Dia: 2 selvagens diurnos com as cores originais",
+		"Dia: 2 guardiao(oes) territorial(is) com visual proprio intacto",
+		"Onda da Noite 1 criou 3/3 inimigos (quantidade inalterada)",
+		"Todos os inimigos da onda com a paleta azul-violeta em todas as malhas",
+		"Noite: 2 selvagens diurnos ainda vivos mantem as cores originais",
+		"Noite: guardioes continuam sem a paleta noturna",
+		"Corpo na paleta #18244D (albedo calibrado para o luar), borda de luz, sem emissao",
+		"So os olhos brilham, #6678C8, energia 0.8 (sem neon)",
+		"Materiais compartilhados do modelo inalterados (corpo ainda terracota, sem emissao/borda)",
+		"Inimigo noturno domesticado: cores normais, crista jade e coleira de aliado",
+		"Domesticar nao muda a vida (80)",
+		"Os outros inimigos da onda continuam noturnos",
+		"Reinicio: selvagens e guardioes da nova partida com as cores originais",
+		"Reinicio: materiais compartilhados do modelo continuam intactos",
+		"Reinicio: a onda da nova partida volta a ter a paleta noturna (3)",
+		"Reinicio: material noturno sem alteracao acumulada"
+	]
+}

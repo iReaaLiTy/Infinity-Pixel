@@ -1,0 +1,3 @@
+FOCUS_WATCH inicio focada=false auto_retomar=true
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)

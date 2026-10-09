@@ -1,0 +1,9 @@
+FOCUS_WATCH inicio focada=false auto_retomar=true
+FOCUS_WATCH t=11.8 pausado=true screen=paused gameplay=true game_over=false fase=8.62 relogio=08:57
+FOCUS_WATCH t=12.0 pausado=false screen=playing gameplay=true game_over=false fase=8.63 relogio=08:57
+FOCUS_WATCH t=23.4 pausado=true screen=defeat gameplay=true game_over=true fase=2.38 relogio=08:15
+FOCUS_WATCH t=23.7 pausado=false screen=playing gameplay=true game_over=false fase=0.02 relogio=08:00
+FOCUS_WATCH t=23.9 pausado=true screen=defeat gameplay=true game_over=true fase=0.22 relogio=08:01
+FOCUS_WATCH t=24.1 pausado=false screen=playing gameplay=true game_over=false fase=0.02 relogio=08:00
+FOCUS_WATCH t=25.0 pausado=true screen=defeat gameplay=true game_over=true fase=0.12 relogio=18:01
+FOCUS_WATCH t=25.3 pausado=false screen=playing gameplay=true game_over=false fase=0.02 relogio=08:00

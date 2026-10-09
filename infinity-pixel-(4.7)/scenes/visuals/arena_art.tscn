@@ -1358,18 +1358,6 @@ rings = 4
 radial_segments = 8
 rings = 4
 
-[sub_resource type="SphereMesh" id="SphereMesh_abh6k"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_rjm5g"]
-radial_segments = 8
-rings = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_8iiat"]
-radial_segments = 8
-rings = 4
-
 [node name="ArenaArt" type="Node3D" unique_id=73889143]
 
 [node name="Clearing" type="MeshInstance3D" parent="." unique_id=201343640]
@@ -2226,7 +2214,7 @@ material_override = SubResource("r7")
 mesh = SubResource("r157")
 
 [node name="Rock6" type="MeshInstance3D" parent="." unique_id=814877280]
-transform = Transform3D(-0.8302449, 0.07955685, 1.7566198, 0.30618092, 1.4854021, -2.1121005e-08, -2.0141864, 0.19300604, -0.72407633, 14, 0.54, -3.9)
+transform = Transform3D(-0.8302449, 0.07955685, 1.7566198, 0.30618092, 1.4854021, -2.112101e-08, -2.0141864, 0.19300604, -0.72407633, 14, 0.54, -3.9)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("r158")
 
@@ -2421,7 +2409,7 @@ material_override = SubResource("r7")
 mesh = SubResource("r196")
 
 [node name="Rock24" type="MeshInstance3D" parent="." unique_id=772017436]
-transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 1.19645325e-08, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
+transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 7.338336e-09, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("r197")
 
@@ -2476,7 +2464,7 @@ material_override = SubResource("r7")
 mesh = SubResource("r207")
 
 [node name="Rock30" type="MeshInstance3D" parent="." unique_id=702117131]
-transform = Transform3D(1.6086876, -0.16956484, 1.3999475, 0.2783464, 1.4854021, 3.4886225e-09, -1.1552694, 0.12177198, 1.9493967, 18, 0.54, 13)
+transform = Transform3D(1.6086876, -0.1695649, 1.3999475, 0.27834648, 1.4854021, 3.4886218e-09, -1.1552694, 0.121772006, 1.9493967, 18, 0.54, 13)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("r208")
 
@@ -2546,7 +2534,7 @@ material_override = SubResource("r7")
 mesh = SubResource("r221")
 
 [node name="Rock36" type="MeshInstance3D" parent="." unique_id=690400592]
-transform = Transform3D(0.5510016, -0.057237014, 2.0376217, 0.32009816, 1.6834557, 6.2080716e-08, -2.2099626, 0.22956654, 0.50803256, 16.5, 0.612, 22.8)
+transform = Transform3D(0.5510016, -0.05723704, 2.0376217, 0.32009816, 1.6834557, 1.0172296e-07, -2.2099626, 0.22956651, 0.50803256, 16.5, 0.612, 22.8)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("r222")
 
@@ -2581,7 +2569,7 @@ material_override = SubResource("r7")
 mesh = SubResource("r228")
 
 [node name="Rock39" type="MeshInstance3D" parent="." unique_id=348639069]
-transform = Transform3D(-0.49722728, 0.050314117, 2.1551704, 0.34793285, 1.7824825, 3.1805524e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
+transform = Transform3D(-0.49722728, 0.05031411, 2.1551704, 0.34793285, 1.7824825, 4.0559538e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("r229")
 
@@ -2651,7 +2639,7 @@ material_override = SubResource("r7")
 mesh = SubResource("r242")
 
 [node name="Rock45" type="MeshInstance3D" parent="." unique_id=968983789]
-transform = Transform3D(1.0943596, -0.117182754, 1.700666, 0.2922636, 1.5844289, 9.4449476e-08, -1.7683208, 0.18934959, 1.0524901, 14.6, 0.57600003, 3.4)
+transform = Transform3D(1.0943596, -0.11718279, 1.700666, 0.2922636, 1.5844289, 1.3409172e-07, -1.7683208, 0.18934958, 1.0524901, 14.6, 0.57600003, 3.4)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("r243")
 
@@ -2820,11 +2808,13 @@ mesh = SubResource("r270")
 
 [node name="RefugeCore" type="MeshInstance3D" parent="." unique_id=412386974]
 transform = Transform3D(-1.1, 1.6610328e-07, 0, -9.616505e-08, -1.9, 0, 0, 0, 1.1, 0, 1.2, -15)
+visible = false
 material_override = SubResource("r11")
 mesh = SubResource("r271")
 
 [node name="RefugeCap" type="MeshInstance3D" parent="." unique_id=229789322]
 transform = Transform3D(1.1, 0, 0, 0, 0.75, 0, 0, 0, 1.1, 0, 2.2, -15)
+visible = false
 material_override = SubResource("r11")
 mesh = SubResource("r272")
 
@@ -3001,72 +2991,57 @@ transform = Transform3D(18.962423, -2.1374137, -1.1682235, 4.0361195, 10.069541,
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("r305")
 
-[node name="BorderRidgeSouth_0" type="MeshInstance3D" parent="." unique_id=2093799371]
+[node name="BorderRidgeSouth_0" type="MeshInstance3D" parent="." unique_id=2016364511]
 transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -24, 0.5, -25)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_33w2e")
 
-[node name="BorderRidgeSouth_1" type="MeshInstance3D" parent="." unique_id=710157462]
+[node name="BorderRidgeSouth_1" type="MeshInstance3D" parent="." unique_id=613922139]
 transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -16, 0.5, -25)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_3h36n")
 
-[node name="BorderRidgeSouth_2" type="MeshInstance3D" parent="." unique_id=1039012362]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -8, 0.5, -25)
+[node name="BorderRidgeSouth_5" type="MeshInstance3D" parent="." unique_id=1679212939]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 16, 0.5, -25)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_77ip3")
 
-[node name="BorderRidgeSouth_3" type="MeshInstance3D" parent="." unique_id=1763242598]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0.5, -25)
+[node name="BorderRidgeSouth_6" type="MeshInstance3D" parent="." unique_id=746750446]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 24, 0.5, -25)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_3mtib")
 
-[node name="BorderRidgeSouth_4" type="MeshInstance3D" parent="." unique_id=1056961172]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 8, 0.5, -25)
+[node name="BorderRidgeNorth_0" type="MeshInstance3D" parent="." unique_id=1947705069]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -24, 0.5, 29)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_3ug01")
 
-[node name="BorderRidgeSouth_5" type="MeshInstance3D" parent="." unique_id=2054557527]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 16, 0.5, -25)
+[node name="BorderRidgeNorth_1" type="MeshInstance3D" parent="." unique_id=248110803]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -16, 0.5, 29)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_h4wpb")
 
-[node name="BorderRidgeSouth_6" type="MeshInstance3D" parent="." unique_id=84875988]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 24, 0.5, -25)
+[node name="BorderRidgeNorth_2" type="MeshInstance3D" parent="." unique_id=430295161]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -8, 0.5, 29)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_vr6m2")
 
-[node name="BorderRidgeNorth_0" type="MeshInstance3D" parent="." unique_id=602736504]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -24, 0.5, 29)
+[node name="BorderRidgeNorth_3" type="MeshInstance3D" parent="." unique_id=1994384489]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0.5, 29)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_hgu30")
 
-[node name="BorderRidgeNorth_1" type="MeshInstance3D" parent="." unique_id=109306102]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -16, 0.5, 29)
+[node name="BorderRidgeNorth_4" type="MeshInstance3D" parent="." unique_id=1510080268]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 8, 0.5, 29)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_5ycbl")
 
-[node name="BorderRidgeNorth_2" type="MeshInstance3D" parent="." unique_id=1175126360]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, -8, 0.5, 29)
+[node name="BorderRidgeNorth_5" type="MeshInstance3D" parent="." unique_id=408856792]
+transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 16, 0.5, 29)
 material_override = SubResource("StandardMaterial3D_gkhl5")
 mesh = SubResource("SphereMesh_juvbd")
 
-[node name="BorderRidgeNorth_3" type="MeshInstance3D" parent="." unique_id=659115530]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_rmwpd")
-
-[node name="BorderRidgeNorth_4" type="MeshInstance3D" parent="." unique_id=504687131]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 8, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_abh6k")
-
-[node name="BorderRidgeNorth_5" type="MeshInstance3D" parent="." unique_id=417791096]
-transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 16, 0.5, 29)
-material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_rjm5g")
-
-[node name="BorderRidgeNorth_6" type="MeshInstance3D" parent="." unique_id=22212039]
+[node name="BorderRidgeNorth_6" type="MeshInstance3D" parent="." unique_id=556279892]
 transform = Transform3D(8, 0, 0, 0, 3, 0, 0, 0, 4, 24, 0.5, 29)
 material_override = SubResource("StandardMaterial3D_gkhl5")
-mesh = SubResource("SphereMesh_8iiat")
+mesh = SubResource("SphereMesh_rmwpd")

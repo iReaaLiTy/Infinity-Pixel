@@ -1,0 +1,3 @@
+FOCUS_WATCH inicio focada=false auto_retomar=true
+FOCUS_WATCH t=107.6 pausado=true screen=defeat gameplay=true game_over=true fase=0.00 relogio=18:00
+FOCUS_WATCH t=109.3 pausado=false screen=menu gameplay=false game_over=false fase=0.00 relogio=08:00

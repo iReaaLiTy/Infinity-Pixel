@@ -1,0 +1,50 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Dia: 2 selvagens diurnos com as cores originais
+PASS: Dia: 2 guardiao(oes) territorial(is) com visual proprio intacto
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@334
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@335
+PASS: Onda da Noite 1 criou 3/3 inimigos (quantidade inalterada)
+PASS: Todos os inimigos da onda com a paleta azul-violeta em todas as malhas
+PASS: Noite: 2 selvagens diurnos ainda vivos mantem as cores originais
+PASS: Noite: guardioes continuam sem a paleta noturna
+PASS: Corpo na paleta #18244D (albedo calibrado para o luar), borda de luz, sem emissao
+PASS: So os olhos brilham, #6678C8, energia 0.8 (sem neon)
+PASS: Materiais compartilhados do modelo inalterados (corpo ainda terracota, sem emissao/borda)
+@CharacterBody3D@334 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] @CharacterBody3D@334 domesticado
+[ALIADO] Modo: SEGUINDO
+[NOITE] Inimigo da wave domesticado. Restantes: 2
+PASS: Inimigo noturno domesticado: cores normais, crista jade e coleira de aliado
+PASS: Domesticar nao muda a vida (80)
+PASS: Os outros inimigos da onda continuam noturnos
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Reinicio: selvagens e guardioes da nova partida com as cores originais
+PASS: Reinicio: materiais compartilhados do modelo continuam intactos
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[NOITE] Inimigo spawnado (1/3) em (0.0, 0.5, 23.0).
+[NOITE] Inimigo da wave registrado: WildDino
+[NOITE] Inimigo spawnado (2/3) em (-20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@662
+[NOITE] Inimigo spawnado (3/3) em (20.0, 0.5, 2.0).
+[NOITE] Inimigo da wave registrado: @CharacterBody3D@663
+PASS: Reinicio: a onda da nova partida volta a ter a paleta noturna (3)
+PASS: Reinicio: material noturno sem alteracao acumulada
+NIGHT LOOK RESULTS: 16 passed; 0 failed

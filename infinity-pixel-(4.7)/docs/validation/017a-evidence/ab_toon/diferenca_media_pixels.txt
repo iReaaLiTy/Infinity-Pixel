@@ -1,0 +1,8 @@
+﻿12_paredao_1200 regiao do paredao (x 200-1280, y 140-520): toon x padrao = 8 | antes x depois = 63.5
+12_paredao_1730 regiao do paredao (x 200-1280, y 140-520): toon x padrao = 5.7 | antes x depois = 27.1
+12_paredao_2100 regiao do paredao (x 200-1280, y 140-520): toon x padrao = 3.4 | antes x depois = 36.8
+10_cristal_1200 regiao do cristal (x 560-720, y 130-480): toon x padrao = 7.1 | antes x depois = 68
+10_cristal_1730 regiao do cristal (x 560-720, y 130-480): toon x padrao = 14.7 | antes x depois = 59.4
+10_cristal_2100 regiao do cristal (x 560-720, y 130-480): toon x padrao = 3.4 | antes x depois = 58.6
+11_slot_vazio_1200 regiao do ponto (x 430-840, y 290-530): toon x padrao = 3 | antes x depois = 39.1
+11_slot_vazio_1730 regiao do ponto (x 430-840, y 290-530): toon x padrao = 9.2 | antes x depois = 15.9
