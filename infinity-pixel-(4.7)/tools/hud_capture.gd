@@ -110,6 +110,7 @@ func _ready() -> void:
 	add_child(app)
 	await get_tree().process_frame
 	await series(Vector2i(1280, 720))
+	await series(Vector2i(1600, 900))
 	await series(Vector2i(1920, 1080))
 	print("[HUD] capturas em " + out)
 	app.show_menu()

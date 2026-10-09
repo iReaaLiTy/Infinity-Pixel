@@ -440,21 +440,35 @@ func _cost_line(parent: Node, wood: int, stone: int) -> Array:
 	parent.add_child(row)
 	return [wood_label, stone_label]
 
-func _recipe_list(box: VBoxContainer, rows: Dictionary) -> void:
+## Descricao curta de cada construcao (valores lidos dos proprios scripts).
+const RECIPE_INFO := {
+	&"campfire": ["Segure H perto dela: +25 de vida em 3 s. 2 cargas, que voltam com o tempo.", "Onde: área de construção do Refúgio · máx. 1"],
+	&"trap": ["Espinhos ferem quem pisa (15 de dano, 3 cargas).", "Onde: sobre as trilhas noturnas · máx. 3"],
+}
+
+func _recipe_list(box: VBoxContainer, rows: Dictionary, big := false) -> void:
 	for id in BuildRecipes.order():
 		var r = BuildRecipes.get_recipe(id)
-		var entry = VBoxContainer.new()
-		entry.add_theme_constant_override("separation", 2)
-		entry.add_child(app._label(r.name, 15, GOLD))
+		var entry: VBoxContainer = _inv_tile(box, GOLD) if big else VBoxContainer.new()
+		entry.add_theme_constant_override("separation", 3 if big else 2)
+		entry.add_child(app._label(r.name, 17 if big else 15, GOLD))
+		if big and RECIPE_INFO.has(id):
+			for k in 2:
+				var info = app._label(RECIPE_INFO[id][k], 13 if k == 0 else 12, Color(CREAM, .85 if k == 0 else .6))
+				info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				entry.add_child(info)
 		var costs: Array = _cost_line(entry, r.wood, r.stone)
 		var line = HBoxContainer.new()
 		var status = app._label("", 12, EMBER)
 		status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		line.add_child(status)
 		var button = app._menu_button(line, "CONSTRUIR", 14, Color("e9a23b"), Color("8a4f19"), 5, 9, 14, 2, func(): _start_placement(id))
-		button.focus_mode = Control.FOCUS_NONE
+		# No inventario grande os botoes recebem foco (Tab/setas + Enter); no
+		# painel compacto (B) nao roubam teclas.
+		button.focus_mode = Control.FOCUS_ALL if big else Control.FOCUS_NONE
 		entry.add_child(line)
-		box.add_child(entry)
+		if not big:
+			box.add_child(entry)
 		rows[id] = {"button": button, "status": status, "wood": costs[0], "stone": costs[1], "need": Vector2i(r.wood, r.stone)}
 
 func _side_panel(title: String, box: VBoxContainer) -> PanelContainer:
@@ -475,27 +489,9 @@ func _side_panel(title: String, box: VBoxContainer) -> PanelContainer:
 
 func _build_inventory_panels() -> void:
 	_recipe_rows = {} # a HUD e recriada a cada partida: nada da anterior (ja liberado)
-	# INVENTARIO (I): recursos + receitas. Nao pausa o mundo.
-	var inv = VBoxContainer.new()
-	for kind in [&"wood", &"stone"]:
-		var row = HBoxContainer.new()
-		row.add_theme_constant_override("separation", 8)
-		row.add_child(_resource_icon(kind, 20))
-		var name_label = app._label("MADEIRA" if kind == &"wood" else "PEDRA", 15)
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		row.add_child(name_label)
-		var value = app._label("0", 17, Color("e6c79a") if kind == &"wood" else Color("c9d3cc"))
-		value.add_theme_font_override("font", app._display_font())
-		row.add_child(value)
-		inv.add_child(row)
-		if kind == &"wood": inv_wood_text = value
-		else: inv_stone_text = value
-	inv.add_child(app._label("CONSTRUÇÕES", 12, JADE))
-	var inv_rows = {}
-	_recipe_list(inv, inv_rows)
-	inv.add_child(app._label("I fecha  ·  B constrói direto", 11, Color(CREAM, .6)))
-	inventory_panel = _side_panel("INVENTÁRIO", inv)
-	inventory_panel.name = "InventoryPanel"
+	_build_big_inventory()
+	var inv_rows := {}
+	_recipe_list(_inv_recipes_box, inv_rows, true)
 	_recipe_rows[inventory_panel] = inv_rows
 	# CONSTRUCAO (B): so as receitas, compacto.
 	var bm = VBoxContainer.new()
@@ -539,6 +535,7 @@ func _refresh_inventory() -> void:
 	var stock = world.get_node("ResourceStock")
 	inv_wood_text.text = str(stock.get_amount(&"wood"))
 	inv_stone_text.text = str(stock.get_amount(&"stone"))
+	_refresh_defense_info()
 	var placer = _placer()
 	var have := Vector2i(stock.get_amount(&"wood"), stock.get_amount(&"stone"))
 	for panel in _recipe_rows:
@@ -559,6 +556,11 @@ func toggle_inventory() -> void:
 	build_menu_panel.hide()
 	inventory_panel.visible = not inventory_panel.visible
 	_refresh_inventory()
+	if inventory_panel.visible:
+		inventory_panel.move_to_front() # acima de avisos e do painel do tutorial
+		_inv_close.grab_focus() # teclado: Tab/setas percorrem FECHAR e CONSTRUIR
+	elif is_instance_valid(get_viewport().gui_get_focus_owner()):
+		get_viewport().gui_get_focus_owner().release_focus()
 
 func toggle_build_menu() -> void:
 	inventory_panel.hide()
@@ -577,7 +579,10 @@ func _close_build_ui() -> bool:
 	if _placer().is_placing():
 		_placer().cancel()
 		return true
-	if inventory_panel.visible or build_menu_panel.visible:
+	if inventory_panel.visible:
+		toggle_inventory() # fecha e solta o foco do teclado
+		return true
+	if build_menu_panel.visible:
 		inventory_panel.hide()
 		build_menu_panel.hide()
 		return true
@@ -818,3 +823,202 @@ func _update_collect_focus(player: Node3D) -> void:
 	_focus_ring.scale = Vector3.ONE * (1.25 if best.kind == "stone" else 0.95) * (1.0 + 0.05 * sin(Time.get_ticks_msec() * 0.006))
 	if hint.text == "":
 		hint.text = "%s  ·  Golpeie para coletar  ·  +%d %s" % ["ÁRVORE" if best.kind == "wood" else "ROCHA COM MINÉRIO", best.reward(), best.label()]
+
+# ---------------------------------------------------------------------------
+# Inventario grande (playtest 09/10/2026): cartao central (~74% da largura da
+# tela de referencia 1280x720, escala com a janela) sobre um veu escuro que
+# bloqueia cliques no mundo. NAO pausa: contrato aprovado da 013D (o relogio e
+# a noite continuam correndo). Fecha com I, ESC, o botao FECHAR ou clique fora.
+# Mostra so o que existe no jogo: Madeira, Pedra, construcoes e a defesa.
+# ---------------------------------------------------------------------------
+const CARD_WIDTH := 948.0
+const DefenseTower := preload("res://scenes/world/defense_tower.gd")
+var _inv_recipes_box: VBoxContainer
+var _inv_card: PanelContainer
+var _inv_close: Button
+var _def_points: Label
+var _def_towers: Label
+var _def_territories: Label
+var _def_structures: Label
+
+func _inv_section(title: String, hint: String) -> VBoxContainer:
+	var col := VBoxContainer.new()
+	col.add_theme_constant_override("separation", 8)
+	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var head = app._label(title, 15, JADE)
+	head.add_theme_font_override("font", app._display_font())
+	col.add_child(head)
+	var sub = app._label(hint, 12, Color(CREAM, .6))
+	sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	col.add_child(sub)
+	var line := ColorRect.new()
+	line.color = Color("2f5547")
+	line.custom_minimum_size = Vector2(0, 2)
+	col.add_child(line)
+	return col
+
+func _inv_tile(parent: Node, style_color: Color) -> VBoxContainer:
+	var tile := PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(style_color, 0.10)
+	sb.border_color = Color(style_color, 0.35)
+	sb.set_border_width_all(1)
+	sb.set_corner_radius_all(7)
+	sb.content_margin_left = 12
+	sb.content_margin_right = 12
+	sb.content_margin_top = 8
+	sb.content_margin_bottom = 9
+	tile.add_theme_stylebox_override("panel", sb)
+	parent.add_child(tile)
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 3)
+	tile.add_child(box)
+	return box
+
+func _build_big_inventory() -> void:
+	# Veu escuro em tela cheia (e o proprio inventory_panel).
+	inventory_panel = PanelContainer.new()
+	inventory_panel.name = "InventoryPanel"
+	var veil := StyleBoxFlat.new()
+	veil.bg_color = Color(0.01, 0.03, 0.03, 0.62)
+	inventory_panel.add_theme_stylebox_override("panel", veil)
+	add_child(inventory_panel)
+	inventory_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	inventory_panel.mouse_filter = Control.MOUSE_FILTER_STOP # nada atravessa para o mundo
+	inventory_panel.gui_input.connect(_on_veil_input)
+	var center := CenterContainer.new()
+	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	inventory_panel.add_child(center)
+	_inv_card = PanelContainer.new()
+	var card := StyleBoxFlat.new()
+	card.bg_color = Color(0.035, 0.1, 0.095, 0.97)
+	card.border_color = Color("4f8f73")
+	card.set_border_width_all(2)
+	card.border_width_top = 4
+	card.set_corner_radius_all(12)
+	card.shadow_color = Color(0, 0, 0, 0.45)
+	card.shadow_size = 18
+	card.content_margin_left = 26
+	card.content_margin_right = 26
+	card.content_margin_top = 16
+	card.content_margin_bottom = 18
+	_inv_card.add_theme_stylebox_override("panel", card)
+	_inv_card.custom_minimum_size.x = CARD_WIDTH
+	_inv_card.mouse_filter = Control.MOUSE_FILTER_STOP
+	center.add_child(_inv_card)
+	var root := VBoxContainer.new()
+	root.add_theme_constant_override("separation", 12)
+	_inv_card.add_child(root)
+	# Cabecalho: titulo, legenda e como fechar.
+	var header := HBoxContainer.new()
+	header.add_theme_constant_override("separation", 14)
+	root.add_child(header)
+	header.add_child(_resource_icon(&"defense", 30))
+	var titles := VBoxContainer.new()
+	titles.add_theme_constant_override("separation", -2)
+	titles.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var title = app._label("INVENTÁRIO", 28, GOLD)
+	title.add_theme_font_override("font", app._display_font())
+	titles.add_child(title)
+	titles.add_child(app._label("O que você tem, o que dá para construir e como está a defesa do Refúgio.", 13, Color(CREAM, .7)))
+	header.add_child(titles)
+	header.add_child(app._label("[ I ] ou [ ESC ]", 13, Color(CREAM, .6)))
+	_inv_close = app._menu_button(header, "FECHAR", 15, Color("5f7468"), Color("2c3b34"), 5, 9, 16, 4, toggle_inventory)
+	_inv_close.name = "InventoryClose"
+	# Tres colunas.
+	var cols := HBoxContainer.new()
+	cols.add_theme_constant_override("separation", 22)
+	root.add_child(cols)
+	# RECURSOS
+	var res := _inv_section("RECURSOS", "Golpeie árvores de copa amarelada e rochas com cristais.")
+	res.custom_minimum_size.x = 250
+	cols.add_child(res)
+	for kind in [&"wood", &"stone"]:
+		var tile := _inv_tile(res, Color("e6c79a") if kind == &"wood" else Color("c9d3cc"))
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 12)
+		row.add_child(_resource_icon(kind, 38))
+		var name_col := VBoxContainer.new()
+		name_col.add_theme_constant_override("separation", -3)
+		name_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		name_col.add_child(app._label("MADEIRA" if kind == &"wood" else "PEDRA", 16, CREAM))
+		name_col.add_child(app._label("+10 por árvore" if kind == &"wood" else "+6 por rocha", 12, Color(CREAM, .6)))
+		row.add_child(name_col)
+		var value = app._label("0", 30, Color("e6c79a") if kind == &"wood" else Color("c9d3cc"))
+		value.add_theme_font_override("font", app._display_font())
+		row.add_child(value)
+		tile.add_child(row)
+		if kind == &"wood": inv_wood_text = value
+		else: inv_stone_text = value
+	var regrow = app._label("Árvores e rochas voltam no amanhecer seguinte.", 12, Color(CREAM, .55))
+	regrow.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	res.add_child(regrow)
+	# CONSTRUCOES
+	var build := _inv_section("CONSTRUÇÕES", "Pagas com Madeira e Pedra. Escolha e posicione no mundo.")
+	build.custom_minimum_size.x = 330
+	cols.add_child(build)
+	_inv_recipes_box = VBoxContainer.new()
+	_inv_recipes_box.add_theme_constant_override("separation", 10)
+	build.add_child(_inv_recipes_box)
+	# DEFESA
+	var defense := _inv_section("DEFESA", "Torres usam Pontos de Defesa (ganhos ao vencer inimigos da noite).")
+	defense.custom_minimum_size.x = 250
+	cols.add_child(defense)
+	var tile_p := _inv_tile(defense, JADE)
+	var prow := HBoxContainer.new()
+	prow.add_theme_constant_override("separation", 12)
+	prow.add_child(_resource_icon(&"defense", 34))
+	var pcol := VBoxContainer.new()
+	pcol.add_theme_constant_override("separation", -3)
+	pcol.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	pcol.add_child(app._label("PONTOS DE DEFESA", 15, CREAM))
+	pcol.add_child(app._label("Torre: %d  ·  Melhorias: %d / %d" % [DefenseTower.LEVELS[0].cost, DefenseTower.LEVELS[1].cost, DefenseTower.LEVELS[2].cost], 12, Color(CREAM, .6)))
+	prow.add_child(pcol)
+	_def_points = app._label("0", 30, Color("aef0cf"))
+	_def_points.add_theme_font_override("font", app._display_font())
+	prow.add_child(_def_points)
+	tile_p.add_child(prow)
+	var tile_s := _inv_tile(defense, CREAM)
+	_def_towers = app._label("", 14, CREAM)
+	tile_s.add_child(_def_towers)
+	_def_territories = app._label("", 14, CREAM)
+	tile_s.add_child(_def_territories)
+	_def_structures = app._label("", 13, CREAM)
+	_def_structures.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tile_s.add_child(_def_structures)
+	var tip = app._label("Perto de um ponto de defesa: [C] ergue ou melhora a torre (de dia).", 12, Color(CREAM, .55))
+	tip.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	defense.add_child(tip)
+	# Rodape.
+	var foot = app._label("[B] constrói direto  ·  o tempo NÃO para com o inventário aberto", 12, Color(CREAM, .55))
+	foot.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	root.add_child(foot)
+	inventory_panel.hide()
+
+## Clique no veu escuro (fora do cartao) fecha o inventario.
+func _on_veil_input(ev: InputEvent) -> void:
+	if ev is InputEventMouseButton and ev.pressed and inventory_panel.visible \
+			and not _inv_card.get_global_rect().has_point(ev.global_position):
+		toggle_inventory()
+
+## Linhas extras do inventario grande (defesa e estruturas).
+func _refresh_defense_info() -> void:
+	if not is_instance_valid(_def_points) or not is_instance_valid(world):
+		return
+	_def_points.text = str(world.get_node("DefenseEconomy").points)
+	var built := 0
+	var total := 0
+	for slot in world.get_node("DefenseSlots").get_children():
+		total += 1
+		if not slot.is_empty():
+			built += 1
+	_def_towers.text = "Torres erguidas: %d de %d pontos" % [built, total]
+	var terr = world.get_node_or_null("TerritoryManager")
+	if terr != null:
+		_def_territories.text = "Territórios controlados: %d / %d" % [terr.controlled_count(), terr.total_count()]
+	var placer = _placer()
+	var parts := []
+	for id in BuildRecipes.order():
+		var r = BuildRecipes.get_recipe(id)
+		parts.append("%s %d/%d" % ["Fogueira" if id == BuildRecipes.CAMPFIRE else "Armadilhas", placer.count(id), r.limit])
+	_def_structures.text = "Construídas: " + "  ·  ".join(parts)
