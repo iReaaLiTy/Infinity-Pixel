@@ -437,141 +437,148 @@ _surfaces = [{
 "vertex_data": PackedByteArray("vAlnPRBZIL+movS+JLLHOw0UJ7+tsBi/JLLHO7GEJL+28PO+vAlnPRBZIL+movS+vAlnPWzoIr+mCRm/JLLHOw0UJ7+tsBi/JLLHO7GEJL+28PO+zszMvPYoHL+amRm/zszMvJqZGb+PwvW+JLLHO7GEJL+28PO+JLLHOw0UJ7+tsBi/zszMvPYoHL+amRm/zszMvJqZGb+PwvW+JLLHO989Eb+Hghq/JLLHO4OuDr9olPe+zszMvJqZGb+PwvW+zszMvPYoHL+amRm/JLLHO989Eb+Hghq/JLLHO4OuDr9olPe+vAlnPYBpFb+OKRq/vAlnPSTaEr944va+JLLHO4OuDr9olPe+JLLHO989Eb+Hghq/vAlnPYBpFb+OKRq/vAlnPSTaEr944va+vAlnPWzoIr+mCRm/vAlnPRBZIL+movS+vAlnPSTaEr944va+vAlnPYBpFb+OKRq/vAlnPWzoIr+mCRm/vAlnPWzoIr+mCRm/CtejPPYoHL+amRm/JLLHOw0UJ7+tsBi/JLLHOw0UJ7+tsBi/CtejPPYoHL+amRm/zszMvPYoHL+amRm/zszMvPYoHL+amRm/CtejPPYoHL+amRm/JLLHO989Eb+Hghq/JLLHO989Eb+Hghq/CtejPPYoHL+amRm/vAlnPYBpFb+OKRq/vAlnPYBpFb+OKRq/CtejPPYoHL+amRm/vAlnPWzoIr+mCRm/vAlnPRBZIL+movS+JLLHO7GEJL+28PO+CtejPJqZGb+QwvW+JLLHO7GEJL+28PO+zszMvJqZGb+PwvW+CtejPJqZGb+QwvW+zszMvJqZGb+PwvW+JLLHO4OuDr9olPe+CtejPJqZGb+QwvW+JLLHO4OuDr9olPe+vAlnPSTaEr944va+CtejPJqZGb+QwvW+vAlnPSTaEr944va+vAlnPRBZIL+movS+CtejPJqZGb+QwvW+m50tJfEglrCbnS0l8SCWsJudLSXxIJawm50tJfEglrCbnS0l8SCWsJudLSXxIJawQzgPTEJkidVDOA9MQmSJ1UM4D0xCZInVQzgPTEJkidVDOA9MQmSJ1UM4D0xCZInV7zNDuANfd6vvM0O4A193q+8zQ7gDX3er7zNDuANfd6vvM0O4A193q+8zQ7gDX3erLaVi4kwhh88tpWLiTCGHzy2lYuJMIYfPLaVi4kwhh88tpWLiTCGHzy2lYuJMIYfP////f/9//7////9//3//v////3//f/+/////f/9//7////9//3//v////3//f/+/2AkAAC5/TIXYCQAALn9MhdgJAAAuf0yFJvYAAC5/TIUm9gAALn9MhSb2AAAuf0yFJvYAAC5/TIUm9gAALn9MhSb2AAAuf0yFJvYAAC5/TIUm9gAALn9MhSb2AAAuf0yFJvYAAC5/TIUm9gAALn9MhSb2AAAuf0yF/3/YiS5/TIX/f9iJLn9Mhf9/2Ikuf0yF/3/YiS5/TIX/f9iJLn9Mhf9/2Ikuf0yF/3/YiS5/TIX/f9iJLn9Mhf9/2Ikuf0yF/3/YiS5/TIX/f9iJLn9Mhf9/2Ikuf0yF/3/YiS5/TIX/f9iJLn9Mhf9/2Ikuf0yF")
 }]
 
-[node name="Visual" type="Node3D" unique_id=2134109210]
+[node name="Visual" type="Node3D" unique_id=1140256651]
 script = ExtResource("1_x8fmv")
 
-[node name="Tunic" type="MeshInstance3D" parent="." unique_id=1586675256]
+[node name="Tunic" type="MeshInstance3D" parent="." unique_id=261315165]
 material_override = SubResource("StandardMaterial3D_qlo64")
 mesh = SubResource("ArrayMesh_j4xs7")
 
-[node name="Vest" type="MeshInstance3D" parent="." unique_id=1166510801]
+[node name="Vest" type="MeshInstance3D" parent="." unique_id=206481889]
 material_override = SubResource("StandardMaterial3D_rd27d")
 mesh = SubResource("ArrayMesh_gul44")
 
-[node name="Belt" type="MeshInstance3D" parent="." unique_id=2071017908]
+[node name="Belt" type="MeshInstance3D" parent="." unique_id=669695294]
 material_override = SubResource("StandardMaterial3D_rd27d")
 mesh = SubResource("ArrayMesh_adt1y")
 
-[node name="Buckle" type="MeshInstance3D" parent="." unique_id=164489113]
+[node name="Buckle" type="MeshInstance3D" parent="." unique_id=741509560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24, -0.18, -0.6)
 material_override = SubResource("StandardMaterial3D_qwdpj")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_jtun5")
 
-[node name="Head" type="MeshInstance3D" parent="." unique_id=1680933534]
+[node name="Head" type="MeshInstance3D" parent="." unique_id=2066302139]
 material_override = SubResource("StandardMaterial3D_wdkhy")
 mesh = SubResource("ArrayMesh_yo7vb")
 
-[node name="Hair" type="MeshInstance3D" parent="." unique_id=726376338]
+[node name="Hair" type="MeshInstance3D" parent="." unique_id=877134758]
 material_override = SubResource("StandardMaterial3D_6vhmu")
 mesh = SubResource("ArrayMesh_mlk46")
 
-[node name="Hat" type="MeshInstance3D" parent="." unique_id=97555997]
+[node name="Hat" type="MeshInstance3D" parent="." unique_id=965133221]
 material_override = SubResource("StandardMaterial3D_xd83p")
 mesh = SubResource("ArrayMesh_ukwcw")
 
-[node name="HatBand" type="MeshInstance3D" parent="." unique_id=523583219]
+[node name="HatBand" type="MeshInstance3D" parent="." unique_id=973150683]
 material_override = SubResource("StandardMaterial3D_qwdpj")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_avdno")
 
-[node name="Scarf" type="MeshInstance3D" parent="." unique_id=717140213]
+[node name="Scarf" type="MeshInstance3D" parent="." unique_id=879454722]
 material_override = SubResource("StandardMaterial3D_1s25e")
 mesh = SubResource("ArrayMesh_b0qpu")
 
-[node name="ScarfTail" type="MeshInstance3D" parent="." unique_id=1967974086]
+[node name="ScarfTail" type="MeshInstance3D" parent="." unique_id=1723293809]
 material_override = SubResource("StandardMaterial3D_1s25e")
 mesh = SubResource("ArrayMesh_8yvl4")
 
-[node name="Cape" type="MeshInstance3D" parent="." unique_id=1510078580]
+[node name="Cape" type="MeshInstance3D" parent="." unique_id=862026585]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38, 0.24)
 material_override = SubResource("StandardMaterial3D_l7x3w")
 mesh = SubResource("ArrayMesh_7ni6c")
 
-[node name="Satchel" type="MeshInstance3D" parent="." unique_id=679310353]
+[node name="Satchel" type="MeshInstance3D" parent="." unique_id=575681527]
 material_override = SubResource("StandardMaterial3D_oo4uq")
 mesh = SubResource("ArrayMesh_ggfes")
 
-[node name="Bedroll" type="MeshInstance3D" parent="." unique_id=1109910637]
+[node name="Bedroll" type="MeshInstance3D" parent="." unique_id=883026173]
 material_override = SubResource("StandardMaterial3D_tii1f")
 mesh = SubResource("ArrayMesh_xq354")
 
-[node name="Straps" type="MeshInstance3D" parent="." unique_id=1019484419]
+[node name="Straps" type="MeshInstance3D" parent="." unique_id=153629277]
 material_override = SubResource("StandardMaterial3D_lp05p")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_kq8k2")
 
-[node name="Lantern" type="MeshInstance3D" parent="." unique_id=1041418267]
+[node name="Lantern" type="MeshInstance3D" parent="." unique_id=75711583]
 material_override = SubResource("StandardMaterial3D_xbbey")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_j4jyr")
 
-[node name="Eye-1" type="MeshInstance3D" parent="." unique_id=1004943661]
+[node name="Eye-1" type="MeshInstance3D" parent="." unique_id=1226549201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.095, 1.68, -0.235)
 material_override = SubResource("StandardMaterial3D_sn765")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_3m6ne")
 
-[node name="LegL" type="Node3D" parent="." unique_id=184574390]
+[node name="LegL" type="Node3D" parent="." unique_id=1724246723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13, 0.84, 0)
 
-[node name="LegLPart" type="MeshInstance3D" parent="LegL" unique_id=315488615]
+[node name="LegLPart" type="MeshInstance3D" parent="LegL" unique_id=1468891042]
 material_override = SubResource("StandardMaterial3D_jktxu")
 mesh = SubResource("ArrayMesh_lk5u2")
 
-[node name="LegLBoot" type="MeshInstance3D" parent="LegL" unique_id=705324153]
+[node name="LegLBoot" type="MeshInstance3D" parent="LegL" unique_id=1576490577]
 material_override = SubResource("StandardMaterial3D_25qsx")
 mesh = SubResource("ArrayMesh_w2t43")
 
-[node name="ArmL" type="Node3D" parent="." unique_id=1768268401]
+[node name="ArmL" type="Node3D" parent="." unique_id=1590798251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31, 1.33, 0)
 
-[node name="ArmLPart" type="MeshInstance3D" parent="ArmL" unique_id=800346352]
+[node name="ArmLPart" type="MeshInstance3D" parent="ArmL" unique_id=1214299422]
 material_override = SubResource("StandardMaterial3D_qlo64")
 mesh = SubResource("ArrayMesh_k00gk")
 
-[node name="ArmLBracer" type="MeshInstance3D" parent="ArmL" unique_id=953721282]
+[node name="ArmLBracer" type="MeshInstance3D" parent="ArmL" unique_id=1741013763]
 material_override = SubResource("StandardMaterial3D_rd27d")
 mesh = SubResource("ArrayMesh_a0yid")
 
-[node name="ArmLHand" type="MeshInstance3D" parent="ArmL" unique_id=353932672]
+[node name="ArmLHand" type="MeshInstance3D" parent="ArmL" unique_id=807967626]
 material_override = SubResource("StandardMaterial3D_wdkhy")
 mesh = SubResource("ArrayMesh_edr53")
 
-[node name="Eye1" type="MeshInstance3D" parent="." unique_id=1374741037]
+[node name="Eye1" type="MeshInstance3D" parent="." unique_id=284372467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.095, 1.68, -0.235)
 material_override = SubResource("StandardMaterial3D_sn765")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_3qo2a")
 
-[node name="LegR" type="Node3D" parent="." unique_id=790805818]
+[node name="LegR" type="Node3D" parent="." unique_id=1104122854]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13, 0.84, 0)
 
-[node name="LegRPart" type="MeshInstance3D" parent="LegR" unique_id=2009580668]
+[node name="LegRPart" type="MeshInstance3D" parent="LegR" unique_id=1785958343]
 material_override = SubResource("StandardMaterial3D_jktxu")
 mesh = SubResource("ArrayMesh_twf82")
 
-[node name="LegRBoot" type="MeshInstance3D" parent="LegR" unique_id=1367314741]
+[node name="LegRBoot" type="MeshInstance3D" parent="LegR" unique_id=1056949212]
 material_override = SubResource("StandardMaterial3D_25qsx")
 mesh = SubResource("ArrayMesh_1yksb")
 
-[node name="ArmR" type="Node3D" parent="." unique_id=1579902428]
+[node name="ArmR" type="Node3D" parent="." unique_id=529466745]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31, 1.33, 0)
 
-[node name="ArmRPart" type="MeshInstance3D" parent="ArmR" unique_id=132721557]
+[node name="ArmRPart" type="MeshInstance3D" parent="ArmR" unique_id=1448738671]
 material_override = SubResource("StandardMaterial3D_qlo64")
 mesh = SubResource("ArrayMesh_xabov")
 
-[node name="ArmRBracer" type="MeshInstance3D" parent="ArmR" unique_id=484608259]
+[node name="ArmRBracer" type="MeshInstance3D" parent="ArmR" unique_id=1764093971]
 material_override = SubResource("StandardMaterial3D_rd27d")
 mesh = SubResource("ArrayMesh_ed0sv")
 
-[node name="ArmRHand" type="MeshInstance3D" parent="ArmR" unique_id=253167469]
+[node name="ArmRHand" type="MeshInstance3D" parent="ArmR" unique_id=138566126]
 material_override = SubResource("StandardMaterial3D_wdkhy")
 mesh = SubResource("ArrayMesh_qbsfd")
 
-[node name="Haft" type="MeshInstance3D" parent="ArmR" unique_id=1108050569]
+[node name="Haft" type="MeshInstance3D" parent="ArmR" unique_id=570857197]
 material_override = SubResource("StandardMaterial3D_o7n21")
 mesh = SubResource("ArrayMesh_nin2i")
 
-[node name="Hatchet" type="MeshInstance3D" parent="ArmR" unique_id=198791689]
+[node name="Hatchet" type="MeshInstance3D" parent="ArmR" unique_id=1694889301]
 material_override = SubResource("StandardMaterial3D_pffv0")
 mesh = SubResource("ArrayMesh_jyev3")
 
-[node name="Wrapping" type="MeshInstance3D" parent="ArmR" unique_id=1405510254]
+[node name="Wrapping" type="MeshInstance3D" parent="ArmR" unique_id=1563405632]
 material_override = SubResource("StandardMaterial3D_lp05p")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_54opl")

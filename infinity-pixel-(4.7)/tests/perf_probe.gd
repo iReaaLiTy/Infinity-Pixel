@@ -84,6 +84,8 @@ func _ready() -> void:
 	app = load("res://scenes/ui/main.tscn").instantiate()
 	add_child(app)
 	await get_tree().process_frame
+	# Visual Overhaul 3.0: o menu principal (diorama 3D) tambem e medido.
+	var menu_result := await measure("menu_principal")
 	app.start_game()
 	for i in 30: await get_tree().physics_frame
 	var world: Node3D = app.world
@@ -99,7 +101,7 @@ func _ready() -> void:
 		dinos[i].set_physics_process(false)
 		dinos[i].global_position = Vector3(-12.0 + i * 2.5, 0.5, 12.0)
 	DayNightManager.gameplay_enabled = false
-	var results := []
+	var results := [menu_result]
 	for v in VIEWS:
 		player.global_position = v[1]
 		set_hour(v[2])

@@ -31,6 +31,10 @@ func _part(root: Node3D, parent: Node3D, label: String, mesh: Mesh, mat: Materia
 	mi.material_override = mat
 	mi.position = pos
 	parent.add_child(mi)
+	# partes pequenas nao projetam sombra (desempenho; a sombra nem aparece)
+	for small in ["Eye", "Pupil", "Teeth", "Claw", "Muzzle", "Crest", "HatBand", "Buckle", "Lantern", "Wrapping", "Straps"]:
+		if label.begins_with(small):
+			mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	mi.owner = root
 	return mi
 
@@ -79,8 +83,12 @@ func _build(sp: Dictionary, path: String) -> void:
 		_part(root, leg, "Shin" + tag, Forge.shin_mesh(sp), main)
 		_part(root, leg, "Foot" + tag, Forge.foot_mesh(sp), dark)
 		var toes := [Vector3(-0.09, 0, -0.2), Vector3(0, 0, -0.26), Vector3(0.09, 0, -0.2)]
+		# tres garras numa malha so (menos chamadas de desenho)
+		var claws := SurfaceTool.new()
+		claws.begin(Mesh.PRIMITIVE_TRIANGLES)
 		for t in toes.size():
-			_part(root, leg, "Claw" + tag + str(t), Forge.claw_mesh(toes[t]), cream)
+			claws.append_from(Forge.claw_mesh(toes[t]), 0, Transform3D.IDENTITY)
+		_part(root, leg, "Claw" + tag, claws.commit(), cream)
 	var scene := PackedScene.new()
 	var err := scene.pack(root)
 	if err == OK:
