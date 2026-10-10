@@ -21,9 +21,9 @@ const Palette := preload("res://scenes/visuals/palette.gd")
 const Facets := preload("res://scenes/visuals/facets.gd")
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 # Spec 013C (RF-CMB-007): opacidade do anel de alcance.
-const RING_FOCUS := 0.8 # Player interagindo com esta torre
-const RING_NEAR := 0.45 # Player perto do alcance
-const RING_FAR := 0.12 # longe: bem discreto
+const RING_FOCUS := 0.7 # Player interagindo com esta torre (3.0: era 0,8)
+const RING_NEAR := 0.24 # Player perto do alcance (3.0: era 0,45; linhas dominavam a tela)
+const RING_FAR := 0.0 # longe: escondido (3.0: era 0,12)
 
 const STONE := Color("7c8980")
 const WOOD := Color("6a4f37")

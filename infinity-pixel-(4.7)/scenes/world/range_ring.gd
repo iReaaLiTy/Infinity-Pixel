@@ -17,7 +17,7 @@ func _init() -> void:
 	_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	_material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	_material.albedo_color = Color(0.75, 1.0, 0.88, 0.0)
+	_material.albedo_color = Color(0.62, 0.92, 0.78, 0.0) # 3.0: jade claro em vez de branco
 	_material.no_depth_test = false
 	material_override = _material
 	cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -36,7 +36,11 @@ func set_radius(value: float) -> void:
 		var dir := Vector3(sin(a), 0, cos(a))
 		verts.append(dir * inner)
 		verts.append(dir * outer)
+	# 3.0: tracejado (um segmento sim, outro nao): le como "alcance", nao como
+	# uma linha branca atravessando o cenario.
 	for i in SEGMENTS:
+		if i % 2 == 1:
+			continue
 		var j := (i + 1) % SEGMENTS
 		indices.append_array([i * 2, i * 2 + 1, j * 2, j * 2, i * 2 + 1, j * 2 + 1])
 	var arrays := []

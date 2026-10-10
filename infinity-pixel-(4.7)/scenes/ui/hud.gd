@@ -35,8 +35,11 @@ var _cycle_night := false
 var _focus_ring: MeshInstance3D # destaque do coletavel ao alcance
 var objective_override := "" # Spec 022: passo do tutorial (vazio = objetivo normal)
 var _range_hint_left := 0.0 # aviso "fora de alcance" apos um clique longe do alvo
+var _hint_row: HBoxContainer # 3.0: [tecla] + dica
+var _hint_key: Control
 const NIGHT_VIOLET := Color("9aa6f0")
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
+const UiArt := preload("res://scenes/ui/ui_art.gd")
 
 func build(main: Node, game_world: Node3D) -> void:
 	app = main
@@ -118,20 +121,36 @@ func build(main: Node, game_world: Node3D) -> void:
 	# Spec 008 (RF-UI-002): sem tutorial permanente. So objetivo atual + dica de
 	# contexto (alvo/aliado proximo) + barra de canalizacao, num painel compacto
 	# centralizado que cresce conforme o texto.
+	# 3.0: painel mais baixo e elegante: objetivo com marcador de cristal, dica de
+	# acao com a TECLA desenhada (E, F, H, C, clique) e a barra de canalizacao.
 	var bottom = VBoxContainer.new()
-	bottom.add_theme_constant_override("separation", 6)
-	var panel = app._panel(self, bottom)
+	bottom.add_theme_constant_override("separation", 4)
+	var panel = _hud_panel(self, bottom)
+	panel.name = "ContextPanel"
+	(panel.get_theme_stylebox("panel") as StyleBoxFlat).content_margin_top = 6
+	(panel.get_theme_stylebox("panel") as StyleBoxFlat).content_margin_bottom = 7
 	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	panel.offset_top = -16
-	panel.offset_bottom = -16
-	objective = app._label("", 17, GOLD)
+	panel.offset_top = -14
+	panel.offset_bottom = -14
+	var obj_row := HBoxContainer.new()
+	obj_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	obj_row.add_theme_constant_override("separation", 8)
+	bottom.add_child(obj_row)
+	obj_row.add_child(UiArt.icon_control(&"defense", 15))
+	objective = app._label("", 15, UiArt.AMBER_LIGHT)
 	objective.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bottom.add_child(objective)
-	hint = app._label("", 15)
+	obj_row.add_child(objective)
+	_hint_row = HBoxContainer.new()
+	_hint_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	_hint_row.add_theme_constant_override("separation", 8)
+	bottom.add_child(_hint_row)
+	_hint_key = UiArt.keycap("E", app._display_font(), 13)
+	_hint_row.add_child(_hint_key)
+	hint = app._label("", 14)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bottom.add_child(hint)
+	_hint_row.add_child(hint)
 	channel_bar = ProgressBar.new()
 	channel_bar.max_value = 1.0
 	channel_bar.show_percentage = false
@@ -194,19 +213,12 @@ var _resource_items = {} # kind -> Control (posicao do "+N")
 # o mesmo estilo em todos os paineis da partida.
 func _hud_panel(parent: Node, box: Control) -> PanelContainer:
 	var p = PanelContainer.new()
-	var style = StyleBoxFlat.new()
-	style.bg_color = Color(.03, .095, .09, .86)
-	style.border_color = Color("3d6a57")
-	style.set_border_width_all(1)
-	style.border_width_top = 2
-	style.set_corner_radius_all(8)
-	style.shadow_color = Color(0, 0, 0, .22)
+	# 3.0: pedra escura chanfrada, borda de cima mais grossa; a cor da borda vira
+	# alerta (vida baixa, noite) em _update_alerts.
+	var style := UiArt.stone_panel(0.86, Color("3d6a57"), Vector4(12, 7, 12, 8), 8)
 	style.shadow_size = 5
 	style.shadow_offset = Vector2(0, 2)
-	style.content_margin_left = 12
-	style.content_margin_right = 12
-	style.content_margin_top = 7
-	style.content_margin_bottom = 8
+	style.shadow_color = Color(0, 0, 0, .25)
 	p.add_theme_stylebox_override("panel", style)
 	parent.add_child(p)
 	p.add_child(box)
@@ -238,9 +250,8 @@ func _hud_icon(kind: StringName, size: float) -> Control:
 	c.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	c.draw.connect(func():
 		var s: Vector2 = c.size
-		if kind == &"player": # cabeca + ombros, na cor da barra de vida
-			c.draw_circle(Vector2(s.x * .5, s.y * .3), s.y * .22, EMBER)
-			c.draw_colored_polygon(PackedVector2Array([Vector2(s.x * .14, s.y), Vector2(s.x * .22, s.y * .62), Vector2(s.x * .78, s.y * .62), Vector2(s.x * .86, s.y)]), EMBER)
+		if kind == &"player": # explorador de chapeu, na cor da barra de vida
+			UiArt.icon(c, &"player", Rect2(Vector2.ZERO, s), EMBER)
 		elif _cycle_night: # lua crescente
 			c.draw_circle(s * .5, s.y * .42, NIGHT_VIOLET)
 			c.draw_circle(s * .5 + Vector2(s.x * .2, -s.y * .12), s.y * .36, Color(.03, .095, .09))
@@ -265,23 +276,7 @@ func _resource_icon(kind: StringName, size: float) -> Control:
 			m.draw_rect(Rect2(s.x * .36, s.y * .5, s.x * .28, s.y * .26), Color("7c8980"))
 			m.draw_colored_polygon(PackedVector2Array([Vector2(s.x * .5, s.y * .04), Vector2(s.x * .7, s.y * .27), Vector2(s.x * .5, s.y * .5), Vector2(s.x * .3, s.y * .27)]), Color("7fe0b8")))
 		return m
-	var c = Control.new()
-	c.custom_minimum_size = Vector2(size, size)
-	c.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	c.draw.connect(func():
-		var s = c.size
-		if kind == &"wood":
-			c.draw_rect(Rect2(s.x * .08, s.y * .3, s.x * .72, s.y * .42), Color("8a6440"))
-			c.draw_circle(Vector2(s.x * .78, s.y * .51), s.y * .21, Color("d9b98a"))
-			c.draw_arc(Vector2(s.x * .78, s.y * .51), s.y * .11, 0, TAU, 10, Color("8a6440"), 1.5)
-		else:
-			var pts = PackedVector2Array()
-			for i in 6:
-				var a = TAU * i / 6.0 + .3
-				pts.append(s * .5 + Vector2(cos(a) * s.x * .42, sin(a) * s.y * .36))
-			c.draw_colored_polygon(pts, Color("9aa79d"))
-			c.draw_colored_polygon(PackedVector2Array([s * .5, s * .5 + Vector2(s.x * .3, -s.y * .2), s * .5 + Vector2(s.x * .1, s.y * .25)]), Color("6e8aa3")))
-	return c
+	return UiArt.icon_control(kind, size)
 
 func _resource_item(row: Node, kind: StringName, caption: String, color: Color) -> Label:
 	var item = HBoxContainer.new()
@@ -451,7 +446,16 @@ func _recipe_list(box: VBoxContainer, rows: Dictionary, big := false) -> void:
 		var r = BuildRecipes.get_recipe(id)
 		var entry: VBoxContainer = _inv_tile(box, GOLD) if big else VBoxContainer.new()
 		entry.add_theme_constant_override("separation", 3 if big else 2)
-		entry.add_child(app._label(r.name, 17 if big else 15, GOLD))
+		if big: # 3.0: icone proprio da estrutura ao lado do nome
+			var head := HBoxContainer.new()
+			head.add_theme_constant_override("separation", 10)
+			head.add_child(UiArt.icon_control(&"campfire" if id == BuildRecipes.CAMPFIRE else &"trap", 26))
+			var title = app._label(r.name, 17, UiArt.AMBER_LIGHT)
+			title.add_theme_font_override("font", app._display_font())
+			head.add_child(title)
+			entry.add_child(head)
+		else:
+			entry.add_child(app._label(r.name, 15, GOLD))
 		if big and RECIPE_INFO.has(id):
 			for k in 2:
 				var info = app._label(RECIPE_INFO[id][k], 13 if k == 0 else 12, Color(CREAM, .85 if k == 0 else .6))
@@ -777,6 +781,9 @@ func _process(_delta: float) -> void:
 	if _range_hint_left > 0.0:
 		hint.text = "FORA DE ALCANCE  ·  Chegue mais perto (o golpe alcança ~2 m)"
 	hint.visible = hint.text != ""
+	_update_hint_key()
+	_update_alerts()
+	_update_creature_labels(player)
 	channel_bar.visible = channel.get_progress() > 0.0 or healing > 0.0 or claim > 0.0
 	if healing > 0.0:
 		channel_bar.value = healing
@@ -784,6 +791,108 @@ func _process(_delta: float) -> void:
 		channel_bar.value = claim
 	_update_build_ui()
 	_update_cycle()
+
+# ---------------------------------------------------------------------------
+# Visual Overhaul 3.0 — leitura da HUD (so apresentacao; nada de regra aqui)
+# ---------------------------------------------------------------------------
+
+## Tecla desenhada ao lado da dica de acao (le o proprio texto da dica).
+func _update_hint_key() -> void:
+	if not is_instance_valid(_hint_key):
+		return
+	var key := ""
+	var t := hint.text
+	if t.contains("SEGURE E") or t.contains("Segure E") or t.contains("segure E"):
+		key = "E"
+	elif t.contains("Segure H"):
+		key = "H"
+	elif t.contains("F alterna"):
+		key = "F"
+	elif t.contains("Golpeie para coletar"):
+		key = "CLIQUE"
+	_hint_key.visible = hint.visible and key != ""
+	if key != "" and _hint_key.get_meta("text") != key:
+		UiArt.set_keycap(_hint_key, key, app._display_font(), 13)
+
+## Bordas de alerta: vida baixa pulsa em brasa; a noite tinge o relogio de violeta.
+func _update_alerts() -> void:
+	var pulse := 0.55 + 0.45 * sin(Time.get_ticks_msec() * 0.008)
+	var health := get_node_or_null("HealthPanel") as PanelContainer
+	if health != null:
+		var low := player_bar.value < player_bar.max_value * 0.3 or base_bar.value < base_bar.max_value * 0.35
+		(health.get_theme_stylebox("panel") as StyleBoxFlat).border_color = Color(UiArt.EMBER, pulse) if low else Color("3d6a57", .9)
+	var phase := get_node_or_null("PhasePanel") as PanelContainer
+	if phase != null:
+		var edge := Color("3d6a57", .9)
+		if countdown_text.visible:
+			edge = Color(UiArt.AMBER, pulse)
+		elif DayNightManager.is_night():
+			edge = Color(NIGHT_VIOLET, .8)
+		(phase.get_theme_stylebox("panel") as StyleBoxFlat).border_color = edge
+
+## Rotulos das criaturas por contexto: o aliado mais perto do Player mostra o
+## rotulo completo; outros aliados so aparecem (menores) quando feridos e
+## perto; invasores sempre aparecem; guardioes e selvagens ate uma distancia.
+## Rotulos que se sobrepoem na tela: fica o de maior prioridade (invasor >
+## guardiao > selvagem > aliado em foco > aliado ferido). So visibilidade e
+## tamanho: o texto (testado) e a logica de combate nao mudam.
+const LABEL_PIXEL := 0.0065
+func _update_creature_labels(player: Node3D) -> void:
+	var cam := get_viewport().get_camera_3d()
+	if cam == null or player == null:
+		return
+	var focus: Node3D = null
+	var best := 3.3
+	var allies := get_tree().get_nodes_in_group("domesticated")
+	for ally in allies:
+		var d: float = ally.global_position.distance_to(player.global_position)
+		if d < best:
+			best = d
+			focus = ally
+	var entries := []
+	for dino in get_tree().get_nodes_in_group("wild_dino") + allies:
+		var label := dino.get("hp_label") as Label3D
+		if label == null or not is_instance_valid(label):
+			continue
+		var d := Vector2(dino.global_position.x - player.global_position.x, dino.global_position.z - player.global_position.z).length()
+		var pri := 0
+		var size := 1.0
+		var show := true
+		if dino.get("is_domesticated") == true:
+			if dino == focus:
+				pri = 1
+			elif dino.hp < WildDino.MAX_HP - 0.5 and d < 14.0:
+				size = 0.75
+			else:
+				show = false
+		elif dino.is_in_group("wave_enemy"):
+			pri = 4
+			size = 1.0 if d < 16.0 else 0.8
+		elif String(dino.get("guardian_of")) != "":
+			pri = 3
+			show = d < 20.0
+		else:
+			pri = 2
+			show = d < 15.0
+		label.pixel_size = LABEL_PIXEL * size
+		label.modulate.a = 1.0 if size >= 1.0 else 0.8
+		if not show or cam.is_position_behind(label.global_position):
+			label.visible = false
+			continue
+		var at := cam.unproject_position(label.global_position)
+		var w := label.text.length() * 8.0 * size
+		entries.append([pri, d, label, Rect2(at - Vector2(w * 0.5, 9.0 * size), Vector2(w, 18.0 * size))])
+	entries.sort_custom(func(a, b): return a[0] > b[0] or (a[0] == b[0] and a[1] < b[1]))
+	var taken: Array[Rect2] = []
+	for e in entries:
+		var free := true
+		for r in taken:
+			if r.intersects(e[3]):
+				free = false
+				break
+		e[2].visible = free
+		if free:
+			taken.append(e[3])
 
 ## Sol/lua e barra do periodo atual (fracao do dia ou da noite ja passada).
 func _update_cycle() -> void:
@@ -825,14 +934,20 @@ func _update_collect_focus(player: Node3D) -> void:
 		hint.text = "%s  ·  Golpeie para coletar  ·  +%d %s" % ["ÁRVORE" if best.kind == "wood" else "ROCHA COM MINÉRIO", best.reward(), best.label()]
 
 # ---------------------------------------------------------------------------
-# Inventario grande (playtest 09/10/2026): cartao central (~74% da largura da
-# tela de referencia 1280x720, escala com a janela) sobre um veu escuro que
-# bloqueia cliques no mundo. NAO pausa: contrato aprovado da 013D (o relogio e
-# a noite continuam correndo). Fecha com I, ESC, o botao FECHAR ou clique fora.
-# Mostra so o que existe no jogo: Madeira, Pedra, construcoes e a defesa.
+# Inventario — "Mochila do Explorador" (Visual Overhaul 3.0). Cartao central
+# de pedra e jade (~78% da largura de referencia 1280x720, escala com a janela)
+# sobre um veu escuro que bloqueia cliques no mundo, com tres abas:
+# RECURSOS, CONSTRUCOES e COMPANHEIROS (teclas 1, 2, 3 ou clique).
+# NAO pausa: contrato aprovado da 013D (o relogio e a noite continuam
+# correndo; um indicador no rodape avisa). Fecha com I, ESC, FECHAR ou clique
+# fora. Mostra so dados reais: ResourceStock, BuildPlacer, DefenseEconomy,
+# DefenseSlots, TerritoryManager e os aliados (grupo "domesticated").
 # ---------------------------------------------------------------------------
-const CARD_WIDTH := 948.0
+const CARD_WIDTH := 1000.0
+const PAGE_HEIGHT := 392.0
 const DefenseTower := preload("res://scenes/world/defense_tower.gd")
+const WildDino := preload("res://scenes/enemies/wild_dino.gd")
+const TABS := [["resources", "RECURSOS", &"stone"], ["build", "CONSTRUÇÕES", &"campfire"], ["companions", "COMPANHEIROS", &"paw"]]
 var _inv_recipes_box: VBoxContainer
 var _inv_card: PanelContainer
 var _inv_close: Button
@@ -840,34 +955,47 @@ var _def_points: Label
 var _def_towers: Label
 var _def_territories: Label
 var _def_structures: Label
+var _res_points: Label
+var _res_territories: Label
+var _inv_tabs := {} # id -> Button
+var _inv_pages := {} # id -> Control
+var inventory_tab := "resources"
+var _companion_grid: GridContainer
+var _companion_empty: Control
+var _companion_cards := {} # aliado -> {hp, bar, state, info}
+var _companion_count: Label
+var _world_clock: Label
 
 func _inv_section(title: String, hint: String) -> VBoxContainer:
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 8)
 	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var head = app._label(title, 15, JADE)
+	var head = app._label(title, 15, UiArt.JADE)
 	head.add_theme_font_override("font", app._display_font())
 	col.add_child(head)
-	var sub = app._label(hint, 12, Color(CREAM, .6))
-	sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	col.add_child(sub)
-	var line := ColorRect.new()
-	line.color = Color("2f5547")
-	line.custom_minimum_size = Vector2(0, 2)
-	col.add_child(line)
+	if hint != "":
+		var sub = app._label(hint, 12, Color(CREAM, .62))
+		sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		col.add_child(sub)
+	col.add_child(UiArt.drawn(Vector2(0, 6), func(ci: CanvasItem, r: Rect2):
+		ci.draw_line(Vector2(0, 3), Vector2(r.size.x, 3), Color("2f5547"), 2.0)
+		ci.draw_circle(Vector2(r.size.x, 3), 3.0, Color("2f5547"))))
 	return col
 
+## Placa de conteudo: pedra mais clara, borda na cor do tema.
 func _inv_tile(parent: Node, style_color: Color) -> VBoxContainer:
 	var tile := PanelContainer.new()
 	var sb := StyleBoxFlat.new()
-	sb.bg_color = Color(style_color, 0.10)
-	sb.border_color = Color(style_color, 0.35)
+	sb.bg_color = Color(style_color.lerp(UiArt.GREEN_DARK, 0.82), 0.92)
+	sb.border_color = Color(style_color, 0.4)
 	sb.set_border_width_all(1)
-	sb.set_corner_radius_all(7)
-	sb.content_margin_left = 12
-	sb.content_margin_right = 12
-	sb.content_margin_top = 8
-	sb.content_margin_bottom = 9
+	sb.border_width_bottom = 3
+	sb.set_corner_radius_all(8)
+	sb.corner_detail = 2
+	sb.content_margin_left = 14
+	sb.content_margin_right = 14
+	sb.content_margin_top = 10
+	sb.content_margin_bottom = 11
 	tile.add_theme_stylebox_override("panel", sb)
 	parent.add_child(tile)
 	var box := VBoxContainer.new()
@@ -875,12 +1003,19 @@ func _inv_tile(parent: Node, style_color: Color) -> VBoxContainer:
 	tile.add_child(box)
 	return box
 
+func _big_value(text: String, color: Color, size := 34) -> Label:
+	var l = app._label(text, size, color)
+	l.add_theme_font_override("font", app._display_font())
+	l.add_theme_color_override("font_outline_color", UiArt.INK)
+	l.add_theme_constant_override("outline_size", 4)
+	return l
+
 func _build_big_inventory() -> void:
 	# Veu escuro em tela cheia (e o proprio inventory_panel).
 	inventory_panel = PanelContainer.new()
 	inventory_panel.name = "InventoryPanel"
 	var veil := StyleBoxFlat.new()
-	veil.bg_color = Color(0.01, 0.03, 0.03, 0.62)
+	veil.bg_color = Color(0.01, 0.03, 0.025, 0.66)
 	inventory_panel.add_theme_stylebox_override("panel", veil)
 	add_child(inventory_panel)
 	inventory_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -890,92 +1025,232 @@ func _build_big_inventory() -> void:
 	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	inventory_panel.add_child(center)
 	_inv_card = PanelContainer.new()
-	var card := StyleBoxFlat.new()
-	card.bg_color = Color(0.035, 0.1, 0.095, 0.97)
-	card.border_color = Color("4f8f73")
-	card.set_border_width_all(2)
-	card.border_width_top = 4
-	card.set_corner_radius_all(12)
-	card.shadow_color = Color(0, 0, 0, 0.45)
-	card.shadow_size = 18
-	card.content_margin_left = 26
-	card.content_margin_right = 26
-	card.content_margin_top = 16
-	card.content_margin_bottom = 18
-	_inv_card.add_theme_stylebox_override("panel", card)
+	_inv_card.name = "InventoryCard"
+	_inv_card.add_theme_stylebox_override("panel", UiArt.stone_panel(0.97, UiArt.STONE_EDGE, Vector4(28, 20, 28, 16), 12))
 	_inv_card.custom_minimum_size.x = CARD_WIDTH
 	_inv_card.mouse_filter = Control.MOUSE_FILTER_STOP
 	center.add_child(_inv_card)
+	UiArt.decorate(_inv_card)
 	var root := VBoxContainer.new()
-	root.add_theme_constant_override("separation", 12)
+	root.add_theme_constant_override("separation", 10)
 	_inv_card.add_child(root)
-	# Cabecalho: titulo, legenda e como fechar.
+	# Cabecalho: mochila, titulo e como fechar.
 	var header := HBoxContainer.new()
 	header.add_theme_constant_override("separation", 14)
 	root.add_child(header)
-	header.add_child(_resource_icon(&"defense", 30))
+	header.add_child(UiArt.drawn(Vector2(46, 46), _draw_backpack))
 	var titles := VBoxContainer.new()
 	titles.add_theme_constant_override("separation", -2)
 	titles.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var title = app._label("INVENTÁRIO", 28, GOLD)
+	var title = app._label("MOCHILA DO EXPLORADOR", 27, UiArt.AMBER_LIGHT)
+	title.name = "InventoryTitle"
 	title.add_theme_font_override("font", app._display_font())
+	title.add_theme_color_override("font_outline_color", Color("2a160a"))
+	title.add_theme_constant_override("outline_size", 5)
 	titles.add_child(title)
-	titles.add_child(app._label("O que você tem, o que dá para construir e como está a defesa do Refúgio.", 13, Color(CREAM, .7)))
+	titles.add_child(app._label("Recursos, construções e os dinossauros que seguem você.", 13, Color(CREAM, .7)))
 	header.add_child(titles)
-	header.add_child(app._label("[ I ] ou [ ESC ]", 13, Color(CREAM, .6)))
-	_inv_close = app._menu_button(header, "FECHAR", 15, Color("5f7468"), Color("2c3b34"), 5, 9, 16, 4, toggle_inventory)
+	var keys := HBoxContainer.new()
+	keys.add_theme_constant_override("separation", 5)
+	keys.add_child(UiArt.keycap("I", app._display_font(), 13))
+	keys.add_child(app._label("ou", 12, Color(CREAM, .55)))
+	keys.add_child(UiArt.keycap("ESC", app._display_font(), 12))
+	header.add_child(keys)
+	_inv_close = app._menu_button(header, "FECHAR", 15, UiArt.STONE, UiArt.STONE_EDGE, 5, 9, 18, 5, toggle_inventory)
 	_inv_close.name = "InventoryClose"
-	# Tres colunas.
+	# Abas.
+	var tabs := HBoxContainer.new()
+	tabs.name = "InventoryTabs"
+	tabs.add_theme_constant_override("separation", 8)
+	root.add_child(tabs)
+	var group := ButtonGroup.new()
+	for i in TABS.size():
+		var spec: Array = TABS[i]
+		var b := _tab_button(spec[1], spec[2], str(i + 1), group)
+		b.name = "Tab_" + spec[0]
+		b.pressed.connect(show_inventory_tab.bind(spec[0]))
+		tabs.add_child(b)
+		_inv_tabs[spec[0]] = b
+	var tabs_fill := Control.new()
+	tabs_fill.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tabs.add_child(tabs_fill)
+	tabs.add_child(UiArt.drawn(Vector2(46, 34), func(ci: CanvasItem, r: Rect2): UiArt.claw_marks(ci, r.grow(-4), Color(UiArt.IVORY, .16))))
+	root.add_child(UiArt.drawn(Vector2(0, 4), func(ci: CanvasItem, r: Rect2):
+		ci.draw_line(Vector2(0, 2), Vector2(r.size.x, 2), Color(UiArt.JADE, .5), 2.0)))
+	# Paginas (todas com a mesma altura: trocar de aba nao mexe no cartao).
+	var pages := Control.new()
+	pages.custom_minimum_size.y = PAGE_HEIGHT
+	root.add_child(pages)
+	for spec in TABS:
+		var page := MarginContainer.new()
+		page.name = "Page_" + spec[0]
+		page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		page.add_theme_constant_override("margin_top", 6)
+		pages.add_child(page)
+		_inv_pages[spec[0]] = page
+	_build_resources_page(_inv_pages["resources"])
+	_build_build_page(_inv_pages["build"])
+	_build_companions_page(_inv_pages["companions"])
+	# Rodape: atalho de construcao + "o mundo continua em movimento".
+	var foot := HBoxContainer.new()
+	foot.add_theme_constant_override("separation", 8)
+	root.add_child(foot)
+	foot.add_child(UiArt.keycap("B", app._display_font(), 12))
+	foot.add_child(app._label("constrói direto, sem abrir a mochila", 12, Color(CREAM, .55)))
+	var fill := Control.new()
+	fill.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	foot.add_child(fill)
+	var running := UiArt.drawn(Vector2(16, 16), func(ci: CanvasItem, r: Rect2):
+		var a := Time.get_ticks_msec() * 0.003
+		ci.draw_arc(r.get_center(), 6.5, 0, TAU, 16, Color(UiArt.AMBER, .8), 1.5)
+		ci.draw_line(r.get_center(), r.get_center() + Vector2(cos(a), sin(a)) * 5.0, UiArt.AMBER, 1.5))
+	running.name = "WorldRunningIcon"
+	foot.add_child(running)
+	_world_clock = app._label("O MUNDO CONTINUA EM MOVIMENTO", 12, Color(UiArt.AMBER, .85))
+	_world_clock.name = "WorldRunning"
+	foot.add_child(_world_clock)
+	inventory_panel.hide()
+	show_inventory_tab(inventory_tab)
+
+## Aba: pedra com icone, nome e a tecla (1, 2, 3); a ativa fica jade e "acesa".
+func _tab_button(text: String, icon: StringName, key: String, group: ButtonGroup) -> Button:
+	var b := Button.new()
+	b.text = text
+	b.toggle_mode = true
+	b.button_group = group
+	b.focus_mode = Control.FOCUS_ALL
+	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	b.custom_minimum_size = Vector2(212, 42)
+	b.add_theme_font_override("font", app._display_font())
+	b.add_theme_font_size_override("font_size", 15)
+	var styles := UiArt.button_styles(Color("1a302a"), Color("2f5547"), 3, 8, 50, 6)
+	var on := UiArt.button_styles(UiArt.JADE_DEEP.darkened(0.35), UiArt.JADE, 3, 8, 50, 6)
+	for state in styles:
+		b.add_theme_stylebox_override(state, styles[state])
+	b.add_theme_stylebox_override("pressed", on.normal)
+	b.add_theme_stylebox_override("hover_pressed", on.hover)
+	b.add_theme_color_override("font_color", Color(CREAM, .7))
+	b.add_theme_color_override("font_pressed_color", Color.WHITE)
+	b.add_theme_color_override("font_hover_pressed_color", Color.WHITE)
+	b.add_theme_color_override("font_hover_color", CREAM)
+	b.draw.connect(func():
+		var h := b.size.y
+		UiArt.icon(b, icon, Rect2(Vector2(14, h * .22), Vector2(h * .56, h * .56)), UiArt.JADE_LIGHT if b.button_pressed else Color(UiArt.IVORY, .6))
+		var kr := Rect2(Vector2(b.size.x - 26, h * .5 - 9), Vector2(16, 18))
+		b.draw_rect(kr, Color(UiArt.AMBER, .9 if b.button_pressed else .35), false, 1.5)
+		var f: Font = app._display_font()
+		f.draw_string(b.get_canvas_item(), kr.position + Vector2(4.5, 13.5), key, HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(UiArt.AMBER, .95 if b.button_pressed else .5)))
+	b.toggled.connect(func(_on): b.queue_redraw())
+	return b
+
+## Troca a aba visivel (clique, teclas 1-3 ou testes). Lembra a ultima aba.
+func show_inventory_tab(id: String) -> void:
+	if not _inv_pages.has(id):
+		return
+	inventory_tab = id
+	for k in _inv_pages:
+		_inv_pages[k].visible = k == id
+		_inv_tabs[k].set_pressed_no_signal(k == id)
+		_inv_tabs[k].queue_redraw()
+	_refresh_inventory()
+
+## Mochila de couro com fivela e um cristal pendurado (icone do cabecalho).
+func _draw_backpack(ci: CanvasItem, r: Rect2) -> void:
+	var s := r.size
+	ci.draw_colored_polygon(PackedVector2Array([Vector2(s.x * .18, s.y * .3), Vector2(s.x * .82, s.y * .3), Vector2(s.x * .9, s.y * .96), Vector2(s.x * .1, s.y * .96)]), Color("8a5e3b"))
+	ci.draw_colored_polygon(PackedVector2Array([Vector2(s.x * .18, s.y * .3), Vector2(s.x * .82, s.y * .3), Vector2(s.x * .76, s.y * .56), Vector2(s.x * .24, s.y * .56)]), Color("a8774b"))
+	ci.draw_arc(Vector2(s.x * .5, s.y * .3), s.x * .2, PI, TAU, 10, Color("5e3f27"), 3.0)
+	ci.draw_rect(Rect2(Vector2(s.x * .44, s.y * .5), Vector2(s.x * .12, s.y * .12)), UiArt.AMBER)
+	ci.draw_line(Vector2(s.x * .3, s.y * .62), Vector2(s.x * .3, s.y * .94), Color("5e3f27"), 2.0)
+	ci.draw_line(Vector2(s.x * .7, s.y * .62), Vector2(s.x * .7, s.y * .94), Color("5e3f27"), 2.0)
+	UiArt.crystal(ci, Rect2(Vector2(s.x * .74, s.y * .52), Vector2(s.x * .2, s.y * .34)))
+
+# --- RECURSOS ---------------------------------------------------------------
+func _resource_card(parent: Node, kind: StringName, title: String, color: Color, hint: String, detail: String) -> Label:
+	var tile := _inv_tile(parent, color)
+	tile.get_parent().size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tile.add_theme_constant_override("separation", 6)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 12)
+	tile.add_child(row)
+	row.add_child(UiArt.icon_control(kind, 64, color))
+	var col := VBoxContainer.new()
+	col.add_theme_constant_override("separation", -4)
+	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var name_label = app._label(title, 16, CREAM)
+	name_label.add_theme_font_override("font", app._display_font())
+	col.add_child(name_label)
+	var value := _big_value("0", color, 44)
+	col.add_child(value)
+	row.add_child(col)
+	tile.add_child(UiArt.drawn(Vector2(0, 8), func(ci: CanvasItem, r: Rect2): ci.draw_line(Vector2(0, 4), Vector2(r.size.x, 4), Color(color, .25), 1.0)))
+	var h = app._label(hint, 14, Color(CREAM, .85))
+	h.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tile.add_child(h)
+	var d = app._label(detail, 12, Color(CREAM, .55))
+	d.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tile.add_child(d)
+	return value
+
+func _build_resources_page(page: Control) -> void:
+	var col := VBoxContainer.new()
+	col.add_theme_constant_override("separation", 14)
+	page.add_child(col)
+	col.add_child(_inv_section("MATERIAIS E PONTOS", "Golpeie árvores de copa amarelada e rochas com cristais. Pontos de Defesa vêm dos invasores derrotados."))
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 14)
+	col.add_child(row)
+	inv_wood_text = _resource_card(row, &"wood", "MADEIRA", Color("e6c79a"), "+10 por árvore de copa amarelada.", "Fogueira e Armadilha usam Madeira.")
+	inv_stone_text = _resource_card(row, &"stone", "PEDRA", Color("c9d3cc"), "+6 por rocha com cristais.", "Fogueira e Armadilha usam Pedra.")
+	_res_points = _resource_card(row, &"defense", "PONTOS DE DEFESA", Color("aef0cf"), "Erguem e melhoram torres nos pontos de defesa.", "Torre: %d  ·  Melhorias: %d / %d" % [DefenseTower.LEVELS[0].cost, DefenseTower.LEVELS[1].cost, DefenseTower.LEVELS[2].cost])
+	var strip := HBoxContainer.new()
+	strip.add_theme_constant_override("separation", 14)
+	col.add_child(strip)
+	var terr := _inv_tile(strip, UiArt.JADE)
+	terr.get_parent().size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var trow := HBoxContainer.new()
+	trow.add_theme_constant_override("separation", 10)
+	terr.add_child(trow)
+	trow.add_child(UiArt.icon_control(&"territory", 30))
+	var tl = app._label("TERRITÓRIOS RECUPERADOS", 14, CREAM)
+	tl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	trow.add_child(tl)
+	_res_territories = _big_value("0/0", Color("9fe0c0"), 24)
+	trow.add_child(_res_territories)
+	var regrow := _inv_tile(strip, CREAM)
+	regrow.get_parent().size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var rrow := HBoxContainer.new()
+	rrow.add_theme_constant_override("separation", 10)
+	regrow.add_child(rrow)
+	rrow.add_child(UiArt.drawn(Vector2(30, 30), func(ci: CanvasItem, r: Rect2): UiArt.ammonite(ci, r.get_center(), 13.0, Color(UiArt.IVORY, .7), 2.0)))
+	var rl = app._label("Árvores e rochas voltam no amanhecer seguinte.", 13, Color(CREAM, .75))
+	rl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rrow.add_child(rl)
+
+# --- CONSTRUCOES --------------------------------------------------------------
+func _build_build_page(page: Control) -> void:
 	var cols := HBoxContainer.new()
 	cols.add_theme_constant_override("separation", 22)
-	root.add_child(cols)
-	# RECURSOS
-	var res := _inv_section("RECURSOS", "Golpeie árvores de copa amarelada e rochas com cristais.")
-	res.custom_minimum_size.x = 250
-	cols.add_child(res)
-	for kind in [&"wood", &"stone"]:
-		var tile := _inv_tile(res, Color("e6c79a") if kind == &"wood" else Color("c9d3cc"))
-		var row := HBoxContainer.new()
-		row.add_theme_constant_override("separation", 12)
-		row.add_child(_resource_icon(kind, 38))
-		var name_col := VBoxContainer.new()
-		name_col.add_theme_constant_override("separation", -3)
-		name_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		name_col.add_child(app._label("MADEIRA" if kind == &"wood" else "PEDRA", 16, CREAM))
-		name_col.add_child(app._label("+10 por árvore" if kind == &"wood" else "+6 por rocha", 12, Color(CREAM, .6)))
-		row.add_child(name_col)
-		var value = app._label("0", 30, Color("e6c79a") if kind == &"wood" else Color("c9d3cc"))
-		value.add_theme_font_override("font", app._display_font())
-		row.add_child(value)
-		tile.add_child(row)
-		if kind == &"wood": inv_wood_text = value
-		else: inv_stone_text = value
-	var regrow = app._label("Árvores e rochas voltam no amanhecer seguinte.", 12, Color(CREAM, .55))
-	regrow.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	res.add_child(regrow)
-	# CONSTRUCOES
-	var build := _inv_section("CONSTRUÇÕES", "Pagas com Madeira e Pedra. Escolha e posicione no mundo.")
-	build.custom_minimum_size.x = 330
+	page.add_child(cols)
+	var build := _inv_section("ESTRUTURAS", "Pagas com Madeira e Pedra. Escolha e posicione no mundo.")
+	build.custom_minimum_size.x = 520
 	cols.add_child(build)
 	_inv_recipes_box = VBoxContainer.new()
 	_inv_recipes_box.add_theme_constant_override("separation", 10)
 	build.add_child(_inv_recipes_box)
-	# DEFESA
-	var defense := _inv_section("DEFESA", "Torres usam Pontos de Defesa (ganhos ao vencer inimigos da noite).")
-	defense.custom_minimum_size.x = 250
+	var defense := _inv_section("TORRES DE DEFESA", "Pagas com Pontos de Defesa, nos pontos de construção.")
 	cols.add_child(defense)
-	var tile_p := _inv_tile(defense, JADE)
+	var tile_p := _inv_tile(defense, UiArt.JADE)
 	var prow := HBoxContainer.new()
 	prow.add_theme_constant_override("separation", 12)
-	prow.add_child(_resource_icon(&"defense", 34))
+	prow.add_child(UiArt.icon_control(&"tower", 40))
 	var pcol := VBoxContainer.new()
 	pcol.add_theme_constant_override("separation", -3)
 	pcol.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	pcol.add_child(app._label("PONTOS DE DEFESA", 15, CREAM))
 	pcol.add_child(app._label("Torre: %d  ·  Melhorias: %d / %d" % [DefenseTower.LEVELS[0].cost, DefenseTower.LEVELS[1].cost, DefenseTower.LEVELS[2].cost], 12, Color(CREAM, .6)))
 	prow.add_child(pcol)
-	_def_points = app._label("0", 30, Color("aef0cf"))
-	_def_points.add_theme_font_override("font", app._display_font())
+	_def_points = _big_value("0", Color("aef0cf"), 30)
 	prow.add_child(_def_points)
 	tile_p.add_child(prow)
 	var tile_s := _inv_tile(defense, CREAM)
@@ -986,14 +1261,130 @@ func _build_big_inventory() -> void:
 	_def_structures = app._label("", 13, CREAM)
 	_def_structures.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	tile_s.add_child(_def_structures)
-	var tip = app._label("Perto de um ponto de defesa: [C] ergue ou melhora a torre (de dia).", 12, Color(CREAM, .55))
-	tip.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var tip := HBoxContainer.new()
+	tip.add_theme_constant_override("separation", 6)
+	tip.add_child(UiArt.keycap("C", app._display_font(), 12))
+	var tl = app._label("perto de um ponto: ergue ou melhora a torre (de dia).", 12, Color(CREAM, .6))
+	tl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tip.add_child(tl)
 	defense.add_child(tip)
-	# Rodape.
-	var foot = app._label("[B] constrói direto  ·  o tempo NÃO para com o inventário aberto", 12, Color(CREAM, .55))
-	foot.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	root.add_child(foot)
-	inventory_panel.hide()
+
+# --- COMPANHEIROS ------------------------------------------------------------
+func _build_companions_page(page: Control) -> void:
+	var col := VBoxContainer.new()
+	col.add_theme_constant_override("separation", 12)
+	page.add_child(col)
+	var head := _inv_section("DINOSSAUROS DOMESTICADOS", "")
+	col.add_child(head)
+	_companion_count = app._label("", 12, Color(CREAM, .62))
+	head.add_child(_companion_count)
+	head.move_child(_companion_count, 1)
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	col.add_child(scroll)
+	_companion_grid = GridContainer.new()
+	_companion_grid.columns = 3
+	_companion_grid.add_theme_constant_override("h_separation", 14)
+	_companion_grid.add_theme_constant_override("v_separation", 14)
+	_companion_grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(_companion_grid)
+	# Estado vazio: pegadas apagadas levando a um dinossauro em silhueta.
+	_companion_empty = VBoxContainer.new()
+	_companion_empty.name = "CompanionsEmpty"
+	_companion_empty.add_theme_constant_override("separation", 8)
+	_companion_empty.alignment = BoxContainer.ALIGNMENT_CENTER
+	_companion_empty.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	col.add_child(_companion_empty)
+	var art := UiArt.drawn(Vector2(420, 130), func(ci: CanvasItem, r: Rect2):
+		UiArt.footprint_trail(ci, Vector2(10, r.size.y * .8), Vector2(r.size.x * .58, r.size.y * .62), 6, 26.0, Color(UiArt.IVORY, .22))
+		UiArt.dino_silhouette(ci, Rect2(Vector2(r.size.x * .62, 6), Vector2(r.size.y * 1.3, r.size.y * .94)), Color(UiArt.JADE, .28), false, Color(UiArt.JADE_LIGHT, .6)))
+	art.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_companion_empty.add_child(art)
+	var t = app._label("Nenhum dinossauro domesticado.", 20, CREAM)
+	t.add_theme_font_override("font", app._display_font())
+	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_companion_empty.add_child(t)
+	var how = app._label("Enfraqueça um selvagem até ficar com 20 de vida ou menos (anel jade no chão)\ne segure E perto dele por 2 s. Ele passa a seguir você e lutar ao seu lado.", 13, Color(CREAM, .65))
+	how.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_companion_empty.add_child(how)
+
+## Cartao de um aliado: medalhao com a silhueta, vida, estado e funcao.
+func _companion_card(dino: Node, index: int) -> Dictionary:
+	var tile := _inv_tile(_companion_grid, UiArt.JADE)
+	tile.get_parent().custom_minimum_size = Vector2(300, 0)
+	tile.add_theme_constant_override("separation", 6)
+	var top := HBoxContainer.new()
+	top.add_theme_constant_override("separation", 10)
+	tile.add_child(top)
+	var medal := UiArt.drawn(Vector2(68, 56), func(ci: CanvasItem, r: Rect2):
+		ci.draw_circle(r.get_center(), r.size.y * .5, Color(UiArt.GREEN_DEEP, .9))
+		ci.draw_arc(r.get_center(), r.size.y * .5, 0, TAU, 24, Color(UiArt.JADE, .7), 2.0)
+		UiArt.dino_silhouette(ci, Rect2(r.position + Vector2(8, 10), Vector2(r.size.x - 16, r.size.y - 18)), UiArt.JADE, false, UiArt.INK))
+	top.add_child(medal)
+	var names := VBoxContainer.new()
+	names.add_theme_constant_override("separation", -2)
+	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var title = app._label("ALIADO %d" % index, 16, UiArt.AMBER_LIGHT)
+	title.add_theme_font_override("font", app._display_font())
+	names.add_child(title)
+	names.add_child(app._label(String(dino.get_meta("ally_origin", "Dinossauro do vale")), 12, Color(CREAM, .62)))
+	top.add_child(names)
+	var state = app._label("", 12, UiArt.INK)
+	state.add_theme_font_override("font", app._display_font())
+	var chip := PanelContainer.new()
+	var cs := StyleBoxFlat.new()
+	cs.set_corner_radius_all(4)
+	cs.content_margin_left = 8
+	cs.content_margin_right = 8
+	cs.content_margin_top = 2
+	cs.content_margin_bottom = 2
+	chip.add_theme_stylebox_override("panel", cs)
+	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	chip.add_child(state)
+	top.add_child(chip)
+	var hp_row := HBoxContainer.new()
+	hp_row.add_theme_constant_override("separation", 8)
+	tile.add_child(hp_row)
+	hp_row.add_child(UiArt.icon_control(&"heart", 14, UiArt.EMBER))
+	var bar := _hud_bar(hp_row, UiArt.JADE)
+	bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	bar.max_value = WildDino.MAX_HP
+	var hp = app._label("", 13, CREAM)
+	hp_row.add_child(hp)
+	var info = app._label("", 12, Color(CREAM, .75))
+	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	info.custom_minimum_size.y = 34
+	tile.add_child(info)
+	tile.add_child(app._label("Golpe: %d de dano  ·  F alterna (de dia)" % int(WildDino.ALLY_ATTACK_DAMAGE), 11, Color(CREAM, .5)))
+	return {"tile": tile.get_parent(), "hp": hp, "bar": bar, "state": state, "chip": cs, "info": info}
+
+func _refresh_companions() -> void:
+	if not is_instance_valid(_companion_grid):
+		return
+	var allies := get_tree().get_nodes_in_group("domesticated").filter(func(d): return is_instance_valid(d) and d.get("is_domesticated") == true)
+	for dino in _companion_cards.keys():
+		if not is_instance_valid(dino) or not allies.has(dino):
+			_companion_cards[dino].tile.queue_free()
+			_companion_cards.erase(dino)
+	for dino in allies:
+		if not _companion_cards.has(dino):
+			_companion_cards[dino] = _companion_card(dino, _companion_cards.size() + 1)
+	_companion_empty.visible = allies.is_empty()
+	_companion_grid.get_parent().visible = not allies.is_empty()
+	_companion_count.text = "Nenhum aliado ainda." if allies.is_empty() else "%d aliado%s com você. Dados ao vivo (vida e ordem atual)." % [allies.size(), "" if allies.size() == 1 else "s"]
+	for dino in _companion_cards:
+		var card: Dictionary = _companion_cards[dino]
+		var hp: float = dino.hp
+		card.hp.text = "%d/%d" % [maxi(ceili(hp), 0), int(WildDino.MAX_HP)]
+		card.bar.value = hp
+		var staying: bool = dino.ally_state == WildDino.AllyState.STAYING
+		card.state.text = "FICAR" if staying else "SEGUINDO"
+		card.chip.bg_color = UiArt.AMBER if staying else UiArt.JADE
+		card.info.text = ("Guarda o posto: ataca inimigos a até %d m de onde ficou." % int(WildDino.DEFENSE_RADIUS)) if staying \
+			else ("Acompanha você e ataca quem te atacar a até %d m." % int(WildDino.ALLY_GUARD_RADIUS))
 
 ## Clique no veu escuro (fora do cartao) fecha o inventario.
 func _on_veil_input(ev: InputEvent) -> void:
@@ -1001,11 +1392,13 @@ func _on_veil_input(ev: InputEvent) -> void:
 			and not _inv_card.get_global_rect().has_point(ev.global_position):
 		toggle_inventory()
 
-## Linhas extras do inventario grande (defesa e estruturas).
+## Linhas extras do inventario (defesa, territorios, estruturas, aliados).
 func _refresh_defense_info() -> void:
 	if not is_instance_valid(_def_points) or not is_instance_valid(world):
 		return
-	_def_points.text = str(world.get_node("DefenseEconomy").points)
+	var points := str(world.get_node("DefenseEconomy").points)
+	_def_points.text = points
+	_res_points.text = points
 	var built := 0
 	var total := 0
 	for slot in world.get_node("DefenseSlots").get_children():
@@ -1016,9 +1409,16 @@ func _refresh_defense_info() -> void:
 	var terr = world.get_node_or_null("TerritoryManager")
 	if terr != null:
 		_def_territories.text = "Territórios controlados: %d / %d" % [terr.controlled_count(), terr.total_count()]
+		_res_territories.text = "%d/%d" % [terr.controlled_count(), terr.total_count()]
 	var placer = _placer()
 	var parts := []
 	for id in BuildRecipes.order():
 		var r = BuildRecipes.get_recipe(id)
 		parts.append("%s %d/%d" % ["Fogueira" if id == BuildRecipes.CAMPFIRE else "Armadilhas", placer.count(id), r.limit])
 	_def_structures.text = "Construídas: " + "  ·  ".join(parts)
+	_refresh_companions()
+	if is_instance_valid(_world_clock):
+		_world_clock.text = "O MUNDO CONTINUA  ·  %s %s" % ["NOITE" if DayNightManager.is_night() else "DIA", DayNightManager.clock_text()]
+		var icon := _world_clock.get_parent().get_node_or_null("WorldRunningIcon")
+		if icon != null:
+			icon.queue_redraw()
