@@ -713,12 +713,14 @@ func _face(flat_dir: Vector3) -> void:
 		rotation.y = rotate_toward(rotation.y, atan2(-flat_dir.x, -flat_dir.z), TURN_RATE * _frame_delta)
 
 ## Spec 015 (RF-TER-003): o encontro diurno que guarda um territorio selvagem.
-## So muda o rotulo; HP, IA e domesticacao sao os do WildDino normal.
+## So muda o rotulo e o visual; HP, IA e domesticacao sao os do WildDino normal.
 var guardian_of := ""
 
 func set_guardian(territory_name: String) -> void:
 	guardian_of = territory_name
 	_update_label()
+	if has_node("Visual") and $Visual.has_method("set_guardian_look"):
+		$Visual.set_guardian_look(territory_name != "") # 3.0: mascara de osso e colar
 
 ## Spec 019: rotulo por tipo, com cor propria (leitura rapida de longe):
 ## aliado jade (+ FICAR), guardiao ambar, invasor da onda noturna violeta,
