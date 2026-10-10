@@ -690,6 +690,30 @@ func _show_toast(toast_name: String, text: String, color: Color) -> void:
 ## Spec 017B/020: a noite comecou — a onda esta a caminho (alerta curto).
 func _on_night_started() -> void:
 	_show_toast("NightStartToast", "NOITE %d  ·  INVASORES A CAMINHO" % DayNightManager.day_number, NIGHT_VIOLET)
+	# 3.0: vinheta violeta curta nas bordas (a onda chegou); some em 1,6 s e
+	# nunca bloqueia cliques.
+	var g := Gradient.new()
+	g.set_color(0, Color(UiArt.NIGHT, 0.0))
+	g.set_color(1, Color(UiArt.NIGHT.lightened(0.15), 0.75))
+	var tex := GradientTexture2D.new()
+	tex.gradient = g
+	tex.fill = GradientTexture2D.FILL_RADIAL
+	tex.fill_from = Vector2(0.5, 0.5)
+	tex.fill_to = Vector2(1.15, 1.0)
+	var veil := TextureRect.new()
+	veil.name = "NightVignette"
+	veil.texture = tex
+	veil.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	veil.stretch_mode = TextureRect.STRETCH_SCALE
+	veil.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	veil.modulate.a = 0.0
+	add_child(veil)
+	move_child(veil, 0) # atras dos paineis
+	var t := veil.create_tween()
+	t.tween_property(veil, "modulate:a", 1.0, 0.35)
+	t.tween_property(veil, "modulate:a", 0.0, 1.25)
+	t.tween_callback(veil.queue_free)
 
 func _process(_delta: float) -> void:
 	if not is_instance_valid(world) or not is_instance_valid(self):

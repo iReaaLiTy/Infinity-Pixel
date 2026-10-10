@@ -11,6 +11,8 @@ extends StaticBody3D
 
 const Palette := preload("res://scenes/visuals/palette.gd")
 const Facets := preload("res://scenes/visuals/facets.gd")
+const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
+const Props := preload("res://scenes/visuals/prehistoric_props.gd")
 const BUILDINGS := 1 << 3
 const WILD_COLOR := Color("6f6a80")
 const READY_COLOR := Color("f2c86a")
@@ -100,6 +102,9 @@ func play_claim_effect() -> void:
 	t.tween_property(ring, "scale", Vector3(7, 0.3, 7), 1.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	t.tween_property(m, "albedo_color:a", 0.0, 1.1)
 	t.chain().tween_callback(ring.queue_free)
+	# 3.0: coluna de luz jade e lascas: "este territorio agora e seu"
+	CombatFX.pillar(self, global_position, CONTROLLED_COLOR, 7.0, 1.2)
+	CombatFX.hit_spark(self, global_position + Vector3(0, 1.2, 0), CONTROLLED_COLOR, 8)
 	_crystal.scale = Vector3.ONE * 1.35
 	_crystal.create_tween().tween_property(_crystal, "scale", Vector3.ONE, 0.45).set_trans(Tween.TRANS_BACK)
 
@@ -143,6 +148,12 @@ func _build_visual() -> void:
 	body.mesh = st.commit()
 	body.material_override = Palette.toon(0.3, 0.12)
 	_visual.add_child(body)
+	# 3.0: cranio de dinossauro no degrau do pedestal (totem do territorio), dentro
+	# do solido do marco: so arte.
+	var skull := Props.skull(Vector3(0.0, 0.33, -0.38), PI)
+	skull.scale = Vector3.ONE * 0.3
+	skull.rotation.z = 0.0
+	_visual.add_child(skull)
 	# Faixa de runas do obelisco: mesma cor e brilho do cristal.
 	_crystal_mat = Palette.toon(0.25, 0.3)
 	_crystal_mat.vertex_color_use_as_albedo = false

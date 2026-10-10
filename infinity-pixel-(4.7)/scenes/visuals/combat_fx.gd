@@ -155,3 +155,33 @@ static func slash(near: Node, pos: Vector3, yaw: float, color := Color("fff3d6")
 	t.tween_property(mi, "scale", Vector3.ONE * 1.05, 0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	t.tween_property(mat, "albedo_color:a", 0.0, 0.18)
 	t.chain().tween_callback(mi.queue_free)
+
+## Visual Overhaul 3.0: coluna de luz curta (conquista de territorio). Sobe,
+## alarga e some em `time`; unshaded, sem sombra, sem luz propria.
+static var _pillar: CylinderMesh
+static func pillar(near: Node, pos: Vector3, color: Color, height := 6.0, time := 1.0) -> void:
+	var host := _host(near)
+	if host == null:
+		return
+	if _pillar == null:
+		_pillar = CylinderMesh.new()
+		_pillar.top_radius = 0.22
+		_pillar.bottom_radius = 0.42
+		_pillar.height = 1.0
+		_pillar.radial_segments = 6
+		_pillar.rings = 1
+		_pillar.cap_top = false
+		_pillar.cap_bottom = false
+	var mat := fx_material(color, 0.55)
+	var mi := _instance(host, _pillar, mat, pos)
+	mi.scale = Vector3(1, 0.1, 1)
+	mi.position.y = pos.y + 0.05
+	var t := mi.create_tween().set_parallel(true)
+	t.tween_property(mi, "scale", Vector3(1.6, height, 1.6), time * 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(mi, "position:y", pos.y + height * 0.5, time * 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(mat, "albedo_color:a", 0.0, time).set_delay(time * 0.15)
+	t.chain().tween_callback(mi.queue_free)
+
+## Poeira baixa no chao (golpe de coleta, construcao): anel curto e apagado.
+static func dust(near: Node, pos: Vector3, color: Color) -> void:
+	ring(near, pos, Color(color, 0.6), 1.1, 0.3)

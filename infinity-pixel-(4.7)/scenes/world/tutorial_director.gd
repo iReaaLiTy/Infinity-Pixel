@@ -16,6 +16,8 @@ signal step_changed(index: int)
 signal completed
 
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
+const UiArt := preload("res://scenes/ui/ui_art.gd")
+var _pips: Control
 const Recipes := preload("res://scenes/world/build_recipes.gd")
 const WILD_DINO := preload("res://scenes/enemies/wild_dino.tscn")
 const WOOD_GOAL := 20 # custo da Fogueira (build_recipes)
@@ -312,8 +314,21 @@ func _build_card() -> void:
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 4)
 	box.custom_minimum_size.x = 300
+	# 3.0: pegada + contador e uma trilha de passos (identidade da expedicao).
+	var head := HBoxContainer.new()
+	head.add_theme_constant_override("separation", 6)
+	box.add_child(head)
+	head.add_child(UiArt.icon_control(&"tutorial", 16, UiArt.JADE))
 	_counter = app._label("", 12, Color(CREAM, .75))
-	box.add_child(_counter)
+	head.add_child(_counter)
+	_pips = UiArt.drawn(Vector2(300, 8), func(ci: CanvasItem, r: Rect2):
+		var n := int(Step.DONE)
+		for i in n:
+			var x := 4.0 + (r.size.x - 8.0) * i / maxf(1.0, n - 1.0)
+			var done := i < step
+			var now := i == step
+			ci.draw_circle(Vector2(x, 4), 3.4 if now else 2.6, UiArt.AMBER_LIGHT if now else (UiArt.JADE if done else Color(UiArt.IVORY, .22))))
+	box.add_child(_pips)
 	_title = app._label("", 18, GOLD)
 	_title.add_theme_font_override("font", app._display_font())
 	box.add_child(_title)
@@ -342,6 +357,8 @@ func _refresh_card() -> void:
 		return
 	_counter.text = "TUTORIAL  ·  PASSO %d DE %d" % [mini(step + 1, Step.DONE), Step.DONE]
 	_title.text = TEXT[step][0]
+	if is_instance_valid(_pips):
+		_pips.queue_redraw()
 	_text.text = TEXT[step][1]
 	_keys.text = "[ %s ]" % TEXT[step][2] if TEXT[step][2] != "" else ""
 	_keys.visible = _keys.text != ""

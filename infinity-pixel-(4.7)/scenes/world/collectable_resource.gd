@@ -140,6 +140,7 @@ func _hit_feedback() -> void:
 # Lascas facetadas que saltam e somem (sem particulas): cinza-azuladas na pedra,
 # madeira clara na arvore (Spec 019: todo golpe que acerta mostra impacto).
 func _burst(count := 6) -> void:
+	CombatFX.dust(self, global_position, Color("b9a58c") if kind == "stone" else Color("d9b98a")) # 3.0: poeira no chao
 	var mat := _mat(Color("9aa3a8") if kind == "stone" else Color("d9b98a"))
 	for i in count:
 		var chip := MeshInstance3D.new()

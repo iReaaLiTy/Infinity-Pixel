@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" path="res://scenes/visuals/arena_art.tscn" id="ac1_arena"]
 [ext_resource type="PackedScene" path="res://scenes/visuals/valley_art.tscn" id="valley_018"]
 [ext_resource type="PackedScene" path="res://scenes/visuals/refuge_art.tscn" id="refuge_017a"]
+[ext_resource type="Script" path="res://scenes/visuals/fossil_art.gd" id="fossils_o3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(48, 1, 52)
@@ -121,6 +122,9 @@ navigation_mesh = ExtResource("nav_010")
 [node name="ValleyArt" parent="." instance=ExtResource("valley_018")]
 
 [node name="RefugeArt" parent="." instance=ExtResource("refuge_017a")]
+
+[node name="FossilArt" type="Node3D" parent="."]
+script = ExtResource("fossils_o3")
 
 [node name="DefenseEconomy" type="Node" parent="."]
 script = ExtResource("eco_013b")
