@@ -13,7 +13,7 @@ const CONTROLS := [
 	["E (segurar 2 s)", "Domesticar a até 3 m · no marco: recuperar território (de dia)"],
 	["F", "Seguir / ficar (somente de dia)"],
 	["C", "Construir / melhorar torre (perto de um ponto, de dia)"],
-	["I", "Inventário: Madeira, Pedra e receitas"],
+	["I", "Mochila: recursos, construções e companheiros (abas 1, 2, 3)"],
 	["B", "Construir estrutura (R gira · botão direito cancela)"],
 	["H (segurar 3 s)", "Curar na Fogueira (+25, perto dela)"],
 	["ESC", "Pausar / retomar"],

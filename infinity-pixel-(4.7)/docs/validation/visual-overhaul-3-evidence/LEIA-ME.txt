@@ -1,0 +1,12 @@
+Evidencias - Visual Overhaul 3.0 "Expedicao Pre-historica" (10/10/2026). Capturas REAIS do Godot, JPG reduzido.
+Registro: ../visual-overhaul-3.md. Pasta ignorada pelo Godot (.gdignore).
+
+comparacao/  ANTES (esquerda, faixa ambar, copia de ef1f071) | DEPOIS (direita, faixa jade), mesmo enquadramento.
+             Gerado por tools/overhaul3_capture.tscn nas duas versoes + tools/compose_compare.gd.
+             m01 menu (1280 e 1920) | m02 configuracoes | m03 creditos | m04 controles | m05 pausa | m06 derrota
+             i01 inventario sem aliados (1280/1600/1920) | i02 inventario com aliados
+             c01 player de perto | c02/c03 dinossauro de perto | c04/c05 tipos (guardiao, selvagem, invasor, aliado, player) 12h e 21h
+             h01/h02 HUD com 3 aliados e torre, dia e noite | s01/s02 cenario dia/noite | s03 vale | s04 floresta
+depois/      telas so do 3.0: abas CONSTRUCOES e COMPANHEIROS (vazia), turntable dos modelos.
+desempenho/  tests/perf_probe.tscn --live alternado antes x depois, 2 rodadas (ver o registro).
+regressao/   resumos das execucoes sem janela e com janela.

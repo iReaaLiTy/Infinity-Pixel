@@ -1,0 +1,130 @@
+{
+	"adapter": "Intel(R) Iris(R) Xe Graphics",
+	"vendor": "Intel",
+	"renderer": "gl_compatibility",
+	"vsync": 0,
+	"window": "(1280, 720)",
+	"seconds_per_view": 10.0,
+	"views": [
+		{
+			"view": "menu_principal",
+			"frames": 1770,
+			"fps_avg": 176.8,
+			"fps_1pct_low": 52.9,
+			"frame_ms_avg": 5.66,
+			"frame_ms_max": 20.86,
+			"draw_calls_avg": 428,
+			"primitives_avg": 64173
+		},
+		{
+			"view": "padrao_1200",
+			"frames": 1543,
+			"fps_avg": 154.3,
+			"fps_1pct_low": 84.3,
+			"frame_ms_avg": 6.48,
+			"frame_ms_max": 13.46,
+			"draw_calls_avg": 943,
+			"primitives_avg": 104565
+		},
+		{
+			"view": "padrao_1730",
+			"frames": 1732,
+			"fps_avg": 173.2,
+			"fps_1pct_low": 92.4,
+			"frame_ms_avg": 5.77,
+			"frame_ms_max": 14.63,
+			"draw_calls_avg": 884,
+			"primitives_avg": 99862
+		},
+		{
+			"view": "padrao_2100",
+			"frames": 1736,
+			"fps_avg": 173.5,
+			"fps_1pct_low": 84.3,
+			"frame_ms_avg": 5.76,
+			"frame_ms_max": 15.34,
+			"draw_calls_avg": 628,
+			"primitives_avg": 88680
+		},
+		{
+			"view": "refugio_1200",
+			"frames": 1537,
+			"fps_avg": 153.5,
+			"fps_1pct_low": 85.0,
+			"frame_ms_avg": 6.51,
+			"frame_ms_max": 13.44,
+			"draw_calls_avg": 922,
+			"primitives_avg": 103221
+		},
+		{
+			"view": "slot_oeste_2100",
+			"frames": 1603,
+			"fps_avg": 160.3,
+			"fps_1pct_low": 88.6,
+			"frame_ms_avg": 6.24,
+			"frame_ms_max": 13.04,
+			"draw_calls_avg": 918,
+			"primitives_avg": 103365
+		},
+		{
+			"view": "vivo_dia_dinos",
+			"frames": 1260,
+			"fps_avg": 126.0,
+			"fps_1pct_low": 52.0,
+			"frame_ms_avg": 7.94,
+			"frame_ms_max": 24.33,
+			"draw_calls_avg": 1099,
+			"primitives_avg": 125719
+		},
+		{
+			"view": "vivo_noite_3_torres_aliado",
+			"frames": 1250,
+			"fps_avg": 125.1,
+			"fps_1pct_low": 45.2,
+			"frame_ms_avg": 8.0,
+			"frame_ms_max": 30.22,
+			"draw_calls_avg": 994,
+			"primitives_avg": 108531
+		},
+		{
+			"view": "vivo_noite_3_inventario",
+			"frames": 1156,
+			"fps_avg": 115.4,
+			"fps_1pct_low": 70.6,
+			"frame_ms_avg": 8.66,
+			"frame_ms_max": 16.33,
+			"draw_calls_avg": 1262,
+			"primitives_avg": 121692
+		},
+		{
+			"view": "vivo_noite_10_torres",
+			"frames": 889,
+			"fps_avg": 88.8,
+			"fps_1pct_low": 39.3,
+			"frame_ms_avg": 11.26,
+			"frame_ms_max": 32.01,
+			"draw_calls_avg": 1442,
+			"primitives_avg": 131135
+		},
+		{
+			"view": "vivo_noite_10_torres_3aliados",
+			"frames": 1005,
+			"fps_avg": 100.4,
+			"fps_1pct_low": 39.3,
+			"frame_ms_avg": 9.96,
+			"frame_ms_max": 32.16,
+			"draw_calls_avg": 1267,
+			"primitives_avg": 122549
+		},
+		{
+			"view": "vivo_tutorial",
+			"frames": 1676,
+			"fps_avg": 167.4,
+			"fps_1pct_low": 95.1,
+			"frame_ms_avg": 5.97,
+			"frame_ms_max": 12.64,
+			"draw_calls_avg": 483,
+			"primitives_avg": 75467
+		}
+	]
+}

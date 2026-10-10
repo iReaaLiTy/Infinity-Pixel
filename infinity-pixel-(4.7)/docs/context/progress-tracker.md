@@ -1175,3 +1175,21 @@ manualmente. Registro: `docs/validation/quality-overhaul-2.md`.
   `audio-auditoria.md`.
 - Pendente: remedir desempenho na tomada com o editor fechado; arte de
   personagens própria; áudio novo; decisões de economia (P1–P6).
+
+## Visual Overhaul 3.0 — "Expedição Pré-histórica" (2026-10-10)
+
+**Status:** implementado; sem janela 26/26 suítes (798 checks), com janela
+4/4 (121 checks); **aguardando playtest manual**. Nenhuma spec aprovada
+manualmente; 013D e 015 inalteradas (inventário continua sem pausar).
+Registro, desempenho e roteiro: `docs/validation/visual-overhaul-3.md`.
+
+- Menu: marca JADEFALL talhada, "GUARDIÕES DO REFÚGIO", botões de pedra com
+  ícones, diorama 3D do Refúgio com dinossauros; telas na mesma "tábua".
+- Mochila do Explorador com abas (Recursos, Construções, Companheiros).
+- Dinossauros e Player esculpidos por código (`creature_forge.gd`), rig de
+  cabeça/mandíbula, ornamentos por facção, restos ao morrer.
+- HUD: rótulos contextuais, anéis tracejados/escondidos de longe, teclas
+  desenhadas, alertas.
+- Cenário: sítio fóssil e rastros (≤ 0,3 m), crânios no Refúgio e marcos.
+- Pendente: playtest; vegetação/rochas/ruínas novas; fonte OFL embutida;
+  modelos com esqueleto (Blender); remedir desempenho com o editor fechado.

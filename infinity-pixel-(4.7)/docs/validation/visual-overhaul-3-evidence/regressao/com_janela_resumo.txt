@@ -1,0 +1,4 @@
+main_menu                  exit=0   FAIL=0  erros=0  | MENU RESULTS: 27 passed; 0 failed
+visual_overhaul3           exit=0   FAIL=0  erros=0  | OVERHAUL3 RESULTS: 28 passed; 0 failed
+inventory_ui               exit=0   FAIL=0  erros=0  | INVENTORY RESULTS: 26 passed; 0 failed
+tutorial                   exit=0   FAIL=0  erros=0  | TUTORIAL RESULTS: 40 passed; 0 failed

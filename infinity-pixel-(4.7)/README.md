@@ -16,7 +16,7 @@ Protótipo acadêmico da **Inity Pixel** para AC1 da FIAP School. **Jadefall: Gu
 | E segurado | Domesticar; recuperar marco liberado de dia |
 | F | Seguir/ficar com aliado de dia |
 | C | Torre/melhoria no ponto defensivo de dia |
-| I / B | Inventário / construção |
+| I / B | Mochila (abas 1-3: recursos, construções, companheiros) / construção |
 | R / botão direito | Girar / cancelar posicionamento |
 | H segurado | Cura na Fogueira |
 | Esc | Fechar painel/cancelar posição; pausar/retomar |
