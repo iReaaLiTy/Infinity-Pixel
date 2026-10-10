@@ -54,9 +54,11 @@ func _ready() -> void:
 	for l in app.ui.find_children("*", "Label", true, false):
 		removed = removed and not ("AC1" in l.text or "acadêmico" in l.text or "precisa de você" in l.text)
 	check(removed, "Textos institucionais fora da tela principal")
+	# 3.0: a marca JADEFALL e desenhada (TitleMark); o subtitulo e um Label.
 	var labels := []
 	for l in app.ui.find_children("*", "Label", true, false): labels.append(l.text)
-	check("JADEFALL" in labels and "REFÚGIO" in labels, "Logo JADEFALL presente")
+	var mark: Control = app.ui.find_child("TitleMark", true, false)
+	check(mark != null and mark.get_meta("text") == "JADEFALL" and on_screen(mark) and "GUARDIÕES DO REFÚGIO" in labels, "Logo JADEFALL com o subtitulo GUARDIÕES DO REFÚGIO")
 	for t in ["JOGAR", "CONTROLES", "CRÉDITOS", "SAIR"]:
 		check(on_screen(button(t)), "Botao %s visivel em 1280x720" % t)
 	var play := button("JOGAR")

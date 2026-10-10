@@ -1,45 +1,60 @@
 extends Node3D
 
-# Fundo do menu principal: o proprio vale do jogo (Spec 012), so com a arte.
-# Nenhum script de gameplay roda aqui — sem Player, IA, onda, navegacao ou
-# colisoes. Os modelos dos personagens sao os mesmos do jogo (actor_visual.gd
-# fica parado fora de um CharacterBody3D) e ganham so um balanco leve.
+# Fundo do menu principal (Visual Overhaul 3.0): diorama 3D do Refugio no fim
+# da tarde. So arte, sem gameplay: nada de Player, IA, onda, navegacao ou
+# colisoes. Usa a arte real do vale (Spec 017A/018) com a camera enquadrando o
+# cristal a direita (a coluna de botoes fica a esquerda), um aliado cheirando o
+# chao em primeiro plano, um selvagem ao longe, pegadas e ossadas fosseis,
+# fagulhas dos braseiros e poeira de jade. Movimento de camera lento e curto.
 
 const ART := preload("res://scenes/visuals/arena_art.tscn")
 const REGIONS := preload("res://scenes/world/world_regions.tscn")
 const REFUGE_ART := preload("res://scenes/visuals/refuge_art.tscn") # Spec 017A
 const VALLEY_ART := preload("res://scenes/visuals/valley_art.tscn") # Spec 017A/018
-const GUARDIAN := preload("res://scenes/visuals/guardian.tscn")
 const DINO := preload("res://scenes/visuals/dino.tscn")
-const CARNO := preload("res://scenes/visuals/carno.tscn")
+const Props := preload("res://scenes/visuals/prehistoric_props.gd")
 
-## Camera atras do refugio olhando o vale para o norte: o refugio e os
-## personagens ficam embaixo (livre de UI) e o vale/ruina ao fundo.
-const CAMERA_POS := Vector3(7.5, 6.0, -23.0)
-const LOOK_AT := Vector3(-2.0, -1.5, 2.0)
-const DRIFT := 1.2 # m de deriva lateral, bem sutil
-const DRIFT_PERIOD := 40.0 # s por ciclo completo
+## Camera ao norte do Refugio olhando para ele (sul); cristal no terco direito.
+const CAMERA_POS := Vector3(-6.2, 3.1, -3.4)
+const LOOK_AT := Vector3(-2.6, 1.55, -13.6)
+const SWAY := 0.035 # rad de giro lento em volta do alvo (sem enjoo)
+const SWAY_PERIOD := 48.0 # s por ciclo completo
 
 var camera: Camera3D
 var _time := 0.0
 var _actors: Array[Node3D] = []
+var _walker: Node3D
 
 func _ready() -> void:
-	var env := Environment.new() # mesmos valores da prototype_area (dia)
+	var env := Environment.new()
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
-	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color(0.58, 0.73, 0.69)
+	env.background_mode = Environment.BG_SKY
+	var sky_mat := ProceduralSkyMaterial.new()
+	sky_mat.sky_top_color = Color("4f7f8c")
+	sky_mat.sky_horizon_color = Color("d8cba8")
+	sky_mat.ground_horizon_color = Color("b9a58c")
+	sky_mat.ground_bottom_color = Color("3c5a4c")
+	sky_mat.sun_angle_max = 20.0
+	var sky := Sky.new()
+	sky.sky_material = sky_mat
+	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color.WHITE
-	env.ambient_light_energy = 0.35
+	env.ambient_light_color = Color("cfe3d6")
+	env.ambient_light_energy = 0.42
+	env.fog_enabled = true
+	env.fog_light_color = Color("d9c29a")
+	env.fog_density = 0.0045
+	env.fog_sky_affect = 0.2
 	var world_env := WorldEnvironment.new()
 	world_env.environment = env
 	add_child(world_env)
+	# Sol baixo e quente (fim de tarde): faces com volume e sombras longas.
 	var sun := DirectionalLight3D.new()
-	sun.rotation_degrees = Vector3(-45, -45, 0)
+	sun.rotation_degrees = Vector3(-30, -58, 0)
 	sun.shadow_enabled = true
-	sun.light_color = Color(1, 0.91, 0.72)
-	sun.light_energy = 0.8
+	sun.directional_shadow_max_distance = 45.0
+	sun.light_color = Color(1, 0.84, 0.62)
+	sun.light_energy = 1.0
 	add_child(sun)
 	var art := ART.instantiate()
 	if art.has_node("PostLabel"): # removido na 013C; mantido por seguranca
@@ -48,34 +63,123 @@ func _ready() -> void:
 	add_child(REGIONS.instantiate())
 	add_child(VALLEY_ART.instantiate()) # chao, trilhas e paredoes (os antigos foram ocultados)
 	add_child(REFUGE_ART.instantiate()) # cristal, plataforma, braseiros, estandartes
-	# Pequena cena de vida no caminho do refugio: guardiao, aliado e selvagens.
-	_actor(GUARDIAN, Vector3(8.1, 0, -12.6), 2.6)
-	var ally := _actor(DINO, Vector3(9.0, 0, -10.8), 2.2)
+	# Aliado em primeiro plano (cheira o chao e olha em volta) e um selvagem
+	# atravessando a trilha ao fundo, devagar.
+	var ally := _actor(DINO, Vector3(-1.9, 0, -9.0), -1.75, "rest")
 	ally.set_ally()
-	_actor(DINO, Vector3(-9.5, 0, -1.5), 2.2)
-	_actor(CARNO, Vector3(6.5, 0, 0.5), -2.4)
+	ally.flash_time = 0.0
+	_walker = _actor(DINO, Vector3(6.5, 0, -22.0), PI / 2.0, "walk")
+	# Pegadas fosseis levando ate o aliado e ossada antiga a esquerda (fica
+	# atras da coluna escura, da textura sem disputar com os botoes).
+	for i in 7:
+		var p := Props.footprint(Vector3(-4.4 + i * 0.62, 0, -5.2 - i * 0.48 + (0.14 if i % 2 == 0 else -0.14)), -2.25)
+		add_child(p)
+	add_child(Props.ribcage(Vector3(-7.4, 0, -10.6), 0.6))
+	add_child(Props.skull(Vector3(-6.0, 0, -9.2), -0.9))
+	add_child(Props.totem(Vector3(4.6, 0, -11.2), 0.4))
+	add_child(Props.ammonite_rock(Vector3(-3.2, 0, -7.0), 1.2))
+	# Fagulhas sobre os braseiros e poeira de jade em volta do cristal.
+	for x in [-3.3, 3.3]:
+		add_child(_embers(Vector3(x, 1.55, -14.3)))
+	add_child(_motes(Vector3(0, 1.4, -15.0)))
+	# Luz jade do cristal (sem sombra): o cristal e o protagonista do diorama.
+	var glow := OmniLight3D.new()
+	glow.position = Vector3(0, 2.6, -13.4)
+	glow.light_color = Color("7fd8b0")
+	glow.light_energy = 1.6
+	glow.omni_range = 7.0
+	add_child(glow)
 	camera = Camera3D.new()
-	camera.fov = 50.0
-	camera.far = 200.0
+	camera.fov = 48.0
+	camera.far = 160.0
 	add_child(camera)
 	camera.current = true
 	_place_camera()
 
-func _actor(scene: PackedScene, pos: Vector3, yaw: float) -> Node3D:
+func _actor(scene: PackedScene, pos: Vector3, yaw: float, pose: String) -> Node3D:
 	var actor := scene.instantiate() as Node3D
 	actor.position = pos
 	actor.rotation.y = yaw
 	add_child(actor)
+	actor.showcase = pose
 	_actors.append(actor)
 	return actor
+
+func _embers(at: Vector3) -> CPUParticles3D:
+	var p := CPUParticles3D.new()
+	p.position = at
+	p.amount = 14
+	p.lifetime = 2.2
+	p.preprocess = 2.0
+	p.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+	p.emission_sphere_radius = 0.18
+	p.direction = Vector3.UP
+	p.spread = 18.0
+	p.gravity = Vector3(0.15, 0.35, 0)
+	p.initial_velocity_min = 0.4
+	p.initial_velocity_max = 0.9
+	p.scale_amount_min = 0.5
+	p.scale_amount_max = 1.0
+	p.mesh = _spark_mesh(0.045)
+	p.material_override = _glow_material(Color("ffb35a"))
+	var fade := Gradient.new()
+	fade.set_color(0, Color(1, 0.8, 0.4, 1))
+	fade.set_color(1, Color(1, 0.4, 0.2, 0))
+	p.color_ramp = fade
+	return p
+
+func _motes(at: Vector3) -> CPUParticles3D:
+	var p := CPUParticles3D.new()
+	p.position = at
+	p.amount = 22
+	p.lifetime = 6.0
+	p.preprocess = 6.0
+	p.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	p.emission_box_extents = Vector3(3.5, 1.0, 3.5)
+	p.direction = Vector3.UP
+	p.spread = 40.0
+	p.gravity = Vector3(0, 0.05, 0)
+	p.initial_velocity_min = 0.05
+	p.initial_velocity_max = 0.2
+	p.mesh = _spark_mesh(0.05)
+	p.material_override = _glow_material(Color("a8e6cf"))
+	var fade := Gradient.new()
+	fade.set_color(0, Color(1, 1, 1, 0))
+	fade.add_point(0.3, Color(1, 1, 1, 0.9))
+	fade.set_color(fade.get_point_count() - 1, Color(1, 1, 1, 0))
+	p.color_ramp = fade
+	return p
+
+static func _spark_mesh(size: float) -> Mesh:
+	var m := SphereMesh.new()
+	m.radius = size
+	m.height = size * 2.0
+	m.radial_segments = 4
+	m.rings = 2
+	return m
+
+static func _glow_material(color: Color) -> StandardMaterial3D:
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.vertex_color_use_as_albedo = true
+	m.albedo_color = color
+	return m
 
 func _process(delta: float) -> void:
 	_time += delta
 	_place_camera()
-	for i in _actors.size():
-		_actors[i].position.y = absf(sin(_time * 2.2 + i * 1.7)) * 0.05 # respira
+	# O selvagem ao fundo atravessa a trilha devagar e volta (ida e volta longe).
+	if is_instance_valid(_walker):
+		var x := 6.5 - fposmod(_time * 0.45, 26.0)
+		_walker.position.x = x if x > -6.5 else -6.5 - (x + 6.5)
+		_walker.rotation.y = PI / 2.0 if x > -6.5 else -PI / 2.0
+		_walker.get_node("LegL").rotation.x = sin(_time * 5.5) * 0.4
+		_walker.get_node("LegR").rotation.x = -sin(_time * 5.5) * 0.4
+		_walker.position.y = absf(sin(_time * 5.5)) * 0.03
 
 func _place_camera() -> void:
-	var drift := sin(_time * TAU / DRIFT_PERIOD) * DRIFT
-	camera.position = CAMERA_POS + Vector3(drift, 0, 0)
-	camera.look_at(LOOK_AT + Vector3(drift * .5, 0, 0), Vector3.UP)
+	var a := sin(_time * TAU / SWAY_PERIOD) * SWAY
+	var offset := (CAMERA_POS - LOOK_AT).rotated(Vector3.UP, a)
+	camera.position = LOOK_AT + offset + Vector3(0, sin(_time * TAU / (SWAY_PERIOD * 1.7)) * 0.08, 0)
+	camera.look_at(LOOK_AT, Vector3.UP)
