@@ -65,7 +65,7 @@ func interact(slot: Node3D) -> bool:
 		slot.build()
 	else:
 		slot.tower.upgrade()
-	get_tree().call_group("audio_director", "effect", true)
+	get_tree().call_group("audio_director", "play", "build") # 4.0: som de construcao (antes o da domesticacao)
 	return true
 
 func _unhandled_input(event: InputEvent) -> void:

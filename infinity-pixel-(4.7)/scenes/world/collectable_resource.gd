@@ -78,6 +78,7 @@ func take_damage(amount: float) -> void:
 		return
 	hp = maxf(hp - amount, 0.0)
 	print_verbose("[COLETA] %s recebeu %.0f. HP: %.0f/%.0f" % [name, amount, hp, max_hp])
+	get_tree().call_group("audio_director", "play", "collect_wood" if kind == "wood" else "collect_stone") # 4.0
 	if hp <= 0.0:
 		_deplete()
 	else:

@@ -34,6 +34,7 @@ func _ready() -> void:
 	scenery_checks()
 	await creature_checks()
 	performance_checks()
+	await audio_checks()
 	print("OVERHAUL4 RESULTS: %d passed; %d failed" % [passed.size(), failed.size()])
 	if report != "":
 		var f := FileAccess.open(report, FileAccess.WRITE)
@@ -185,3 +186,27 @@ func performance_checks() -> void:
 	check(light.shadow_enabled and light.directional_shadow_mode == DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS and light.directional_shadow_max_distance <= 50.0,
 		"Sombra direcional em 2 fatias ate %.0f m (a camera ve ~36 m): metade das passadas de sombra" % light.directional_shadow_max_distance)
 	check(not ProjectSettings.get_setting("application/run/disable_stdout", false), "Log de eventos raros continua no console (so o log por golpe virou --verbose)")
+
+# --- Audio (Fase G) ---------------------------------------------------------------
+func audio_checks() -> void:
+	var audio = app.audio
+	var names := ["ui_hover", "ui_click", "collect_wood", "collect_stone", "build", "tower_shot", "growl", "wave_start"]
+	check(names.all(func(n): return audio._sfx_players.has(n) and audio._sfx_players[n].stream != null and audio._sfx_players[n].bus == "SFX"),
+		"Efeitos originais carregados (tools/build_sfx.gd), todos no barramento SFX")
+	audio._sfx_last.clear()
+	audio.play("tower_shot")
+	var t0: float = audio._sfx_last.get("tower_shot", -1.0)
+	audio.play("tower_shot") # imediatamente de novo: ignorado pelo intervalo minimo
+	check(t0 > 0.0 and audio._sfx_last["tower_shot"] == t0, "Intervalo minimo por efeito (varias torres nao viram metralhadora)")
+	var b := Button.new()
+	app.ui.add_child(b)
+	b.pressed.emit()
+	check(audio._sfx_last.has("ui_click"), "Todo botao do jogo toca o clique (gancho global)")
+	b.queue_free()
+	check(audio.ambience == "day" and audio.ambient.playing, "Ambiente de dia tocando durante a preparacao")
+	DayNightManager.start_night()
+	await frames(5)
+	check(audio.ambience == "night" and audio._sfx_last.has("wave_start") and audio.current == "combat", "Noite: trompa da onda, ambiente noturno e musica de combate")
+	app.show_menu()
+	await frames(5)
+	check(audio.current == "principal" and audio.music.playing, "Menu toca o tema principal (composicao original que estava sem uso)")

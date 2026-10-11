@@ -52,7 +52,10 @@ func _ready() -> void:
 	DayNightManager.game_over.connect(_defeat)
 	DayNightManager.day_started.connect(_victory)
 	DayNightManager.night_warning.connect(_night_warning)
-	DayNightManager.night_started.connect(func(): audio.change_music("combat"))
+	DayNightManager.night_started.connect(func():
+		audio.change_music("combat")
+		audio.play("wave_start") # 4.0: trompa grave anuncia a onda
+		audio.set_ambience("night"))
 	show_menu()
 
 const UiArt := preload("res://scenes/ui/ui_art.gd")
@@ -156,7 +159,8 @@ func show_menu() -> void:
 	screen = "menu"
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_clear_ui()
-	audio.change_music("calm")
+	audio.change_music("principal") # 4.0: tema principal (composicao original, antes sem uso)
+	audio.set_ambience("day")
 	# Fundo = diorama 3D do Refugio (so arte). Libera o anterior: chamar
 	# show_menu() com o menu ja aberto empilhava fundos (e sois) antes do 3.0.
 	_free_menu_backdrop()
@@ -188,6 +192,8 @@ func _display_font() -> Font:
 	if _font_cache == null:
 		var font := FontVariation.new()
 		font.base_font = DISPLAY_FONT
+		# MSDF (na importacao da fonte): o titulo e os rotulos ficam nitidos em
+		# qualquer tamanho e resolucao, com um so cache de glifos.
 		font.spacing_glyph = 1
 		_font_cache = font
 	return _font_cache
@@ -577,6 +583,7 @@ func start_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Spec 007: cursor livre para mirar
 	_build_hud()
 	audio.change_music("calm")
+	audio.set_ambience("day")
 
 func _panel(parent: Node, box: Control) -> PanelContainer:
 	var p := PanelContainer.new()
@@ -696,6 +703,7 @@ func _defeat() -> void:
 # voltou a DIA (DayNightManager); aqui so ha o jingle e um aviso passageiro.
 func _victory() -> void:
 	audio.result(true)
+	audio.set_ambience("day") # 4.0: amanhecer volta ao ambiente de dia (sem nova conexao de sinal)
 	_show_toast("DawnToast", "AMANHECEU  ·  DIA %d" % DayNightManager.day_number, GOLD)
 
 # Spec 013 (RF-CIC-002): um unico aviso, 20 s antes das 18:00. Nao pisca, nao

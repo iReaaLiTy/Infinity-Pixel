@@ -303,6 +303,8 @@ func windup(seconds: float) -> void:
 		_telegraph = _indicator(body, CombatFX.arc_mesh(), _telegraph_mat, "Telegraph")
 		_telegraph.scale = Vector3.ONE * 1.45 # arco 1,5 m -> ~2,2 m (alcance + folga)
 	_telegraph.visible = true
+	if is_inside_tree():
+		get_tree().call_group("audio_director", "play", "growl") # 4.0: rosnado avisa a mordida
 
 ## Preparou e errou (o alvo recuou): some o aviso, sem golpe.
 func whiff() -> void:

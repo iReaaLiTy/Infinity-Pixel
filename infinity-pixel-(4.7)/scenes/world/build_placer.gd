@@ -270,6 +270,7 @@ func confirm() -> Node3D:
 	CombatFX.burst(node, pos, Color("e9c27a"), 8) # poeira/lascas: "construido aqui"
 	notice.emit(r.built)
 	structure_built.emit(id, node)
+	get_tree().call_group("audio_director", "play", "build") # 4.0
 	return node
 
 func _unhandled_input(event: InputEvent) -> void:

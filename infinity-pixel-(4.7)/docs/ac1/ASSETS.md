@@ -29,3 +29,15 @@ Composição original sintetizada em Python/numpy: 32 kHz, estéreo, PCM 16-bit.
 O vídeo `delivery/Demonstracao_AC1.avi` foi capturado pela Godot Movie Maker: 1027 frames, 30 FPS, 34,23 s, com áudio da engine. A demonstração reposiciona atores para enquadramento e usa ataques/canalização reais; é uma gravação automatizada, não playtest humano. As screenshots de cenário e turnarounds usam câmeras de apresentação explicitamente identificadas.
 
 Godot Engine: licença MIT ([licença oficial](https://godotengine.org/license/)); editor e runtime não foram redistribuídos no pacote. O MCP de terceiros é ferramenta de desenvolvimento e não está incluído no jogo. A fonte padrão Godot e fontes do sistema são usadas sem copiar arquivos de fonte de terceiros. Os logos são propostas; não houve pesquisa de marca registrada. Confirmar regras da disciplina sobre crédito a ferramentas de IA.
+
+## Visual Overhaul 4.0 (11/10/2026) — adições
+
+| Recurso | Origem e licença | Onde |
+|---|---|---|
+| Fonte de exibição **Lilita One** | **Terceiro**: Juan Montoreano (2011), SIL Open Font License 1.1, nome reservado "Lilita". Baixada sem modificação de github.com/google/fonts (`ofl/lilitaone`). Texto da licença em `assets/fonts/OFL.txt` | `assets/fonts/LilitaOne-Regular.ttf`; título, botões e cabeçalhos (`main.gd::_display_font`) |
+| Flora, rochas, ruínas e cristais do vale | Malhas geradas por código nesta execução (`scenes/visuals/flora.gd`, `tools/build_flora_art.gd`) | `scenes/visuals/flora_art.scn` |
+| Efeitos sonoros (interface, coleta, construção, torre, rosnado, onda, ambientes) | Sintetizados por código nesta execução (`tools/build_sfx.gd`), sem samples | `assets/audio/sfx/*.wav` |
+
+A frase "não há fontes de terceiros" acima vale até a entrega 0.2. A partir da 4.0, a única peça de terceiro é a
+fonte Lilita One, sob OFL 1.1: o uso e a redistribuição em jogo comercial são permitidos, desde que a licença
+acompanhe a fonte e ela não seja vendida sozinha.

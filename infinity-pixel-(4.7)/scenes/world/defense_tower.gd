@@ -160,6 +160,7 @@ func _find_target() -> Node3D:
 # Spec 019: lasca jade facetada apontada para o alvo, com 2 ecos de rastro e
 # faisca no impacto. O tempo de voo (BOLT_TIME) e o instante do dano nao mudam.
 func _fire(foe: Node3D) -> void:
+	get_tree().call_group("audio_director", "play", "tower_shot") # 4.0 (com intervalo minimo)
 	var damage: float = stats().damage
 	var bolt := MeshInstance3D.new()
 	bolt.mesh = CombatFX.shard_mesh()
