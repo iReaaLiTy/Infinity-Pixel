@@ -1193,3 +1193,22 @@ Registro, desempenho e roteiro: `docs/validation/visual-overhaul-3.md`.
 - Cenário: sítio fóssil e rastros (≤ 0,3 m), crânios no Refúgio e marcos.
 - Pendente: playtest; vegetação/rochas/ruínas novas; fonte OFL embutida;
   modelos com esqueleto (Blender); remedir desempenho com o editor fechado.
+
+## Visual Overhaul 4.0 — polimento, cenário, criaturas e desempenho (2026-10-11)
+
+**Status:** implementado; sem janela 27/27 suítes, com janela 28/28 (ver o registro); **aguardando
+playtest manual**. Nenhuma spec aprovada manualmente; 013D e 015 inalteradas; balanceamento intocado.
+Registro, medições, comparações e roteiro: `docs/validation/visual-overhaul-4.md`.
+
+- Desempenho: o pior 1% do combate vinha do log por golpe no console (~0,4–15 ms por linha); virou
+  `print_verbose`. Flora em 19 malhas (eram 226 nós), sombra em 2 fatias até 45 m, partes escondidas
+  das criaturas sem sombra. Chamadas de desenho −55% a −74%.
+- Cenário: 5 espécies de árvore, sub-bosque em grupos, Floresta Oeste verde-azulada, rochas em 3
+  famílias, Região Rochosa com lajes, agulhas e cristais, ruína com glifos, piso e colunas quebradas,
+  cristais que acendem à noite.
+- Criaturas: joelho e tornozelo, cauda em dois segmentos, passo pela distância (sem patinar), olhos
+  com brilho; Player com chapéu novo e golpe com retorno suave.
+- Interface: fonte Lilita One embutida (OFL, MSDF).
+- Áudio: efeitos e ambientes originais sintetizados (`tools/build_sfx.gd`), tema principal no menu.
+- Pendente: playtest (inclusive ouvir os sons); modelos com esqueleto em Blender (não instalado);
+  pico isolado de ~50 ms em parte das medições noturnas; remedir com o editor fechado.

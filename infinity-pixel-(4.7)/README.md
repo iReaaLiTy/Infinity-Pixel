@@ -27,8 +27,9 @@ T/N são debug desativado. [Controles completos e regras](docs/ac1/GDD_AC1.md).
 
 - `scenes/player`, `scenes/enemies`: movimento, mira, combate, vida/respawn, domesticação, aliados e navegação.
 - `scenes/world`: mapa, Refúgio, coleta, inventário de materiais, Fogueira, Armadilha, torres/PD, dia/noite e territórios.
-- `scenes/ui`: menu, HUD, pausa, áudio; `scenes/visuals`: modelos low-poly.
-- `assets/audio`: composição original e mixagens; `assets/ui`: identidade existente.
+- `scenes/ui`: menu, HUD, pausa, áudio; `scenes/visuals`: modelos low-poly, flora (`flora.gd`) e efeitos.
+- `assets/audio`: composição original e mixagens; `assets/audio/sfx`: efeitos sintetizados (`tools/build_sfx.gd`); `assets/fonts`: Lilita One (OFL 1.1); `assets/ui`: identidade existente.
+- Geradores de arte: `tools/build_first_map.gd` (vale, flora, rochas e ruínas via `build_valley_art.gd` e `build_flora_art.gd`) e `tools/build_creatures.gd` (dinossauros e explorador).
 - `docs/specs`, `docs/context`, `docs/validation`: contratos, decisões e histórico.
 - `docs/delivery/ac1`: **[entrega atual](docs/delivery/ac1/README.md)**. Materiais antigos em `docs/ac1` podem refletir versões anteriores; GDD foi atualizado.
 - `tests`, `tools`: regressões e geração de evidências.
