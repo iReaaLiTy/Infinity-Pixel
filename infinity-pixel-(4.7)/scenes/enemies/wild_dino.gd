@@ -214,10 +214,12 @@ func take_damage(amount: float) -> void:
 		return # ja derrotado neste frame (queue_free pendente)
 	$Visual.flash()
 	hp -= amount
+	# 4.0 (desempenho): mensagens por golpe so com --verbose. Cada print custava
+	# ~0,4 ms (ate 15 ms com a saida no editor) e somava picos no pior 1% de FPS.
 	if is_domesticated:
-		print("[ALIADO] recebeu %.0f de dano. HP: %.0f/%.0f" % [amount, maxf(hp, 0.0), MAX_HP])
+		print_verbose("[ALIADO] recebeu %.0f de dano. HP: %.0f/%.0f" % [amount, maxf(hp, 0.0), MAX_HP])
 	else:
-		print("%s recebeu %.0f de dano. HP: %.0f/%.0f" % [name, amount, maxf(hp, 0.0), MAX_HP])
+		print_verbose("%s recebeu %.0f de dano. HP: %.0f/%.0f" % [name, amount, maxf(hp, 0.0), MAX_HP])
 	_update_label()
 	if hp <= 0.0:
 		if is_domesticated:
@@ -351,7 +353,7 @@ func _guard_player(player: Node3D) -> bool:
 				_target = candidate
 		if _target != null:
 			_attack_announced = false
-			print("[ALIADO] Defendendo o jogador de %s" % _target.name)
+			print_verbose("[ALIADO] Defendendo o jogador de %s" % _target.name)
 	return _target != null
 
 ## Ameaca real: inimigo da onda, ou selvagem que esta atacando o jogador ou um
@@ -373,7 +375,7 @@ func _engage(target: Node3D) -> Vector3:
 		_face_target = target
 		if not _attack_announced:
 			_attack_announced = true
-			print("[ALIADO] Atacando: %s" % target.name)
+			print_verbose("[ALIADO] Atacando: %s" % target.name)
 		_try_attack(target)
 	return desired
 
@@ -385,14 +387,14 @@ func _ally_defend(delta: float) -> void:
 			_target = null # derrotado (queue_free)
 		elif not _is_valid_defense_target(_target):
 			if _target.is_in_group("wild_dino"):
-				print("[ALIADO] Alvo saiu da área - retornando")
+				print_verbose("[ALIADO] Alvo saiu da área - retornando")
 			_target = null
 	_retarget_left -= delta
 	if _target == null and _retarget_left <= 0.0:
 		_retarget_left = RETARGET_INTERVAL # Spec 010: busca por grupos limitada
 		_target = _find_nearest_wild_dino_in_radius(_stay_position, DEFENSE_RADIUS)
 		if _target != null:
-			print("[ALIADO] Inimigo detectado: %s" % _target.name)
+			print_verbose("[ALIADO] Inimigo detectado: %s" % _target.name)
 			_attack_announced = false
 			_returning_to_post = true
 
@@ -407,7 +409,7 @@ func _ally_defend(delta: float) -> void:
 		if to_stay.length() > 0.3:
 			if _returning_to_post:
 				_returning_to_post = false
-				print("[ALIADO] Retornando à posição de defesa")
+				print_verbose("[ALIADO] Retornando à posição de defesa")
 			desired = _navigate_to(_stay_position, BASE_SPEED, 0.3)
 		else:
 			_returning_to_post = false
@@ -602,7 +604,7 @@ func _update_stuck(desired: Vector3) -> void:
 	else:
 		_stuck_count += 1
 		if _stuck_count == 1: # um log por episodio, nunca por segundo
-			print("[NAV] %s sem progresso: recalculando caminho%s (desejada=%.1f m/s, real=%.1f m/s)" % [
+			print_verbose("[NAV] %s sem progresso: recalculando caminho%s (desejada=%.1f m/s, real=%.1f m/s)" % [
 				name, " e trocando de slot" if _slot_target != null else "", desired.length(), Vector2(velocity.x, velocity.z).length()])
 		_nav_goal = Vector3.INF
 		if is_instance_valid(_slot_target):
@@ -674,7 +676,7 @@ func _try_attack(target: Node3D) -> void:
 ## O golpe acontece de fato (aliado: na hora; hostil: no fim da preparacao).
 func _land_attack(target: Node3D) -> void:
 	$Visual.strike()
-	print("%s atacou %s." % [name, target.name])
+	print_verbose("%s atacou %s." % [name, target.name])
 	var damage := _current_attack_damage()
 	# Aliado x selvagem que NAO e da onda: o golpe para no limiar da
 	# domesticacao (20 HP). O aliado ajuda a enfraquecer, mas nunca mata o

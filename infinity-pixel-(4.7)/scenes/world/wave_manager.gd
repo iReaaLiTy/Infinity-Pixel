@@ -97,8 +97,8 @@ func _spawn_enemy() -> void:
 	enemy.domesticated.connect(_neutralize_wave_enemy.bind("domesticado"))
 	# Seguranca: removido da cena por outro caminho (sem take_damage).
 	enemy.tree_exiting.connect(_neutralize_wave_enemy.bind(enemy, "removido"))
-	print("[NOITE] Inimigo spawnado (%d/%d) em %s." % [_spawned_count + 1, enemy_count, spawn_position])
-	print("[NOITE] Inimigo da wave registrado: %s" % enemy.name)
+	print_verbose("[NOITE] Inimigo spawnado (%d/%d) em %s." % [_spawned_count + 1, enemy_count, spawn_position])
+	print_verbose("[NOITE] Inimigo da wave registrado: %s" % enemy.name)
 
 # Spec 010 RF-NAV-004: primeiro ponto livre da lista. Livre = na navmesh, sem
 # corpo solido/criatura/Player sobreposto e longe de outras criaturas. A busca

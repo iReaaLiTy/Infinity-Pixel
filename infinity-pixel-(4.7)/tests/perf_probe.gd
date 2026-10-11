@@ -18,6 +18,17 @@ var visual
 var _times: PackedFloat64Array = []
 var _draws: PackedInt64Array = []
 var _prims: PackedInt64Array = []
+# Visual Overhaul 4.0 (Fase A): onde o quadro gasta. Passe de sombra x passe
+# visivel, CPU x GPU de render, scripts (process/physics) e memoria.
+var _shadow_draws: PackedInt64Array = []
+var _visible_draws: PackedInt64Array = []
+var _visible_objects: PackedInt64Array = []
+var _cpu_ms: PackedFloat64Array = []
+var _gpu_ms: PackedFloat64Array = []
+var _process_ms: PackedFloat64Array = []
+var _physics_ms: PackedFloat64Array = []
+var ablate := false # --ablate: mede a onda de 10 sem cada subsistema (diagnostico)
+var audit := false # --audit: tambem lista luzes, malhas, sombras e particulas por vista
 var _measuring := false
 var _last := 0
 
@@ -31,7 +42,38 @@ func set_hour(h: float) -> void:
 		DayNightManager.phase_elapsed = (hn - 18.0) / 12.0 * DayNightManager.night_duration_seconds
 	visual.snap()
 
+# Tempo dos scripts por quadro: este no roda PRIMEIRO (prioridade minima) e o
+# Tail roda por ULTIMO; a diferenca e o _process/_physics_process de todo o jogo.
+var _script_ms: PackedFloat64Array = []
+var _phys_ms: PackedFloat64Array = []
+var _head_us := 0
+var _phys_head_us := 0
+
+class Tail extends Node:
+	var probe
+	func _init(p) -> void:
+		probe = p
+		process_priority = 100000
+		process_physics_priority = 100000
+	func _process(_d: float) -> void:
+		if probe._measuring:
+			probe._script_ms.append((Time.get_ticks_usec() - probe._head_us) / 1000.0)
+	func _physics_process(_d: float) -> void:
+		if probe._measuring:
+			probe._phys_ms.append((Time.get_ticks_usec() - probe._phys_head_us) / 1000.0)
+
+func _physics_process(_delta: float) -> void:
+	_phys_head_us = Time.get_ticks_usec()
+
+static func _p99(a: PackedFloat64Array) -> float:
+	if a.is_empty():
+		return 0.0
+	var s := a.duplicate()
+	s.sort()
+	return snappedf(s[int(s.size() * 0.99)], 0.01)
+
 func _process(_delta: float) -> void:
+	_head_us = Time.get_ticks_usec()
 	if get_tree().paused and app != null and app.get("screen") == "paused":
 		app.resume_game() # perda de foco pausa o jogo e cobriria a cena com o menu
 	if not _measuring:
@@ -41,10 +83,64 @@ func _process(_delta: float) -> void:
 	_last = now
 	_draws.append(int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
 	_prims.append(int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)))
+	var vp := get_viewport().get_viewport_rid()
+	_shadow_draws.append(RenderingServer.viewport_get_render_info(vp, RenderingServer.VIEWPORT_RENDER_INFO_TYPE_SHADOW, RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME))
+	_visible_draws.append(RenderingServer.viewport_get_render_info(vp, RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE, RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME))
+	_visible_objects.append(RenderingServer.viewport_get_render_info(vp, RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE, RenderingServer.VIEWPORT_RENDER_INFO_OBJECTS_IN_FRAME))
+	_cpu_ms.append(RenderingServer.viewport_get_measured_render_time_cpu(vp) + RenderingServer.get_frame_setup_time_cpu())
+	_gpu_ms.append(RenderingServer.viewport_get_measured_render_time_gpu(vp))
+	_process_ms.append(Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0)
+	_physics_ms.append(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0)
+
+static func _avg_i(a: PackedInt64Array) -> int:
+	var t := 0
+	for v in a: t += v
+	return t / maxi(1, a.size())
+
+static func _avg_f(a: PackedFloat64Array) -> float:
+	var t := 0.0
+	for v in a: t += v
+	return snappedf(t / maxi(1, a.size()), 0.01)
+
+## Composicao da cena desenhada (Fase A): o que existe e o que projeta sombra.
+func scene_audit() -> Dictionary:
+	var out := {"meshes_visible": 0, "meshes_casting_shadow": 0, "multimesh_instances": 0, "lights_visible": 0,
+		"lights_shadow": 0, "particles_emitting": 0, "nodes": int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)),
+		"processing_nodes": 0, "materials_unique": 0, "by_branch": {}, "shadow_by_branch": {}}
+	var mats := {}
+	for n in get_tree().root.find_children("*", "", true, false):
+		if n.is_processing() or n.is_physics_processing():
+			out.processing_nodes += 1
+		if n is Node3D and not n.is_visible_in_tree():
+			continue
+		var branch := "outros"
+		if app != null and is_instance_valid(app.world) and app.world.is_ancestor_of(n):
+			branch = String(app.world.get_path_to(n)).get_slice("/", 0)
+		if n is MeshInstance3D:
+			out.meshes_visible += 1
+			out.by_branch[branch] = int(out.by_branch.get(branch, 0)) + 1
+			if n.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_OFF:
+				out.meshes_casting_shadow += 1
+				out.shadow_by_branch[branch] = int(out.shadow_by_branch.get(branch, 0)) + 1
+			if n.mesh != null:
+				for i in n.mesh.get_surface_count():
+					var m = n.get_active_material(i)
+					if m != null: mats[m.get_instance_id()] = true
+		elif n is MultiMeshInstance3D and n.multimesh != null:
+			out.multimesh_instances += n.multimesh.instance_count
+		elif n is OmniLight3D or n is SpotLight3D:
+			out.lights_visible += 1
+			if n.shadow_enabled: out.lights_shadow += 1
+		elif (n is CPUParticles3D or n is GPUParticles3D) and n.emitting:
+			out.particles_emitting += 1
+	out.materials_unique = mats.size()
+	return out
 
 func measure(label: String) -> Dictionary:
 	await get_tree().create_timer(2.0, true, false, true).timeout # aquecimento
 	_times.clear(); _draws.clear(); _prims.clear()
+	for a in [_shadow_draws, _visible_draws, _visible_objects, _cpu_ms, _gpu_ms, _process_ms, _physics_ms, _script_ms, _phys_ms]:
+		a.clear()
 	_last = Time.get_ticks_usec()
 	_measuring = true
 	await get_tree().create_timer(seconds, true, false, true).timeout
@@ -67,7 +163,20 @@ func measure(label: String) -> Dictionary:
 		"frame_ms_max": snappedf(sorted[sorted.size() - 1], 0.01),
 		"draw_calls_avg": draws / maxi(1, _draws.size()),
 		"primitives_avg": prims / maxi(1, _prims.size()),
+		"draw_calls_shadow_avg": _avg_i(_shadow_draws),
+		"draw_calls_visible_avg": _avg_i(_visible_draws),
+		"objects_visible_avg": _avg_i(_visible_objects),
+		"render_cpu_ms_avg": _avg_f(_cpu_ms),
+		"render_gpu_ms_avg": _avg_f(_gpu_ms),
+		"process_ms_max_per_s": _avg_f(_process_ms), # monitor do Godot: pior quadro de cada segundo
+		"scripts_ms_avg": _avg_f(_script_ms), "scripts_ms_p99": _p99(_script_ms),
+		"physics_scripts_ms_avg": _avg_f(_phys_ms), "physics_scripts_ms_p99": _p99(_phys_ms),
+		"physics_ms_max_per_s": _avg_f(_physics_ms),
+		"static_mem_mb": snappedf(Performance.get_monitor(Performance.MEMORY_STATIC) / 1048576.0, 0.1),
+		"video_mem_mb": snappedf(Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576.0, 0.1),
 	}
+	if audit:
+		d["audit"] = scene_audit()
 	print("[PERF] %s" % JSON.stringify(d))
 	return d
 
@@ -77,16 +186,28 @@ func _ready() -> void:
 		if arg.begins_with("--report="): report = arg.trim_prefix("--report=")
 		if arg.begins_with("--seconds="): seconds = float(arg.trim_prefix("--seconds="))
 		if arg == "--live": live = true
+		if arg == "--audit": audit = true
+		if arg == "--ablate": ablate = true
 	if DisplayServer.get_name() == "headless":
 		print("FAIL: perf_probe exige janela")
 		get_tree().quit(1)
 		return
+	RenderingServer.viewport_set_measure_render_time(get_viewport().get_viewport_rid(), true)
+	process_priority = -100000
+	process_physics_priority = -100000
+	add_child(Tail.new(self))
+	var t0 := Time.get_ticks_usec()
 	app = load("res://scenes/ui/main.tscn").instantiate()
 	add_child(app)
 	await get_tree().process_frame
+	var menu_load_ms := (Time.get_ticks_usec() - t0) / 1000.0
 	# Visual Overhaul 3.0: o menu principal (diorama 3D) tambem e medido.
 	var menu_result := await measure("menu_principal")
+	menu_result["load_ms"] = snappedf(menu_load_ms, 0.1)
+	var t1 := Time.get_ticks_usec()
 	app.start_game()
+	await get_tree().process_frame
+	var game_load_ms := (Time.get_ticks_usec() - t1) / 1000.0
 	for i in 30: await get_tree().physics_frame
 	var world: Node3D = app.world
 	visual = world.get_node("DayNightVisual")
@@ -118,6 +239,7 @@ func _ready() -> void:
 		"vsync": DisplayServer.window_get_vsync_mode(),
 		"window": DisplayServer.window_get_size(),
 		"seconds_per_view": seconds,
+		"game_load_ms": snappedf(game_load_ms, 0.1),
 		"views": results,
 	}
 	print("RESULT: %s" % JSON.stringify(info))
@@ -178,6 +300,27 @@ func live_scenarios() -> Array:
 	DayNightManager.start_night()
 	await get_tree().create_timer(6.0, true, false, true).timeout
 	out.append(await measure("vivo_noite_10_torres"))
+	# --ablate (Fase A): a mesma onda desligando um subsistema por vez, para
+	# saber quanto cada um custa (so medicao; nada disso vale para o jogo).
+	if ablate:
+		app.hud.set_process(false)
+		out.append(await measure("ablacao_sem_hud_process"))
+		app.hud.set_process(true)
+		var visuals := []
+		for v in world.find_children("Visual", "Node3D", true, false):
+			if v.get_script() != null and v.is_processing():
+				visuals.append(v)
+				v.set_process(false)
+		out.append(await measure("ablacao_sem_animacao_criaturas"))
+		for v in visuals:
+			if is_instance_valid(v): v.set_process(true)
+		var light: DirectionalLight3D = world.get_node("DirectionalLight3D")
+		light.shadow_enabled = false
+		out.append(await measure("ablacao_sem_sombra_direcional"))
+		light.shadow_enabled = true
+		world.get_node("ArenaArt").visible = false
+		out.append(await measure("ablacao_sem_arena_art"))
+		world.get_node("ArenaArt").visible = true
 	# 4. Onda de 10 com 3 torres e 3 aliados em combate.
 	app.start_game()
 	for i in 30: await get_tree().physics_frame

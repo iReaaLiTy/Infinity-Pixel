@@ -66,7 +66,7 @@ func _trigger(enemy: Node3D) -> void:
 	_hit_this_passage[enemy] = true
 	_rearm_left = REARM
 	charges -= 1
-	print("[ARMADILHA] %s recebeu %.0f (cargas %d/%d)" % [enemy.name, DAMAGE, charges, MAX_CHARGES])
+	print_verbose("[ARMADILHA] %s recebeu %.0f (cargas %d/%d)" % [enemy.name, DAMAGE, charges, MAX_CHARGES])
 	enemy.take_damage(DAMAGE)
 	triggered.emit(enemy)
 	_snap()

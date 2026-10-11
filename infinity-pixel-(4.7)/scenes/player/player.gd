@@ -112,7 +112,7 @@ func take_damage(amount: float) -> void:
 	if is_dead or _invulnerable_left > 0.0 or not is_finite(amount) or amount <= 0.0:
 		return
 	current_hp = clampf(current_hp - amount, 0.0, max_hp)
-	print("[Player] recebeu %.1f de dano. HP: %.1f/%.0f" % [amount, current_hp, max_hp])
+	print_verbose("[Player] recebeu %.1f de dano. HP: %.1f/%.0f" % [amount, current_hp, max_hp])
 	health_changed.emit(current_hp, max_hp)
 	if current_hp <= 0.0:
 		_die()
@@ -372,4 +372,4 @@ func _try_attack() -> void:
 			attack_out_of_range.emit(aim)
 			CombatFX.ring(self, aim.global_position, Color(1, 1, 1), 1.3, 0.35)
 	attack_cooldown.start(ATTACK_COOLDOWN if hits > 0 else WHIFF_COOLDOWN)
-	print("[Player] ataque acionado — alvos atingidos: %d" % hits) # feedback temporario de playtest
+	print_verbose("[Player] ataque acionado — alvos atingidos: %d" % hits) # feedback temporario de playtest

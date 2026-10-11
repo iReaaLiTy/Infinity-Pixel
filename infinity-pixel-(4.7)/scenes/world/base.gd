@@ -27,7 +27,7 @@ func take_damage(amount: float) -> void:
 	if _destroyed:
 		return
 	health = maxf(health - amount, 0.0)
-	print("Base recebeu %.0f de dano. HP: %.0f/%.0f" % [amount, health, max_health])
+	print_verbose("Base recebeu %.0f de dano. HP: %.0f/%.0f" % [amount, health, max_health])
 	base_health_changed.emit(health, max_health)
 	if health <= 0.0 and not _destroyed:
 		_destroyed = true
