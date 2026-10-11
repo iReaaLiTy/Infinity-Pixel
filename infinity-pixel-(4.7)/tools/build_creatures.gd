@@ -31,8 +31,10 @@ func _part(root: Node3D, parent: Node3D, label: String, mesh: Mesh, mat: Materia
 	mi.material_override = mat
 	mi.position = pos
 	parent.add_child(mi)
-	# partes pequenas nao projetam sombra (desempenho; a sombra nem aparece)
-	for small in ["Eye", "Pupil", "Teeth", "Claw", "Muzzle", "Crest", "HatBand", "Buckle", "Lantern", "Wrapping", "Straps"]:
+	# partes pequenas ou cobertas pelo corpo nao projetam sombra (desempenho; a
+	# sombra delas some dentro da do corpo). 4.0: ventre, mandibula, bracos,
+	# coleira e chifres tambem (-6 objetos por criatura em cada fatia de sombra).
+	for small in ["Eye", "Pupil", "Teeth", "Claw", "Muzzle", "Crest", "HatBand", "Buckle", "Lantern", "Wrapping", "Straps", "Belly", "Jaw", "Arm-", "Arm1", "Collar", "Horn"]:
 		if label.begins_with(small):
 			mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	mi.owner = root
