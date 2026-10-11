@@ -93,6 +93,25 @@ var _next_blink := 2.0
 var _joy := 0.0 # salto curto ao ser domesticado
 ## Pose de vitrine (menu): "rest" = cheira o chao e olha em volta, devagar.
 var showcase := ""
+# 4.0: marcha pela distancia, joelho/tornozelo, cauda em dois segmentos.
+var _gait := 0.0
+var _pace_smooth := 0.0
+var _tail_phase := 0.0
+var _last_yaw := 0.0
+var _lean := 0.0
+
+## Passada (m por ciclo completo): o pe avanca o mesmo que o corpo anda.
+func _stride(amp: float) -> float:
+	return 4.0 * 0.95 * sin(amp) if _rig else 2.4
+
+## Perna em balanco: o joelho dobra (levanta o pe) e o tornozelo compensa.
+func _bend(knee: String, ankle: String, lift: float) -> void:
+	var path := "Leg" + knee.right(1) + "/" + knee
+	if not has_node(path):
+		return
+	var k := get_node(path) as Node3D
+	k.rotation.x = -0.75 * lift
+	(k.get_node(ankle) as Node3D).rotation.x = 0.6 * lift
 
 func _setup_rig() -> void:
 	_rig = true
@@ -150,13 +169,25 @@ func _process(delta: float) -> void:
 		return
 	clock += delta
 	var actual := body.get_real_velocity()
-	var pace := minf(Vector2(actual.x, actual.z).length() / 4.0, 1.0)
+	var speed := Vector2(actual.x, actual.z).length()
+	var pace := minf(speed / 4.0, 1.0)
 	if pace < .025: pace = 0.0
-	$LegL.rotation.x = sin(clock * 11.0) * 0.48 * pace
-	$LegR.rotation.x = -sin(clock * 11.0) * 0.48 * pace
+	# 4.0: o passo segue a DISTANCIA andada (fase += velocidade / passada), nao
+	# o relogio: o pe nao desliza no chao e a cadencia acompanha a velocidade.
+	# Pernas so se movem com deslocamento real (parado = pose de repouso).
+	_pace_smooth = lerpf(_pace_smooth, pace, 1.0 - exp(-delta * 10.0))
+	var amp := (0.42 + 0.12 * clampf((speed - 2.0) / 3.0, 0.0, 1.0)) if _rig else 0.6
+	_gait = fposmod(_gait + speed * delta / (_stride(amp)) * TAU, TAU)
+	var lift_l := maxf(0.0, cos(_gait)) * pace # perna em balanco (indo a frente)
+	var lift_r := maxf(0.0, -cos(_gait)) * pace
+	$LegL.rotation.x = sin(_gait) * amp * pace
+	$LegR.rotation.x = -sin(_gait) * amp * pace
+	_bend("KneeL", "AnkleL", lift_l)
+	_bend("KneeR", "AnkleR", lift_r)
 	swing = maxf(0, swing - delta)
 	_joy = maxf(0.0, _joy - delta)
-	position.y = abs(sin(clock * 11)) * .04 * pace + sin(minf(_joy / 0.7, 1.0) * PI) * 0.35 * float(_joy > 0.0)
+	# Corpo mais alto no meio do apoio (perna vertical), duas vezes por ciclo.
+	position.y = (0.5 + 0.5 * cos(2.0 * _gait)) * (.035 if _rig else .04) * pace + sin(minf(_joy / 0.7, 1.0) * PI) * 0.35 * float(_joy > 0.0)
 	# Golpe + recuo visual curto ao receber dano (sem empurrar o corpo) +
 	# inclinacao para tras durante a preparacao do golpe.
 	var wind := 0.0
@@ -172,17 +203,33 @@ func _process(delta: float) -> void:
 	rotation.x = -lunge * (.1 if _rig else .2) + hurt * .1 + 0.16 * wind
 	# Braços acompanham a passada (o direito so quando nao esta golpeando).
 	if has_node("ArmL"):
-		$ArmL.rotation.x = -sin(clock * 11.0) * 0.55 * pace
+		$ArmL.rotation.x = -sin(_gait) * 0.55 * pace
 	if has_node("ArmR"):
-		$ArmR.rotation.x = -sin(swing * PI / .32) * 1.6 if swing > 0.0 else sin(clock * 11.0) * 0.55 * pace
+		# 4.0: golpe rapido (o braco ja sai no instante do clique), segura e volta
+		# suave — antes era um seno simetrico que "voltava" tao rapido quanto ia.
+		var t := 1.0 - swing / .32
+		$ArmR.rotation.x = -1.8 * smoothstep(0.0, 0.3, t) * (1.0 - smoothstep(0.45, 1.0, t)) if swing > 0.0 else sin(_gait) * 0.55 * pace
 	# Leve inclinacao a frente correndo; capa balanca com o passo.
 	rotation.x -= 0.07 * pace
 	if is_instance_valid(_cape):
 		# negativo = a barra sobe para tras (antes o sinal levava a capa para dentro do corpo)
 		_cape.rotation.x = -(0.05 + 0.5 * pace + sin(clock * 7.0) * 0.06 * (0.3 + pace))
 	if has_node("Tail"):
-		$Tail.rotation.y = sin(clock * (3.0 + 4.0 * pace)) * (.13 + .07 * (1.0 - pace))
-		$Tail.rotation.x = -0.06 * pace + 0.05 * sin(clock * 2.3) * (1.0 - pace)
+		# 4.0: fase acumulada (sem salto quando a velocidade muda) e a ponta
+		# atrasada em relacao a base: a cauda ondula como chicote.
+		_tail_phase += delta * (3.0 + 4.0 * _pace_smooth)
+		var tail_amp := .13 + .07 * (1.0 - _pace_smooth)
+		$Tail.rotation.y = sin(_tail_phase) * tail_amp
+		$Tail.rotation.x = -0.06 * _pace_smooth + 0.05 * sin(clock * 2.3) * (1.0 - _pace_smooth)
+		if has_node("Tail/TailTip"):
+			$Tail/TailTip.rotation.y = sin(_tail_phase - 0.9) * tail_amp * 1.5
+			$Tail/TailTip.rotation.x = 0.04 * sin(clock * 2.3 - 0.8) * (1.0 - _pace_smooth) - 0.05 * _pace_smooth
+	# 4.0: inclina para dentro das curvas (pela virada real do corpo).
+	var yaw := body.global_rotation.y
+	var turn := wrapf(yaw - _last_yaw, -PI, PI) / maxf(delta, 0.001)
+	_last_yaw = yaw
+	_lean = lerpf(_lean, clampf(-turn * 0.035, -0.1, 0.1) * _pace_smooth, 1.0 - exp(-delta * 6.0))
+	rotation.z = _lean + hurt * 0.06 * (1.0 if int(_seed) % 2 == 0 else -1.0) + (0.0 if _rig else 0.035 * sin(_gait) * pace)
 	flash_time = maxf(0, flash_time - delta)
 	# Respiracao em repouso: o peito sobe e desce devagar (some ao andar).
 	var breathe := sin(clock * 2.3) * 0.022 * (1.0 - pace)
@@ -227,6 +274,8 @@ func _showcase(delta: float) -> void:
 	if has_node("Tail"):
 		$Tail.rotation.y = sin(clock * 1.7) * 0.16
 		$Tail.rotation.x = 0.05 * sin(clock * 1.1)
+		if has_node("Tail/TailTip"):
+			$Tail/TailTip.rotation.y = sin(clock * 1.7 - 0.9) * 0.24
 	var yaw := (sin(t * 0.41) * 0.6 + sin(t * 0.17) * 0.4) * 0.45 * (1.0 - sniff)
 	_pose(-0.3 * sniff, -0.5 * sniff + sin(t * 0.29) * 0.06, yaw, 0.12 * sniff * (0.5 + 0.5 * sin(t * 6.0)), _blink_amount(delta))
 

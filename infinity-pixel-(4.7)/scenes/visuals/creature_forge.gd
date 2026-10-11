@@ -252,46 +252,88 @@ static func horn_mesh(side: float) -> ArrayMesh:
 	return st.commit()
 
 ## Cauda (pivo na raiz): grossa na base, afina ate a ponta, leve curva.
+## 4.0: dois segmentos — a ponta (TailTip) tem pivo proprio no meio da cauda e
+## balanca atrasada em relacao a base, como um chicote (antes era rigida).
 const TAIL_PIVOT := Vector3(0, 1.03, 0.6)
-static func tail_mesh(sp: Dictionary) -> ArrayMesh:
+static func _tail_rings(sp: Dictionary) -> Array:
 	var T: float = sp.tail
 	var s: Vector3 = sp.body_scale
-	var st := begin()
-	var rings := [
+	return [
 		ring_z(0.0, 0.0, 0.24 * s.x, 0.26 * s.y, 7),
 		ring_z(0.42 * T, -0.06, 0.19 * s.x, 0.21 * s.y, 7),
 		ring_z(0.86 * T, -0.1, 0.13, 0.14, 7),
 		ring_z(1.26 * T, -0.08, 0.075, 0.085, 7),
 		ring_z(1.58 * T, -0.02, 0.028, 0.034, 7),
 	]
-	Facets.loft(st, rings, Vector3(0, 0.03, 1.74 * T), true, skin_paint(sp.stripes, 0.6))
+
+## Pivo da ponta da cauda, no espaco do no Tail.
+static func tail_tip_pivot(sp: Dictionary) -> Vector3:
+	return Vector3(0, -0.1, 0.86 * float(sp.tail))
+
+static func tail_mesh(sp: Dictionary) -> ArrayMesh:
+	var r := _tail_rings(sp)
+	var st := begin()
+	Facets.loft(st, [r[0], r[1], r[2]], true, true, skin_paint(sp.stripes, 0.6))
 	return st.commit()
 
-## Coxa, canela e pe digitigrado (pivo no quadril; o pe toca y = 0).
+static func tail_tip_mesh(sp: Dictionary) -> ArrayMesh:
+	var r := _tail_rings(sp)
+	var st := begin()
+	# o anel da junta repete um pouco maior: sem fresta quando a ponta dobra
+	var joint := PackedVector3Array()
+	for v in r[2]:
+		joint.append(Vector3(v.x * 1.04, -0.1 + (v.y + 0.1) * 1.04, v.z - 0.03))
+	Facets.loft(st, [joint, r[3], r[4]], Vector3(0, 0.03, 1.74 * float(sp.tail)), true, skin_paint(sp.stripes, 0.6))
+	return _shifted(st, tail_tip_pivot(sp))
+
+## Coxa, canela e pe digitigrado. 4.0: perna com JOELHO e TORNOZELO (pivos
+## proprios): a coxa gira no quadril, a canela no joelho e o pe no tornozelo,
+## para o passo levantar o pe e assentar no chao (antes a perna era rigida).
+## Cada malha e relativa ao seu pivo; o pe continua tocando y = 0.
 const HIP := Vector3(0.28, 0.97, 0.16)
+const KNEE := Vector3(0.02, -0.44, -0.16) # relativo ao quadril
+const ANKLE := Vector3(0.0, -0.78, 0.12) # relativo ao quadril
+
+static func _shifted(st: SurfaceTool, by: Vector3) -> ArrayMesh:
+	var arrays := st.commit().surface_get_arrays(0)
+	var verts: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+	for i in verts.size():
+		verts[i] -= by
+	arrays[Mesh.ARRAY_VERTEX] = verts
+	var out := ArrayMesh.new()
+	out.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	return out
+
 static func thigh_mesh(sp: Dictionary) -> ArrayMesh:
 	var g: float = sp.leg
 	var st := begin()
-	var knee := Vector3(0.02, -0.44, -0.16)
-	tube(st, [Vector3(0, 0.08, 0.02), Vector3(0.02, -0.16, -0.06), knee], [0.19 * g, 0.18 * g, 0.1 * g], skin_paint(false), 7, false)
+	# coxa musculosa: larga em cima, afinando ate o joelho
+	tube(st, [Vector3(0, 0.1, 0.03), Vector3(0.03, -0.1, -0.04), Vector3(0.025, -0.3, -0.12), KNEE], [0.19 * g, 0.215 * g, 0.16 * g, 0.1 * g], skin_paint(false), 7, false)
 	return st.commit()
 
 static func shin_mesh(sp: Dictionary) -> ArrayMesh:
 	var g: float = sp.leg
 	var st := begin()
-	tube(st, [Vector3(0.02, -0.44, -0.16), Vector3(0.0, -0.62, 0.0), Vector3(0, -0.78, 0.12)], [0.095 * g, 0.075 * g, 0.065 * g], skin_paint(false), 6, false)
-	return st.commit()
+	tube(st, [KNEE, Vector3(0.0, -0.6, -0.02), ANKLE], [0.1 * g, 0.08 * g, 0.066 * g], skin_paint(false), 6, false)
+	return _shifted(st, KNEE)
 
 static func foot_mesh(sp: Dictionary) -> ArrayMesh:
 	var g: float = sp.leg
 	var st := begin()
 	var paint := plain_paint(0.15)
 	# metatarso inclinado ate a "bola" do pe
-	tube(st, [Vector3(0, -0.78, 0.12), Vector3(0, -0.91, 0.02)], [0.065 * g, 0.06 * g], paint, 6, false)
+	tube(st, [ANKLE, Vector3(0, -0.91, 0.02)], [0.066 * g, 0.06 * g], paint, 6, false)
 	for toe in [Vector3(-0.09, 0, -0.2), Vector3(0, 0, -0.26), Vector3(0.09, 0, -0.2)]:
 		var start := Vector3(toe.x * 0.3, -0.92, 0.0)
 		tube(st, [start, Vector3(toe.x * 0.8, -0.93, toe.z * 0.6), Vector3(toe.x, -0.94, toe.z)], [0.05 * g, 0.04 * g, 0.03], paint, 5, false, 0.7)
-	return st.commit()
+	return _shifted(st, ANKLE)
+
+## Tres garras numa malha so (relativa ao tornozelo).
+static func claws_mesh() -> ArrayMesh:
+	var st := begin()
+	for toe in [Vector3(-0.09, 0, -0.2), Vector3(0, 0, -0.26), Vector3(0.09, 0, -0.2)]:
+		tube(st, [Vector3(toe.x, -0.94, toe.z), Vector3(toe.x * 1.05, -0.95, toe.z - 0.06), Vector3(toe.x * 1.08, -0.97, toe.z - 0.1)], [0.026, 0.02, 0.008], plain_paint(0.1), 4)
+	return _shifted(st, ANKLE)
 
 ## Garra de um dedo (ponta curva para baixo).
 static func claw_mesh(toe: Vector3) -> ArrayMesh:
@@ -311,17 +353,24 @@ static func arm_mesh(side: float, sp: Dictionary) -> ArrayMesh:
 		tube(st, [hand, hand + Vector3(f * 0.025, -0.07, -0.05) * a], [0.022, 0.008], plain_paint(0.1), 4)
 	return st.commit()
 
-## Olho (lente facetada) e pupila em fenda.
+## Olho (lente facetada) e pupila em fenda. 4.0: olho um pouco maior e pupila
+## com um brilho branco (le "vivo" de perto: menu, capturas, rotulos).
 static func eye_mesh() -> ArrayMesh:
 	var st := begin()
-	var rings := [ring_axis(Vector3(-0.012, 0, 0), Vector3.RIGHT, 0.055, 0.05, 6), ring_axis(Vector3(0.02, 0, 0), Vector3.RIGHT, 0.045, 0.04, 6)]
-	Facets.loft(st, rings, Vector3(0.04, 0, 0), true, plain_paint(0.05))
+	var rings := [ring_axis(Vector3(-0.012, 0, 0), Vector3.RIGHT, 0.064, 0.058, 6), ring_axis(Vector3(0.022, 0, 0), Vector3.RIGHT, 0.052, 0.047, 6)]
+	Facets.loft(st, rings, Vector3(0.044, 0, 0), true, plain_paint(0.05))
 	return st.commit()
 
-static func pupil_mesh() -> ArrayMesh:
+## Cor na malha (o material da pupila e branco com cor por vertice).
+static func pupil_mesh(dark := Color("183e3e")) -> ArrayMesh:
 	var st := begin()
-	var rings := [ring_axis(Vector3(0, 0, 0), Vector3.RIGHT, 0.014, 0.038, 4), ring_axis(Vector3(0.012, 0, 0), Vector3.RIGHT, 0.01, 0.03, 4)]
-	Facets.loft(st, rings, true, true, plain_paint(0.0))
+	var ink := func(_c: Vector3, _n: Vector3) -> Color: return dark
+	var rings := [ring_axis(Vector3(0, 0, 0), Vector3.RIGHT, 0.017, 0.044, 4), ring_axis(Vector3(0.012, 0, 0), Vector3.RIGHT, 0.012, 0.035, 4)]
+	Facets.loft(st, rings, true, true, ink)
+	# brilho: triangulo claro no alto, a frente da pupila
+	var shine := func(_c: Vector3, _n: Vector3) -> Color: return Color(1, 1, 0.94)
+	var c := Vector3(0.016, 0.022, -0.012)
+	Facets.tri(st, c + Vector3(0, 0.014, 0), c + Vector3(0, -0.006, 0.012), c + Vector3(0, -0.006, -0.012), Vector3.RIGHT, shine)
 	return st.commit()
 
 ## Coleira de aliado: faixa de couro em volta da base do pescoco + gema jade.
@@ -412,7 +461,7 @@ static func spine_tail_mesh() -> ArrayMesh:
 	if not _ornaments.has("spine_tail"):
 		var st := begin()
 		var paint := plain_paint(0.2)
-		for q in [[0.2, 0.22, 0.16], [0.5, 0.17, 0.13], [0.8, 0.11, 0.09]]:
+		for q in [[0.18, 0.22, 0.16], [0.42, 0.18, 0.14], [0.64, 0.13, 0.1]]: # 4.0: so no segmento da base
 			var z: float = q[0]
 			var y: float = q[1]
 			var h: float = q[2]
@@ -483,20 +532,35 @@ static func x_hair() -> ArrayMesh:
 	return st.commit()
 
 ## Chapeu: aba larga (duas faces) e copa levemente amassada.
+## 4.0: chapeu de explorador com aba enrolada dos lados, caida na frente, e
+## copa vincada (silhueta de "fedora" de expedicao, a mais legivel de cima).
+static func _brim_ring(r: float, rz: float, y: float, curl: float, sides: int) -> PackedVector3Array:
+	var out := PackedVector3Array()
+	for i in sides:
+		var a := TAU * i / sides
+		var side_up := curl * pow(absf(cos(a)), 2.0) # laterais sobem
+		var front := -0.035 * curl / 0.08 * maxf(0.0, -sin(a)) # frente cai (o modelo olha para -z)
+		out.append(Vector3(cos(a) * r, y + side_up + front + 0.012 * curl / 0.08 * maxf(0.0, sin(a)), sin(a) * rz + 0.03))
+	return out
+
 static func x_hat() -> ArrayMesh:
 	var st := begin()
 	var paint := plain_paint(0.2)
-	var brim_in := ring_axis(Vector3(0, 1.84, 0.02), Vector3.UP, 0.27, 0.27, 10)
-	var brim_out := ring_axis(Vector3(0, 1.8, 0.04), Vector3.UP, 0.5, 0.47, 10)
-	for i in 10:
-		var j := (i + 1) % 10
-		Facets.tri(st, brim_in[i], brim_in[j], brim_out[j], Vector3.UP, paint)
-		Facets.tri(st, brim_in[i], brim_out[j], brim_out[i], Vector3.UP, paint)
-		Facets.tri(st, brim_in[i], brim_out[j], brim_in[j], Vector3.DOWN, paint)
-		Facets.tri(st, brim_in[i], brim_out[i], brim_out[j], Vector3.DOWN, paint)
-	var crown := [ring_axis(Vector3(0, 1.82, 0.02), Vector3.UP, 0.27, 0.26, 10), ring_axis(Vector3(0, 2.0, 0.02), Vector3.UP, 0.24, 0.23, 10),
-		ring_axis(Vector3(0, 2.07, 0.02), Vector3.UP, 0.18, 0.16, 10)]
-	Facets.loft(st, crown, Vector3(0, 2.05, 0.02), null, paint)
+	var sides := 12
+	var rings := [_brim_ring(0.27, 0.27, 1.84, 0.0, sides), _brim_ring(0.4, 0.38, 1.82, 0.03, sides), _brim_ring(0.53, 0.5, 1.8, 0.085, sides)]
+	for k in 2:
+		var a: PackedVector3Array = rings[k]
+		var b: PackedVector3Array = rings[k + 1]
+		for i in sides:
+			var j := (i + 1) % sides
+			Facets.tri(st, a[i], a[j], b[j], Vector3.UP, paint)
+			Facets.tri(st, a[i], b[j], b[i], Vector3.UP, paint)
+			Facets.tri(st, a[i], b[j], a[j], Vector3.DOWN, paint)
+			Facets.tri(st, a[i], b[i], b[j], Vector3.DOWN, paint)
+	# copa: afina para cima e o topo tem um vinco (mais baixo no meio)
+	var crown := [ring_axis(Vector3(0, 1.82, 0.02), Vector3.UP, 0.27, 0.26, 10), ring_axis(Vector3(0, 1.99, 0.02), Vector3.UP, 0.25, 0.235, 10),
+		ring_axis(Vector3(0, 2.08, 0.02), Vector3.UP, 0.19, 0.15, 10)]
+	Facets.loft(st, crown, Vector3(0, 2.03, 0.02), null, paint)
 	return st.commit()
 
 static func x_hat_band() -> ArrayMesh:

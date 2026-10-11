@@ -49,7 +49,7 @@ func _build(sp: Dictionary, path: String) -> void:
 	var crest := _mat(sp.crest)
 	var jade := _mat(sp.jade)
 	var eye := _mat(sp.eye)
-	var pupil := _mat(sp.dark, false)
+	var pupil := _mat(Color.WHITE) # 4.0: cor na malha (pupila escura + brilho)
 	_part(root, root, "Body", Forge.body_mesh(sp), main)
 	_part(root, root, "Belly", Forge.belly_mesh(sp), belly)
 	_part(root, root, "Neck", Forge.neck_mesh(sp), main)
@@ -59,7 +59,8 @@ func _build(sp: Dictionary, path: String) -> void:
 	_part(root, root, "Teeth", Forge.teeth_mesh(sp, false), cream)
 	var jaw := root.get_node("Jaw") as Node3D
 	_part(root, jaw, "TeethLow", Forge.teeth_mesh(sp, true), cream)
-	_part(root, root, "Tail", Forge.tail_mesh(sp), main, Forge.TAIL_PIVOT)
+	var tail := _part(root, root, "Tail", Forge.tail_mesh(sp), main, Forge.TAIL_PIVOT)
+	_part(root, tail, "TailTip", Forge.tail_tip_mesh(sp), main, Forge.tail_tip_pivot(sp)) # 4.0: ponta com pivo proprio
 	_part(root, root, "Crest", Forge.crest_mesh(sp), crest)
 	var collar := _part(root, root, "Collar", Forge.collar_mesh(), jade)
 	collar.visible = false
@@ -67,7 +68,7 @@ func _build(sp: Dictionary, path: String) -> void:
 	for side in [-1, 1]:
 		var tag := str(side) # "-1" / "1": nomes antigos (Eye-1, Eye1...)
 		var e := _part(root, root, "Eye" + tag, Forge.eye_mesh(), eye, Vector3(side * 0.2, 1.8, -0.6 - 0.2 * L))
-		var p := _part(root, root, "Pupil" + tag, Forge.pupil_mesh(), pupil, Vector3(side * 0.235, 1.8, -0.6 - 0.2 * L))
+		var p := _part(root, root, "Pupil" + tag, Forge.pupil_mesh(sp.dark), pupil, Vector3(side * 0.242, 1.8, -0.6 - 0.2 * L))
 		if side < 0:
 			e.rotation.y = PI
 			p.rotation.y = PI
@@ -80,15 +81,20 @@ func _build(sp: Dictionary, path: String) -> void:
 		root.add_child(leg)
 		leg.owner = root
 		_part(root, leg, "Thigh" + tag, Forge.thigh_mesh(sp), main)
-		_part(root, leg, "Shin" + tag, Forge.shin_mesh(sp), main)
-		_part(root, leg, "Foot" + tag, Forge.foot_mesh(sp), dark)
-		var toes := [Vector3(-0.09, 0, -0.2), Vector3(0, 0, -0.26), Vector3(0.09, 0, -0.2)]
-		# tres garras numa malha so (menos chamadas de desenho)
-		var claws := SurfaceTool.new()
-		claws.begin(Mesh.PRIMITIVE_TRIANGLES)
-		for t in toes.size():
-			claws.append_from(Forge.claw_mesh(toes[t]), 0, Transform3D.IDENTITY)
-		_part(root, leg, "Claw" + tag, claws.commit(), cream)
+		# 4.0: joelho e tornozelo com pivo proprio (passo que levanta o pe)
+		var knee := Node3D.new()
+		knee.name = ("KneeL" if side < 0 else "KneeR")
+		knee.position = Forge.KNEE
+		leg.add_child(knee)
+		knee.owner = root
+		_part(root, knee, "Shin" + tag, Forge.shin_mesh(sp), main)
+		var ankle := Node3D.new()
+		ankle.name = ("AnkleL" if side < 0 else "AnkleR")
+		ankle.position = Forge.ANKLE - Forge.KNEE
+		knee.add_child(ankle)
+		ankle.owner = root
+		_part(root, ankle, "Foot" + tag, Forge.foot_mesh(sp), dark)
+		_part(root, ankle, "Claw" + tag, Forge.claws_mesh(), cream) # tres garras numa malha so
 	var scene := PackedScene.new()
 	var err := scene.pack(root)
 	if err == OK:

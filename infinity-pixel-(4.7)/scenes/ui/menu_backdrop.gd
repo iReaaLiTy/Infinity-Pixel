@@ -11,6 +11,7 @@ const ART := preload("res://scenes/visuals/arena_art.tscn")
 const REGIONS := preload("res://scenes/world/world_regions.tscn")
 const REFUGE_ART := preload("res://scenes/visuals/refuge_art.tscn") # Spec 017A
 const VALLEY_ART := preload("res://scenes/visuals/valley_art.tscn") # Spec 017A/018
+const FLORA_ART := preload("res://scenes/visuals/flora_art.scn") # 4.0: arvores, rochas, sub-bosque
 const DINO := preload("res://scenes/visuals/dino.tscn")
 const Props := preload("res://scenes/visuals/prehistoric_props.gd")
 
@@ -53,6 +54,7 @@ func _ready() -> void:
 	sun.rotation_degrees = Vector3(-30, -58, 0)
 	sun.shadow_enabled = true
 	sun.directional_shadow_max_distance = 45.0
+	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS # 4.0: metade das passadas de sombra
 	sun.light_color = Color(1, 0.84, 0.62)
 	sun.light_energy = 1.0
 	add_child(sun)
@@ -62,6 +64,7 @@ func _ready() -> void:
 	add_child(art)
 	add_child(REGIONS.instantiate())
 	add_child(VALLEY_ART.instantiate()) # chao, trilhas e paredoes (os antigos foram ocultados)
+	add_child(FLORA_ART.instantiate()) # 4.0: as arvores e rochas antigas de ArenaArt ficam ocultas
 	add_child(REFUGE_ART.instantiate()) # cristal, plataforma, braseiros, estandartes
 	# Aliado em primeiro plano (cheira o chao e olha em volta) e um selvagem
 	# atravessando a trilha ao fundo, devagar.
@@ -174,9 +177,12 @@ func _process(delta: float) -> void:
 		var x := 6.5 - fposmod(_time * 0.45, 26.0)
 		_walker.position.x = x if x > -6.5 else -6.5 - (x + 6.5)
 		_walker.rotation.y = PI / 2.0 if x > -6.5 else -PI / 2.0
-		_walker.get_node("LegL").rotation.x = sin(_time * 5.5) * 0.4
-		_walker.get_node("LegR").rotation.x = -sin(_time * 5.5) * 0.4
-		_walker.position.y = absf(sin(_time * 5.5)) * 0.03
+		# 4.0: cadencia casada com a velocidade (0,45 m/s; passada ~1,5 m): sem patinar
+		_walker.get_node("LegL").rotation.x = sin(_time * 1.9) * 0.4
+		_walker.get_node("LegR").rotation.x = -sin(_time * 1.9) * 0.4
+		_walker.position.y = (0.5 + 0.5 * cos(_time * 3.8)) * 0.03
+		_walker._bend("KneeL", "AnkleL", maxf(0.0, cos(_time * 1.9))) # 4.0: joelho levanta o pe
+		_walker._bend("KneeR", "AnkleR", maxf(0.0, -cos(_time * 1.9)))
 
 func _place_camera() -> void:
 	var a := sin(_time * TAU / SWAY_PERIOD) * SWAY
