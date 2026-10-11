@@ -179,14 +179,16 @@ func _free_menu_backdrop() -> void:
 
 var _font_cache: Font
 
+## 4.0: fonte de exibicao EMBUTIDA no projeto (Lilita One, SIL Open Font
+## License 1.1 — assets/fonts/OFL.txt). Antes era SystemFont (Segoe UI Black),
+## que muda ou some em maquinas sem essa fonte instalada.
+const DISPLAY_FONT := preload("res://assets/fonts/LilitaOne-Regular.ttf")
+
 func _display_font() -> Font:
 	if _font_cache == null:
-		var heavy := SystemFont.new()
-		heavy.font_names = PackedStringArray(["Segoe UI Black", "Arial Black", "Verdana"])
-		heavy.font_weight = 900
 		var font := FontVariation.new()
-		font.base_font = heavy
-		font.spacing_glyph = 2
+		font.base_font = DISPLAY_FONT
+		font.spacing_glyph = 1
 		_font_cache = font
 	return _font_cache
 

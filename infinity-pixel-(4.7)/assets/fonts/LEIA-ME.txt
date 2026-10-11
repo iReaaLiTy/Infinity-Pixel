@@ -1,0 +1,1 @@
+assets/fonts/LilitaOne-Regular.ttf: Lilita One — Copyright (c) 2011 Juan Montoreano, Reserved Font Name "Lilita". SIL Open Font License 1.1 (OFL.txt). Fonte: github.com/google/fonts (ofl/lilitaone), baixada em 11/10/2026. Usada sem modificacao.
