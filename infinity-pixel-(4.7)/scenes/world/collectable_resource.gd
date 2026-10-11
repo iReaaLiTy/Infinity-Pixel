@@ -13,6 +13,7 @@ extends StaticBody3D
 # esgotar o recurso nao deixa buraco na navmesh e nao exige rebake.
 
 const Nature := preload("res://scenes/visuals/nature_meshes.gd")
+const Flora := preload("res://scenes/visuals/flora.gd")
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 const WORLD := 1 << 0
 const INTERACTABLES := 1 << 4
@@ -76,7 +77,7 @@ func take_damage(amount: float) -> void:
 	if depleted or not is_finite(amount) or amount <= 0.0:
 		return
 	hp = maxf(hp - amount, 0.0)
-	print("[COLETA] %s recebeu %.0f. HP: %.0f/%.0f" % [name, amount, hp, max_hp])
+	print_verbose("[COLETA] %s recebeu %.0f. HP: %.0f/%.0f" % [name, amount, hp, max_hp])
 	if hp <= 0.0:
 		_deplete()
 	else:
@@ -183,13 +184,12 @@ func _build_tree() -> Node3D:
 	trunk.mesh = Nature.harvest_trunk()
 	trunk.material_override = Nature.material()
 	root.add_child(trunk)
-	for spec in [[Vector3(0, 2.45, 0), Vector3(2.3, 1.8, 2.3), 0], [Vector3(0.1, 3.05, -0.05), Vector3(1.6, 1.3, 1.6), 1]]:
-		var crown := MeshInstance3D.new()
-		crown.mesh = Nature.crown(Nature.Kind.BROADLEAF, spec[2], Nature.HARVEST_LEAVES)
-		crown.material_override = Nature.material()
-		crown.position = spec[0]
-		crown.scale = spec[1]
-		root.add_child(crown)
+	# 4.0: copa de lobos da mesma familia das arvores novas (scenes/visuals/
+	# flora.gd), numa malha so; os tons quentes continuam dizendo "da para lenhar".
+	var crown := MeshInstance3D.new()
+	crown.mesh = Flora.harvest_crown(Nature.HARVEST_LEAVES)
+	crown.material_override = Nature.material()
+	root.add_child(crown)
 	return root
 
 # Pedra coletavel: bloco facetado escuro com cristais de minerio (azul e ambar)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/world/world_regions.tscn" id="map_012"]
 
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" path="res://scenes/visuals/valley_art.tscn" id="valley_018"]
 [ext_resource type="PackedScene" path="res://scenes/visuals/refuge_art.tscn" id="refuge_017a"]
 [ext_resource type="Script" path="res://scenes/visuals/fossil_art.gd" id="fossils_o3"]
+[ext_resource type="PackedScene" path="res://scenes/visuals/flora_art.scn" id="flora_o4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(48, 1, 52)
@@ -59,6 +60,8 @@ rotation_degrees = Vector3(-45, -45, 0)
 shadow_enabled = true
 light_color = Color(1, 0.91, 0.72, 1)
 light_energy = 0.8
+directional_shadow_mode = 1
+directional_shadow_max_distance = 45.0
 
 [node name="Ground" type="StaticBody3D" parent="." groups=["navigation_source"]]
 collision_layer = 1
@@ -125,6 +128,8 @@ navigation_mesh = ExtResource("nav_010")
 
 [node name="FossilArt" type="Node3D" parent="."]
 script = ExtResource("fossils_o3")
+
+[node name="FloraArt" parent="." instance=ExtResource("flora_o4")]
 
 [node name="DefenseEconomy" type="Node" parent="."]
 script = ExtResource("eco_013b")

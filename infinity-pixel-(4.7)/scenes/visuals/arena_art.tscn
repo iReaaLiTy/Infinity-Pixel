@@ -893,1257 +893,1483 @@ mesh = SubResource("r17")
 
 [node name="Trunk0" type="MeshInstance3D" parent="." unique_id=433588964]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -13, 1.204, -19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown0_0" type="MeshInstance3D" parent="." unique_id=1458535564]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -13, 2.128, -19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown0_1" type="MeshInstance3D" parent="." unique_id=1174479589]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -13, 2.728, -19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk1" type="MeshInstance3D" parent="." unique_id=1653347837]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -17, 1.333, -21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown1_0" type="MeshInstance3D" parent="." unique_id=539096670]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -17, 2.356, -21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown1_1" type="MeshInstance3D" parent="." unique_id=1710127551]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -17, 2.956, -21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk2" type="MeshInstance3D" parent="." unique_id=782339261]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -21, 1.462, -17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown2_0" type="MeshInstance3D" parent="." unique_id=47979062]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -21, 2.584, -17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown2_1" type="MeshInstance3D" parent="." unique_id=694632788]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -21, 3.184, -17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk3" type="MeshInstance3D" parent="." unique_id=230657967]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -20, 1.591, -11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown3_0" type="MeshInstance3D" parent="." unique_id=16670573]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -20, 2.812, -11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown3_1" type="MeshInstance3D" parent="." unique_id=982059179]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -20, 3.412, -11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk4" type="MeshInstance3D" parent="." unique_id=492446970]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -15, 1.204, -8)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown4_0" type="MeshInstance3D" parent="." unique_id=1331975450]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -15, 2.128, -8)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown4_1" type="MeshInstance3D" parent="." unique_id=259911685]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -15, 2.728, -8)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk5" type="MeshInstance3D" parent="." unique_id=2032832802]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -18, 1.333, -5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown5_0" type="MeshInstance3D" parent="." unique_id=1548230192]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -18, 2.356, -5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown5_1" type="MeshInstance3D" parent="." unique_id=447028666]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -18, 2.956, -5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk6" type="MeshInstance3D" parent="." unique_id=824672442]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -22, 1.462, -2)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown6_0" type="MeshInstance3D" parent="." unique_id=2020304770]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -22, 2.584, -2)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown6_1" type="MeshInstance3D" parent="." unique_id=388999475]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -22, 3.184, -2)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk7" type="MeshInstance3D" parent="." unique_id=33435848]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -22, 1.591, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown7_0" type="MeshInstance3D" parent="." unique_id=656566779]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -22, 2.812, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown7_1" type="MeshInstance3D" parent="." unique_id=1816205244]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -22, 3.412, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk8" type="MeshInstance3D" parent="." unique_id=741243841]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -19, 1.204, 11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown8_0" type="MeshInstance3D" parent="." unique_id=2012896902]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -19, 2.128, 11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown8_1" type="MeshInstance3D" parent="." unique_id=1125759997]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -19, 2.728, 11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk9" type="MeshInstance3D" parent="." unique_id=124197786]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -21, 1.333, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown9_0" type="MeshInstance3D" parent="." unique_id=257142580]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -21, 2.356, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown9_1" type="MeshInstance3D" parent="." unique_id=74513181]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -21, 2.956, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk10" type="MeshInstance3D" parent="." unique_id=1777739168]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -18, 1.462, 20)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown10_0" type="MeshInstance3D" parent="." unique_id=299910392]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -18, 2.584, 20)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown10_1" type="MeshInstance3D" parent="." unique_id=1162535185]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -18, 3.184, 20)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk11" type="MeshInstance3D" parent="." unique_id=1336477466]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -21, 1.591, 24)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown11_0" type="MeshInstance3D" parent="." unique_id=1283372395]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -21, 2.812, 24)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown11_1" type="MeshInstance3D" parent="." unique_id=1685361526]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -21, 3.412, 24)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk12" type="MeshInstance3D" parent="." unique_id=1232947025]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -15, 1.204, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown12_0" type="MeshInstance3D" parent="." unique_id=6757520]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -15, 2.128, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown12_1" type="MeshInstance3D" parent="." unique_id=1894271684]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -15, 2.728, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk13" type="MeshInstance3D" parent="." unique_id=768180486]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -12, 1.333, 21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown13_0" type="MeshInstance3D" parent="." unique_id=1660963251]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -12, 2.356, 21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown13_1" type="MeshInstance3D" parent="." unique_id=1798500605]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -12, 2.956, 21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk14" type="MeshInstance3D" parent="." unique_id=1404087926]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -9, 1.462, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown14_0" type="MeshInstance3D" parent="." unique_id=1068252000]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -9, 2.584, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown14_1" type="MeshInstance3D" parent="." unique_id=1072338381]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -9, 3.184, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk15" type="MeshInstance3D" parent="." unique_id=670442603]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -6, 1.591, 20)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown15_0" type="MeshInstance3D" parent="." unique_id=1536680382]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -6, 2.812, 20)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown15_1" type="MeshInstance3D" parent="." unique_id=1162631779]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -6, 3.412, 20)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk16" type="MeshInstance3D" parent="." unique_id=684446466]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -5, 1.204, 26)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown16_0" type="MeshInstance3D" parent="." unique_id=323583276]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -5, 2.128, 26)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown16_1" type="MeshInstance3D" parent="." unique_id=1329808646]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -5, 2.728, 26)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk17" type="MeshInstance3D" parent="." unique_id=925420775]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 5, 1.333, 26)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown17_0" type="MeshInstance3D" parent="." unique_id=1422068960]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 5, 2.356, 26)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown17_1" type="MeshInstance3D" parent="." unique_id=1046785846]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 5, 2.956, 26)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk18" type="MeshInstance3D" parent="." unique_id=597948532]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -9, 1.462, 19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown18_0" type="MeshInstance3D" parent="." unique_id=922870636]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -9, 2.584, 19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown18_1" type="MeshInstance3D" parent="." unique_id=751273146]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -9, 3.184, 19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk19" type="MeshInstance3D" parent="." unique_id=1389621422]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -4, 1.591, 14)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown19_0" type="MeshInstance3D" parent="." unique_id=1078409494]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -4, 2.812, 14)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown19_1" type="MeshInstance3D" parent="." unique_id=945835976]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -4, 3.412, 14)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk20" type="MeshInstance3D" parent="." unique_id=553800466]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 19, 1.204, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown20_0" type="MeshInstance3D" parent="." unique_id=54714896]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 19, 2.128, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown20_1" type="MeshInstance3D" parent="." unique_id=1835732646]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 19, 2.728, 25)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk21" type="MeshInstance3D" parent="." unique_id=1986662519]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 22, 1.333, 22)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown21_0" type="MeshInstance3D" parent="." unique_id=1322462538]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.356, 22)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown21_1" type="MeshInstance3D" parent="." unique_id=1784757280]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 2.956, 22)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk22" type="MeshInstance3D" parent="." unique_id=1302204997]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, 22, 1.462, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown22_0" type="MeshInstance3D" parent="." unique_id=313974346]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.584, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown22_1" type="MeshInstance3D" parent="." unique_id=1460371003]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 3.184, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk23" type="MeshInstance3D" parent="." unique_id=2141471114]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, 21, 1.591, 11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown23_0" type="MeshInstance3D" parent="." unique_id=1089187979]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 21, 2.812, 11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown23_1" type="MeshInstance3D" parent="." unique_id=836791075]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 21, 3.412, 11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk24" type="MeshInstance3D" parent="." unique_id=1023300168]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 22, 1.204, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown24_0" type="MeshInstance3D" parent="." unique_id=2141060853]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.128, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown24_1" type="MeshInstance3D" parent="." unique_id=854587083]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 2.728, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk25" type="MeshInstance3D" parent="." unique_id=1711999215]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 22, 1.333, -2)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown25_0" type="MeshInstance3D" parent="." unique_id=903478743]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.356, -2)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown25_1" type="MeshInstance3D" parent="." unique_id=1954649227]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 2.956, -2)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk26" type="MeshInstance3D" parent="." unique_id=1783796009]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, 19, 1.462, -6)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown26_0" type="MeshInstance3D" parent="." unique_id=365650964]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 19, 2.584, -6)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown26_1" type="MeshInstance3D" parent="." unique_id=1558332956]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 19, 3.184, -6)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk27" type="MeshInstance3D" parent="." unique_id=1446197185]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, 22, 1.591, -11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown27_0" type="MeshInstance3D" parent="." unique_id=1532846589]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 22, 2.812, -11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown27_1" type="MeshInstance3D" parent="." unique_id=94557427]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 22, 3.412, -11)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk28" type="MeshInstance3D" parent="." unique_id=1746128788]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 21, 1.204, -17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown28_0" type="MeshInstance3D" parent="." unique_id=1475268838]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 21, 2.128, -17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown28_1" type="MeshInstance3D" parent="." unique_id=1810934316]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 21, 2.728, -17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk29" type="MeshInstance3D" parent="." unique_id=465302494]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 16, 1.333, -21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown29_0" type="MeshInstance3D" parent="." unique_id=1626046979]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 16, 2.356, -21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown29_1" type="MeshInstance3D" parent="." unique_id=1960717070]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 16, 2.956, -21)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk30" type="MeshInstance3D" parent="." unique_id=503481031]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, 12, 1.462, -19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown30_0" type="MeshInstance3D" parent="." unique_id=1986437423]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 12, 2.584, -19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown30_1" type="MeshInstance3D" parent="." unique_id=384739677]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 12, 3.184, -19)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk31" type="MeshInstance3D" parent="." unique_id=1222887883]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -9, 1.591, -23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown31_0" type="MeshInstance3D" parent="." unique_id=968733629]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -9, 2.812, -23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown31_1" type="MeshInstance3D" parent="." unique_id=840874277]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -9, 3.412, -23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk32" type="MeshInstance3D" parent="." unique_id=1024822702]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, 7, 1.204, -23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown32_0" type="MeshInstance3D" parent="." unique_id=1869523755]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 7, 2.128, -23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_ldhii")
 
 [node name="Crown32_1" type="MeshInstance3D" parent="." unique_id=787942560]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 7, 2.728, -23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_5wqcw")
 
 [node name="Trunk33" type="MeshInstance3D" parent="." unique_id=498450518]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -16, 1.333, 15)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown33_0" type="MeshInstance3D" parent="." unique_id=1503858455]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -16, 2.356, 15)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown33_1" type="MeshInstance3D" parent="." unique_id=2078194054]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -16, 2.956, 15)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk34" type="MeshInstance3D" parent="." unique_id=159107335]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -8, 1.462, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown34_0" type="MeshInstance3D" parent="." unique_id=451773878]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -8, 2.584, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown34_1" type="MeshInstance3D" parent="." unique_id=1765786463]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -8, 3.184, 16)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk35" type="MeshInstance3D" parent="." unique_id=362258727]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -17, 1.591, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown35_0" type="MeshInstance3D" parent="." unique_id=1256750248]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -17, 2.812, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown35_1" type="MeshInstance3D" parent="." unique_id=491391136]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -17, 3.412, 7)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk36" type="MeshInstance3D" parent="." unique_id=431125003]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -14.2, 1.204, -3.9)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown36_0" type="MeshInstance3D" parent="." unique_id=236548946]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -14.2, 2.128, -3.9)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown36_1" type="MeshInstance3D" parent="." unique_id=2010198650]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -14.2, 2.728, -3.9)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk37" type="MeshInstance3D" parent="." unique_id=304744001]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, -7, 1.333, 13.5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown37_0" type="MeshInstance3D" parent="." unique_id=1149518944]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -7, 2.356, 13.5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown37_1" type="MeshInstance3D" parent="." unique_id=1187316077]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -7, 2.956, 13.5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk38" type="MeshInstance3D" parent="." unique_id=743685416]
 transform = Transform3D(0.5, 0, 0, 0, 3.06, 0, 0, 0, 0.5, -3.8, 1.462, 23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown38_0" type="MeshInstance3D" parent="." unique_id=1257132462]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -3.8, 2.584, 23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown38_1" type="MeshInstance3D" parent="." unique_id=1252165894]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -3.8, 3.184, 23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk39" type="MeshInstance3D" parent="." unique_id=1616972209]
 transform = Transform3D(0.5, 0, 0, 0, 3.33, 0, 0, 0, 0.5, -23, 1.591, 12)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown39_0" type="MeshInstance3D" parent="." unique_id=354007882]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -23, 2.812, 12)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown39_1" type="MeshInstance3D" parent="." unique_id=1323700933]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -23, 3.412, 12)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Trunk40" type="MeshInstance3D" parent="." unique_id=1600360007]
 transform = Transform3D(0.5, 0, 0, 0, 2.52, 0, 0, 0, 0.5, -12, 1.204, 27)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown40_0" type="MeshInstance3D" parent="." unique_id=261938819]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, -12, 2.128, 27)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_n27g6")
 
 [node name="Crown40_1" type="MeshInstance3D" parent="." unique_id=177904622]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, -12, 2.728, 27)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_vfggj")
 
 [node name="Trunk41" type="MeshInstance3D" parent="." unique_id=616483579]
 transform = Transform3D(0.5, 0, 0, 0, 2.79, 0, 0, 0, 0.5, 16, 1.333, -10)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_uaucn")
 
 [node name="Crown41_0" type="MeshInstance3D" parent="." unique_id=1088500109]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 16, 2.356, -10)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_gkhl5")
 
 [node name="Crown41_1" type="MeshInstance3D" parent="." unique_id=866460944]
 transform = Transform3D(2, 0, 0, 0, 1.6, 0, 0, 0, 2, 16, 2.956, -10)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 visibility_range_begin = 3.5
 mesh = SubResource("ArrayMesh_pij3q")
 
 [node name="Rock0" type="MeshInstance3D" parent="." unique_id=95398996]
 transform = Transform3D(-0.10821965, 0.010853413, 1.2744949, 0.21453117, 1.0892949, 0, -1.5226276, 0.15270521, -0.09058381, -15, 0.38, 3.3)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern1_0" type="MeshInstance3D" parent="." unique_id=107424208]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -21.2, 0.3, 6.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r145")
 
 [node name="Fern1_1" type="MeshInstance3D" parent="." unique_id=1029971324]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -20.95, 0.3, 6.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r146")
 
 [node name="Fern1_2" type="MeshInstance3D" parent="." unique_id=1625704465]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -20.7, 0.3, 6.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r147")
 
 [node name="Fern2_0" type="MeshInstance3D" parent="." unique_id=227122305]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -18.2, 0.3, 10.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r148")
 
 [node name="Fern2_1" type="MeshInstance3D" parent="." unique_id=1407479701]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -17.95, 0.3, 10.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r149")
 
 [node name="Fern2_2" type="MeshInstance3D" parent="." unique_id=2089456943]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -17.7, 0.3, 10.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r150")
 
 [node name="Rock3" type="MeshInstance3D" parent="." unique_id=1328789075]
 transform = Transform3D(-0.85576415, 0.15228935, 0.09249058, 0.12090246, 1.0892949, 0, -0.087890595, 0.01564076, -0.9005529, -16, 0.38, -13)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern4_0" type="MeshInstance3D" parent="." unique_id=707074194]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -20.2, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r152")
 
 [node name="Fern4_1" type="MeshInstance3D" parent="." unique_id=183509135]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -19.95, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r153")
 
 [node name="Fern4_2" type="MeshInstance3D" parent="." unique_id=213784873]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -19.7, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r154")
 
 [node name="Fern5_0" type="MeshInstance3D" parent="." unique_id=2129178281]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -17.2, 0.3, 19.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r155")
 
 [node name="Fern5_1" type="MeshInstance3D" parent="." unique_id=1033121644]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -16.95, 0.3, 19.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r156")
 
 [node name="Fern5_2" type="MeshInstance3D" parent="." unique_id=2055414907]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -16.7, 0.3, 19.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r157")
 
 [node name="Rock6" type="MeshInstance3D" parent="." unique_id=814877280]
 transform = Transform3D(-0.8302449, 0.07955685, 1.7566198, 0.30618092, 1.4854021, -2.1121014e-08, -2.0141864, 0.19300604, -0.72407633, 14, 0.54, -3.9)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern7_0" type="MeshInstance3D" parent="." unique_id=203169665]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -20.2, 0.3, 23.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r159")
 
 [node name="Fern7_1" type="MeshInstance3D" parent="." unique_id=1223525916]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -19.95, 0.3, 23.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r160")
 
 [node name="Fern7_2" type="MeshInstance3D" parent="." unique_id=88513148]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -19.7, 0.3, 23.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r161")
 
 [node name="Fern8_0" type="MeshInstance3D" parent="." unique_id=931296738]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -14.2, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r162")
 
 [node name="Fern8_1" type="MeshInstance3D" parent="." unique_id=600107455]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -13.95, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r163")
 
 [node name="Fern8_2" type="MeshInstance3D" parent="." unique_id=1121102365]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -13.7, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r164")
 
 [node name="Rock9" type="MeshInstance3D" parent="." unique_id=642041609]
 transform = Transform3D(0.8990922, -0.15297046, 0.05778011, 0.12645826, 1.0892949, 0, -0.035611313, 0.006058866, 1.4587961, 18, 0.38, -15)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_3h36n")
 
 [node name="Fern10_0" type="MeshInstance3D" parent="." unique_id=679228132]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -11.2, 0.3, 20.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r166")
 
 [node name="Fern10_1" type="MeshInstance3D" parent="." unique_id=108033483]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -10.95, 0.3, 20.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r167")
 
 [node name="Fern10_2" type="MeshInstance3D" parent="." unique_id=1350990087]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -10.7, 0.3, 20.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r168")
 
 [node name="Fern11_0" type="MeshInstance3D" parent="." unique_id=152800473]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -8.2, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r169")
 
 [node name="Fern11_1" type="MeshInstance3D" parent="." unique_id=1151002351]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -7.95, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r170")
 
 [node name="Fern11_2" type="MeshInstance3D" parent="." unique_id=504224217]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -7.7, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r171")
 
 [node name="Rock12" type="MeshInstance3D" parent="." unique_id=179934610]
 transform = Transform3D(-0.69469494, 0.06194631, 0.908752, 0.24128442, 1.0892949, 0, -1.5699989, 0.1399976, -0.4021057, -7, 0.38, 3)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern13_0" type="MeshInstance3D" parent="." unique_id=324451073]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -5.2, 0.3, 19.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r173")
 
 [node name="Fern13_1" type="MeshInstance3D" parent="." unique_id=1949225981]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -4.95, 0.3, 19.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r174")
 
 [node name="Fern13_2" type="MeshInstance3D" parent="." unique_id=1725699587]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -4.7, 0.3, 19.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r175")
 
 [node name="Fern14_0" type="MeshInstance3D" parent="." unique_id=673080150]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -4.2, 0.3, 25.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r176")
 
 [node name="Fern14_1" type="MeshInstance3D" parent="." unique_id=37537114]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -3.95, 0.3, 25.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r177")
 
 [node name="Fern14_2" type="MeshInstance3D" parent="." unique_id=324135136]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -3.7, 0.3, 25.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r178")
 
 [node name="Rock15" type="MeshInstance3D" parent="." unique_id=1781656452]
 transform = Transform3D(0.5103459, -0.06637353, 1.3878149, 0.16543229, 1.0892949, 0, -1.0607259, 0.13795373, 0.6677178, -14, 0.38, 17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern16_0" type="MeshInstance3D" parent="." unique_id=2138601599]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 5.8, 0.3, 25.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r180")
 
 [node name="Fern16_1" type="MeshInstance3D" parent="." unique_id=2082643620]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 6.05, 0.3, 25.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r181")
 
 [node name="Fern16_2" type="MeshInstance3D" parent="." unique_id=1726472331]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 6.3, 0.3, 25.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r182")
 
 [node name="Fern17_0" type="MeshInstance3D" parent="." unique_id=1052756592]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -8.2, 0.3, 18.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r183")
 
 [node name="Fern17_1" type="MeshInstance3D" parent="." unique_id=616865355]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -7.95, 0.3, 18.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r184")
 
 [node name="Fern17_2" type="MeshInstance3D" parent="." unique_id=2130313481]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -7.7, 0.3, 18.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r185")
 
 [node name="Rock18" type="MeshInstance3D" parent="." unique_id=1265508632]
 transform = Transform3D(-0.7679268, 0.15277791, 0.08475366, 0.10814585, 1.0892949, 0, -0.04914305, 0.009776937, -1.3243909, -18, 0.38, 23)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern19_0" type="MeshInstance3D" parent="." unique_id=268138854]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -3.2, 0.3, 13.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r187")
 
 [node name="Fern19_1" type="MeshInstance3D" parent="." unique_id=669638483]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -2.95, 0.3, 13.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r188")
 
 [node name="Fern19_2" type="MeshInstance3D" parent="." unique_id=258096249]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -2.7, 0.3, 13.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r189")
 
 [node name="Rock21" type="MeshInstance3D" parent="." unique_id=1562197655]
 transform = Transform3D(1.0281544, -0.13323677, 0.73657346, 0.16602935, 1.0892949, 0, -0.5818162, 0.07539656, 1.3016331, 8.46, 0.38, 0.74)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_3h36n")
 
 [node name="Fern22_0" type="MeshInstance3D" parent="." unique_id=2051772049]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 19.8, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r191")
 
 [node name="Fern22_1" type="MeshInstance3D" parent="." unique_id=367999681]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 20.05, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r192")
 
 [node name="Fern22_2" type="MeshInstance3D" parent="." unique_id=613376500]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 20.3, 0.3, 24.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r193")
 
 [node name="Fern23_0" type="MeshInstance3D" parent="." unique_id=434996631]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, 21.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r194")
 
 [node name="Fern23_1" type="MeshInstance3D" parent="." unique_id=1501686051]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, 21.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r195")
 
 [node name="Fern23_2" type="MeshInstance3D" parent="." unique_id=601642664]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, 21.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r196")
 
 [node name="Rock24" type="MeshInstance3D" parent="." unique_id=772017436]
-transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 1.0090213e-08, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
+transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 1.1007506e-08, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern25_0" type="MeshInstance3D" parent="." unique_id=1963715629]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r198")
 
 [node name="Fern25_1" type="MeshInstance3D" parent="." unique_id=56254331]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r199")
 
 [node name="Fern25_2" type="MeshInstance3D" parent="." unique_id=1148232849]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r200")
 
 [node name="Fern26_0" type="MeshInstance3D" parent="." unique_id=792713231]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 21.8, 0.3, 10.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r201")
 
 [node name="Fern26_1" type="MeshInstance3D" parent="." unique_id=1335241913]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 22.05, 0.3, 10.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r202")
 
 [node name="Fern26_2" type="MeshInstance3D" parent="." unique_id=453605959]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 22.3, 0.3, 10.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r203")
 
 [node name="Rock27" type="MeshInstance3D" parent="." unique_id=552763740]
 transform = Transform3D(-2.3592243, 0.23486021, 0.24170095, 0.33401546, 1.6834557, 6.299782e-09, -0.28721848, 0.028592538, -1.9853414, 14, 0.612, 26)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern29_0" type="MeshInstance3D" parent="." unique_id=379095524]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, 6.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r205")
 
 [node name="Fern29_1" type="MeshInstance3D" parent="." unique_id=1863995549]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, 6.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r206")
 
 [node name="Fern29_2" type="MeshInstance3D" parent="." unique_id=669772515]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, 6.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r207")
 
 [node name="Rock30" type="MeshInstance3D" parent="." unique_id=702117131]
-transform = Transform3D(1.6086876, -0.16956495, 1.3999475, 0.27834657, 1.4854021, -1.1267521e-08, -1.1552694, 0.121772066, 1.9493967, 18, 0.54, 13)
+transform = Transform3D(1.6086876, -0.16956496, 1.3999475, 0.2783466, 1.4854021, -2.6023665e-08, -1.1552694, 0.12177208, 1.9493967, 18, 0.54, 13)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern31_0" type="MeshInstance3D" parent="." unique_id=487397211]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, -2.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r209")
 
 [node name="Fern31_1" type="MeshInstance3D" parent="." unique_id=1395755652]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, -2.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r210")
 
 [node name="Fern31_2" type="MeshInstance3D" parent="." unique_id=1875126745]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, -2.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r211")
 
 [node name="Fern32_0" type="MeshInstance3D" parent="." unique_id=1517916061]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 19.8, 0.3, -6.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r212")
 
 [node name="Fern32_1" type="MeshInstance3D" parent="." unique_id=1332416799]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 20.05, 0.3, -6.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r213")
 
 [node name="Fern32_2" type="MeshInstance3D" parent="." unique_id=480161468]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 20.3, 0.3, -6.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r214")
 
 [node name="Rock33" type="MeshInstance3D" parent="." unique_id=542011947]
 transform = Transform3D(-1.8719852, 0.18792176, 1.7704628, 0.38968483, 1.9805361, 0, -2.045438, 0.20533405, -1.6203278, 20.5, 0.72, 17.5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern34_0" type="MeshInstance3D" parent="." unique_id=1204942459]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 22.8, 0.3, -11.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r216")
 
 [node name="Fern34_1" type="MeshInstance3D" parent="." unique_id=57160980]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 23.05, 0.3, -11.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r217")
 
 [node name="Fern34_2" type="MeshInstance3D" parent="." unique_id=379614019]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 23.3, 0.3, -11.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r218")
 
 [node name="Fern35_0" type="MeshInstance3D" parent="." unique_id=1016741230]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 21.8, 0.3, -17.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r219")
 
 [node name="Fern35_1" type="MeshInstance3D" parent="." unique_id=1318479520]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 22.05, 0.3, -17.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r220")
 
 [node name="Fern35_2" type="MeshInstance3D" parent="." unique_id=881163807]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 22.3, 0.3, -17.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r221")
 
 [node name="Rock36" type="MeshInstance3D" parent="." unique_id=690400592]
-transform = Transform3D(0.5510016, -0.05723706, 2.0376217, 0.32009816, 1.6834557, 1.1831368e-07, -2.2099626, 0.22956651, 0.50803256, 16.5, 0.612, 22.8)
+transform = Transform3D(0.5510016, -0.05723706, 2.0376217, 0.32009816, 1.6834557, 1.2246136e-07, -2.2099626, 0.22956651, 0.50803256, 16.5, 0.612, 22.8)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern37_0" type="MeshInstance3D" parent="." unique_id=1293415767]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 16.8, 0.3, -21.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r223")
 
 [node name="Fern37_1" type="MeshInstance3D" parent="." unique_id=1579324396]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 17.05, 0.3, -21.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r224")
 
 [node name="Fern37_2" type="MeshInstance3D" parent="." unique_id=1048440888]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 17.3, 0.3, -21.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r225")
 
 [node name="Fern38_0" type="MeshInstance3D" parent="." unique_id=440577272]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 12.8, 0.3, -19.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r226")
 
 [node name="Fern38_1" type="MeshInstance3D" parent="." unique_id=729757292]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 13.05, 0.3, -19.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r227")
 
 [node name="Fern38_2" type="MeshInstance3D" parent="." unique_id=28810758]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 13.3, 0.3, -19.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r228")
 
 [node name="Rock39" type="MeshInstance3D" parent="." unique_id=348639069]
-transform = Transform3D(-0.49722728, 0.0503141, 2.1551704, 0.34793285, 1.7824825, 5.6691626e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
+transform = Transform3D(-0.49722728, 0.050314095, 2.1551704, 0.34793285, 1.7824825, 6.0839305e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
 
 [node name="Fern40_0" type="MeshInstance3D" parent="." unique_id=465260939]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -8.2, 0.3, -23.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r230")
 
 [node name="Fern40_1" type="MeshInstance3D" parent="." unique_id=1067879130]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -7.95, 0.3, -23.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r231")
 
 [node name="Fern40_2" type="MeshInstance3D" parent="." unique_id=1579722260]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -7.7, 0.3, -23.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r232")
 
 [node name="Fern41_0" type="MeshInstance3D" parent="." unique_id=1792668474]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, 7.8, 0.3, -23.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r233")
 
 [node name="Fern41_1" type="MeshInstance3D" parent="." unique_id=1193877973]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, 8.05, 0.3, -23.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r234")
 
 [node name="Fern41_2" type="MeshInstance3D" parent="." unique_id=1720448060]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, 8.3, 0.3, -23.6)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r235")
 
 [node name="Rock42" type="MeshInstance3D" parent="." unique_id=1343818523]
 transform = Transform3D(-0.8172488, 0.14755675, 0.21365479, 0.11916419, 1.0892949, 0, -0.22590728, 0.040788244, -0.7729238, -5, 0.38, 17)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_mm5dy")
 
 [node name="Fern43_0" type="MeshInstance3D" parent="." unique_id=402283045]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -15.2, 0.3, 14.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r237")
 
 [node name="Fern43_1" type="MeshInstance3D" parent="." unique_id=217897576]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -14.95, 0.3, 14.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r238")
 
 [node name="Fern43_2" type="MeshInstance3D" parent="." unique_id=4682765]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -14.7, 0.3, 14.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r239")
 
 [node name="Fern44_0" type="MeshInstance3D" parent="." unique_id=199772247]
 transform = Transform3D(0.19659649, -0.48754, 0, 0.12476083, 0.6310433, -0.17749967, 0.05817693, 0.29426035, 0.38064924, -7.2, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r240")
 
 [node name="Fern44_1" type="MeshInstance3D" parent="." unique_id=2117106830]
 transform = Transform3D(0.14868094, 0.0110669825, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.1411691, 0.5693522, 0.1903246, -6.95, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r241")
 
 [node name="Fern44_2" type="MeshInstance3D" parent="." unique_id=387560664]
 transform = Transform3D(-0.04791556, 0.49860692, 0.32965192, 0.12476083, 0.6310433, -0.17749967, -0.19934604, 0.27509183, -0.19032465, -6.7, 0.3, 15.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r242")
 
 [node name="Rock45" type="MeshInstance3D" parent="." unique_id=968983789]
-transform = Transform3D(1.0943596, -0.117182806, 1.700666, 0.2922636, 1.5844289, 1.6635587e-07, -1.7683208, 0.18934956, 1.0524901, 14.6, 0.57600003, 3.4)
+transform = Transform3D(1.0943596, -0.11718281, 1.700666, 0.2922636, 1.5844289, 1.8202931e-07, -1.7683208, 0.18934956, 1.0524901, 14.6, 0.57600003, 3.4)
+visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_3h36n")
 

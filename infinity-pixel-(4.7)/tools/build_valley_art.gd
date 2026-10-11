@@ -574,56 +574,10 @@ static func _blob(st: SurfaceTool, rng: RandomNumberGenerator, c: Vector3, r: fl
 static func _details(noise: Array, trees: Array[Vector2], sts: Array) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 18606
-	var shrub_tones := [Color("5f9a62"), Color("41775a"), Color("2c5446")]
-	var heath_shrub := [Color("8e9a66"), Color("6f7c55"), Color("4f5a43")]
 	var count := 0
-	# Arbustos baixos: ao pe das arvores e espalhados pela mata e pelas bordas.
-	var spots: Array[Vector2] = []
-	for t in trees:
-		for k in 2:
-			var a := rng.randf() * TAU
-			spots.append(t + Vector2(cos(a), sin(a)) * rng.randf_range(0.9, 1.7))
-	for i in 220:
-		var p := Vector2(rng.randf_range(-23.0, 23.0), rng.randf_range(-23.0, 27.0))
-		var wood := 1.0 - smoothstep(0.65, 1.2, Layout.patch_distance(p, Layout.WOODLAND))
-		var edge := maxf(smoothstep(19.0, 23.0, absf(p.x)), smoothstep(-19.0, -23.0, p.y))
-		if rng.randf() < 0.15 + 0.6 * maxf(wood, edge):
-			spots.append(p)
-	for p in spots:
-		if not _free_spot(p, 0.5):
-			continue
-		var base := GROUND_Y + relief(p, noise)
-		var r := rng.randf_range(0.28, 0.5)
-		var h := minf(rng.randf_range(0.18, 0.27), 0.29 - base) # regra: nada acima de 0,3 m sem solido
-		var heath := Layout.patch_distance(p, Layout.HEATH) < 1.0
-		_blob(sts[_chunk(p)], rng, Vector3(p.x, base - 0.02, p.y), r, h, heath_shrub if heath else shrub_tones, 6)
-		if rng.randf() < 0.5: # segundo tufo colado: arbusto irregular
-			var q := p + Vector2(rng.randf_range(-0.35, 0.35), rng.randf_range(-0.35, 0.35))
-			_blob(sts[_chunk(q)], rng, Vector3(q.x, base - 0.02, q.y), r * 0.7, h * 0.8, heath_shrub if heath else shrub_tones, 5)
-		count += 1
-	# Troncos caidos na Floresta Oeste (baixos, deitados).
-	var bark := [Color("8a6a4a"), Color("6c4f37"), Color("4c3626")]
 	var logs := 0
-	for i in 40:
-		if logs >= 7:
-			break
-		var p := Vector2(rng.randf_range(-23.0, -8.0), rng.randf_range(4.0, 27.0))
-		if not _free_spot(p, 0.8):
-			continue
-		var yaw := rng.randf() * PI
-		var dir := Vector3(cos(yaw), 0, sin(yaw))
-		var length := rng.randf_range(1.2, 2.0)
-		var paint := func(f: Vector3, n: Vector3) -> Color:
-			if absf(n.dot(dir)) > 0.8:
-				return Color("c9a77a") # corte do tronco
-			return Facets.facet_shade(bark[1].lerp(bark[2], 0.5 * absf(sin(f.x * 5.0 + f.z * 3.0))), n)
-		var basis := Basis(Quaternion(Vector3.UP, dir))
-		var start := Vector3(p.x, GROUND_Y + 0.1, p.y) - dir * length * 0.5
-		var rings := []
-		for k in 2:
-			rings.append(Facets.ring(6, 0.12, length * k, rng, 0.08, 0.0, 0.0, Transform3D(basis, start)))
-		Facets.loft(st_for(sts, p), rings, true, true, paint)
-		logs += 1
+	# 4.0: arbustos e troncos caidos passaram para FloraArt (tools/build_flora_art.gd),
+	# com samambaias, cavalinhas e musgo. Aqui fica so o cascalho rente.
 	# Cascalho na Regiao Rochosa: pedrinhas facetadas rentes.
 	var gravel := [Color("a7aa9c"), Color("86897f"), Color("62665d")]
 	for i in 260:

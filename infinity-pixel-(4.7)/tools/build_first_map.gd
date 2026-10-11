@@ -13,6 +13,7 @@ extends SceneTree
 const ART := "res://scenes/visuals/arena_art.tscn"
 const RefugeArt := preload("res://tools/build_refuge_art.gd")
 const ValleyArt := preload("res://tools/build_valley_art.gd")
+const FloraArt := preload("res://tools/build_flora_art.gd")
 const Layout := preload("res://tools/valley_layout.gd")
 const Nature := preload("res://scenes/visuals/nature_meshes.gd")
 const Palette := preload("res://scenes/visuals/palette.gd")
@@ -147,6 +148,7 @@ func build() -> void:
 		trunk.scale = Vector3(.5, h * .9, .5)
 		trunk.mesh = Nature.trunk()
 		trunk.material_override = Nature.material()
+		trunk.visible = false # 4.0: desenhado por FloraArt (o no fica: build_collisions le o transform)
 		var kind := tree_kind(i, p)
 		for j in 2:
 			var crown: MeshInstance3D = art.get_node("Crown%d_%d" % [i,j])
@@ -154,6 +156,7 @@ func build() -> void:
 			crown.scale = Vector3(2.5-j*.5, 2.0-j*.4, 2.5-j*.5)
 			crown.mesh = Nature.crown(kind, j)
 			crown.material_override = Nature.material()
+			crown.visible = false # 4.0: copa nova em FloraArt
 	for i in ROCKS.size():
 		var p: Vector2 = ROCKS[i]
 		var rock: MeshInstance3D = art.get_node("Rock%d" % (i*3))
@@ -165,6 +168,7 @@ func build() -> void:
 		# Heath rocks carry lichen, woodland rocks moss, the rest bare stone.
 		rock.mesh = Nature.rock(1 if p.x > 6 and p.y > 4 else (0 if p.x < -6 or i % 2 == 0 else 2))
 		rock.material_override = Nature.material()
+		rock.visible = false # 4.0: rocha nova (3 familias) em FloraArt; o transform segue a fonte do solido
 	# Low vegetation forms clusters beside routes, never rigid blockers.
 	var fern := Palette.toon_flat(Nature.MOSS)
 	var fern_index := 0
@@ -173,6 +177,7 @@ func build() -> void:
 			var anchor: Vector2 = TREES[(fern_index / 3 + 7) % TREES.size()]
 			node.position = Vector3(anchor.x + .8 + (fern_index%3)*.25, .3, anchor.y - .6)
 			node.material_override = fern
+			node.visible = false # 4.0: samambaias de verdade no sub-bosque de FloraArt
 			fern_index += 1
 		elif String(node.name).begins_with("Cliff"):
 			node.material_override = stone
@@ -254,6 +259,7 @@ func build() -> void:
 	regions.free()
 	RefugeArt.generate()
 	ValleyArt.generate()
+	FloraArt.generate() # 4.0: arvores, rochas e sub-bosque (le Trunk*/Rock* daqui)
 	print("[MAP012] authored valley: 48 x 52 m, 42 trees, 16 rocks, 3 night routes")
 	quit()
 
