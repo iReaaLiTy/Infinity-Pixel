@@ -45,11 +45,11 @@ const KEYS := [
 	{"h": 5.6, "light": Color(1.0, 0.74, 0.58), "energy": 0.28, "amb": Color(0.62, 0.58, 0.68), "amb_e": 0.46, "top": Color(0.25, 0.36, 0.60), "hor": Color(0.92, 0.66, 0.52), "fog": Color(0.62, 0.56, 0.56), "fog_d": 0.004, "stars": 0.1, "moon": 0.15, "glow": 0.7, "exp": 1.05, "shadow": 0.7},
 	{"h": 6.0, "light": Color(1.0, 0.78, 0.58), "energy": 0.46, "amb": Color(0.78, 0.72, 0.70), "amb_e": 0.40, "top": Color(0.36, 0.52, 0.78), "hor": Color(0.96, 0.78, 0.62), "fog": Color(0.74, 0.70, 0.66), "fog_d": 0.0035, "stars": 0.0, "moon": 0.05, "glow": 0.5, "exp": 1.02, "shadow": 0.85},
 	{"h": 7.0, "light": Color(1.0, 0.85, 0.66), "energy": 0.68, "amb": Color(0.88, 0.86, 0.82), "amb_e": 0.36, "top": Color(0.40, 0.62, 0.88), "hor": Color(0.80, 0.86, 0.84), "fog": Color(0.75, 0.82, 0.80), "fog_d": 0.003, "stars": 0.0, "moon": 0.0, "glow": 0.15, "exp": 1.0, "shadow": 1.0},
-	{"h": 8.0, "light": Color(1.0, 0.89, 0.70), "energy": 0.80, "amb": Color(0.95, 0.95, 0.92), "amb_e": 0.35, "top": Color(0.38, 0.62, 0.92), "hor": Color(0.72, 0.84, 0.86), "fog": Color(0.70, 0.80, 0.80), "fog_d": 0.0025, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 1.0, "shadow": 1.0},
-	{"h": 10.5, "light": Color(1.0, 0.94, 0.82), "energy": 0.68, "amb": Color(1.0, 1.0, 0.98), "amb_e": 0.33, "top": Color(0.30, 0.56, 0.92), "hor": Color(0.66, 0.82, 0.90), "fog": Color(0.68, 0.80, 0.84), "fog_d": 0.0025, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 0.98, "shadow": 1.0},
-	{"h": 12.0, "light": Color(1.0, 0.96, 0.88), "energy": 0.64, "amb": Color(1.0, 1.0, 1.0), "amb_e": 0.32, "top": Color(0.30, 0.56, 0.92), "hor": Color(0.66, 0.82, 0.90), "fog": Color(0.68, 0.80, 0.84), "fog_d": 0.0025, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 0.97, "shadow": 1.0},
-	{"h": 13.5, "light": Color(1.0, 0.95, 0.86), "energy": 0.65, "amb": Color(1.0, 0.99, 0.97), "amb_e": 0.32, "top": Color(0.30, 0.56, 0.92), "hor": Color(0.68, 0.82, 0.88), "fog": Color(0.70, 0.80, 0.82), "fog_d": 0.0025, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 0.97, "shadow": 1.0},
-	{"h": 15.5, "light": Color(1.0, 0.90, 0.74), "energy": 0.70, "amb": Color(0.98, 0.94, 0.88), "amb_e": 0.35, "top": Color(0.32, 0.55, 0.88), "hor": Color(0.80, 0.82, 0.80), "fog": Color(0.78, 0.78, 0.74), "fog_d": 0.0028, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 1.0, "shadow": 1.0},
+	{"h": 8.0, "light": Color(1.0, 0.89, 0.70), "energy": 0.80, "amb": Color(0.95, 0.95, 0.92), "amb_e": 0.35, "top": Color(0.38, 0.62, 0.92), "hor": Color(0.72, 0.84, 0.86), "fog": Color(0.70, 0.80, 0.80), "fog_d": 0.002, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 1.0, "shadow": 1.0},
+	{"h": 10.5, "light": Color(1.0, 0.94, 0.82), "energy": 0.74, "amb": Color(1.0, 1.0, 0.98), "amb_e": 0.30, "top": Color(0.30, 0.56, 0.92), "hor": Color(0.66, 0.82, 0.90), "fog": Color(0.68, 0.80, 0.84), "fog_d": 0.0018, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 0.98, "shadow": 1.0},
+	{"h": 12.0, "light": Color(1.0, 0.96, 0.88), "energy": 0.72, "amb": Color(1.0, 1.0, 1.0), "amb_e": 0.30, "top": Color(0.30, 0.56, 0.92), "hor": Color(0.66, 0.82, 0.90), "fog": Color(0.68, 0.80, 0.84), "fog_d": 0.0018, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 0.97, "shadow": 1.0},
+	{"h": 13.5, "light": Color(1.0, 0.95, 0.86), "energy": 0.72, "amb": Color(1.0, 0.99, 0.97), "amb_e": 0.30, "top": Color(0.30, 0.56, 0.92), "hor": Color(0.68, 0.82, 0.88), "fog": Color(0.70, 0.80, 0.82), "fog_d": 0.0018, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 0.97, "shadow": 1.0},
+	{"h": 15.5, "light": Color(1.0, 0.90, 0.74), "energy": 0.72, "amb": Color(0.98, 0.94, 0.88), "amb_e": 0.31, "top": Color(0.32, 0.55, 0.88), "hor": Color(0.80, 0.82, 0.80), "fog": Color(0.78, 0.78, 0.74), "fog_d": 0.0028, "stars": 0.0, "moon": 0.0, "glow": 0.0, "exp": 1.0, "shadow": 1.0},
 	{"h": 16.5, "light": Color(1.0, 0.84, 0.64), "energy": 0.72, "amb": Color(0.95, 0.88, 0.82), "amb_e": 0.34, "top": Color(0.34, 0.50, 0.82), "hor": Color(0.92, 0.80, 0.66), "fog": Color(0.82, 0.76, 0.68), "fog_d": 0.003, "stars": 0.0, "moon": 0.0, "glow": 0.12, "exp": 1.0, "shadow": 1.0},
 	{"h": 17.3, "light": Color(1.0, 0.78, 0.56), "energy": 0.62, "amb": Color(0.88, 0.80, 0.80), "amb_e": 0.34, "top": Color(0.32, 0.40, 0.70), "hor": Color(0.98, 0.68, 0.50), "fog": Color(0.84, 0.70, 0.62), "fog_d": 0.0035, "stars": 0.0, "moon": 0.0, "glow": 0.3, "exp": 1.0, "shadow": 0.95},
 	{"h": 18.0, "light": Color(1.0, 0.64, 0.44), "energy": 0.50, "amb": Color(0.72, 0.62, 0.70), "amb_e": 0.36, "top": Color(0.30, 0.32, 0.58), "hor": Color(0.95, 0.62, 0.52), "fog": Color(0.64, 0.52, 0.56), "fog_d": 0.0035, "stars": 0.0, "moon": 0.0, "glow": 0.5, "exp": 1.03, "shadow": 0.85},
@@ -122,6 +122,11 @@ func _setup_environment() -> void:
 	env.fog_enabled = true
 	env.fog_light_energy = 1.0
 	env.fog_sky_affect = 0.0
+	# Design 5.0: um pouco mais de contraste e cor (o grao de superficie
+	# escurece as cores em media); dia vivo sem lavar, noite sem estourar.
+	env.adjustment_enabled = true
+	env.adjustment_contrast = 1.07
+	env.adjustment_saturation = 1.06
 
 ## Encaixa o visual no horario atual, sem transicao (inicio/reinicio/testes).
 func snap() -> void:

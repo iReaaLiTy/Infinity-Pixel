@@ -485,8 +485,8 @@ func _night_material(role: String) -> StandardMaterial3D:
 	if role != "eye":
 		# Borda de luz violeta: separa a silhueta escura do chao a noite.
 		m.rim_enabled = true
-		m.rim = 0.3
-		m.rim_tint = 0.3
+		m.rim = 0.55 # 5.0: contorno mais forte (o invasor se destaca do chao escuro)
+		m.rim_tint = 0.45
 	_night_mats[role] = m
 	return m
 
