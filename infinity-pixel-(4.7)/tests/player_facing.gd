@@ -1,6 +1,7 @@
 extends Node
 
-# Regressao da orientacao visual do Player: movimento -> Visual, cursor -> ataque.
+# Regressao da orientacao do Player. Gameplay 5.0: o WASD define a direcao do
+# golpe e do modelo; o cursor nao orienta nada.
 var passed: Array[String] = []
 var failed: Array[String] = []
 
@@ -31,11 +32,8 @@ func _ready() -> void:
 	await frames(5)
 	var world: Node3D = app.world
 	var player: CharacterBody3D = world.get_node("Player")
-	# Esta suite mede a orientacao pelo TECLADO. Com janela, o cursor real do
-	# sistema sobre o jogo gera movimento de mouse e ativa a mira continua (correto
-	# no jogo), mudando rotation.y no meio da medicao. Isola o mouse real aqui.
-	player.set_process_unhandled_input(false)
-	player._aim_active = false
+	# Gameplay 5.0: o mouse real (com janela) nao interfere mais na orientacao,
+	# entao a suite nao precisa isola-lo.
 	var camera: Camera3D = player.get_node("StrategicCamera")
 	world.get_node("EncounterSpawner").current_encounter.set_physics_process(false)
 	var cam_basis := camera.global_basis
@@ -53,9 +51,8 @@ func _ready() -> void:
 		var keys: Array = cases[label][0]
 		var expected: Vector3 = camera.planar_direction(Vector3(cases[label][1].x, 0, cases[label][1].z))
 		player.global_position = Vector3(0, .1, 0)
-		# Mira logica (cursor) em direcao oposta, para provar a separacao.
+		# Direcao inicial oposta: o WASD precisa sobrescreve-la.
 		player.rotation.y = atan2(expected.x, expected.z)
-		var aim_before := player.rotation.y
 		for k in keys: key(k, true)
 		await frames(40)
 		var moved := player.global_position - Vector3(0, .1, 0)
@@ -72,32 +69,37 @@ func _ready() -> void:
 		check(moved.normalized().dot(expected) > .99, label + ": move na direcao relativa a camera")
 		check(visual_forward(player).dot(expected) > .99, label + ": modelo olha para o movimento")
 		check(max_jitter < .01, label + ": sem jitter em regime")
-		check(absf(angle_difference(player.rotation.y, aim_before)) < .001, label + ": mira logica do ataque intacta")
+		check(absf(angle_difference(player.rotation.y, atan2(-expected.x, -expected.z))) < .001, label + ": direcao do golpe segue o WASD")
 	var last := visual_forward(player)
 	await frames(30)
 	check(visual_forward(player).is_equal_approx(last), "Parado: mantem ultima orientacao")
 	check(camera.global_basis.is_equal_approx(cam_basis), "Camera nao gira com Player")
-	# Andando para a direita, ataque mirado para a esquerda.
+	# Gameplay 5.0: andando para a direita, o golpe sai para a DIREITA (WASD),
+	# mesmo com o clique do mouse feito do outro lado do jogador.
 	var dummy = world.get_node("EncounterSpawner").current_encounter
 	player.global_position = Vector3(0, .1, 0)
 	key(KEY_D, true)
 	await frames(30)
 	key(KEY_D, false)
 	await frames(1)
-	dummy.global_position = player.global_position + Vector3(-1.5, 0, 0)
-	player.rotation.y = atan2(1.0, 0.0) # -Z local aponta para -X mundo
+	var right: Vector3 = camera.planar_direction(Vector3(1, 0, 0))
+	dummy.global_position = player.global_position + right * 1.5
 	await frames(3)
 	var hp_before: float = dummy.hp
 	player.get_node("AttackCooldownTimer").stop()
-	player._try_attack()
-	check(dummy.hp < hp_before, "Ataque atinge o lado do cursor, nao o do movimento")
-	# Correcao do playtest: o modelo VIRA rapido (~0,1 s) em vez de saltar no
-	# mesmo quadro; o golpe logico (dano acima) continua imediato.
+	var click := InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = true
+	click.position = camera.unproject_position(player.global_position - right * 3.0)
+	get_viewport().push_input(click, true)
+	await frames(2)
+	check(dummy.hp < hp_before, "Ataque atinge o lado do movimento, nao o do cursor")
+	check(absf(angle_difference(player.last_attack_yaw, atan2(-right.x, -right.z))) < .01, "Direcao logica do golpe = ultima direcao do WASD")
 	await frames(6)
-	check(visual_forward(player).dot(Vector3(-1, 0, 0)) > .99, "Modelo encara o golpe momentaneamente (giro rapido, sem salto)")
-	key(KEY_D, true)
+	check(visual_forward(player).dot(right) > .99, "Modelo encara o golpe (giro rapido, sem salto)")
+	key(KEY_A, true)
 	await frames(40)
-	key(KEY_D, false)
-	check(visual_forward(player).dot(camera.planar_direction(Vector3(1, 0, 0))) > .99, "Volta a seguir o movimento apos o golpe")
+	key(KEY_A, false)
+	check(visual_forward(player).dot(camera.planar_direction(Vector3(-1, 0, 0))) > .99, "Volta a seguir o movimento apos o golpe")
 	print("RESULT: %d/%d" % [passed.size(), passed.size() + failed.size()])
 	get_tree().quit.call_deferred(0 if failed.is_empty() else 1)

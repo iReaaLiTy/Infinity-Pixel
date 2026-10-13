@@ -188,6 +188,7 @@ func _ready() -> void:
 	check(visual_fwd.normalized().dot(camera.planar_direction(Vector3(1, 0, 0))) > .98, "Orientacao visual segue o movimento apos respawn")
 	encounter.hp = 80.0
 	place_near_player(encounter, Vector3(0, -.5, -1.2))
+	await frames(2) # Gameplay 5.0: a soltura do D chega no quadro seguinte; ate la o WASD orienta o golpe
 	player.rotation.y = 0
 	await frames(3)
 	player._try_attack()

@@ -5,7 +5,8 @@ extends CharacterBody3D
 # RF-AGE-002 — Ataque corpo a corpo do personagem (PROVISORIO)
 # Spec: docs/specs/007-camera-estrategica.md
 # RF-CAM-003 — WASD relativo a camera (PROVISORIO)
-# RF-CAM-004 — Mira do ataque pelo cursor (PROVISORIO)
+# RF-CAM-004 — Mira do ataque pelo cursor: substituida no Gameplay 5.0 pelo golpe
+#              frontal (direcao do WASD; o cursor nao orienta o golpe)
 # Spec: docs/specs/011-vida-morte-respawn-jogador.md
 # RF-VID-001 a 005 — HP, invulnerabilidade, morte, respawn e protecao (PROVISORIO)
 
@@ -31,10 +32,7 @@ const ATTACK_FACE_HOLD := 0.3 # s em que o modelo encara o golpe antes de voltar
 # Correcao do playtest (direcao do golpe): o modelo VIRA rapido para o golpe
 # (~0,1 s) em vez de saltar; o golpe logico sai no instante do clique.
 const ATTACK_TURN_SPEED := 40.0
-# Escolha do alvo pela intencao do clique: criaturas/recursos cujo corpo
-# (projetado na tela) esta a ate PICK_RADIUS_PX do cursor (em 720p) e a ate
-# PICK_MAX_DISTANCE m do jogador. Nao e auto-mira: so desempata o clique.
-const PICK_RADIUS_PX := 70.0
+# Aviso "fora do alcance": alvo a frente ate PICK_MAX_DISTANCE m (sem dano).
 const PICK_MAX_DISTANCE := 7.0
 const REACH := 2.0 # alcance do golpe (borda da caixa de ataque), m
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
@@ -56,20 +54,20 @@ const PROTECTION_BLINK := 0.16 # s: periodo do pisca da protecao pos-respawn (RF
 @onready var nav_obstacle: NavigationObstacle3D = $NavigationObstacle3D
 @onready var channel: Node = $DomesticationChannel
 
-# A mira so passa a seguir o cursor depois que o mouse se mexe pela primeira vez,
-# para nao girar o jogador para um cursor parado em canto qualquer da tela.
-var _aim_active := false # legacy diagnostic only; mouse never changes facing
+# Gameplay 5.0: o mouse nunca orienta o golpe. Mantido so para ferramentas antigas.
+var _aim_active := false
+## Interface clicavel aberta (mochila, menu de construcao): o clique e da
+## interface, nao ataca. Andar continua liberado, como antes.
 var ui_blocked := false
 var _attack_queued := false # RF-CMB-002: um clique guardado durante o fim do cooldown
-var _queued_screen_pos := Vector2.ZERO # onde o clique guardado foi feito (mira no alvo dele)
 var attack_count := 0 # golpes executados (diagnostico/testes: 1 clique = 1 golpe)
 var last_attack_yaw := 0.0 # direcao logica do ultimo golpe (diagnostico/testes)
 var picked_target: Node3D # alvo escolhido pelo ultimo clique (ou null)
-var _attack_yaw := 0.0
 
-# Separacao de orientacoes:
-# - rotation.y do Player = direcao LOGICA do ataque (cursor); a AttackArea3D e filha.
-# - _facing_yaw = orientacao VISUAL no mundo, guiada pela direcao do movimento.
+# Separacao de orientacoes (Gameplay 5.0):
+# - rotation.y do Player = direcao LOGICA do golpe; a AttackArea3D e filha. O WASD
+#   a define na hora; parado, ela fica como esta (a ultima direcao).
+# - _facing_yaw = orientacao VISUAL no mundo, que gira suave atras da logica.
 # O Visual e contra-rotacionado para que o yaw do raiz nao o arraste junto.
 var _facing_yaw := 0.0
 var _attack_face_time := 0.0
@@ -207,7 +205,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= GRAVITY * delta
 
 	var input_dir := Vector3.ZERO
-	if DayNightManager.can_play() and not ui_blocked: # RF-AGE-016: fim de sessao bloqueia movimento
+	if DayNightManager.can_play(): # RF-AGE-016: fim de sessao bloqueia movimento
 		if Input.is_physical_key_pressed(KEY_W):
 			input_dir.z -= 1.0
 		if Input.is_physical_key_pressed(KEY_S):
@@ -230,31 +228,32 @@ func _physics_process(delta: float) -> void:
 
 	_update_facing(move_dir, delta)
 
-# Orientacao visual: segue a direcao de entrada (nao a velocity, que desvia ao
-# deslizar em paredes e causaria jitter). Parado, mantem a ultima orientacao.
+# Direcao do golpe: segue a direcao de entrada (nao a velocity, que desvia ao
+# deslizar em paredes e causaria jitter). Parado, mantem a ultima direcao.
+# O modelo gira suave atras dela (mais rapido logo depois de um golpe).
 func _update_facing(move_dir: Vector3, delta: float) -> void:
 	_attack_face_time = maxf(0.0, _attack_face_time - delta)
-	if _attack_face_time > 0.0:
-		_facing_yaw = lerp_angle(_facing_yaw, _attack_yaw, 1.0 - exp(-ATTACK_TURN_SPEED * delta))
-	elif move_dir != Vector3.ZERO:
-		var target_yaw := atan2(-move_dir.x, -move_dir.z) # frente do modelo = -Z
-		_facing_yaw = lerp_angle(_facing_yaw, target_yaw, 1.0 - exp(-TURN_SPEED * delta))
-	_facing_yaw = wrapf(_facing_yaw, -PI, PI)
-	# Global yaw do Visual = rotation.y (mira) + local yaw -> local = facing - mira.
-	rotation.y = _facing_yaw
-	visual.rotation.y = 0.0
+	if move_dir != Vector3.ZERO:
+		rotation.y = atan2(-move_dir.x, -move_dir.z) # frente do modelo = -Z
+	var speed := ATTACK_TURN_SPEED if _attack_face_time > 0.0 else TURN_SPEED
+	_facing_yaw = wrapf(lerp_angle(_facing_yaw, rotation.y, 1.0 - exp(-speed * delta)), -PI, PI)
+	# Global yaw do Visual = rotation.y (golpe) + local yaw -> local = facing - golpe.
+	visual.rotation.y = wrapf(_facing_yaw - rotation.y, -PI, PI)
 
-# Gameplay 5.0: retained entry points for tooling; screen coordinates are ignored.
-func _aim_at_screen(_screen_pos: Vector2) -> void:
-	pass
+## Orienta o golpe para um ponto do mundo (tutorial, ferramentas e testes).
+func face_toward(point: Vector3) -> void:
+	var dir := point - global_position
+	dir.y = 0.0
+	if dir.length() >= MIN_AIM_DISTANCE:
+		rotation.y = atan2(-dir.x, -dir.z)
 
-func _aim_at_click(_screen_pos: Vector2) -> void:
-	picked_target = _pick_target(Vector2.ZERO)
+const FRONT_CONE := 55.0 # graus para cada lado da frente do Player
 
-## Immediate physics broadphase, only on attack. The original attack box and
-## reach stay unchanged. A frontal cone excludes side/back bodies, even when
-## their collision shape overlaps the box. Alignment wins before distance.
-func _pick_target(_screen_pos: Vector2, warning_only := false) -> Node3D:
+## Alvo do golpe, consultado so no clique (sem varrer a cena a cada quadro).
+## A caixa e o alcance originais nao mudaram; um cone frontal descarta corpos
+## ao lado/atras mesmo que a forma deles encoste na caixa. Alinhamento vence a
+## distancia; empate exato = menor instance_id (deterministico). Um alvo por golpe.
+func _pick_target(warning_only := false) -> Node3D:
 	var box: CollisionShape3D = attack_area.get_node("CollisionShape3D")
 	var query := PhysicsShapeQueryParameters3D.new()
 	query.shape = box.shape
@@ -275,10 +274,14 @@ func _pick_target(_screen_pos: Vector2, warning_only := false) -> Node3D:
 		var offset: Vector3 = body.global_position - global_position
 		offset.y = 0
 		var distance := offset.length()
-		var alignment := (-global_basis.z).dot(offset.normalized())
-		if alignment < cos(deg_to_rad(55.0)):
+		var radius := _body_radius(body)
+		var alignment := 1.0 if distance <= 0.05 else (-global_basis.z).dot(offset / distance)
+		# Corpos largos (rocha) contam pela borda: colado a uma rocha de lado,
+		# a borda dela ainda esta na frente do golpe.
+		var allowance := deg_to_rad(FRONT_CONE) + (asin(radius / distance) if distance > radius else PI)
+		if acos(clampf(alignment, -1.0, 1.0)) > allowance:
 			continue
-		if not warning_only and distance > REACH + _body_radius(body):
+		if not warning_only and distance > REACH + radius:
 			continue
 		var candidate: float = (1.0 - alignment) * 10.0 + distance * 0.25
 		if body.is_in_group("wild_dino"): candidate -= 0.02
@@ -313,20 +316,18 @@ func _try_attack() -> void:
 		return # RF-VID-003: morto nao ataca. RF-AGE-002: cooldown ainda ativo
 	attack_count += 1
 	last_attack_yaw = rotation.y
-	# O modelo vira rapido para o golpe (sem saltar) e o encara por um instante;
-	# depois volta a seguir o movimento. O golpe logico ja sai nesta direcao.
-	_attack_yaw = rotation.y
+	# O golpe logico sai na direcao atual; o modelo termina de virar rapido.
 	_attack_face_time = ATTACK_FACE_HOLD
 	visual.strike()
 	CombatFX.slash(self, global_position + Vector3(0, 0.9, 0), rotation.y)
 	get_tree().call_group("audio_director", "effect", false)
 	var hits := 0
-	picked_target = _pick_target(Vector2.ZERO)
+	picked_target = _pick_target()
 	if is_instance_valid(picked_target):
 		picked_target.take_damage(ATTACK_DAMAGE)
 		hits = 1
 	else:
-		var distant := _pick_target(Vector2.ZERO, true)
+		var distant := _pick_target(true)
 		if is_instance_valid(distant):
 			attack_out_of_range.emit(distant)
 			CombatFX.ring(self, distant.global_position, Color.WHITE, 1.3, 0.35)

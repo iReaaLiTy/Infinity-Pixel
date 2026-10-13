@@ -25,8 +25,10 @@ func wait(seconds: float) -> void:
 func flat(a: Vector3, b: Vector3) -> float:
 	return Vector2(a.x - b.x, a.z - b.z).length()
 
-# Cursor sobre o corpo do alvo e UM clique fisico (pressiona + solta).
+# Gameplay 5.0: o jogador ENCARA o alvo (como faria com WASD) e da UM clique
+# fisico (pressiona + solta). O cursor nao orienta mais o golpe.
 func click_on(target: Node3D, height := 0.6) -> void:
+	player.face_toward(target.global_position)
 	var pos := cam.unproject_position(target.global_position + Vector3(0, height, 0))
 	var mv := InputEventMouseMotion.new()
 	mv.position = pos
@@ -120,9 +122,9 @@ func _ready() -> void:
 	click_on(other) # clique ainda durante a recuperacao: guardado, nao perdido
 	await wait(.5)
 	check(other.hp == 65.0 and player.attack_count == swings + 2, "Clique logo apos um golpe no vazio nao se perde: 2 cliques = 2 golpes, 1 dano")
-	# [I] o golpe segue o cursor (alvo a esquerda, mira no corpo)
+	# [I] o golpe segue a orientacao do jogador (alvo a esquerda, encarado)
 	var yaw_err := absf(rad_to_deg(angle_difference(player.last_attack_yaw, atan2(-(other.global_position.x - player.global_position.x), -(other.global_position.z - player.global_position.z)))))
-	check(yaw_err < 8.0, "[I] O golpe sai na direcao do alvo sob o cursor (erro %.1f graus)" % yaw_err)
+	check(yaw_err < 8.0, "[I] O golpe sai na direcao em que o jogador olha, no alvo a frente (erro %.1f graus)" % yaw_err)
 	other.queue_free()
 	# [G] domesticacao pelo canal real (E por 2 s) restaura 80/80
 	place(dino, Vector3(1.4, .4, 1.0))
