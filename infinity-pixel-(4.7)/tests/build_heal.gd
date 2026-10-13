@@ -175,7 +175,6 @@ func _ready() -> void:
 	check(app.hud.get_children().any(func(c): return String(c.name).begins_with("BuildNotice") and c.get_child(0).get_child(0).text == "FOGUEIRA CONSTRUÍDA"), "Aviso 'FOGUEIRA CONSTRUÍDA'")
 	check(placer.recipe_block_reason(Recipes.CAMPFIRE) == "LIMITE ATINGIDO" and not placer.begin(Recipes.CAMPFIRE), "[W] Maximo de 1 Fogueira (LIMITE ATINGIDO)")
 	# Armadilhas [AL][AM] + validacoes [N][O][P]
-	var west_slot: Node3D = world.get_node("DefenseSlots/SlotWestInner")
 	var t1_pos := route_point_near(Vector3(0, 0, 6), "RuinRoad") + Vector3(0, 0, -2) # estrada, campina
 	var t2_pos := route_point_near(Vector3(-17, 0, 1), "WestTrail")
 	var t3_pos := route_point_near(Vector3(17, 0, 1), "EastTrail")
@@ -185,7 +184,10 @@ func _ready() -> void:
 	check(trap1 != null and stock.get_amount(&"wood") == w1 - 15 and stock.get_amount(&"stone") == s1 - 6, "[AL] Armadilha custa 15 Madeira + 6 Pedra")
 	check(placer.validate(Recipes.TRAP, t1_pos + Vector3(.4, 0, .4)) == "Local ocupado", "[N] Nao constroi sobre outra estrutura")
 	check(placer.validate(Recipes.TRAP, world.get_node("Territory").global_position + Vector3(0, 0, 1.5)) == "Muito perto do refúgio", "[O] Nao constroi sobre o refugio")
-	var near_slot := route_point_near(west_slot.global_position, "WestTrail").lerp(west_slot.global_position, .55)
+	# Gameplay 5.0: o Oeste Interno saiu da beira da trilha; o Prado da Ruina
+	# continua colado a estrada e serve para provar a mesma regra.
+	var meadow_slot: Node3D = world.get_node("DefenseSlots/SlotRuinMeadow")
+	var near_slot := route_point_near(meadow_slot.global_position, "RuinRoad").lerp(meadow_slot.global_position, .55)
 	check(placer.validate(Recipes.TRAP, near_slot) == "Ocupado por ponto de defesa", "[P] Nao constroi sobre ponto de defesa/torre (%s)" % placer.validate(Recipes.TRAP, near_slot))
 	check(placer.validate(Recipes.TRAP, build_zone) == "Coloque sobre uma rota de ataque", "Armadilha fora das rotas: recusada")
 	player.global_position = t2_pos + Vector3(0, .1, .3)
@@ -197,8 +199,20 @@ func _ready() -> void:
 	var trap2 := await build_at(Recipes.TRAP, t2_pos)
 	var trap3 := await build_at(Recipes.TRAP, t3_pos)
 	check(trap2 != null and trap3 != null and get_tree().get_nodes_in_group("spike_trap").size() == 3, "3 armadilhas, uma por rota")
+	# Gameplay 5.0: limite subiu de 3 para 5. A 4a e a 5a saem pela estrada e
+	# sao removidas depois do teste do limite (o resto da suite segue com 3).
+	give(30, 12)
+	var trap4 := await build_at(Recipes.TRAP, route_point_near(Vector3(0, 0, 10), "RuinRoad"))
+	var trap5 := await build_at(Recipes.TRAP, route_point_near(Vector3(0, 0, 18), "RuinRoad"))
+	check(trap4 != null and trap5 != null and get_tree().get_nodes_in_group("spike_trap").size() == 5, "5 armadilhas simultaneas (Gameplay 5.0)")
 	give(15, 6)
-	check(placer.recipe_block_reason(Recipes.TRAP) == "LIMITE ATINGIDO" and not placer.begin(Recipes.TRAP), "[AM] Maximo de 3 armadilhas")
+	check(placer.recipe_block_reason(Recipes.TRAP) == "LIMITE ATINGIDO" and not placer.begin(Recipes.TRAP), "[AM] Maximo de 5 armadilhas: a 6a e recusada")
+	for extra in [trap4, trap5]:
+		if is_instance_valid(extra):
+			extra.remove_from_group("spike_trap")
+			extra.remove_from_group("built_structure")
+			extra.queue_free()
+	await frames(2)
 	check(trap1.charges == 3, "[AS] Armadilha comeca com 3 cargas")
 	var trap_bodies := trap1.find_children("*", "CollisionObject3D", true, false).filter(func(c): return c is PhysicsBody3D)
 	check(trap_bodies.is_empty() and trap1.find_children("*", "NavigationObstacle3D", true, false).is_empty(), "[AU] Armadilha sem corpo solido e sem obstaculo de navegacao")

@@ -138,33 +138,33 @@ script = ExtResource("eco_013b")
 script = ExtResource("slots_013b")
 
 [node name="SlotWestInner" type="Node3D" parent="DefenseSlots"]
-position = Vector3(-10.5, 0, -5.5)
+position = Vector3(-12, 0, -11)
 script = ExtResource("slot_013b")
 route = "Oeste"
 
 
 [node name="SlotWestOuter" type="Node3D" parent="DefenseSlots"]
-position = Vector3(-18, 0, -1.5)
+position = Vector3(-19, 0, 6)
 script = ExtResource("slot_013b")
 route = "Oeste"
 
 [node name="SlotRuinMeadow" type="Node3D" parent="DefenseSlots"]
-position = Vector3(-3.8, 0, -1)
+position = Vector3(-3.5, 0, 1)
 script = ExtResource("slot_013b")
 route = "Ruína"
 
 [node name="SlotRuinArch" type="Node3D" parent="DefenseSlots"]
-position = Vector3(3.6, 0, 12.5)
+position = Vector3(4.5, 0, 13)
 script = ExtResource("slot_013b")
 route = "Ruína"
 
 [node name="SlotEastInner" type="Node3D" parent="DefenseSlots"]
-position = Vector3(10.5, 0, -5.5)
+position = Vector3(12.5, 0, -8)
 script = ExtResource("slot_013b")
 route = "Leste"
 
 [node name="SlotEastOuter" type="Node3D" parent="DefenseSlots"]
-position = Vector3(18, 0, -1.5)
+position = Vector3(19, 0, 6)
 script = ExtResource("slot_013b")
 route = "Leste"
 

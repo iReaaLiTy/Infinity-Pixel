@@ -530,7 +530,9 @@ static func _arch(root: Node3D) -> void:
 # (pes afundam de leve na grama, nunca flutuam) e some nas trilhas, no patio,
 # na area de construcao e nos pontos de defesa.
 const RELIEF_MAX := 0.075
-const SLOTS := [Vector2(-10.5, -5.5), Vector2(-18, -1.5), Vector2(-3.8, -1), Vector2(3.6, 12.5), Vector2(10.5, -5.5), Vector2(18, -1.5)]
+# Gameplay 5.0: pontos de defesa mais espacados (antes: (-10.5,-5.5) (-18,-1.5)
+# (-3.8,-1) (3.6,12.5) (10.5,-5.5) (18,-1.5)). Mesmas posicoes de prototype_area.tscn.
+const SLOTS := [Vector2(-12, -11), Vector2(-19, 6), Vector2(-3.5, 1), Vector2(4.5, 13), Vector2(12.5, -8), Vector2(19, 6)]
 const MARKERS := [Vector2(-14, 13), Vector2(13, 16)]
 
 static func relief(p: Vector2, noise: Array) -> float:
