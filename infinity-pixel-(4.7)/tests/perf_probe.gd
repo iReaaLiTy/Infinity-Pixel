@@ -349,6 +349,46 @@ func live_scenarios() -> Array:
 	DayNightManager.start_night()
 	await get_tree().create_timer(6.0, true, false, true).timeout
 	out.append(await measure("vivo_noite_10_torres_3aliados"))
+	# Gameplay 5.0: 6 torres, 5 armadilhas, 3 aliados, onda de 10 e o Elixir.
+	app.start_game()
+	for i in 30: await get_tree().physics_frame
+	world = app.world
+	visual = world.get_node("DayNightVisual")
+	player = world.get_node("Player")
+	player.set_physics_process(false)
+	player._invulnerable_left = INF
+	player.get_node("StrategicCamera").follow_smoothing = 0.0
+	world.get_node("Territory").max_health = 100000
+	world.get_node("Territory").health = 100000
+	for slot in world.get_node("DefenseSlots").get_children():
+		slot.build()
+	world.get_node("ResourceStock").add(&"wood", 500)
+	world.get_node("ResourceStock").add(&"stone", 500)
+	var placer = world.get_node("BuildPlacer")
+	placer.follow_cursor = false
+	for z in [4, 7, 10, 16, 19]:
+		if placer.begin(&"trap"):
+			placer.move_ghost_to(Vector3(0, 0, z))
+			placer.confirm()
+	var g5_allies := []
+	for k in 3:
+		var ally = wild_scene.instantiate()
+		world.add_child(ally)
+		ally.global_position = Vector3(-2.0 + k * 2.0, 0.5, -6.0)
+		ally.domesticate()
+		ally.ally_state = 1
+		ally._stay_position = ally.global_position
+		g5_allies.append(ally)
+	world.get_node("WaveManager").base_enemy_count = 10
+	world.get_node("WaveManager").spawn_interval = 0.6
+	player.global_position = Vector3(0.0, 0.1, -5.0)
+	DayNightManager.start_night()
+	await get_tree().create_timer(6.0, true, false, true).timeout
+	var elixir = world.get_node("JadeElixir")
+	elixir.stored = 1
+	g5_allies[0].hp = 30.0
+	elixir.use_on(g5_allies[0]) # particulas jade, anel e "+40 HP" durante a medicao
+	out.append(await measure("vivo_gameplay5_6torres_5armadilhas_3aliados"))
 	# 5. Tutorial (dia, sinal jade e painel ativos).
 	if app.has_method("start_tutorial"):
 		app.start_tutorial()

@@ -1,0 +1,218 @@
+[
+  {
+    "suite": "acceptance",
+    "mode": "headless",
+    "checks_passed": 32,
+    "checks_failed": 1,
+    "script_error": false,
+    "passed": false
+  },
+  {
+    "suite": "ally_combat",
+    "mode": "headless",
+    "checks_passed": 13,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "attack_direction",
+    "mode": "headless",
+    "checks_passed": 5,
+    "checks_failed": 4,
+    "script_error": false,
+    "passed": false
+  },
+  {
+    "suite": "build_heal",
+    "mode": "headless",
+    "checks_passed": 67,
+    "checks_failed": 1,
+    "script_error": false,
+    "passed": false
+  },
+  {
+    "suite": "combat_balance",
+    "mode": "headless",
+    "checks_passed": 6,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "combat_collect",
+    "mode": "headless",
+    "checks_passed": 31,
+    "checks_failed": 15,
+    "script_error": false,
+    "passed": false
+  },
+  {
+    "suite": "creature_motion",
+    "mode": "headless",
+    "checks_passed": 32,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "day_cycle",
+    "mode": "headless",
+    "checks_passed": 43,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "day_cycle_real",
+    "mode": "headless",
+    "checks_passed": 15,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "defense_economy",
+    "mode": "headless",
+    "checks_passed": 35,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "domestication_regression",
+    "mode": "headless",
+    "checks_passed": 26,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "gameplay_stability",
+    "mode": "headless",
+    "checks_passed": 15,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "healing_actions",
+    "mode": "headless",
+    "checks_passed": 7,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "inventory_ui",
+    "mode": "headless",
+    "checks_passed": 26,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "navigation_contracts",
+    "mode": "headless",
+    "checks_passed": 38,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "night_enemy_visual",
+    "mode": "headless",
+    "checks_passed": 16,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "physics_contracts",
+    "mode": "headless",
+    "checks_passed": 23,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "player_facing",
+    "mode": "headless",
+    "checks_passed": 27,
+    "checks_failed": 10,
+    "script_error": false,
+    "passed": false
+  },
+  {
+    "suite": "player_health",
+    "mode": "headless",
+    "checks_passed": 46,
+    "checks_failed": 1,
+    "script_error": false,
+    "passed": false
+  },
+  {
+    "suite": "settings_ui",
+    "mode": "headless",
+    "checks_passed": 11,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "sky_cycle",
+    "mode": "headless",
+    "checks_passed": 45,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "territory",
+    "mode": "headless",
+    "checks_passed": 67,
+    "checks_failed": 1,
+    "script_error": false,
+    "passed": false
+  },
+  {
+    "suite": "tutorial",
+    "mode": "headless",
+    "checks_passed": 40,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "visual_invariants",
+    "mode": "headless",
+    "checks_passed": 14,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "visual_overhaul3",
+    "mode": "headless",
+    "checks_passed": 28,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "visual_overhaul4",
+    "mode": "headless",
+    "checks_passed": 27,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "world_layout",
+    "mode": "headless",
+    "checks_passed": 57,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  }
+]

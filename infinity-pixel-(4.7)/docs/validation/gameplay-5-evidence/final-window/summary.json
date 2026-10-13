@@ -1,0 +1,242 @@
+[
+  {
+    "suite": "acceptance",
+    "mode": "window",
+    "checks_passed": 36,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "ally_combat",
+    "mode": "window",
+    "checks_passed": 13,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "attack_direction",
+    "mode": "window",
+    "checks_passed": 13,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "build_heal",
+    "mode": "window",
+    "checks_passed": 69,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "combat_balance",
+    "mode": "window",
+    "checks_passed": 6,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "combat_collect",
+    "mode": "window",
+    "checks_passed": 46,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "creature_motion",
+    "mode": "window",
+    "checks_passed": 32,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "day_cycle",
+    "mode": "window",
+    "checks_passed": 43,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "day_cycle_real",
+    "mode": "window",
+    "checks_passed": 15,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "defense_economy",
+    "mode": "window",
+    "checks_passed": 35,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "domestication_regression",
+    "mode": "window",
+    "checks_passed": 26,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "gameplay5",
+    "mode": "window",
+    "checks_passed": 46,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "gameplay_stability",
+    "mode": "window",
+    "checks_passed": 15,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "healing_actions",
+    "mode": "window",
+    "checks_passed": 7,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "inventory_ui",
+    "mode": "window",
+    "checks_passed": 26,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "main_menu",
+    "mode": "window",
+    "checks_passed": 27,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "navigation_contracts",
+    "mode": "window",
+    "checks_passed": 38,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "night_enemy_visual",
+    "mode": "window",
+    "checks_passed": 16,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "physics_contracts",
+    "mode": "window",
+    "checks_passed": 24,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "player_facing",
+    "mode": "window",
+    "checks_passed": 38,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "player_health",
+    "mode": "window",
+    "checks_passed": 47,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "settings_ui",
+    "mode": "window",
+    "checks_passed": 11,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "sky_cycle",
+    "mode": "window",
+    "checks_passed": 45,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "territory",
+    "mode": "window",
+    "checks_passed": 68,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "tower_layout5",
+    "mode": "window",
+    "checks_passed": 44,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "tutorial",
+    "mode": "window",
+    "checks_passed": 40,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "visual_invariants",
+    "mode": "window",
+    "checks_passed": 14,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "visual_overhaul3",
+    "mode": "window",
+    "checks_passed": 28,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "visual_overhaul4",
+    "mode": "window",
+    "checks_passed": 27,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  },
+  {
+    "suite": "world_layout",
+    "mode": "window",
+    "checks_passed": 57,
+    "checks_failed": 0,
+    "script_error": false,
+    "passed": true
+  }
+]

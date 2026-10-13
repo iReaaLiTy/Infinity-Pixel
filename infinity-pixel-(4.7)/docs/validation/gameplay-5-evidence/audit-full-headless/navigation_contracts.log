@@ -1,0 +1,75 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: NavigationRegion3D com navmesh assada (532 poligonos)
+PASS: Mapa de navegacao sincronizado
+PASS: Pedra e buraco na navmesh (ponto mais proximo a 1.27 m do centro)
+PASS: Nucleo do refugio recortado, borda dentro do alcance de chegada (1.00 m)
+PASS: Caminho spawn -> refugio existe (11 pontos)
+PASS: Perseguidor recebe caminho com desvio da pedra (8 pontos)
+PASS: Perseguidor contorna a pedra e chega ao alcance do Player (1.94 m)
+PASS: 3 perseguidores com 3 slots diferentes ([(0, 4), (0, 1), (0, 0)])
+PASS: Os 3 ficam dentro do alcance de ataque (2 m)
+PASS: Perseguidores nao se sobrepoem (menor distancia 2.12 m)
+PASS: Slots estaveis com o Player parado (nao sorteiam de novo)
+PASS: Perseguidores cercam o Player (maior vao 179 graus, limite 200)
+PASS: Apos o Player correr, os 3 voltam a cercar o Player
+PASS: Apos o reposicionamento continuam separados (1.11 m)
+WildDino foi derrotado.
+PASS: Morte libera o slot
+WildDino2 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino2 domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Domesticacao libera o slot de ataque
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: 3 aliados com 3 slots de seguir diferentes ([(0, 3), (0, 1), (0, 0)])
+PASS: Aliados nao ocupam a mesma posicao (3.41 m)
+PASS: Aliados seguem o Player apos ele andar
+PASS: Aliados continuam separados apos seguir (3.06 m)
+[ALIADO] Modo alterado: FICAR
+[ALIADO] Posição de defesa definida: (0.253463, 0.000105, -7.010267)
+PASS: F ainda coloca o aliado em FICAR
+PASS: Aliado em FICAR vai ate o hostil e ataca
+WildDino foi derrotado.
+PASS: Aliado volta ao posto depois do combate (0.28 m)
+PASS: Seguidores chegam aos slots com um aliado parado ao lado do Player
+PASS: Territorial persegue o Player dentro da area
+PASS: Territorial volta a origem pela navegacao (0.48 m)
+PASS: 3 golpes de 20 -> 20/80 e elegivel (30%)
+PASS: Carnotauro navega e continua nao domesticavel
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+PASS: 3 inimigos da onda criados
+INFO spawns: [(0.0, 0.5, 23.0), (-20.0, 0.5, 2.0), (20.0, 0.5, 2.0)]
+PASS: Spawns da onda separados (menor distancia 29.00 m)
+PASS: Spawns sobre a navmesh (fora de arvore/pedra/estrutura)
+@CharacterBody3D@510 chegou ao territorio.
+WildDino chegou ao territorio.
+@CharacterBody3D@512 chegou ao territorio.
+PASS: 3 inimigos com 3 slots diferentes no refugio ([(0, 0), (0, 3), (0, 1)])
+PASS: Os 3 chegam ao refugio (<= 1,5 m do centro)
+PASS: Inimigos nao se sobrepoem no trajeto (menor distancia 1.29 m)
+INFO posicoes no refugio: [(-0.000013, 0.000842, -13.55997), (-0.194421, 0.000842, -16.13678), (1.15108, 0.000842, -14.17745)]
+PASS: Inimigos separados no refugio (1.31 m)
+PASS: Inimigos distribuidos ao redor do refugio (maior vao 170 graus, limite 200)
+PASS: Os 3 causam dano ao refugio (879 -> 828)
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: Refugio a 0 HP continua causando derrota
+SPEC010 RESULTS: 38 passed; 0 failed

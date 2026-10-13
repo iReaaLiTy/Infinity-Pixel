@@ -1,0 +1,7 @@
+﻿{
+    "suite":  "tower_layout5",
+    "mode":  "headless",
+    "exit":  0,
+    "passed":  true,
+    "timeout":  false
+}

@@ -1,0 +1,19 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+PASS: Menu principal tem CONFIGURACOES
+PASS: Tela de configuracoes com volume geral, musica, efeitos, tela cheia e escala
+PASS: Volume geral muda o barramento Master
+PASS: Musica muda o volume da musica (0.20)
+PASS: Efeitos a 0 silencia o barramento SFX
+PASS: Escala da interface 115% aplicada
+PASS: Mudancas salvas em user://settings.cfg
+PASS: Recarregar mantem as configuracoes
+PASS: ESC fecha as configuracoes no menu
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Na pausa, ESC volta ao menu de pausa
+PASS: Restaurar padrao volta tudo ao normal
+SETTINGS RESULTS: 11 passed; 0 failed
