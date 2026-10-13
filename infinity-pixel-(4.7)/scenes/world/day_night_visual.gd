@@ -23,6 +23,7 @@ extends Node
 
 const SKY_SHADER := preload("res://scenes/world/day_night_sky.gdshader")
 const GLINT_SHADER := preload("res://scenes/world/night_glints.gdshader")
+const SurfaceFinish := preload("res://scenes/visuals/surface_finish.gd") # Design 5.0
 
 const SNAP_GAP := 0.35 # h: diferenca maior que isso = salto do relogio -> transicao
 const CATCH_UP_RATE := 0.75 # h por segundo de jogo durante a transicao
@@ -96,6 +97,8 @@ func _ready() -> void:
 	DayNightManager.day_started.connect(_on_day_started)
 	snap()
 	_build_glints.call_deferred()
+	# Design 5.0: grao de superficie na arte do mundo (depois de todos os _ready).
+	(func(): SurfaceFinish.apply(get_parent())).call_deferred()
 
 func _on_night_started() -> void:
 	print("[VISUAL DIA/NOITE] 18:00 — por do sol em andamento")

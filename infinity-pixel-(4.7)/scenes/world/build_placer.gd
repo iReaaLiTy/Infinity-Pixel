@@ -15,6 +15,7 @@ signal notice(text: String)
 
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 const Recipes := preload("res://scenes/world/build_recipes.gd")
+const SurfaceFinish := preload("res://scenes/visuals/surface_finish.gd") # Design 5.0
 const WORLD := 1 << 0
 const PLAYER := 1 << 1
 const CREATURES := 1 << 2
@@ -264,6 +265,7 @@ func confirm() -> Node3D:
 	structures.add_child(node, true)
 	node.global_position = pos
 	node.rotation.y = _rotation_steps * PI / 2.0
+	SurfaceFinish.apply(node) # Design 5.0: mesmo acabamento da arte do mundo
 	var id := recipe_id
 	cancel()
 	print("[CONSTRUCAO] %s em %s" % [r.name, pos])

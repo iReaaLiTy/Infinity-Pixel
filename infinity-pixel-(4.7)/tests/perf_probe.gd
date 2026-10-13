@@ -389,6 +389,18 @@ func live_scenarios() -> Array:
 	g5_allies[0].hp = 30.0
 	elixir.use_on(g5_allies[0]) # particulas jade, anel e "+40 HP" durante a medicao
 	out.append(await measure("vivo_gameplay5_6torres_5armadilhas_3aliados"))
+	# Design 5.0: as seis torres no nivel 3 (modelo mais detalhado) com a onda
+	# ainda em curso, e a mesma vista de dia com o jogo congelado.
+	for slot in world.get_node("DefenseSlots").get_children():
+		while not slot.tower.is_max_level():
+			slot.tower.upgrade()
+	await get_tree().create_timer(1.0, true, false, true).timeout
+	out.append(await measure("vivo_noite_6torres_nivel3"))
+	DayNightManager.gameplay_enabled = false
+	player.global_position = Vector3(0.0, 0.1, -3.0)
+	set_hour(12.0)
+	out.append(await measure("dia_6torres_nivel3"))
+	DayNightManager.gameplay_enabled = true
 	# 5. Tutorial (dia, sinal jade e painel ativos).
 	if app.has_method("start_tutorial"):
 		app.start_tutorial()

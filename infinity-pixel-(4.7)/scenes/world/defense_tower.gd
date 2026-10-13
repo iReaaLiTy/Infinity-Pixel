@@ -7,6 +7,11 @@ extends StaticBody3D
 # Player e as criaturas contornam a torre. Sem HP (inimigos nao a atacam).
 # Alvo: so inimigos da onda vivos (grupos "wave_enemy" + "wild_dino"), nunca
 # Player, aliados, domesticados ou o refugio. Dano pelo contrato take_damage.
+#
+# Design Overhaul 5.0: o visual vem do TowerForge (tres niveis da mesma familia
+# arquitetonica) e anima so a apresentacao — mecanismo girando para o alvo,
+# cristal pulsando e carregando antes do disparo, recuo no tiro e subida de
+# nivel. Nada disso le ou muda dano, alcance, cadencia, alvo ou colisao.
 
 ## Valores por nivel: custo para chegar ao nivel, dano, intervalo (s), alcance (m).
 const LEVELS := [
@@ -18,27 +23,37 @@ const RETARGET_INTERVAL := 0.15 # busca por grupos, como a IA (Spec 010)
 const BOLT_TIME := 0.18 # s do "dardo" ate o alvo
 const RangeRing := preload("res://scenes/world/range_ring.gd")
 const Palette := preload("res://scenes/visuals/palette.gd")
-const Facets := preload("res://scenes/visuals/facets.gd")
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
+const TowerForge := preload("res://scenes/visuals/tower_forge.gd")
 # Spec 013C (RF-CMB-007): opacidade do anel de alcance.
 const RING_FOCUS := 0.7 # Player interagindo com esta torre (3.0: era 0,8)
 const RING_NEAR := 0.24 # Player perto do alcance (3.0: era 0,45; linhas dominavam a tela)
 const RING_FAR := 0.0 # longe: escondido (3.0: era 0,12)
 
-const STONE := Color("7c8980")
-const WOOD := Color("6a4f37")
 const CRYSTAL := Color("7fd8b0")
+# 5.0: energia da emissao (dia -> noite). O cristal usa jade profundo: a noite
+# brilha sem estourar em branco; as runas quase apagam de dia.
+const CRYSTAL_ENERGY := Vector2(0.45, 1.65)
+const RUNE_ENERGY := Vector2(0.12, 0.85)
+const CHARGE_TIME := 0.22 # s antes do disparo em que o cristal "carrega" (so visual)
+const AIM_SPEED := 9.0 # resposta do giro do mecanismo para o alvo (1/s)
 
 var level := 1
 var target: Node3D
 var _cooldown := 0.0
 var _retarget := 0.0
-var _crystal: MeshInstance3D
-var _crown: Node3D
-var _ring: MeshInstance3D
+var _visual: Node3D # raiz do modelo do nivel atual (refeita a cada melhoria)
+var _head: Node3D # mecanismo que gira (yaw) para o alvo
+var _rig: Node3D # recua no disparo
+var _crystal: MeshInstance3D # origem visual da lasca
+var _orbit: Node3D # L3: lascas orbitando o cristal
 var range_ring: MeshInstance3D # raio = stats().range, o mesmo valor da busca de alvo
 var _glow := 0.0 # Spec 014: 0 dia .. 1 noite (so apresentacao)
-var _glow_mats: Array[StandardMaterial3D] = []
+var _glow_mats: Array[StandardMaterial3D] = [] # [cristal, runas]
+var _time := 0.0
+var _flash := 0.0 # 1 no disparo, decai (escala/brilho do cristal)
+var _recoil := 0.0
+var _idle_yaw := 0.0
 
 func _ready() -> void:
 	add_to_group("defense_tower")
@@ -57,11 +72,17 @@ func _ready() -> void:
 	obstacle.height = 2.4
 	obstacle.avoidance_enabled = true
 	add_child(obstacle)
-	_build_visual()
+	var crystal_mat := TowerForge.glow_material()
+	var rune_mat := TowerForge.glow_material()
+	rune_mat.emission = TowerForge.RUNE_EMISSION
+	_glow_mats.assign([crystal_mat, rune_mat])
+	# O mecanismo comeca apontando para longe do Refugio (para fora do vale).
+	_idle_yaw = atan2(global_position.x, global_position.z + 14.0) if is_inside_tree() else 0.0
 	range_ring = RangeRing.new()
 	range_ring.name = "RangeRing"
 	add_child(range_ring)
 	_apply_level_visual()
+	set_night_glow(_glow)
 	range_ring.set_radius(stats().range) # RF-CMB-007: mesmo valor da logica
 
 func stats() -> Dictionary:
@@ -80,7 +101,14 @@ func upgrade() -> void:
 	_apply_level_visual()
 	range_ring.set_radius(stats().range) # RF-CMB-007: mesmo valor da logica
 	print("[DEFESA] Torre melhorada para o nivel %d" % level)
-	CombatFX.ring(self, global_position, Color("e9a23b"), 2.4, 0.6) # melhoria: anel ambar
+	# 5.0: o novo modelo "cresce" do plinto, lascas jade sobem e um anel ambar
+	# marca a melhoria (so apresentacao, ~0,5 s).
+	if is_inside_tree():
+		CombatFX.ring(self, global_position, Color("e9a23b"), 2.4, 0.6) # melhoria: anel ambar
+		CombatFX.burst(self, _crystal.global_position, CRYSTAL, 12)
+		CombatFX.pillar(self, global_position, CRYSTAL, 4.5, 0.7)
+	_visual.scale = Vector3(1.0, 0.82, 1.0)
+	_visual.create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).tween_property(_visual, "scale", Vector3.ONE, 0.45)
 
 static func is_valid_target(body) -> bool:
 	return is_instance_valid(body) and body.is_inside_tree() and body.is_in_group("wave_enemy") \
@@ -106,6 +134,7 @@ func _process(delta: float) -> void:
 	range_ring.position.y = RangeRing.LIFT - position.y # rente ao chao, nao a base
 	range_ring.set_strength(ring_alpha_target(), delta)
 	_update_target_mark(delta)
+	_animate(delta)
 
 # Spec 019: anel jade fino sob o inimigo que esta torre mira (so leitura; o alvo
 # continua sendo escolhido por _find_target). Fica no mundo, nao no inimigo.
@@ -159,17 +188,20 @@ func _find_target() -> Node3D:
 # alvo ainda for valido (sem fisica balistica, sem colisao).
 # Spec 019: lasca jade facetada apontada para o alvo, com 2 ecos de rastro e
 # faisca no impacto. O tempo de voo (BOLT_TIME) e o instante do dano nao mudam.
+# 5.0: sai do cristal do mecanismo (que ja aponta para o alvo), com faisca na
+# boca, recuo e clarao do cristal no MESMO quadro do disparo real.
 func _fire(foe: Node3D) -> void:
 	get_tree().call_group("audio_director", "play", "tower_shot") # 4.0 (com intervalo minimo)
 	var damage: float = stats().damage
 	var bolt := MeshInstance3D.new()
 	bolt.mesh = CombatFX.shard_mesh()
-	var bolt_mat := _material(Color("c9fbe6"), true)
-	bolt_mat.emission_energy_multiplier = _glow_energy()
+	var bolt_mat := _material(Color("8fe8c4"), true)
+	bolt_mat.emission_energy_multiplier = 0.5 + 0.8 * _glow
 	bolt.material_override = bolt_mat
 	bolt.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	bolt.scale = Vector3(1.6, 3.2, 1.6)
 	get_parent().add_child(bolt)
+	_aim_now(foe) # o disparo sai na direcao certa mesmo se o alvo acabou de entrar
 	var start := _crystal.global_position
 	bolt.global_position = start
 	var aim := foe.global_position + Vector3(0, 0.9, 0)
@@ -194,13 +226,9 @@ func _fire(foe: Node3D) -> void:
 		te.tween_interval(0.03 * (k + 1))
 		te.tween_property(echo, "global_position", aim, BOLT_TIME)
 		te.tween_callback(echo.queue_free)
-	var pulse := _crystal.create_tween()
-	_crystal.scale *= 1.25
-	pulse.tween_property(_crystal, "scale", _crystal_scale(), 0.2)
-
-# ---------------------------------------------------------------------------
-# Visual low-poly: base de pedra, postes de madeira, cristal no topo.
-# ---------------------------------------------------------------------------
+	CombatFX.hit_spark(self, start, CRYSTAL, 3) # faisca na boca do mecanismo
+	_flash = 1.0
+	_recoil = 1.0
 
 func _material(color: Color, glow := false) -> StandardMaterial3D:
 	var m := StandardMaterial3D.new()
@@ -212,97 +240,100 @@ func _material(color: Color, glow := false) -> StandardMaterial3D:
 		m.emission_energy_multiplier = 0.8
 	return m
 
-func _part(mesh: Mesh, pos: Vector3, mat: Material, parent: Node3D = self) -> MeshInstance3D:
+# ---------------------------------------------------------------------------
+# Visual (Design Overhaul 5.0): modelo do nivel + animacao de apresentacao.
+# ---------------------------------------------------------------------------
+
+## Monta o modelo do nivel atual (malhas compartilhadas do TowerForge; so os
+## dois materiais de brilho sao desta torre). Chamado no _ready e a cada melhoria.
+func _apply_level_visual() -> void:
+	var keep_yaw := _head.rotation.y if is_instance_valid(_head) else _idle_yaw
+	if is_instance_valid(_visual):
+		remove_child(_visual)
+		_visual.queue_free()
+	var p := TowerForge.parts(level)
+	var toon := TowerForge.material()
+	_visual = Node3D.new()
+	_visual.name = "TowerVisual"
+	add_child(_visual)
+	_visual.add_child(_mesh("Body", p.body, toon, true))
+	_visual.add_child(_mesh("Runes", p.glow, _glow_mats[1], false))
+	_head = Node3D.new()
+	_head.name = "Head"
+	_head.position.y = p.head_y
+	_head.rotation.y = keep_yaw
+	_visual.add_child(_head)
+	_rig = Node3D.new()
+	_rig.name = "Rig"
+	_head.add_child(_rig)
+	_rig.add_child(_mesh("Mechanism", p.head, toon, true))
+	if p.head_glow != null:
+		_rig.add_child(_mesh("MechanismRunes", p.head_glow, _glow_mats[1], false))
+	_crystal = _mesh("Crystal", p.crystal, _glow_mats[0], false)
+	_crystal.position = p.crystal_pos
+	_rig.add_child(_crystal)
+	_orbit = null
+	if p.orbit:
+		_orbit = Node3D.new()
+		_orbit.name = "Orbit"
+		_crystal.add_child(_orbit)
+		for i in 3:
+			var a := TAU * i / 3.0
+			var shard := _mesh("Shard%d" % i, p.orbit_mesh, _glow_mats[0], false)
+			shard.position = Vector3(sin(a) * 0.36, 0.12 * sin(a * 2.0), cos(a) * 0.36)
+			_orbit.add_child(shard)
+	_crystal.scale = _crystal_scale()
+
+func _mesh(label: String, mesh: Mesh, mat: Material, shadow: bool) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
+	mi.name = label
 	mi.mesh = mesh
-	mi.position = pos
 	mi.material_override = mat
-	parent.add_child(mi)
+	if not shadow:
+		mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	return mi
 
-func _cylinder(top: float, bottom: float, height: float, sides := 7) -> CylinderMesh:
-	var c := CylinderMesh.new()
-	c.top_radius = top
-	c.bottom_radius = bottom
-	c.height = height
-	c.radial_segments = sides
-	c.rings = 1
-	return c
+## Gira o mecanismo direto para o alvo (no instante do disparo real).
+func _aim_now(foe: Node3D) -> void:
+	var local := _visual.to_local(foe.global_position)
+	_head.rotation.y = atan2(local.x, local.z)
 
-# Spec 017A: torre facetada (mesma silhueta, alturas e partes de antes): base de
-# pedra em 2 niveis, 3 postes de madeira, coroa, anel ambar (L2+) e cristal jade.
-# _crystal, _ring, _crown e _glow_mats continuam com o mesmo papel.
-func _build_visual() -> void:
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 4013
-	var tones := [Palette.STONE_LIGHT, Palette.STONE, Palette.STONE_DARK]
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var paint_stone := func(c: Vector3, n: Vector3) -> Color:
-		if c.y > 0.5 and c.y < 0.62 and n.y < 0.7:
-			return Facets.facet_shade(Palette.JADE_DARK, n) # friso jade
-		return Facets.by_height(tones, n, c.y, 0.0, 1.05, c.x + c.z)
-	Facets.loft(st, [
-		Facets.ring(8, 0.95, -0.02, rng, 0.03, PI / 8.0),
-		Facets.ring(8, 0.88, 0.5, rng, 0.03, PI / 8.0),
-		Facets.ring(8, 0.8, 0.6, rng, 0.02, PI / 8.0),
-		Facets.ring(8, 0.72, 0.62, rng, 0.02, 0.1),
-		Facets.ring(8, 0.64, 1.0, rng, 0.02, 0.1),
-		Facets.ring(8, 0.7, 1.06, rng, 0.02, 0.1),
-	], true, null, paint_stone)
-	var paint_wood := func(c: Vector3, n: Vector3) -> Color:
-		return Facets.by_height([Palette.WOOD, Palette.WOOD, Palette.WOOD_DARK], n, c.y, 0.9, 2.5, c.x)
-	for i in 3:
-		var a := TAU * i / 3.0
-		var foot := Vector3(sin(a) * 0.5, 1.0, cos(a) * 0.5)
-		var head := Vector3(sin(a) * 0.36, 2.45, cos(a) * 0.36)
-		var basis := Basis(Quaternion(Vector3.UP, (head - foot).normalized()))
-		Facets.loft(st, [Facets.ring(5, 0.12, 0.0, rng, 0.05, a, 0.0, Transform3D(basis, foot)),
-			Facets.ring(5, 0.1, (head - foot).length(), rng, 0.05, a, 0.0, Transform3D(basis, foot))], true, null, paint_wood)
-	var body := MeshInstance3D.new()
-	body.mesh = st.commit()
-	body.material_override = Palette.toon(0.3, 0.12)
-	add_child(body)
-	_crown = Node3D.new()
-	_crown.position.y = 2.5
-	add_child(_crown)
-	st = SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	Facets.loft(st, [Facets.ring(7, 0.44, -0.1, rng, 0.03), Facets.ring(7, 0.6, 0.08, rng, 0.03), Facets.ring(7, 0.56, 0.12, rng, 0.02)], true, true, paint_wood)
-	_part(st.commit(), Vector3.ZERO, Palette.toon(0.3, 0.1), _crown)
-	st = SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var paint_gold := func(_c: Vector3, n: Vector3) -> Color:
-		return Facets.facet_shade(Palette.AMBER, n)
-	Facets.loft(st, [Facets.ring(8, 0.68, -0.05, rng, 0.0), Facets.ring(8, 0.66, 0.05, rng, 0.0)], true, true, paint_gold)
-	_ring = _part(st.commit(), Vector3(0, 0.14, 0), Palette.toon(0.3, 0.2), _crown)
-	# Cristal jade facetado (bipiramide), centrado na origem para o pulso.
-	st = SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var paint_gem := func(c: Vector3, n: Vector3) -> Color:
-		var col := Palette.JADE_DARK.lerp(Palette.JADE_LIGHT, clampf((c.y + 0.45) / 0.95, 0.0, 1.0))
-		return col.lightened(0.1) if fposmod(atan2(n.z, n.x) / TAU * 6.0, 2.0) < 1.0 else col.darkened(0.08)
-	Facets.loft(st, [Facets.ring(6, 0.27, -0.05, rng, 0.04), Facets.ring(6, 0.25, 0.12, rng, 0.04, 0.1)],
-		Vector3(0.02, 0.55, 0), Vector3(0, -0.45, 0), paint_gem)
-	var glow := Palette.toon_glow(CRYSTAL, 0.18, 0.4)
-	_crystal = _part(st.commit(), Vector3(0, 0.62, 0), glow, _crown)
-	_glow_mats.assign([glow])
+## So apresentacao: giro para o alvo (ou varredura lenta sem alvo), pulso do
+## cristal, carga antes do disparo (le o _cooldown, nao o altera), clarao e recuo.
+func _animate(delta: float) -> void:
+	_time += delta
+	var foe: Node3D = target if is_valid_target(target) else null
+	var desired := _idle_yaw + 0.55 * sin(_time * 0.35 + get_instance_id() % 7)
+	var speed := 1.6
+	if foe != null:
+		var local := _visual.to_local(foe.global_position)
+		desired = atan2(local.x, local.z)
+		speed = AIM_SPEED
+	_head.rotation.y = lerp_angle(_head.rotation.y, desired, 1.0 - exp(-speed * delta))
+	var charge := 0.0
+	if foe != null and _cooldown < CHARGE_TIME and DayNightManager.can_play():
+		charge = 1.0 - _cooldown / CHARGE_TIME
+	_flash = move_toward(_flash, 0.0, delta / 0.2)
+	_recoil = move_toward(_recoil, 0.0, delta / 0.18)
+	var kick := _recoil * _recoil
+	_rig.position.z = -0.09 * kick
+	_rig.rotation.x = -0.07 * kick
+	_crystal.scale = _crystal_scale() * (1.0 + 0.25 * _flash + 0.08 * charge + 0.025 * sin(_time * 2.4))
+	_crystal.rotation.y += delta * (0.5 + 2.5 * charge)
+	if _orbit != null:
+		_orbit.rotation.y += delta * (1.1 + 2.0 * charge)
+	var base := lerpf(CRYSTAL_ENERGY.x, CRYSTAL_ENERGY.y, _glow)
+	_glow_mats[0].emission_energy_multiplier = base * (1.0 + 0.05 * sin(_time * 2.4)) + 0.45 * charge + 0.5 * _flash
 
-# Spec 014 RF-CEU-009: a noite o cristal e o disparo brilham mais. So visual:
-# dano, alcance, cadencia e alvo nao leem isto.
+# Spec 014 RF-CEU-009: a noite o cristal, as runas e o disparo brilham mais.
+# So visual: dano, alcance, cadencia e alvo nao leem isto.
 func set_night_glow(f: float) -> void:
 	_glow = f
-	for m in _glow_mats:
-		m.emission_energy_multiplier = _glow_energy()
+	if _glow_mats.size() < 2:
+		return
+	_glow_mats[0].emission_energy_multiplier = lerpf(CRYSTAL_ENERGY.x, CRYSTAL_ENERGY.y, f)
+	_glow_mats[1].emission_energy_multiplier = lerpf(RUNE_ENERGY.x, RUNE_ENERGY.y, f)
 
-func _glow_energy() -> float:
-	return 0.8 + 1.4 * _glow
-
+## Cada nivel ja tem o proprio cristal (maior a cada nivel); a escala base e 1.
 func _crystal_scale() -> Vector3:
-	return Vector3.ONE * (1.0 + 0.3 * (level - 1))
-
-# Nivel visivel: cristal maior, anel dourado (L2+) e torre mais alta (L3).
-func _apply_level_visual() -> void:
-	_crystal.scale = _crystal_scale()
-	_ring.visible = level >= 2
-	_crown.position.y = 2.5 + (0.4 if level >= 3 else 0.0)
+	return Vector3.ONE
