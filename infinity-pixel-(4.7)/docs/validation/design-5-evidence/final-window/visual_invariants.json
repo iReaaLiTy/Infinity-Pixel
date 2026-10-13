@@ -1,0 +1,19 @@
+{
+	"failed": [],
+	"passed": [
+		"Navmesh com o mesmo hash da linha de base (4834ed6228ce)",
+		"arena_collision.tscn com o mesmo hash",
+		"ArenaCollision com 66 solidos (66)",
+		"Navmesh carregada com os mesmos vertices e poligonos",
+		"Grupo navigation_source igual (novos: [])",
+		"Todos os 87 corpos estaticos iguais: camada, mascara, transform, formas (diferencas: [])",
+		"Visuais lidos por build_collisions.gd intocados (diferencas: [])",
+		"Posicoes de gameplay iguais (44 itens; diferencas: [])",
+		"RefugeArt sem nenhum corpo fisico",
+		"RefugeArt fora de navigation_source",
+		"Nenhuma peca alta sem solido no chao andavel []",
+		"ValleyArt sem corpo fisico e fora de navigation_source",
+		"ValleyArt: nenhum vertice acima de 0,3 m fora de solido na area andavel (197568 vertices; soltos {  })",
+		"API do ponto de defesa preservada (preview_ring, build, tower)"
+	]
+}

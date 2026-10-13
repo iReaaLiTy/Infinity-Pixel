@@ -1,0 +1,219 @@
+﻿[
+    {
+        "suite":  "ally_combat",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "attack_direction",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "build_heal",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "combat_balance",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "combat_collect",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "creature_motion",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "day_cycle",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "day_cycle_real",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "defense_economy",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "domestication_regression",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "gameplay_stability",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "healing_actions",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "inventory_ui",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "navigation_contracts",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "night_enemy_visual",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "physics_contracts",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "player_facing",
+        "mode":  "window",
+        "exit":  1,
+        "passed":  false,
+        "timeout":  false
+    },
+    {
+        "suite":  "player_health",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "settings_ui",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "sky_cycle",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "territory",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "tutorial",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_invariants",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_overhaul3",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_overhaul4",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "world_layout",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "gameplay5",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "tower_layout5",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "design5",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "acceptance",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "main_menu",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]

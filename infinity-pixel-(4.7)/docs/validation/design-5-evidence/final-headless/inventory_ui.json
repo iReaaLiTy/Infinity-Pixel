@@ -1,0 +1,31 @@
+{
+	"failed": [],
+	"passed": [
+		"I abre o inventario",
+		"Cartao central com ~70-80% da largura (1000 de 1280)",
+		"Cartao inteiro dentro da tela e centralizado",
+		"Ao abrir, o foco do teclado vai para FECHAR",
+		"Tres abas; abre em RECURSOS",
+		"Cabecalho MOCHILA DO EXPLORADOR",
+		"Nenhum texto cortado em nenhuma aba []",
+		"Teclas 2/3 trocam de aba; sem aliados: estado vazio",
+		"Clique na aba troca a pagina sem fechar nem atacar",
+		"Indicador: o mundo continua em movimento",
+		"Inventario aberto nao pausa (contrato 013D)",
+		"Clique fora do cartao fecha sem atacar",
+		"Clique dentro do cartao nao fecha nem ataca",
+		"ESC fecha o inventario sem pausar",
+		"Fechar solta o foco do teclado",
+		"20x I: estado coerente, um painel so",
+		"Madeira e Pedra no inventario",
+		"Recursos insuficientes: 'faltam' e CONSTRUIR desabilitado",
+		"Defesa: 40 Pontos, 0 de 6 torres",
+		"CONSTRUIR no inventario inicia a construcao e fecha o painel",
+		"Enter no FECHAR focado fecha o inventario",
+		"Dois aliados: dois cartoes, sem estado vazio",
+		"Cartao mostra vida e estado reais (47/80 FICAR; SEGUINDO)",
+		"Estado do aliado atualiza ao vivo",
+		"1600x900 e 1920x1080: cartao inteiro, 70-82%, sem texto cortado",
+		"Botao FECHAR fecha sem atacar"
+	]
+}

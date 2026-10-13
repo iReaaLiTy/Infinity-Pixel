@@ -1,0 +1,16 @@
+﻿[
+    {
+        "suite":  "player_facing",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "player_facing",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]

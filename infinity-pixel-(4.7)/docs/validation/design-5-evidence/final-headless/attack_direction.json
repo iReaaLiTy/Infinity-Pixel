@@ -1,0 +1,18 @@
+{
+	"failed": [],
+	"passed": [
+		"8 direcoes: virado para o dinossauro, cursor atras, acerta ele (8/8, maior desvio 0.0 graus)",
+		"O modelo termina virado para o ultimo golpe (sem giro descontrolado)",
+		"Arvore a frente, cursor atras: acerta, de 3 lados (3/3)",
+		"Arvore: golpe na direcao do tronco (maior desvio 0.0 graus)",
+		"Rocha na diagonal a frente, cursor atras: acerta (45 -> 30)",
+		"Rocha colada de lado (60 graus): a borda dela esta a frente e leva o golpe",
+		"Fora do alcance (4,5 m a frente): sem dano e com aviso",
+		"Alvo a frente leva o golpe; o vizinho ao lado nao",
+		"Dois alvos a frente: so o mais alinhado leva o golpe (um alvo por golpe)",
+		"Alvo atras com o cursor sobre ele: nao e atingido e o heroi nao vira",
+		"Aliado e Refugio nao sao atingidos pelo golpe",
+		"Cooldown: segundo clique imediato nao causa dano extra",
+		"Cursor a frente, atras e dos lados: 4 golpes iguais na direcao do heroi"
+	]
+}

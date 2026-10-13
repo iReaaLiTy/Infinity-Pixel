@@ -1,0 +1,24 @@
+{
+  "failed": [],
+  "metrics": {
+    "target_switches": 0,
+    "turn_one_frame": 0.133333340287209
+  },
+  "passed": [
+    "Territorial ocioso permanece estavel por 3 s",
+    "Alvos quase equidistantes nao causam alternancia continua",
+    "Ameaca claramente mais proxima ainda pode assumir prioridade",
+    "Virada limitada por quadro, sem salto instantaneo",
+    "Sem deslocamento real, pernas nao caminham por velocidade residual",
+    "Dano negativo nao cura criatura",
+    "Ataque guardado nao dispara durante construcao",
+    "Ataque guardado nao dispara durante domesticacao",
+    "Amanhecer durante queda do recurso nao o esconde depois",
+    "Clique real durante a recuperacao ataca uma vez e cancela (RF-TER-005)",
+    "A mesma segurada de E nao recomeca o marco nem domestica",
+    "Nova segurada de E recomeca a recuperacao do zero",
+    "Clique real com E na domesticacao nao ataca nem consome cooldown",
+    "Clique real durante o posicionamento nao ataca",
+    "Sem E e sem construcao, um clique = um golpe"
+  ]
+}

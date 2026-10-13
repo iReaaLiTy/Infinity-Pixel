@@ -1,0 +1,33 @@
+{
+	"failed": [],
+	"passed": [
+		"Marca JADEFALL e subtitulo GUARDIÕES DO REFÚGIO",
+		"Botoes reais presentes; sem CONTINUAR (nao ha save)",
+		"Hierarquia do menu: JOGAR > TUTORIAL > demais opcoes (mesmo tamanho)",
+		"Cada botao do menu tem icone proprio",
+		"Diorama com dinossauros em vitrine e sem gameplay (sem corpos nem navegacao)",
+		"show_menu() repetido mantem um unico fundo (bug corrigido)",
+		"Configuracoes na tabua de pedra do 3.0",
+		"FossilArt: nada acima de 0,3 m e sem colisao",
+		"Cranios nos estandartes do Refugio",
+		"Modelo novo com as partes nomeadas (paleta e testes)",
+		"Cauda com pivo na raiz; corpo em malha esculpida",
+		"Cabeca/pescoco animam sem mover o corpo fisico",
+		"Guardioes: mascara de osso e colar (silhueta propria)",
+		"Guardiao domesticado: perde a mascara, ganha coleira; origem registrada",
+		"Domesticar continua com vida cheia e SEGUINDO (regra intacta)",
+		"Aliados juntos: so o aliado em foco mostra o rotulo (1 visiveis)",
+		"Aliado ferido perto aparece, menor que o em foco",
+		"Texto do rotulo inalterado (so visibilidade/tamanho)",
+		"Dica perto do aliado com a tecla F desenhada",
+		"Anel de alcance escondido longe da torre",
+		"Anel visivel perto, com o raio real da torre",
+		"Inicio da noite: vinheta violeta curta",
+		"Invasor: espinhos dorsais na paleta noturna",
+		"Vinheta some sozinha",
+		"Derrota deixa restos visuais (sem script)",
+		"Restos somem sozinhos em ~1,3 s",
+		"Player: chapeu, capa, mochila, membros e marcador de direcao",
+		"Conquista de territorio: coluna de luz jade"
+	]
+}
