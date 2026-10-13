@@ -82,13 +82,18 @@ func use_on(target: Node3D) -> bool:
 	var label := Label3D.new()
 	label.text = "+%d HP" % int(recovered)
 	label.modulate = Color("74e3b6")
-	label.font_size = 42
+	label.font_size = 64
+	label.outline_size = 12
+	label.outline_modulate = Color(0.04, 0.09, 0.07, 0.9)
+	label.no_depth_test = true
+	label.pixel_size = 0.011
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	get_parent().add_child(label)
 	label.global_position = target.global_position + Vector3(0, 2.5, 0)
 	var tween := label.create_tween().set_parallel(true)
 	tween.tween_property(label, "position:y", label.position.y + 0.7, 0.8)
 	tween.tween_property(label, "modulate:a", 0.0, 0.8)
+	tween.tween_property(label, "outline_modulate:a", 0.0, 0.8)
 	tween.chain().tween_callback(label.queue_free)
 	changed.emit()
 	notice.emit("Companheiro recuperou +%d HP" % int(recovered))

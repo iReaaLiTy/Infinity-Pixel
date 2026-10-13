@@ -85,6 +85,9 @@ func _ready() -> void:
 	var cooldown: Timer = player.get_node("AttackCooldownTimer")
 	cooldown.stop()
 	await frames(3)
+	# Gameplay 5.0: com o cursor oculto o jogador nao ve os paineis da HUD; o
+	# clique sobre eles atravessa e ataca. Com a mochila aberta (cursor visivel),
+	# o clique e da interface e nao ataca.
 	var panel: PanelContainer = app.hud.find_children("*", "PanelContainer", true, false)[0]
 	var click := InputEventMouseButton.new()
 	click.button_index = MOUSE_BUTTON_LEFT
@@ -92,7 +95,16 @@ func _ready() -> void:
 	click.position = panel.get_global_rect().get_center()
 	get_viewport().push_input(click, true)
 	await frames(3)
-	check(cooldown.is_stopped(), "Clique em painel HUD nao inicia ataque")
+	check(not cooldown.is_stopped(), "Cursor oculto: clique sobre painel da HUD atravessa e ataca")
+	cooldown.stop()
+	app.toggle_inventory()
+	await frames(2)
+	click.position = app.hud.inventory_panel.get_global_rect().get_center()
+	get_viewport().push_input(click, true)
+	await frames(3)
+	check(cooldown.is_stopped(), "Mochila aberta (cursor visivel): clique no painel nao inicia ataque")
+	app.toggle_inventory()
+	await frames(2)
 	app.pause_game()
 	app.show_controls(app._show_pause_menu)
 	check(get_tree().paused and app._is_showing_controls(), "Controles da pausa abre mantendo pausa")

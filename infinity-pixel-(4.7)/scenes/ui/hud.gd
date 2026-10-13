@@ -162,7 +162,9 @@ func build(main: Node, game_world: Node3D) -> void:
 	# e clicar na interface — o painel consome o clique e o Player nao ataca.
 	for p in self.find_children("*", "PanelContainer", true, false):
 		p.mouse_filter = Control.MOUSE_FILTER_STOP
+		_gameplay_click_targets.append(p)
 	build_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	_gameplay_click_targets.append(build_button)
 	_build_inventory_panels() # Spec 013D (depois do _ignore_mouse: botoes clicaveis)
 	# Spec 013B: a HUD so exibe os pontos (fonte: DefenseEconomy do mundo).
 	var economy = world.get_node("DefenseEconomy")
@@ -1456,6 +1458,20 @@ func _refresh_defense_info() -> void:
 		if icon != null:
 			icon.queue_redraw()
 
+# Gameplay 5.0: com o cursor oculto, um clique sobre um painel da HUD seria
+# engolido sem o jogador ver o cursor (ou apertaria CONSTRUIR as cegas). Os
+# paineis da partida so capturam o mouse com o cursor visivel.
+var _gameplay_click_targets: Array[Control] = []
+var _pointer_capture := true
+
+func set_pointer_capture(on: bool) -> void:
+	if on == _pointer_capture:
+		return
+	_pointer_capture = on
+	for c in _gameplay_click_targets:
+		if is_instance_valid(c):
+			c.mouse_filter = Control.MOUSE_FILTER_STOP if on else Control.MOUSE_FILTER_IGNORE
+
 var _elixir_status: Label
 var _elixir_craft: Button
 var _elixir_hint: Label
@@ -1484,11 +1500,17 @@ func _build_elixir_card(parent: Node) -> void:
 	_elixir_craft = app._button(row, "FABRICAR", func(): world.get_node("JadeElixir").craft(); _refresh_inventory())
 	_elixir_craft.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	world.get_node("JadeElixir").changed.connect(_refresh_inventory)
-	_elixir_hint = app._label("", 14, UiArt.JADE_LIGHT)
+	_elixir_hint = app._label("", 17, UiArt.JADE_LIGHT)
+	_elixir_hint.add_theme_constant_override("outline_size", 7)
+	_elixir_hint.add_theme_color_override("font_outline_color", Color(0.04, 0.09, 0.07, 0.92))
 	add_child(_elixir_hint)
-	_elixir_hint.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	_elixir_hint.position = Vector2(-240, -115)
-	_elixir_hint.custom_minimum_size.x = 480
+	_elixir_hint.name = "ElixirHint"
+	# Ancorada embaixo, no centro, acima das linhas de objetivo/dica da HUD.
+	_elixir_hint.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	_elixir_hint.offset_left = -240
+	_elixir_hint.offset_right = 240
+	_elixir_hint.offset_top = -150
+	_elixir_hint.offset_bottom = -124
 	_elixir_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_elixir_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_refresh_elixir()
@@ -1510,7 +1532,7 @@ func _update_elixir_preview() -> void:
 	_elixir_hint.visible = active
 	if is_instance_valid(_elixir_ring): _elixir_ring.visible = active
 	if not active: return
-	_elixir_hint.text = "G · CURAR %s · +%d HP" % [String(target.name), mini(40, int(target.MAX_HP - target.hp))]
+	_elixir_hint.text = "G · ELIXIR DE JADE · curar aliado (+%d HP)" % mini(int(elixir.HEAL), ceili(target.MAX_HP - target.hp))
 	if not is_instance_valid(_elixir_ring):
 		_elixir_ring = MeshInstance3D.new()
 		_elixir_ring.mesh = CombatFX.ring_mesh()

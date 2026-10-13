@@ -239,7 +239,7 @@ func _ready() -> void:
 	app.start_game()
 	await wait(.4)
 	check(get_tree().get_nodes_in_group("audio_director").size()==1, "Menu→jogar mantém um único diretor de áudio")
-	check(DayNightManager.day_started.get_connections().size()==3, "Reinícios não acumulam conexões de dia")
+	check(DayNightManager.day_started.get_connections().size()==4, "Reinícios não acumulam conexões de dia (3 + JadeElixir, Gameplay 5.0)")
 	await wait(1)
 	check(app.audio.music.playing and app.audio.music.stream.loop_mode==1, "Música real tocando em loop")
 	app.audio.set_muted(true)

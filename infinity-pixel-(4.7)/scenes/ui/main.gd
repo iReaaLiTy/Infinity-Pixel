@@ -158,7 +158,7 @@ func show_menu() -> void:
 		world.queue_free()
 	world = null
 	screen = "menu"
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	sync_cursor()
 	_clear_ui()
 	audio.change_music("principal") # 4.0: tema principal (composicao original, antes sem uso)
 	audio.set_ambience("day")
@@ -581,7 +581,6 @@ func start_game() -> void:
 	world = WORLD.instantiate()
 	world.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child(world)
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	var elixir := preload("res://scenes/world/jade_elixir.gd").new()
 	elixir.name = "JadeElixir"
 	world.add_child(elixir)
@@ -670,7 +669,7 @@ func pause_game() -> void:
 	_cancel_channel()
 	screen = "paused"
 	get_tree().paused = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	sync_cursor()
 	audio.set_paused_mix(true)
 	_show_pause_menu()
 
@@ -691,7 +690,7 @@ func resume_game() -> void:
 	_close_overlay()
 	screen = "playing"
 	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	sync_cursor()
 	audio.set_paused_mix(false)
 
 # RF-AGE-016: a derrota continua encerrando a sessao com tela propria.
@@ -700,7 +699,7 @@ func _defeat() -> void:
 	_controls_back = Callable()
 	screen = "defeat"
 	get_tree().paused = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	sync_cursor()
 	audio.result(false)
 	var box := _modal("O refúgio caiu")
 	box.add_child(_label("A base perdeu toda a vida.\nPrepare aliados e lute ao lado deles na próxima tentativa.", 20))
@@ -879,7 +878,7 @@ func tutorial_finished() -> void:
 	_controls_back = Callable()
 	screen = "tutorial_done"
 	get_tree().paused = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	sync_cursor()
 	audio.result(true)
 	var box := _modal("Tutorial concluído!")
 	box.add_child(_label("Você andou, lutou, domesticou, coletou, construiu,\nergueu uma torre, posicionou um aliado e defendeu o Refúgio.\n\nA partida normal começa com 2 guardiões, 3 invasores\nna primeira noite e o relógio correndo desde as 08:00.", 18))
@@ -952,14 +951,24 @@ func show_settings(back: Callable) -> void:
 		show_settings(back))
 	_button(box, "Voltar", _leave_controls)
 
-# One cursor policy for gameplay, clickable UI, focus-loss pause and defeat.
+# Gameplay 5.0: politica unica do cursor. Oculto na partida (o golpe segue o
+# WASD); visivel em menus, pausa, configuracoes, derrota, mochila e menu de
+# construcao. Posicionando uma obra o cursor fica oculto: a pegada colorida da
+# previa e o marcador. cursor_hidden guarda a decisao (o modo sem janela do
+# Godot ignora MOUSE_MODE_HIDDEN, entao os testes leem este campo).
+var cursor_hidden := false
+
 func sync_cursor() -> void:
 	var interactive := screen != "playing" or is_instance_valid(overlay)
-	if is_instance_valid(hud):
+	var live_hud := is_instance_valid(hud) and not hud.is_queued_for_deletion()
+	if live_hud:
 		interactive = interactive or (is_instance_valid(hud.inventory_panel) and hud.inventory_panel.visible) or (is_instance_valid(hud.build_menu_panel) and hud.build_menu_panel.visible)
-	var mode := Input.MOUSE_MODE_VISIBLE if interactive else Input.MOUSE_MODE_HIDDEN
+	cursor_hidden = not interactive
+	if live_hud:
+		hud.set_pointer_capture(interactive)
+	var mode := Input.MOUSE_MODE_HIDDEN if cursor_hidden else Input.MOUSE_MODE_VISIBLE
 	if Input.mouse_mode != mode: Input.mouse_mode = mode
-	if is_instance_valid(world):
+	if is_instance_valid(world) and not world.is_queued_for_deletion():
 		var player = world.get_node("Player")
 		player.ui_blocked = interactive
 		if interactive: player._attack_queued = false
