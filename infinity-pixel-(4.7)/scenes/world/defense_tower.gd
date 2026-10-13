@@ -188,8 +188,8 @@ func _find_target() -> Node3D:
 # alvo ainda for valido (sem fisica balistica, sem colisao).
 # Spec 019: lasca jade facetada apontada para o alvo, com 2 ecos de rastro e
 # faisca no impacto. O tempo de voo (BOLT_TIME) e o instante do dano nao mudam.
-# 5.0: sai do cristal do mecanismo (que ja aponta para o alvo), com faisca na
-# boca, recuo e clarao do cristal no MESMO quadro do disparo real.
+# 5.0: sai do cristal do mecanismo (que ja aponta para o alvo), com clarao do
+# cristal e recuo no MESMO quadro do disparo real (sem criar nos por disparo).
 func _fire(foe: Node3D) -> void:
 	get_tree().call_group("audio_director", "play", "tower_shot") # 4.0 (com intervalo minimo)
 	var damage: float = stats().damage
@@ -226,7 +226,6 @@ func _fire(foe: Node3D) -> void:
 		te.tween_interval(0.03 * (k + 1))
 		te.tween_property(echo, "global_position", aim, BOLT_TIME)
 		te.tween_callback(echo.queue_free)
-	CombatFX.hit_spark(self, start, CRYSTAL, 3) # faisca na boca do mecanismo
 	_flash = 1.0
 	_recoil = 1.0
 
