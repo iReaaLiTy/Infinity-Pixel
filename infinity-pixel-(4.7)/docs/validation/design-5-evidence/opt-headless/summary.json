@@ -1,0 +1,37 @@
+﻿[
+    {
+        "suite":  "design5",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "inventory_ui",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "gameplay5",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_overhaul3",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "physics_contracts",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]

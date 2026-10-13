@@ -1,0 +1,30 @@
+ERROR: Pages in use exist at exit in PagedAllocator: N20RasterizerSceneGLES323GeometryInstanceSurfaceE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:169)
+ERROR: Pages in use exist at exit in PagedAllocator: N20RasterizerSceneGLES321GeometryInstanceGLES3E
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:169)
+ERROR: 2 RID allocations of type 'N5GLES34MeshE' were leaked at exit.
+WARNING: Leaked instance dependency: Bug - did not call instance_notify_deleted when freeing.
+   at: ~Dependency (servers/rendering/storage/utilities.cpp:56)
+WARNING: Leaked instance dependency: Bug - did not call instance_notify_deleted when freeing.
+   at: ~Dependency (servers/rendering/storage/utilities.cpp:56)
+ERROR: 1 shaders of type SceneShaderGLES3 were never freed
+   at: ~ShaderGLES3 (drivers/gles3/shader_gles3.cpp:836)
+ERROR: 1 RID allocations of type 'N5GLES38MaterialE' were leaked at exit.
+WARNING: Leaked instance dependency: Bug - did not call instance_notify_deleted when freeing.
+   at: ~Dependency (servers/rendering/storage/utilities.cpp:56)
+ERROR: 1 RID allocations of type 'N5GLES36ShaderE' were leaked at exit.
+ERROR: Texture with GL ID of 31: leaked 349524 bytes.
+   at: ~Utilities (drivers/gles3/storage/utilities.cpp:77)
+ERROR: Texture with GL ID of 32: leaked 349524 bytes.
+   at: ~Utilities (drivers/gles3/storage/utilities.cpp:77)
+ERROR: Buffer with GL ID of 760: leaked 1020 bytes.
+   at: ~Utilities (drivers/gles3/storage/utilities.cpp:108)
+ERROR: Buffer with GL ID of 761: leaked 204 bytes.
+   at: ~Utilities (drivers/gles3/storage/utilities.cpp:108)
+ERROR: Buffer with GL ID of 764: leaked 15960 bytes.
+   at: ~Utilities (drivers/gles3/storage/utilities.cpp:108)
+ERROR: Buffer with GL ID of 765: leaked 3192 bytes.
+   at: ~Utilities (drivers/gles3/storage/utilities.cpp:108)
+ERROR: 3 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)

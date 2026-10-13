@@ -1,0 +1,16 @@
+﻿[
+    {
+        "suite":  "sky_cycle",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "day_cycle",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]

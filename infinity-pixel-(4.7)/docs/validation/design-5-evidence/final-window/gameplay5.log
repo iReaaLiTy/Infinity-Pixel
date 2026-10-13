@@ -1,0 +1,124 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+PASS: Cursor: menu principal
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Cursor: gameplay
+PASS: wood: alvo frontal, cursor atrás, -15
+PASS: stone: alvo frontal, cursor atrás, -15
+PASS: Cursor atrás: um alvo mais alinhado, lateral e traseiro intactos
+PASS: Cursor à frente ou atrás não muda direção; ataque parado
+PASS: Apenas alvo atrás: golpe frontal não o atinge
+PASS: Ataque diagonal
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+PASS: Ataque noturno preserva dano e orientação
+PASS: Após andar com D e parar: golpe para a direita, cursor atrás
+PASS: Inventário: cursor visível, ataque bloqueado inclusive direto/buffer
+PASS: Fecha inventário: cursor oculto
+PASS: Pausa: sem ataque, cursor visível
+PASS: Configurações: cursor visível
+PASS: Perda de foco pausa e libera cursor
+PASS: Retomar após foco oculta cursor
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[COLETA] +200 wood (total 200)
+[COLETA] +200 stone (total 200)
+PASS: Elixir bloqueado Dia 1
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[DIA/NOITE] Noite defendida (2). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: Dia 2 libera fabricação
+[COLETA] -40 madeira, -24 pedra (restam 160 / 176)
+PASS: Fabricação custa exatamente 40/24
+PASS: Limite de uma poção e ausência de duplicação
+PASS: Abrir/fechar inventário preserva estoque/cooldown
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Vida cheia não consome
+PASS: Inimigo, Player e alvo ausente não consomem
+PASS: Aliado distante não consome
+PASS: Aliado com 1 HP recebe 40; consome exatamente uma
+[DIA/NOITE] Noite 2 comecou (18:00). Estado: NOITE
+[NOITE] Noite 2: onda iniciada com 4 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[DIA/NOITE] Noite defendida (3). Amanheceu: Dia 3, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: Dia 3: primeiro amanhecer ainda em cooldown
+[DIA/NOITE] Noite 3 comecou (18:00). Estado: NOITE
+[NOITE] Noite 3: onda iniciada com 5 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[DIA/NOITE] Noite defendida (4). Amanheceu: Dia 4, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[COLETA] -40 madeira, -24 pedra (restam 120 / 152)
+PASS: Dia 4: segundo amanhecer libera
+@CharacterBody3D@625 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] @CharacterBody3D@625 domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Prioriza aliado ferido mais próximo
+PASS: Cura limitada ao HP máximo; só um aliado
+[DIA/NOITE] Noite 4 comecou (18:00). Estado: NOITE
+[NOITE] Noite 4: onda iniciada com 6 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[DIA/NOITE] Noite defendida (5). Amanheceu: Dia 5, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[DIA/NOITE] Noite 5 comecou (18:00). Estado: NOITE
+[NOITE] Noite 5: onda iniciada com 7 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[DIA/NOITE] Noite defendida (6). Amanheceu: Dia 6, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+PASS: Recursos insuficientes: gasto atômico zero
+[COLETA] +1 wood (total 40)
+[COLETA] +1 stone (total 24)
+[COLETA] -40 madeira, -24 pedra (restam 0 / 0)
+PASS: Não perde oportunidade se não fabricar imediatamente
+PASS: Não ressuscita aliado morto
+PASS: Inventário mostra estoque e bloqueio reais
+[COLETA] +500 wood (total 500)
+[COLETA] +500 stone (total 500)
+[COLETA] -15 madeira, -6 pedra (restam 485 / 494)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 4.0)
+[COLETA] -15 madeira, -6 pedra (restam 470 / 488)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 7.0)
+[COLETA] -15 madeira, -6 pedra (restam 455 / 482)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 10.0)
+[COLETA] -15 madeira, -6 pedra (restam 440 / 476)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 16.0)
+[COLETA] -15 madeira, -6 pedra (restam 425 / 470)
+[CONSTRUCAO] ARMADILHA DE ESPINHOS em (0.0, 0.0, 19.0)
+PASS: Constrói cinco armadilhas válidas e separadas
+PASS: Sexta armadilha bloqueada
+PASS: Sobreposição com armadilha recusada
+PASS: Volume de ativação intacto
+PASS: Armadilha: -15 e 1 de 3 pedras de carga apagada
+PASS: Dica G visível na tela com a cura real (+30)
+PASS: Menu de construção: cursor visível, clique não ataca
+PASS: Posicionando obra: cursor oculto, pegada da prévia como marcador
+[COLETA] -20 madeira, -12 pedra (restam 405 / 458)
+[CONSTRUCAO] FOGUEIRA DE CURA em (7.0, 0.0, -15.0)
+PASS: Clique confirma a fogueira sem atacar
+PASS: Derrota: cursor visível
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Reinício limpa poção, cooldown, dia e armadilhas
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[TUTORIAL] passo 2/13: Vá até o sinal jade
+[TUTORIAL] passo 1/13: Ande pelo Refúgio
+PASS: Tutorial jogável: cursor oculto
+[TUTORIAL] passo 2/13: Vá até o sinal jade
+PASS: Tutorial: golpe frontal acerta o selvagem com o cursor atrás
+RESULT: 46 passed; 0 failed

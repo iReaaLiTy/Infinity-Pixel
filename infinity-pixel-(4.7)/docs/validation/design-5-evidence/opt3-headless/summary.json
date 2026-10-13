@@ -1,0 +1,16 @@
+﻿[
+    {
+        "suite":  "design5",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "defense_economy",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]
