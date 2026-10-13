@@ -45,3 +45,44 @@ Base destruida — DERROTA.
 [NOITE] Noite 1: onda iniciada com 10 inimigos, intervalo de 0.6s.
 [VISUAL DIA/NOITE] 18:00 — por do sol em andamento
 @CharacterBody3D@1138 chegou ao territorio.
+@CharacterBody3D@1165 chegou ao territorio.
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 9
+[PERF] {"draw_calls_avg":692,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":595,"fps_1pct_low":34.1,"fps_avg":65.0,"frame_ms_avg":15.37,"frame_ms_max":51.25,"frames":521,"objects_visible_avg":595,"physics_ms_max_per_s":6.92,"physics_scripts_ms_avg":1.25,"physics_scripts_ms_p99":2.04,"primitives_avg":151407,"process_ms_max_per_s":20.7,"render_cpu_ms_avg":7.94,"render_gpu_ms_avg":10.27,"scripts_ms_avg":2.34,"scripts_ms_p99":4.0,"static_mem_mb":63.8,"video_mem_mb":61.8,"view":"vivo_noite_10_torres"}
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+[DEFESA] Torre construida em SlotWestInner (rota Oeste)
+[DEFESA] Torre construida em SlotEastInner (rota Leste)
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 10 inimigos, intervalo de 0.6s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+@CharacterBody3D@2004 foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 9
+@CharacterBody3D@2006 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 8
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 7
+@CharacterBody3D@2031 chegou ao territorio.
+@CharacterBody3D@2042 foi derrotado.
+[DEFESA] +15 pontos (total 100)
+[NOITE] Inimigo da wave morreu. Restantes: 6
+[ALIADO] DinoDomesticado foi derrotado
