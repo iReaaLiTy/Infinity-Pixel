@@ -122,11 +122,10 @@ func _setup_environment() -> void:
 	env.fog_enabled = true
 	env.fog_light_energy = 1.0
 	env.fog_sky_affect = 0.0
-	# Design 5.0: um pouco mais de contraste e cor (o grao de superficie
-	# escurece as cores em media); dia vivo sem lavar, noite sem estourar.
-	env.adjustment_enabled = true
-	env.adjustment_contrast = 1.07
-	env.adjustment_saturation = 1.06
+	# Design 5.0: sem ajuste de contraste/saturacao do Environment no jogo — no
+	# renderizador Compatibility ele custa uma passada de tela inteira (~0,9 ms de
+	# GPU medidos na Iris Xe, 1920x1080). O volume do meio-dia vem das chaves de luz.
+	env.adjustment_enabled = false
 
 ## Encaixa o visual no horario atual, sem transicao (inicio/reinicio/testes).
 func snap() -> void:

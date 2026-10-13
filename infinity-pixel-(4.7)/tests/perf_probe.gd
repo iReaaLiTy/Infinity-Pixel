@@ -227,21 +227,25 @@ func _ready() -> void:
 		player.global_position = v[1]
 		set_hour(v[2])
 		results.append(await measure(v[0]))
-	# Design 5.0 (--ablate): quanto custam o grao de superficie e a HUD na vista
-	# padrao das 12:00 (so diagnostico; o jogo nao usa nada disto).
+	# Design 5.0 (--ablate): quanto custam o grao de superficie, o ajuste de cor
+	# e a HUD na vista padrao das 12:00. Configuracoes intercaladas e repetidas
+	# (o ruido da maquina pesa igual em todas). So diagnostico.
 	if ablate:
 		player.global_position = VIEWS[0][1]
 		set_hour(12.0)
 		var finish = load("res://scenes/visuals/surface_finish.gd")
-		for m in finish._cache.values():
-			m.detail_enabled = false
-		results.append(await measure("ablacao_padrao_sem_grao"))
-		for m in finish._cache.values():
-			m.detail_enabled = true
-		app.hud.visible = false
-		results.append(await measure("ablacao_padrao_sem_hud"))
-		app.hud.visible = true
-		results.append(await measure("ablacao_padrao_referencia"))
+		var env: Environment = visual.env
+		var grade0 := env.adjustment_enabled # o estado do jogo (5.0: desligado)
+		var configure := func(grain: bool, grade: bool, hud: bool) -> void:
+			for m in finish._cache.values():
+				m.detail_enabled = grain
+			env.adjustment_enabled = grade
+			app.hud.visible = hud
+		for round_i in 2:
+			for c in [["referencia", true, grade0, true], ["sem_grao", false, grade0, true], ["com_ajuste_cor", true, true, true], ["sem_hud", true, grade0, false], ["sem_nada", false, false, false]]:
+				configure.call(c[1], c[2], c[3])
+				results.append(await measure("ablacao_%s_r%d" % [c[0], round_i + 1]))
+		configure.call(true, grade0, true)
 	# --live: cenarios com o jogo RODANDO (IA, torres, efeitos), nao congelado.
 	# So para medir: torres erguidas direto no ponto, Refugio com vida alta para a
 	# onda maior nao encerrar a partida no meio da medicao.
