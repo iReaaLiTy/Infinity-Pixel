@@ -317,7 +317,7 @@ func _ready() -> void:
 	# [35–38] valores intactos.
 	check(fire.HEAL_AMOUNT == 25.0 and fire.CHANNEL_TIME == 3.0 and fire.RANGE == 2.5 and fire.MAX_CHARGES == 2 and fire.COOLDOWN == 25.0 and Recipes.RECIPES[Recipes.CAMPFIRE].wood == 20 and Recipes.RECIPES[Recipes.CAMPFIRE].stone == 12, "[35] Fogueira: 20/12, +25, 3 s, 2,5 m, 2 cargas, 25 s")
 	var Trap := load("res://scenes/world/spike_trap.gd")
-	check(Trap.DAMAGE == 15.0 and Trap.MAX_CHARGES == 3 and Recipes.RECIPES[Recipes.TRAP].wood == 15 and Recipes.RECIPES[Recipes.TRAP].stone == 6 and Recipes.RECIPES[Recipes.TRAP].limit == 3, "[36] Armadilha: 15/6, 15 de dano, 3 cargas, maximo 3")
+	check(Trap.DAMAGE == 15.0 and Trap.MAX_CHARGES == 3 and Recipes.RECIPES[Recipes.TRAP].wood == 15 and Recipes.RECIPES[Recipes.TRAP].stone == 6 and Recipes.RECIPES[Recipes.TRAP].limit == 5, "[36] Armadilha: 15/6, 15 de dano, 3 cargas, maximo 5 (Gameplay 5.0; era 3)")
 	var tower = world.get_node("DefenseSlots/SlotRuinMeadow").build()
 	await frames(2)
 	check(tower.stats() == tower.LEVELS[0] and economy.reward_per_wave_enemy == 15, "[37] Torre e recompensa da onda inalteradas")

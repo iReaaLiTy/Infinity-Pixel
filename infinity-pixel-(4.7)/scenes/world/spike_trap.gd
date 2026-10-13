@@ -28,6 +28,9 @@ var _hit_this_passage := {} # corpo -> true enquanto estiver sobre a armadilha
 var _spikes: Array[MeshInstance3D] = []
 var _broken := false
 var _spike_mat: StandardMaterial3D # Spec 014: mesma cor, leve brilho a noite
+var _pips: Array[StandardMaterial3D] = [] # Gameplay 5.0: uma pedra acesa por carga
+const PIP_LIT := Color("f0b456")
+const PIP_SPENT := Color("4d4640")
 
 func _ready() -> void:
 	_build_visual()
@@ -71,6 +74,7 @@ func _trigger(enemy: Node3D) -> void:
 	_hit_this_passage[enemy] = true
 	_rearm_left = REARM
 	charges -= 1
+	_update_pips()
 	print_verbose("[ARMADILHA] %s recebeu %.0f (cargas %d/%d)" % [enemy.name, DAMAGE, charges, MAX_CHARGES])
 	enemy.take_damage(DAMAGE)
 	triggered.emit(enemy)
@@ -116,10 +120,11 @@ func _build_visual() -> void:
 		p.material_override = _mat(Color("7a5a3a") if i % 2 == 0 else Color("6a4f37"))
 		p.position = Vector3(0, 0.05, -0.5 + i * 0.33)
 		add_child(p)
+	# Gameplay 5.0: estacas mais altas e grossas (silhueta legivel de longe).
 	var spike := CylinderMesh.new()
 	spike.top_radius = 0.0
-	spike.bottom_radius = 0.07
-	spike.height = 0.3
+	spike.bottom_radius = 0.085
+	spike.height = 0.42
 	spike.radial_segments = 4
 	_spike_mat = _mat(Color("d9c9a8"))
 	_spike_mat.emission_enabled = true
@@ -130,7 +135,7 @@ func _build_visual() -> void:
 			var s := MeshInstance3D.new()
 			s.mesh = spike
 			s.material_override = _spike_mat
-			s.position = Vector3(-0.45 + x * 0.45, 0.24, -0.45 + z * 0.45)
+			s.position = Vector3(-0.45 + x * 0.45, 0.3, -0.45 + z * 0.45)
 			add_child(s)
 			_spikes.append(s)
 	var rock := SphereMesh.new()
@@ -145,6 +150,31 @@ func _build_visual() -> void:
 		r.scale = Vector3(0.26, 0.18, 0.24)
 		r.position = c
 		add_child(r)
+	# Gameplay 5.0: 3 pedras de carga na borda; acesas = armada, apagadas = usadas.
+	var pip := SphereMesh.new()
+	pip.radius = 0.07
+	pip.height = 0.12
+	pip.radial_segments = 6
+	pip.rings = 3
+	for i in MAX_CHARGES:
+		var m := _mat(PIP_LIT)
+		m.emission_enabled = true
+		var mi := MeshInstance3D.new()
+		mi.name = "ChargePip%d" % i
+		mi.mesh = pip
+		mi.material_override = m
+		mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		mi.position = Vector3(-0.28 + i * 0.28, 0.12, 0.68)
+		add_child(mi)
+		_pips.append(m)
+	_update_pips()
+
+func _update_pips() -> void:
+	for i in _pips.size():
+		var lit := i < charges
+		_pips[i].albedo_color = PIP_LIT if lit else PIP_SPENT
+		_pips[i].emission = PIP_LIT
+		_pips[i].emission_energy_multiplier = 0.55 if lit else 0.0
 
 # Spec 014 RF-CEU-010: a noite as pontas ficam levemente claras para a armadilha
 # continuar legivel. Sem luz propria; dano e cargas nao leem isto.
