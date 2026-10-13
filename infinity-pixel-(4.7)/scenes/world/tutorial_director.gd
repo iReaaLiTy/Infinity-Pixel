@@ -38,7 +38,7 @@ const TEXT := {
 	Step.MOVE: ["Ande pelo Refúgio", "Use W A S D para andar e orientar o herói. Ao parar, ele mantém a direção.", "W A S D"],
 	Step.WALK: ["Vá até o sinal jade", "Caminhe até a coluna de luz jade na estrada.", "W A S D"],
 	Step.ATTACK: ["Ataque", "Vire com WASD e clique: o golpe segue a direção em que o herói olha, a cerca de 2 m. O cursor não controla o ataque.", "CLIQUE"],
-	Step.WEAKEN: ["Enfraqueça o selvagem", "Golpeie o dinossauro marcado (4 golpes). Quando aparecer um ARCO VERMELHO no chão à frente dele, recue um passo: ele vai morder. Pare quando surgir o anel jade sob ele.", "CLIQUE · RECUE"],
+	Step.WEAKEN: ["Enfraqueça o selvagem", "Encare o dinossauro marcado com WASD e golpeie (4 golpes). Quando aparecer um ARCO VERMELHO no chão à frente dele, recue um passo: ele vai morder. Pare quando surgir o anel jade sob ele.", "CLIQUE · RECUE"],
 	Step.TAME: ["Domestique", "Fique perto dele e SEGURE E por 2 segundos. Soltar ou se afastar cancela.", "SEGURE E"],
 	Step.WOOD: ["Colete Madeira", "Golpeie árvores de copa amarelada (coletáveis) até juntar 20 Madeira.", "CLIQUE"],
 	Step.STONE: ["Colete Pedra", "Golpeie as rochas com cristais de minério até juntar 12 Pedra.", "CLIQUE"],
