@@ -30,7 +30,7 @@ var channel_bar: ProgressBar
 var hint: Label
 var _cycle_icon: Control # sol / lua ao lado do relogio
 var _cycle_bar: ProgressBar
-var _cycle_fill: StyleBoxFlat
+var _cycle_fill: StyleBox
 var _cycle_night := false
 var _focus_ring: MeshInstance3D # destaque do coletavel ao alcance
 var objective_override := "" # Spec 022: passo do tutorial (vazio = objetivo normal)
@@ -47,88 +47,94 @@ func build(main: Node, game_world: Node3D) -> void:
 	name = "Hud"
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	# Spec 017B/020: vida com icone (jogador / cristal do Refugio) e barras mais
-	# legiveis; os textos continuam os mesmos.
+	# Design 5.0 — VITAIS: medalhao do explorador (brasa) e do Refugio (jade),
+	# cada um com a barra talhada (marcas a cada 10% e "rastro" do dano
+	# recente). Os textos continuam os mesmos ("JOGADOR  100 / 100").
 	var health = VBoxContainer.new()
-	health.add_theme_constant_override("separation", 3)
-	health.custom_minimum_size.x = 220
-	var player_row = HBoxContainer.new()
-	player_row.add_theme_constant_override("separation", 7)
-	player_row.add_child(_hud_icon(&"player", 16))
-	player_text = app._label("JOGADOR  100 / 100", 13, CREAM)
-	player_row.add_child(player_text)
-	health.add_child(player_row)
-	player_bar = _hud_bar(health, EMBER)
-	var gap = Control.new()
-	gap.custom_minimum_size.y = 4
-	health.add_child(gap)
-	var base_row = HBoxContainer.new()
-	base_row.add_theme_constant_override("separation", 7)
-	base_row.add_child(_hud_icon(&"refuge", 16))
-	base_text = app._label("REFÚGIO  100 / 100", 13, CREAM)
-	base_row.add_child(base_text)
-	health.add_child(base_row)
-	base_bar = _hud_bar(health, JADE)
+	health.add_theme_constant_override("separation", 6)
+	var prow := _vital_row(health, &"player", EMBER)
+	_player_medal = prow[0]
+	player_text = prow[1]
+	player_text.text = "JOGADOR  100 / 100"
+	player_bar = prow[2]
+	var brow := _vital_row(health, &"refuge", JADE)
+	_refuge_medal = brow[0]
+	base_text = brow[1]
+	base_text.text = "REFÚGIO  100 / 100"
+	base_bar = brow[2]
 	var left = _hud_panel(self, health)
 	left.name = "HealthPanel"
 	left.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 	left.position = Vector2(16, 14)
-	# Centro: "DIA 1 • 08:58" / "PREPARAÇÃO · Noites: 0" (+ onda a noite).
+	# CICLO: arco do periodo (sol ou lua percorrendo o ceu), "DIA 1 • 08:58" e
+	# "PREPARACAO · Noites: 0" (+ onda e contagem final). So leitura do
+	# DayNightManager: horarios e duracoes nao mudam.
 	var phase = VBoxContainer.new()
 	phase.add_theme_constant_override("separation", 0)
+	_cycle_dial = Control.new()
+	_cycle_dial.name = "CycleDial"
+	_cycle_dial.custom_minimum_size = Vector2(236, 26)
+	_cycle_dial.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_cycle_dial.draw.connect(_draw_cycle_dial)
+	phase.add_child(_cycle_dial)
 	var phase_row = HBoxContainer.new()
 	phase_row.alignment = BoxContainer.ALIGNMENT_CENTER
 	phase_row.add_theme_constant_override("separation", 8)
 	phase.add_child(phase_row)
 	_cycle_icon = _hud_icon(&"cycle", 18)
+	_cycle_icon.visible = false # 5.0: o sol/lua agora anda no arco acima
 	phase_row.add_child(_cycle_icon)
-	phase_text = app._label("DIA 1", 17, GOLD)
+	phase_text = app._label("DIA 1", 19, GOLD)
 	phase_text.add_theme_font_override("font", app._display_font())
+	phase_text.add_theme_color_override("font_outline_color", Color("1d1006"))
+	phase_text.add_theme_constant_override("outline_size", 4)
 	phase_row.add_child(phase_text)
 	phase_row.add_child(app._label("•", 15, GOLD))
-	clock_text = app._label("08:00", 17, CREAM)
+	clock_text = app._label("08:00", 19, CREAM)
 	clock_text.add_theme_font_override("font", app._display_font())
+	clock_text.add_theme_color_override("font_outline_color", Color("0b1a15"))
+	clock_text.add_theme_constant_override("outline_size", 4)
 	phase_row.add_child(clock_text)
-	wave_text = app._label("PREPARAÇÃO  ·  Noites: 0", 12, CREAM)
+	wave_text = app._label("PREPARAÇÃO  ·  Noites: 0", 12, Color(CREAM, .85))
 	wave_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	phase.add_child(wave_text)
 	onda_text = app._label("", 12, Color("f0c9a0"))
 	onda_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	onda_text.hide()
 	phase.add_child(onda_text)
-	countdown_text = app._label("", 14, EMBER)
+	countdown_text = app._label("", 15, EMBER)
 	countdown_text.add_theme_font_override("font", app._display_font())
+	countdown_text.add_theme_color_override("font_outline_color", Color("1d1006"))
+	countdown_text.add_theme_constant_override("outline_size", 4)
 	countdown_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	countdown_text.hide()
 	phase.add_child(countdown_text)
-	# Spec 017B/020: quanto do dia (ou da noite) ja passou — ambar de dia,
-	# violeta a noite. So leitura do DayNightManager.
-	var cycle_gap = Control.new()
-	cycle_gap.custom_minimum_size.y = 4
-	phase.add_child(cycle_gap)
+	# Barra antiga do periodo: continua existindo (o arco le o mesmo valor),
+	# escondida.
 	_cycle_bar = _hud_bar(phase, GOLD)
 	_cycle_bar.custom_minimum_size = Vector2(190, 4)
 	_cycle_bar.max_value = 1.0
-	_cycle_fill = _cycle_bar.get_theme_stylebox("fill") as StyleBoxFlat
+	_cycle_bar.visible = false
+	_cycle_fill = _cycle_bar.get_theme_stylebox("fill")
 	var center = _hud_panel(self, phase)
 	center.name = "PhasePanel"
+	center.get_theme_stylebox("panel").content_margin_top = 4
 	center.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	center.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	center.offset_top = 14
 	center.offset_bottom = 14
-	# Direita: Pontos de Defesa, Madeira e Pedra, icone + numero + legenda curta.
+	# RECURSOS: fichas proprias com hierarquia (Defesa em destaque; Madeira e
+	# Pedra; Territorios e Elixir menores).
 	_build_points_panel(self)
-	# Spec 008 (RF-UI-002): sem tutorial permanente. So objetivo atual + dica de
-	# contexto (alvo/aliado proximo) + barra de canalizacao, num painel compacto
-	# centralizado que cresce conforme o texto.
-	# 3.0: painel mais baixo e elegante: objetivo com marcador de cristal, dica de
-	# acao com a TECLA desenhada (E, F, H, C, clique) e a barra de canalizacao.
+	# CONTEXTO (embaixo, centro): objetivo curto + dica com a TECLA desenhada +
+	# barra de canalizacao. Compacto; a linha da dica e a barra so aparecem
+	# quando ha o que mostrar.
 	var bottom = VBoxContainer.new()
-	bottom.add_theme_constant_override("separation", 4)
+	bottom.add_theme_constant_override("separation", 3)
 	var panel = _hud_panel(self, bottom)
 	panel.name = "ContextPanel"
-	panel.get_theme_stylebox("panel").content_margin_top = 6
-	panel.get_theme_stylebox("panel").content_margin_bottom = 7
+	panel.get_theme_stylebox("panel").content_margin_top = 5
+	panel.get_theme_stylebox("panel").content_margin_bottom = 6
 	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
@@ -138,8 +144,8 @@ func build(main: Node, game_world: Node3D) -> void:
 	obj_row.alignment = BoxContainer.ALIGNMENT_CENTER
 	obj_row.add_theme_constant_override("separation", 8)
 	bottom.add_child(obj_row)
-	obj_row.add_child(UiArt.icon_control(&"defense", 15))
-	objective = app._label("", 15, UiArt.AMBER_LIGHT)
+	obj_row.add_child(UiArt.icon_control(&"defense", 14))
+	objective = app._label("", 14, UiArt.AMBER_LIGHT)
 	objective.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	obj_row.add_child(objective)
 	_hint_row = HBoxContainer.new()
@@ -210,38 +216,186 @@ var territory_text: Label # Spec 015: "1/3"
 var onda_text: Label
 var _resource_items = {} # kind -> Control (posicao do "+N")
 
-# Painel compacto (margens menores que _panel) para a HUD de jogo.
-# Spec 017B/020: vidro verde-escuro com filete jade no topo e sombra leve,
-# o mesmo estilo em todos os paineis da partida.
+var _player_medal: Control
+var _refuge_medal: Control
+var _cycle_dial: Control
+var _elixir_chip: Control
+var _elixir_chip_text: Label
+var _last_base_health := -1.0
+
+# Painel compacto da HUD. Design 5.0: a mesma "pedra talhada" do menu e das
+# telas (chanfro, bisel, filete jade), mais leve e sem cravos; a cor da borda
+# vira alerta (vida baixa, noite) em _update_alerts.
 func _hud_panel(parent: Node, box: Control) -> PanelContainer:
 	var p = PanelContainer.new()
-	# 3.0: pedra escura chanfrada, borda de cima mais grossa; a cor da borda vira
-	# alerta (vida baixa, noite) em _update_alerts.
-	var style := UiArt.stone_panel(0.86, Color("3d6a57"), Vector4(12, 7, 12, 8), 8)
-	style.shadow_size = 5
-	style.shadow_offset = Vector2(0, 2)
-	style.shadow_color = Color(0, 0, 0, .25)
+	var style := UiArt.stone_panel(0.84, Color("3d6a57"), Vector4(12, 8, 12, 9), 8)
+	style.studs = false
+	style.shadow_size = 6.0
+	style.shadow_offset = Vector2(0, 3)
+	style.shadow_color = Color(0, 0, 0, .28)
 	p.add_theme_stylebox_override("panel", style)
 	parent.add_child(p)
 	p.add_child(box)
 	return p
 
+## Barra talhada: trilho escuro chanfrado, preenchimento em degrade com bisel,
+## marcas a cada 10% e o "rastro" claro do dano recente (some em ~0,6 s).
 func _hud_bar(parent: Node, color: Color) -> ProgressBar:
 	var bar = ProgressBar.new()
-	bar.custom_minimum_size.y = 8
+	bar.custom_minimum_size.y = 10
 	bar.show_percentage = false
-	var fill = StyleBoxFlat.new()
-	fill.bg_color = color
-	fill.set_corner_radius_all(4)
-	var back = StyleBoxFlat.new()
-	back.bg_color = Color("12292a")
-	back.border_color = Color("24413b")
-	back.set_border_width_all(1)
-	back.set_corner_radius_all(4)
+	var fill := UiArt.carved(color, Color(0, 0, 0, 0), Vector4.ZERO, 3.0)
+	fill.bg_top = color.lightened(0.32)
+	fill.inner_color = Color(0, 0, 0, 0)
+	fill.shadow_size = 0.0
+	fill.border_width = 0.0
+	fill.chisel = false
+	var back := UiArt.carved(Color("0c1c18"), Color("2c4a40"), Vector4.ZERO, 3.0)
+	back.bg_top = Color("07120f")
+	back.inner_color = Color(0, 0, 0, 0)
+	back.shadow_size = 0.0
+	back.border_width = 1.5
+	back.chisel = false
 	bar.add_theme_stylebox_override("fill", fill)
 	bar.add_theme_stylebox_override("background", back)
+	bar.draw.connect(func(): _draw_bar_overlay(bar))
 	parent.add_child(bar)
 	return bar
+
+func _draw_bar_overlay(bar: ProgressBar) -> void:
+	var s := bar.size
+	if s.x < 40.0:
+		return
+	var frac := clampf(bar.value / maxf(bar.max_value, 0.001), 0.0, 1.0)
+	var ghost: float = bar.get_meta("ghost", frac)
+	if ghost > frac + 0.002:
+		bar.draw_rect(Rect2(s.x * frac, 1.5, s.x * (ghost - frac), s.y - 3.0), Color(1.0, 0.93, 0.8, 0.6))
+	if s.y >= 8.0:
+		for i in range(1, 10):
+			var x := s.x * i / 10.0
+			bar.draw_line(Vector2(x, 2.5), Vector2(x, s.y - 2.5), Color(0, 0, 0, 0.42 if i == 5 else 0.24), 1.0)
+
+## Rastro do dano: fica parado ~0,35 s e depois desce ate o valor atual.
+func _tick_ghost(bar: ProgressBar, delta: float) -> void:
+	var frac := clampf(bar.value / maxf(bar.max_value, 0.001), 0.0, 1.0)
+	var ghost: float = bar.get_meta("ghost", frac)
+	if frac >= ghost:
+		if ghost != frac:
+			bar.set_meta("ghost", frac)
+			bar.queue_redraw()
+		return
+	var hold: float = bar.get_meta("ghost_hold", 0.0) - delta
+	bar.set_meta("ghost_hold", hold)
+	if hold <= 0.0:
+		bar.set_meta("ghost", move_toward(ghost, frac, delta * 0.9))
+	bar.queue_redraw()
+
+func _hurt_bar(bar: ProgressBar, previous_frac: float) -> void:
+	bar.set_meta("ghost", maxf(bar.get_meta("ghost", previous_frac), previous_frac))
+	bar.set_meta("ghost_hold", 0.35)
+
+## Linha dos vitais: medalhao + nome/valor + barra.
+func _vital_row(parent: Node, kind: StringName, color: Color) -> Array:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 9)
+	var medal := Control.new()
+	medal.name = "Medal_" + String(kind)
+	medal.custom_minimum_size = Vector2(40, 40)
+	medal.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	medal.set_meta("flash", 0.0)
+	medal.set_meta("critical", false)
+	medal.draw.connect(func(): _draw_medal(medal, kind, color))
+	row.add_child(medal)
+	var col := VBoxContainer.new()
+	col.add_theme_constant_override("separation", 3)
+	col.alignment = BoxContainer.ALIGNMENT_CENTER
+	var label: Label = app._label("", 14, CREAM)
+	label.add_theme_font_override("font", app._display_font())
+	label.add_theme_color_override("font_outline_color", Color("0b1a15"))
+	label.add_theme_constant_override("outline_size", 3)
+	col.add_child(label)
+	var bar := _hud_bar(col, color)
+	bar.custom_minimum_size = Vector2(198, 11)
+	row.add_child(col)
+	parent.add_child(row)
+	return [medal, label, bar]
+
+## Medalhao de pedra (anel octogonal) com o icone: explorador ou cristal do
+## Refugio. Pisca ao levar dano; em estado critico, o anel pulsa em brasa.
+func _draw_medal(c: Control, kind: StringName, color: Color) -> void:
+	var s := c.size
+	var ctr := s * 0.5
+	var r := minf(s.x, s.y) * 0.5
+	var flash: float = c.get_meta("flash", 0.0)
+	var critical: bool = c.get_meta("critical", false)
+	var oct := func(rad: float) -> PackedVector2Array:
+		var pts := PackedVector2Array()
+		for i in 8:
+			var a := TAU * i / 8.0 + PI / 8.0
+			pts.append(ctr + Vector2(cos(a), sin(a)) * rad)
+		return pts
+	c.draw_colored_polygon(oct.call(r), Color("0a1512"))
+	c.draw_colored_polygon(oct.call(r - 2.0), Color("55645b"))
+	var ring := color
+	if critical:
+		ring = UiArt.EMBER.lerp(Color.WHITE, 0.25 * (0.5 + 0.5 * sin(Time.get_ticks_msec() * 0.008)))
+	c.draw_colored_polygon(oct.call(r - 4.5), ring.darkened(0.15))
+	c.draw_colored_polygon(oct.call(r - 7.0), Color("10261f"))
+	c.draw_line(ctr + Vector2(-r * 0.55, -r * 0.74), ctr + Vector2(r * 0.55, -r * 0.74), Color(1, 1, 1, 0.16), 1.5)
+	if kind == &"refuge":
+		UiArt.crystal(c, Rect2(ctr - Vector2(r * 0.34, r * 0.6), Vector2(r * 0.68, r * 1.2)), 0.6)
+	else:
+		UiArt.icon(c, &"player", Rect2(ctr - Vector2(r * 0.5, r * 0.52), Vector2(r * 1.0, r * 1.04)), color.lightened(0.25))
+	if flash > 0.0:
+		c.draw_colored_polygon(oct.call(r - 1.0), Color(1.0, 0.9, 0.85, 0.45 * flash))
+
+func _flash_medal(medal: Control) -> void:
+	if not is_instance_valid(medal):
+		return
+	medal.set_meta("flash", 1.0)
+	medal.queue_redraw()
+
+## Arco do periodo: o sol (dia) ou a lua (noite) percorre o arco conforme a
+## fracao ja passada (a mesma leitura da barra antiga). Ambar de dia, violeta
+## a noite; estrelas pequenas a noite.
+func _draw_cycle_dial() -> void:
+	var c := _cycle_dial
+	var s := c.size
+	var night: bool = DayNightManager.is_night()
+	var t: float = _cycle_bar.value if is_instance_valid(_cycle_bar) else 0.0
+	var tone := NIGHT_VIOLET if night else GOLD
+	var base := Vector2(s.x * 0.5, s.y - 1.0)
+	var rx := s.x * 0.44
+	var ry := s.y - 5.0
+	var arc := PackedVector2Array()
+	var lit := PackedVector2Array()
+	for i in 33:
+		var k := i / 32.0
+		var a := PI + PI * k
+		var p := base + Vector2(cos(a) * rx, sin(a) * ry)
+		arc.append(p)
+		if k <= t:
+			lit.append(p)
+	c.draw_line(Vector2(base.x - rx - 10, base.y), Vector2(base.x + rx + 10, base.y), Color(tone, 0.25), 1.0)
+	c.draw_polyline(arc, Color(0, 0, 0, 0.45), 4.0, true)
+	c.draw_polyline(arc, Color(tone, 0.22), 2.0, true)
+	if lit.size() >= 2:
+		c.draw_polyline(lit, tone, 2.5, true)
+	if night:
+		for q in [Vector2(0.2, 0.35), Vector2(0.36, 0.12), Vector2(0.64, 0.18), Vector2(0.8, 0.4)]:
+			c.draw_circle(Vector2(s.x * q.x, s.y * q.y), 1.2, Color(1, 1, 1, 0.55))
+	var a := PI + PI * t
+	var m := base + Vector2(cos(a) * rx, sin(a) * ry)
+	c.draw_circle(m, 9.0, Color(tone, 0.18))
+	if night:
+		c.draw_circle(m, 6.0, NIGHT_VIOLET)
+		c.draw_circle(m + Vector2(2.6, -1.8), 5.0, Color("10221d"))
+	else:
+		for i in 8:
+			var ra := TAU * i / 8.0
+			c.draw_line(m + Vector2(cos(ra), sin(ra)) * 6.5, m + Vector2(cos(ra), sin(ra)) * 9.5, GOLD, 1.5)
+		c.draw_circle(m, 5.0, GOLD)
+		c.draw_circle(m + Vector2(-1.4, -1.4), 2.0, Color(1, 0.95, 0.8, 0.8))
 
 ## Icones vetoriais da HUD: jogador, cristal do Refugio, sol/lua do ciclo.
 func _hud_icon(kind: StringName, size: float) -> Control:
@@ -264,58 +418,76 @@ func _hud_icon(kind: StringName, size: float) -> Control:
 			c.draw_circle(s * .5, s.y * .24, GOLD))
 	return c
 
-# Icones vetoriais pequenos: tora (madeira) e bloco (pedra).
+# Icones vetoriais pequenos dos recursos (os mesmos da mochila).
 func _resource_icon(kind: StringName, size: float) -> Control:
 	if kind == &"defense":
 		return app._crystal(size)
-	if kind == &"territory": # Spec 015: marco (pedestal + cristal)
-		var m = Control.new()
-		m.custom_minimum_size = Vector2(size, size)
-		m.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		m.draw.connect(func():
-			var s = m.size
-			m.draw_rect(Rect2(s.x * .2, s.y * .74, s.x * .6, s.y * .18), Color("8d9a8f"))
-			m.draw_rect(Rect2(s.x * .36, s.y * .5, s.x * .28, s.y * .26), Color("7c8980"))
-			m.draw_colored_polygon(PackedVector2Array([Vector2(s.x * .5, s.y * .04), Vector2(s.x * .7, s.y * .27), Vector2(s.x * .5, s.y * .5), Vector2(s.x * .3, s.y * .27)]), Color("7fe0b8")))
-		return m
 	return UiArt.icon_control(kind, size)
 
-func _resource_item(row: Node, kind: StringName, caption: String, color: Color) -> Label:
+## Ficha de recurso: placa pequena de pedra com icone, valor e legenda.
+## tier 0 = destaque (Pontos de Defesa), 1 = normal, 2 = secundaria.
+func _resource_item(row: Node, kind: StringName, caption: String, color: Color, tier := 1) -> Label:
+	var chip := PanelContainer.new()
+	chip.name = "Chip_" + String(kind)
+	var st := UiArt.carved(Color("10241e", 0.88), Color(color, 0.6 if tier == 0 else 0.32), Vector4(8, 3, 11, 4), 7.0)
+	st.bg_top = Color("1d3c33", 0.9)
+	st.inner_color = Color(0, 0, 0, 0)
+	st.shadow_size = 4.0
+	st.shadow_color = Color(0, 0, 0, 0.25)
+	st.chisel = false
+	st.border_width = 2.0 if tier == 0 else 1.5
+	chip.add_theme_stylebox_override("panel", st)
 	var item = HBoxContainer.new()
-	item.add_theme_constant_override("separation", 5)
-	item.add_child(_resource_icon(kind, 20))
+	item.add_theme_constant_override("separation", 6)
+	item.add_child(_resource_icon(kind, [26.0, 21.0, 18.0][tier]))
 	var col = VBoxContainer.new()
-	col.add_theme_constant_override("separation", -5)
-	var value = app._label("0", 16, color)
+	col.add_theme_constant_override("separation", -6)
+	col.alignment = BoxContainer.ALIGNMENT_CENTER
+	var value = app._label("0", [21, 17, 15][tier], color)
 	value.add_theme_font_override("font", app._display_font())
+	value.add_theme_color_override("font_outline_color", Color("0b1a15"))
+	value.add_theme_constant_override("outline_size", 3)
 	col.add_child(value)
-	col.add_child(app._label(caption, 9, Color(CREAM, .75)))
+	col.add_child(app._label(caption, 9, Color(CREAM, .72)))
 	item.add_child(col)
-	row.add_child(item)
-	_resource_items[kind] = item
+	chip.add_child(item)
+	row.add_child(chip)
+	_resource_items[kind] = chip
 	return value
 
 func _build_points_panel(parent: Node) -> void:
 	var row = HBoxContainer.new()
-	row.add_theme_constant_override("separation", 14)
-	points_text = _resource_item(row, &"defense", "DEFESA", Color("aef0cf"))
+	row.add_theme_constant_override("separation", 6)
+	row.alignment = BoxContainer.ALIGNMENT_END
+	points_text = _resource_item(row, &"defense", "DEFESA", Color("aef0cf"), 0)
 	wood_text = _resource_item(row, &"wood", "MADEIRA", Color("e6c79a"))
 	stone_text = _resource_item(row, &"stone", "PEDRA", Color("c9d3cc"))
-	territory_text = _resource_item(row, &"territory", "TERRITÓRIOS", Color("9fe0c0")) # Spec 015
-	points_box = _hud_panel(parent, row)
+	territory_text = _resource_item(row, &"territory", "TERRITÓRIOS", Color("9fe0c0"), 2) # Spec 015
+	# Elixir de Jade: ficha so depois de liberado (Dia 2) ou com um guardado.
+	_elixir_chip_text = _resource_item(row, &"elixir", "ELIXIR", UiArt.JADE_LIGHT, 2)
+	_elixir_chip = _resource_items[&"elixir"]
+	_elixir_chip.visible = false
+	points_box = PanelContainer.new()
+	points_box.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	parent.add_child(points_box)
+	points_box.add_child(row)
 	points_box.name = "PointsPanel"
 	points_box.tooltip_text = "Pontos de Defesa · Madeira · Pedra · Territórios recuperados"
 	points_box.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
 	points_box.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	points_box.offset_right = -16
 	points_box.offset_top = 14
-	var esc = app._label("ESC  pausa", 11, Color(CREAM, .85))
-	esc.add_theme_color_override("font_outline_color", Color("10221e"))
-	esc.add_theme_constant_override("outline_size", 4) # legivel em fundo claro
+	var esc := HBoxContainer.new()
+	esc.add_theme_constant_override("separation", 6)
+	esc.add_child(UiArt.keycap("ESC", app._display_font(), 11))
+	var esc_label = app._label("pausa", 11, Color(CREAM, .85))
+	esc_label.add_theme_color_override("font_outline_color", Color("10221e"))
+	esc_label.add_theme_constant_override("outline_size", 4) # legivel em fundo claro
+	esc.add_child(esc_label)
 	esc.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
 	esc.grow_horizontal = Control.GROW_DIRECTION_BEGIN
-	esc.offset_right = -20
-	esc.offset_top = 66
+	esc.offset_right = -18
+	esc.offset_top = 70
 	parent.add_child(esc)
 
 func _on_points_changed(total: int, delta: int) -> void:
@@ -359,15 +531,61 @@ func _show_gain(node_name: String, kind: StringName, text: String, color: Color)
 
 # Painel contextual: so aparece perto de um ponto de defesa. Fica acima do
 # painel de objetivo, nunca no centro da tela.
+# Design 5.0: icone da torre + titulo + niveis (losangos), dados REAIS da
+# tabela DefenseTower.LEVELS (dano, alcance, cadencia), previa do proximo nivel
+# e quantos Pontos de Defesa faltam. A torre nao tem vida no sistema (nao e
+# atacada), entao nao ha barra de vida.
+var _tower_pips: Control
+var _tower_stats: HBoxContainer
+var _tower_stat_labels := {}
+var _tower_next: Label
+var _tower_missing: Label
+
 func _build_defense_panel() -> void:
 	var box = VBoxContainer.new()
-	box.add_theme_constant_override("separation", 4)
+	box.add_theme_constant_override("separation", 5)
+	var head := HBoxContainer.new()
+	head.alignment = BoxContainer.ALIGNMENT_CENTER
+	head.add_theme_constant_override("separation", 10)
+	head.add_child(UiArt.icon_control(&"tower", 26))
 	build_title = app._label("TORRE DE DEFESA", 18, GOLD)
+	build_title.add_theme_font_override("font", app._display_font())
+	build_title.add_theme_color_override("font_outline_color", Color("1d1006"))
+	build_title.add_theme_constant_override("outline_size", 4)
 	build_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	box.add_child(build_title)
+	head.add_child(build_title)
+	_tower_pips = UiArt.drawn(Vector2(54, 16), func(ci: CanvasItem, r: Rect2):
+		var lv: int = _tower_pips.get_meta("level", 0)
+		for i in 3:
+			var c := Vector2(9 + i * 18, r.size.y * 0.5)
+			var d := PackedVector2Array([c + Vector2(0, -7), c + Vector2(6, 0), c + Vector2(0, 7), c + Vector2(-6, 0)])
+			ci.draw_colored_polygon(d, UiArt.AMBER_LIGHT if i < lv else Color("1d3a31"))
+			ci.draw_polyline(d + PackedVector2Array([d[0]]), Color("0b1a15"), 1.5))
+	head.add_child(_tower_pips)
+	box.add_child(head)
 	build_info = app._label("", 15)
 	build_info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	box.add_child(build_info)
+	_tower_stats = HBoxContainer.new()
+	_tower_stats.alignment = BoxContainer.ALIGNMENT_CENTER
+	_tower_stats.add_theme_constant_override("separation", 18)
+	for spec in [[&"damage", "DANO"], [&"range", "ALCANCE"], [&"cadence", "CADÊNCIA"]]:
+		var cell := HBoxContainer.new()
+		cell.add_theme_constant_override("separation", 5)
+		cell.add_child(UiArt.icon_control(spec[0], 20, UiArt.JADE_LIGHT))
+		var col := VBoxContainer.new()
+		col.add_theme_constant_override("separation", -5)
+		var value: Label = app._label("0", 17, CREAM)
+		value.add_theme_font_override("font", app._display_font())
+		col.add_child(value)
+		col.add_child(app._label(spec[1], 9, Color(CREAM, .65)))
+		cell.add_child(col)
+		_tower_stats.add_child(cell)
+		_tower_stat_labels[spec[0]] = value
+	box.add_child(_tower_stats)
+	_tower_next = app._label("", 12, UiArt.JADE_LIGHT)
+	_tower_next.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(_tower_next)
 	build_button = app._menu_button(box, "CONSTRUIR", 18, Color("e9a23b"), Color("8a4f19"), 6, 12, 22, 4, func():
 		if is_instance_valid(_build_slot):
 			world.get_node("DefenseSlots").interact(_build_slot))
@@ -375,14 +593,25 @@ func _build_defense_panel() -> void:
 	build_note = app._label("", 14, EMBER)
 	build_note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	box.add_child(build_note)
+	_tower_missing = app._label("", 13, Color("f0c9a0"))
+	_tower_missing.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(_tower_missing)
 	build_panel = app._panel(self, box)
 	build_panel.name = "DefensePanel"
 	build_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	build_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	build_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	build_panel.offset_top = -120
-	build_panel.offset_bottom = -120
+	build_panel.offset_top = -112
+	build_panel.offset_bottom = -112
 	build_panel.hide()
+
+static func _seconds(v: float) -> String: # 0,85 s · 0,7 s · 1,0 s
+	return str(snappedf(v, 0.01)).replace(".", ",") + " s"
+
+func _show_tower_stats(s: Dictionary) -> void:
+	_tower_stat_labels[&"damage"].text = "%d" % s.damage
+	_tower_stat_labels[&"range"].text = "%d m" % s.range
+	_tower_stat_labels[&"cadence"].text = _seconds(s.interval)
 
 func _update_defense_panel() -> void:
 	var slots = world.get_node("DefenseSlots")
@@ -395,16 +624,36 @@ func _update_defense_panel() -> void:
 	if _build_slot.is_empty():
 		build_title.text = "PONTO DE CONSTRUÇÃO"
 		build_info.text = "Torre de Defesa  ·  Custo: %d" % cost
+		build_info.visible = true
 		build_button.text = "[C]  CONSTRUIR"
+		_tower_pips.visible = false
+		_show_tower_stats(DefenseTower.LEVELS[0]) # o que sera construido
+		_tower_next.text = "Nível 1  ·  Sentinela do Jade"
 	else:
 		var tower = _build_slot.tower
 		var s: Dictionary = tower.stats()
 		build_title.text = "TORRE DE DEFESA  ·  NÍVEL %d" % tower.level
-		build_info.text = "Dano: %d  ·  Alcance: %d" % [s.damage, s.range]
+		build_info.text = ""
+		build_info.visible = false
 		build_button.text = "NÍVEL MÁXIMO" if tower.is_max_level() else "MELHORAR — %d  (C)" % cost
+		_tower_pips.visible = true
+		if _tower_pips.get_meta("level", 0) != tower.level:
+			_tower_pips.set_meta("level", tower.level)
+			_tower_pips.queue_redraw()
+		_show_tower_stats(s)
+		if tower.is_max_level():
+			_tower_next.text = "Bastião Ancestral  ·  nível máximo"
+		else:
+			var n: Dictionary = DefenseTower.LEVELS[tower.level]
+			_tower_next.text = "PRÓXIMO NÍVEL  →  Dano %d  ·  Alcance %d m  ·  %s" % [n.damage, n.range, _seconds(n.interval)]
 	build_button.disabled = reason != ""
 	build_note.text = reason if reason != "NÍVEL MÁXIMO" else ""
 	build_note.visible = build_note.text != ""
+	var missing := 0
+	if reason == "Pontos insuficientes":
+		missing = maxi(0, cost - int(world.get_node("DefenseEconomy").points))
+	_tower_missing.text = "Faltam %d Pontos de Defesa" % missing if missing > 0 else ""
+	_tower_missing.visible = missing > 0
 
 # ---------------------------------------------------------------------------
 # Spec 013D — Inventario (I), menu de construcao (B) e posicionamento.
@@ -632,10 +881,13 @@ func _on_player_health(current: float, maximum: float) -> void:
 	if not is_instance_valid(player_bar):
 		return
 	var hurt = current < player_bar.value and player_bar.max_value == maximum
+	var previous: float = player_bar.value / maxf(player_bar.max_value, 0.001)
 	player_bar.max_value = maximum
 	player_bar.value = current
 	player_text.text = "JOGADOR  %d / %d" % [ceili(current), int(maximum)]
-	if hurt: # tinta breve na barra e no texto; nada na camera
+	if hurt: # tinta breve na barra e no texto, rastro do dano e medalhao piscando; nada na camera
+		_hurt_bar(player_bar, previous)
+		_flash_medal(_player_medal)
 		for node in [player_bar, player_text]:
 			node.modulate = Color(1.0, .45, .4)
 			node.create_tween().tween_property(node, "modulate", Color.WHITE, .35)
@@ -728,9 +980,16 @@ func _process(_delta: float) -> void:
 	_update_death_toast() # so a contagem do aviso; nada roda sem o aviso aberto
 	_update_defense_panel() # Spec 013B: painel contextual do ponto de defesa
 	var base = world.get_node("Territory")
+	var base_before: float = base_bar.value / maxf(base_bar.max_value, 0.001)
 	base_bar.max_value = base.max_health
 	base_bar.value = base.health
 	base_text.text = "REFÚGIO  %d / %d" % [base.health, base.max_health]
+	# Design 5.0: o Refugio levou dano -> rastro na barra e medalhao pisca.
+	if _last_base_health >= 0.0 and base.health < _last_base_health:
+		_hurt_bar(base_bar, base_before)
+		_flash_medal(_refuge_medal)
+	_last_base_health = base.health
+	_tick_vitals(_delta)
 	var wave: Dictionary = world.get_node("WaveManager").snapshot()
 	var day: int = DayNightManager.day_number
 	phase_text.text = ("NOITE %d" if DayNightManager.is_night() else "DIA %d") % day # 013C: "DIA 1 • 08:58"
@@ -923,7 +1182,74 @@ func _update_creature_labels(player: Node3D) -> void:
 				break
 		e[2].visible = free
 		if free:
+			_update_hp_bar(e[2].get_parent(), e[2])
+		if free:
 			taken.append(e[3])
+
+
+
+## Design 5.0: barra de vida compacta sob o rotulo da criatura (Sprite3D de
+## 48x4 px, sempre de frente para a camera). A imagem so e redesenhada quando
+## a vida (inteira) muda. Fica dentro do rotulo: some e aparece junto com ele
+## (mesma prioridade de sobreposicao). So leitura de hp / MAX_HP.
+const HP_BAR_W := 48
+const HP_BAR_H := 4
+func _update_hp_bar(dino: Node, label: Label3D) -> void:
+	var bar := label.get_node_or_null("HpBar") as Sprite3D
+	var hp_now := maxi(int(ceilf(dino.hp)), 0)
+	var tone := label.modulate
+	if bar == null:
+		bar = Sprite3D.new()
+		bar.name = "HpBar"
+		bar.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		bar.no_depth_test = true
+		bar.shaded = false
+		bar.double_sided = true
+		bar.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+		bar.render_priority = label.render_priority
+		bar.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		bar.texture = ImageTexture.create_from_image(Image.create(HP_BAR_W, HP_BAR_H, false, Image.FORMAT_RGBA8))
+		bar.set_meta("hp", -1)
+		label.add_child(bar)
+	bar.pixel_size = label.pixel_size * 3.0
+	bar.position = Vector3(0, -label.font_size * label.pixel_size * 0.85, 0)
+	bar.modulate.a = label.modulate.a
+	if bar.get_meta("hp") == hp_now and bar.get_meta("tone", Color.BLACK) == tone:
+		return
+	bar.set_meta("hp", hp_now)
+	bar.set_meta("tone", tone)
+	var img := Image.create(HP_BAR_W, HP_BAR_H, false, Image.FORMAT_RGBA8)
+	img.fill(Color("0b1612"))
+	img.fill_rect(Rect2i(1, 1, HP_BAR_W - 2, HP_BAR_H - 2), Color("1f2d28"))
+	var frac := clampf(float(hp_now) / maxf(WildDino.MAX_HP, 1.0), 0.0, 1.0)
+	var w := int(round((HP_BAR_W - 2) * frac))
+	if w > 0:
+		var fill := Color(tone.r, tone.g, tone.b, 1.0)
+		img.fill_rect(Rect2i(1, 1, w, HP_BAR_H - 2), fill.darkened(0.15))
+		img.fill_rect(Rect2i(1, 1, w, 1), fill.lightened(0.25))
+	(bar.texture as ImageTexture).update(img)
+
+## Design 5.0: rastro do dano, piscar dos medalhoes, estado critico (anel em
+## brasa) e a ficha do Elixir de Jade (so leitura do JadeElixir).
+func _tick_vitals(delta: float) -> void:
+	_tick_ghost(player_bar, delta)
+	_tick_ghost(base_bar, delta)
+	var crit := {_player_medal: player_bar.value < player_bar.max_value * 0.3, _refuge_medal: base_bar.value < base_bar.max_value * 0.35}
+	for medal: Control in crit:
+		if not is_instance_valid(medal):
+			continue
+		var flash: float = medal.get_meta("flash", 0.0)
+		if flash > 0.0:
+			medal.set_meta("flash", maxf(0.0, flash - delta / 0.35))
+		var was: bool = medal.get_meta("critical", false)
+		medal.set_meta("critical", crit[medal])
+		if flash > 0.0 or crit[medal] or was != crit[medal]:
+			medal.queue_redraw()
+	var elixir = world.get_node_or_null("JadeElixir")
+	if elixir != null and is_instance_valid(_elixir_chip):
+		_elixir_chip.visible = elixir.stored > 0 or DayNightManager.day_number >= 2 # liberado no Dia 2
+		_elixir_chip_text.text = "%d/1" % elixir.stored
+		_elixir_chip.modulate.a = 1.0 if elixir.stored > 0 else 0.7
 
 ## Sol/lua e barra do periodo atual (fracao do dia ou da noite ja passada).
 func _update_cycle() -> void:
@@ -936,6 +1262,8 @@ func _update_cycle() -> void:
 		_cycle_night = night
 		_cycle_fill.bg_color = NIGHT_VIOLET if night else GOLD
 		_cycle_icon.queue_redraw()
+	if is_instance_valid(_cycle_dial):
+		_cycle_dial.queue_redraw()
 
 func _update_collect_focus(player: Node3D) -> void:
 	var best: Node3D = null
@@ -1016,17 +1344,14 @@ func _inv_section(title: String, hint: String) -> VBoxContainer:
 ## Placa de conteudo: pedra mais clara, borda na cor do tema.
 func _inv_tile(parent: Node, style_color: Color) -> VBoxContainer:
 	var tile := PanelContainer.new()
-	var sb := StyleBoxFlat.new()
-	sb.bg_color = Color(style_color.lerp(UiArt.GREEN_DARK, 0.82), 0.92)
-	sb.border_color = Color(style_color, 0.4)
-	sb.set_border_width_all(1)
-	sb.border_width_bottom = 3
-	sb.set_corner_radius_all(8)
-	sb.corner_detail = 2
-	sb.content_margin_left = 14
-	sb.content_margin_right = 14
-	sb.content_margin_top = 10
-	sb.content_margin_bottom = 11
+	# Design 5.0: placa de pedra talhada na cor do tema (mesma familia do menu e da HUD).
+	var sb := UiArt.carved(Color(style_color.lerp(UiArt.GREEN_DARK, 0.82), 0.92), Color(style_color, 0.45), Vector4(14, 10, 14, 13), 8.0)
+	sb.bg_top = Color(style_color.lerp(UiArt.GREEN_DARK, 0.7), 0.94)
+	sb.depth = 3.0
+	sb.inner_color = Color(style_color, 0.16)
+	sb.shadow_size = 4.0
+	sb.shadow_color = Color(0, 0, 0, 0.22)
+	sb.border_width = 1.5
 	tile.add_theme_stylebox_override("panel", sb)
 	parent.add_child(tile)
 	var box := VBoxContainer.new()

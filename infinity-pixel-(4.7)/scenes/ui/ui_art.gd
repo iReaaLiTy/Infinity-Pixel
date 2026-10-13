@@ -263,6 +263,24 @@ static func icon(ci: CanvasItem, kind: StringName, r: Rect2, color: Color) -> vo
 			crystal(ci, Rect2(_p(r, .2, 0), r.size * Vector2(.6, 1)))
 		&"paw":
 			footprint(ci, r.get_center() + Vector2(0, r.size.y * .05), r.size.y * .9, color)
+		&"damage": # 5.0: lasca de cristal disparada (dano da torre)
+			ci.draw_colored_polygon(_poly(r, [[.5, 0], [.72, .42], [.5, 1], [.28, .42]]), Color(color, .35))
+			ci.draw_colored_polygon(_poly(r, [[.5, .06], [.66, .42], [.5, .5]]), color)
+			ci.draw_colored_polygon(_poly(r, [[.5, .5], [.66, .42], [.5, .94]]), Color(color, .7))
+		&"range": # 5.0: anel de alcance com a torre no centro
+			ci.draw_arc(r.get_center(), r.size.y * .44, 0, TAU, 22, color, 2.0)
+			ci.draw_arc(r.get_center(), r.size.y * .26, 0, TAU, 16, Color(color, .5), 1.5)
+			ci.draw_circle(r.get_center(), r.size.y * .1, color)
+		&"cadence": # 5.0: ampulheta (intervalo entre disparos)
+			ci.draw_colored_polygon(_poly(r, [[.22, .08], [.78, .08], [.5, .5]]), Color(color, .75))
+			ci.draw_colored_polygon(_poly(r, [[.5, .5], [.78, .92], [.22, .92]]), color)
+			ci.draw_line(_p(r, .16, .06), _p(r, .84, .06), color, 2.0)
+			ci.draw_line(_p(r, .16, .94), _p(r, .84, .94), color, 2.0)
+		&"elixir": # 5.0: frasco do Elixir de Jade
+			ci.draw_circle(_p(r, .5, .64), r.size.y * .3, JADE)
+			ci.draw_rect(Rect2(_p(r, .38, .12), r.size * Vector2(.24, .3)), JADE_LIGHT)
+			ci.draw_rect(Rect2(_p(r, .33, .04), r.size * Vector2(.34, .12)), Color("806044"))
+			ci.draw_line(_p(r, .34, .6), _p(r, .44, .46), Color(1, 1, 1, .8), 2.0)
 		&"world":
 			# relogio de sol: o mundo continua andando
 			ci.draw_arc(r.get_center(), r.size.y * .42, 0, TAU, 20, color, 2.0)
