@@ -1,0 +1,93 @@
+﻿[
+    {
+        "suite":  "inventory_ui",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "settings_ui",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_overhaul3",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_overhaul4",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "defense_economy",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "physics_contracts",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "gameplay5",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "tutorial",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "acceptance",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "territory",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "player_health",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "healing_actions",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "combat_collect",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]

@@ -1,0 +1,47 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: I abre o inventario
+PASS: Cartao central com ~70-80% da largura (1000 de 1280)
+PASS: Cartao inteiro dentro da tela e centralizado
+PASS: Ao abrir, o foco do teclado vai para FECHAR
+PASS: Tres abas; abre em RECURSOS
+PASS: Cabecalho MOCHILA DO EXPLORADOR
+PASS: Nenhum texto cortado em nenhuma aba []
+PASS: Teclas 2/3 trocam de aba; sem aliados: estado vazio
+PASS: Clique na aba troca a pagina sem fechar nem atacar
+PASS: Indicador: o mundo continua em movimento
+PASS: Inventario aberto nao pausa (contrato 013D)
+PASS: Clique fora do cartao fecha sem atacar
+PASS: Clique dentro do cartao nao fecha nem ataca
+PASS: ESC fecha o inventario sem pausar
+PASS: Fechar solta o foco do teclado
+PASS: 20x I: estado coerente, um painel so
+[COLETA] +12 wood (total 12)
+[COLETA] +4 stone (total 4)
+PASS: Madeira e Pedra no inventario
+PASS: Recursos insuficientes: 'faltam' e CONSTRUIR desabilitado
+PASS: Defesa: 40 Pontos, 0 de 6 torres
+[COLETA] +20 wood (total 32)
+[COLETA] +20 stone (total 24)
+PASS: CONSTRUIR no inventario inicia a construcao e fecha o painel
+PASS: Enter no FECHAR focado fecha o inventario
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+WildDinoEncontro2 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro2 domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] REGIÃO ROCHOSA: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+PASS: Dois aliados: dois cartoes, sem estado vazio
+PASS: Cartao mostra vida e estado reais (47/80 FICAR; SEGUINDO)
+PASS: Estado do aliado atualiza ao vivo
+PASS: 1600x900 e 1920x1080: cartao inteiro, 70-82%, sem texto cortado
+PASS: Botao FECHAR fecha sem atacar
+INVENTORY RESULTS: 26 passed; 0 failed

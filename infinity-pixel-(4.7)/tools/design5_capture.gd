@@ -165,23 +165,25 @@ func towers() -> void:
 	await shot("09_torre_dia", 30)
 	set_hour(21.5)
 	await shot("10_torre_noite", 30)
-	# Disparo: invasor parado no alcance; foto no meio do voo da lasca.
+	# Disparo: invasor parado no alcance; foto no meio do voo da lasca. So nesta
+	# foto o tempo anda a 0,2x (a lasca voa em 0,18 s), igual antes e depois.
 	DayNightManager.gameplay_enabled = true
 	var foe = load("res://scenes/enemies/wild_dino.tscn").instantiate()
 	world.add_child(foe)
 	foe.add_to_group("wave_enemy")
 	foe.global_position = MEADOW + Vector3(4.2, 0.5, 2.6)
 	foe.set_physics_process(false)
-	foe.hp = 100000.0
 	set_hour(19.5)
+	look(MEADOW + Vector3(1.8, 3.4, 9.6), MEADOW + Vector3(2.0, 1.7, 1.2), 50.0)
 	var t3 = slot("SlotRuinMeadow").tower
 	t3._cooldown = 0.6
+	Engine.time_scale = 0.2
 	var waited := 0
-	while t3._cooldown < t3.stats().interval - 0.06 and waited < 240:
+	while t3._cooldown < t3.stats().interval - 0.01 and waited < 600:
 		await get_tree().physics_frame
 		waited += 1
-	look(MEADOW + Vector3(1.8, 3.4, 9.6), MEADOW + Vector3(2.0, 1.7, 1.2), 50.0)
-	await shot("11_torre_disparo", 6)
+	await shot("11_torre_disparo", 25) # ~0,08 s de jogo: lasca no meio do voo
+	Engine.time_scale = 1.0
 	DayNightManager.gameplay_enabled = false
 	foe.queue_free()
 

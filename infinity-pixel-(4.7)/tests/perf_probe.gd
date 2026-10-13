@@ -227,6 +227,21 @@ func _ready() -> void:
 		player.global_position = v[1]
 		set_hour(v[2])
 		results.append(await measure(v[0]))
+	# Design 5.0 (--ablate): quanto custam o grao de superficie e a HUD na vista
+	# padrao das 12:00 (so diagnostico; o jogo nao usa nada disto).
+	if ablate:
+		player.global_position = VIEWS[0][1]
+		set_hour(12.0)
+		var finish = load("res://scenes/visuals/surface_finish.gd")
+		for m in finish._cache.values():
+			m.detail_enabled = false
+		results.append(await measure("ablacao_padrao_sem_grao"))
+		for m in finish._cache.values():
+			m.detail_enabled = true
+		app.hud.visible = false
+		results.append(await measure("ablacao_padrao_sem_hud"))
+		app.hud.visible = true
+		results.append(await measure("ablacao_padrao_referencia"))
 	# --live: cenarios com o jogo RODANDO (IA, torres, efeitos), nao congelado.
 	# So para medir: torres erguidas direto no ponto, Refugio com vida alta para a
 	# onda maior nao encerrar a partida no meio da medicao.

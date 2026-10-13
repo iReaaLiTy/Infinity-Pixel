@@ -1,0 +1,16 @@
+﻿[
+    {
+        "suite":  "design5",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "main_menu",
+        "mode":  "window",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]

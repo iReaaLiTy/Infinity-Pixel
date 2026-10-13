@@ -1,0 +1,21 @@
+{
+  "display": "headless",
+  "failed": [],
+  "passed": [
+    "Jogo normal: dia 90 s, relogio noturno 45 s",
+    "Jogo normal: aviso 20 s, contagem 10 s",
+    "Dia 1 comeca as 08:00",
+    "30 s de dia ~ 11:20 (11:20)",
+    "Pausa congela o relogio",
+    "Aviso dispara faltando 20 s (aos 70.02 s)",
+    "Aviso por volta das 15:46 (15:46)",
+    "Contagem oculta faltando mais de 10 s",
+    "Contagem 'ANOITECE EM 10' (ANOITECE EM 10)",
+    "Contagem chega a 'ANOITECE EM 1'",
+    "Noite 1 automatica aos 90 s, 18:00, 3 inimigos",
+    "Meio da noite (22,5 s) ~ 00:00 (00:00)",
+    "45 s: 05:59 com inimigos vivos, noite continua",
+    "55 s: ainda 05:59, noite nao termina pelo relogio",
+    "Matar todos: amanhecer, Dia 2, 08:00"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "display": "headless",
+  "failed": [],
+  "passed": [
+    "Cura iniciou antes da acao incompativel",
+    "Iniciar domesticacao cancela cura em andamento",
+    "Cura nao recomeca enquanto domestica; sem gasto ou cura parcial",
+    "Iniciar posicionamento cancela cura em andamento",
+    "H durante posicionamento nao cura nem consome carga",
+    "Cancelar posicionamento permite nova canalizacao completa",
+    "Remover fogueira interrompe cura sem efeito atrasado"
+  ]
+}

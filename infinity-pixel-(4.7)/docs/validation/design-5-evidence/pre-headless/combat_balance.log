@@ -1,0 +1,70 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Domesticacao preservada: 4 golpes -> 20/80 HP (20)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Dia 1x1: enfraquece o selvagem e sobra vida (perdeu 30 em 2.7 s)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+@CharacterBody3D@1170 foi derrotado.
+[Player] morreu. Respawn em 2.0 s.
+[BAL] 1x3 parado: 6.0 s, 1 abatidos, vida 0
+PASS: Noite 1x3 parado: o jogador nao cai em menos de 6 s (6.0 s)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDino foi derrotado.
+[Player] morreu. Respawn em 2.0 s.
+[BAL] 1x3 com recuo: 9.8 s, 1 abatidos, 200 de dano causado, vida 0
+PASS: Noite 1x3 recuando: resiste >= 7 s e causa >= 120 de dano (9.8 s, 200)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi derrotado.
+PASS: Aliado x inimigo noturno 1x1: o aliado vence (vida 28)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@2506 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@2523 foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[BAL] Noite 1 (torre + aliado + jogador): vencida=true refugio=100 jogador=83 em 11.5 s
+PASS: Primeira noite com 1 torre + 1 aliado: vencida com o Refugio >= 50 (100)
+[BAL] {"aliado_1x1_vence":true,"aliado_1x1_vida_restante":28.25,"dia_1x1_enfraquecer_s":2.68,"dia_1x1_vida_perdida":30.0,"noite1_jogador_vida":82.75,"noite1_refugio":100.0,"noite1_tempo_s":11.52,"noite1_vencida":true,"noite_1x3_esquiva_abatidos":1,"noite_1x3_esquiva_dano_causado":200.0,"noite_1x3_esquiva_s":9.78,"noite_1x3_esquiva_vida":0.0,"noite_1x3_parado_abatidos":1,"noite_1x3_parado_s":6.03,"noite_1x3_parado_vida":0.0}
+BALANCE RESULTS: 6 passed; 0 failed

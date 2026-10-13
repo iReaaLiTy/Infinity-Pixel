@@ -270,10 +270,14 @@ func _draw_bar_overlay(bar: ProgressBar) -> void:
 	var ghost: float = bar.get_meta("ghost", frac)
 	if ghost > frac + 0.002:
 		bar.draw_rect(Rect2(s.x * frac, 1.5, s.x * (ghost - frac), s.y - 3.0), Color(1.0, 0.93, 0.8, 0.6))
-	if s.y >= 8.0:
+	if s.y >= 8.0: # marcas a cada 10% numa so chamada (a do meio mais forte)
+		var ticks := PackedVector2Array()
+		var cols := PackedColorArray()
 		for i in range(1, 10):
 			var x := s.x * i / 10.0
-			bar.draw_line(Vector2(x, 2.5), Vector2(x, s.y - 2.5), Color(0, 0, 0, 0.42 if i == 5 else 0.24), 1.0)
+			ticks.append_array([Vector2(x, 2.5), Vector2(x, s.y - 2.5)])
+			cols.append(Color(0, 0, 0, 0.42 if i == 5 else 0.24))
+		bar.draw_multiline_colors(ticks, cols, 1.0)
 
 ## Rastro do dano: fica parado ~0,35 s e depois desce ate o valor atual.
 func _tick_ghost(bar: ProgressBar, delta: float) -> void:
@@ -1806,7 +1810,7 @@ var _elixir_tick := 0.0
 func _build_elixir_card(parent: Node) -> void:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 12)
-	parent.add_child(row)
+	_inv_tile(parent, UiArt.JADE).add_child(row) # Design 5.0: na mesma placa talhada dos outros cartoes
 	row.add_child(UiArt.drawn(Vector2(42, 76), func(ci: CanvasItem, _r: Rect2):
 		ci.draw_circle(Vector2(21, 40), 17, UiArt.JADE)
 		ci.draw_rect(Rect2(14, 13, 14, 19), UiArt.JADE_LIGHT)
