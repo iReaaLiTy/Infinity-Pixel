@@ -1,0 +1,20 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: 8 direcoes: clique no dinossauro acerta ele (8/8, maior desvio 0.0 graus)
+PASS: O modelo termina virado para o ultimo golpe (sem giro descontrolado)
+PASS: Arvore: clique na copa acerta, de 3 lados (3/3)
+PASS: Arvore: golpe na direcao do tronco (maior desvio 0.0 graus)
+PASS: Rocha: clique acerta a rocha na diagonal (45 -> 30)
+PASS: Fora do alcance (4,5 m): sem dano e com aviso
+PASS: Alvo pretendido leva o golpe; o vizinho ao lado nao
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Aliado e Refugio nao sao atingidos pelo clique
+PASS: Cooldown: segundo clique imediato nao causa dano extra
+ATTACK DIRECTION RESULTS: 9 passed; 0 failed

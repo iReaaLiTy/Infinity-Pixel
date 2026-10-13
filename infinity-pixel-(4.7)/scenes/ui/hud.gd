@@ -438,7 +438,7 @@ func _cost_line(parent: Node, wood: int, stone: int) -> Array:
 ## Descricao curta de cada construcao (valores lidos dos proprios scripts).
 const RECIPE_INFO := {
 	&"campfire": ["Segure H perto dela: +25 de vida em 3 s. 2 cargas, que voltam com o tempo.", "Onde: área de construção do Refúgio · máx. 1"],
-	&"trap": ["Espinhos ferem quem pisa (15 de dano, 3 cargas).", "Onde: sobre as trilhas noturnas · máx. 3"],
+	&"trap": ["Espinhos ferem quem pisa (15 de dano, 3 cargas).", "Onde: sobre as trilhas noturnas · máx. 5"],
 }
 
 func _recipe_list(box: VBoxContainer, rows: Dictionary, big := false) -> void:
@@ -534,6 +534,7 @@ func _build_inventory_panels() -> void:
 	_refresh_inventory()
 
 func _refresh_inventory() -> void:
+	_refresh_elixir()
 	if not is_instance_valid(inv_wood_text) or not is_instance_valid(world):
 		return
 	var stock = world.get_node("ResourceStock")
@@ -716,6 +717,10 @@ func _on_night_started() -> void:
 	t.tween_callback(veil.queue_free)
 
 func _process(_delta: float) -> void:
+	_elixir_tick -= _delta
+	if _elixir_tick <= 0.0:
+		_elixir_tick = 0.15
+		_update_elixir_preview()
 	if not is_instance_valid(world) or not is_instance_valid(self):
 		return
 	_update_death_toast() # so a contagem do aviso; nada roda sem o aviso aberto
@@ -1299,6 +1304,7 @@ func _build_companions_page(page: Control) -> void:
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 12)
 	page.add_child(col)
+	_build_elixir_card(col)
 	var head := _inv_section("DINOSSAUROS DOMESTICADOS", "")
 	col.add_child(head)
 	_companion_count = app._label("", 12, Color(CREAM, .62))
@@ -1321,7 +1327,7 @@ func _build_companions_page(page: Control) -> void:
 	_companion_empty.alignment = BoxContainer.ALIGNMENT_CENTER
 	_companion_empty.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	col.add_child(_companion_empty)
-	var art := UiArt.drawn(Vector2(420, 130), func(ci: CanvasItem, r: Rect2):
+	var art := UiArt.drawn(Vector2(420, 60), func(ci: CanvasItem, r: Rect2):
 		UiArt.footprint_trail(ci, Vector2(10, r.size.y * .8), Vector2(r.size.x * .58, r.size.y * .62), 6, 26.0, Color(UiArt.IVORY, .22))
 		UiArt.dino_silhouette(ci, Rect2(Vector2(r.size.x * .62, 6), Vector2(r.size.y * 1.3, r.size.y * .94)), Color(UiArt.JADE, .28), false, Color(UiArt.JADE_LIGHT, .6)))
 	art.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
@@ -1383,7 +1389,8 @@ func _companion_card(dino: Node, index: int) -> Dictionary:
 	info.custom_minimum_size.y = 34
 	tile.add_child(info)
 	tile.add_child(app._label("Golpe: %d de dano  ·  F alterna (de dia)" % int(WildDino.ALLY_ATTACK_DAMAGE), 11, Color(CREAM, .5)))
-	return {"tile": tile.get_parent(), "hp": hp, "bar": bar, "state": state, "chip": cs, "info": info}
+	var heal_button: Button = app._button(tile, "USAR ELIXIR · até 3 m", func(): world.get_node("JadeElixir").use_on(dino))
+	return {"heal": heal_button, "tile": tile.get_parent(), "hp": hp, "bar": bar, "state": state, "chip": cs, "info": info}
 
 func _refresh_companions() -> void:
 	if not is_instance_valid(_companion_grid):
@@ -1401,6 +1408,8 @@ func _refresh_companions() -> void:
 	_companion_count.text = "Nenhum aliado ainda." if allies.is_empty() else "%d aliado%s com você. Dados ao vivo (vida e ordem atual)." % [allies.size(), "" if allies.size() == 1 else "s"]
 	for dino in _companion_cards:
 		var card: Dictionary = _companion_cards[dino]
+		var elixir = world.get_node("JadeElixir")
+		card.heal.disabled = elixir.stored == 0 or not elixir.valid_target(dino)
 		var hp: float = dino.hp
 		card.hp.text = "%d/%d" % [maxi(ceili(hp), 0), int(WildDino.MAX_HP)]
 		card.bar.value = hp
@@ -1446,3 +1455,66 @@ func _refresh_defense_info() -> void:
 		var icon := _world_clock.get_parent().get_node_or_null("WorldRunningIcon")
 		if icon != null:
 			icon.queue_redraw()
+
+var _elixir_status: Label
+var _elixir_craft: Button
+var _elixir_hint: Label
+var _elixir_ring: MeshInstance3D
+var _elixir_tick := 0.0
+
+func _build_elixir_card(parent: Node) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 12)
+	parent.add_child(row)
+	row.add_child(UiArt.drawn(Vector2(42, 76), func(ci: CanvasItem, _r: Rect2):
+		ci.draw_circle(Vector2(21, 40), 17, UiArt.JADE)
+		ci.draw_rect(Rect2(14, 13, 14, 19), UiArt.JADE_LIGHT)
+		ci.draw_rect(Rect2(12, 10, 18, 6), Color("806044"))
+		ci.draw_line(Vector2(13, 36), Vector2(17, 30), Color.WHITE, 3)))
+	var text_col := VBoxContainer.new()
+	text_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(text_col)
+	text_col.add_child(app._label("ELIXIR DE JADE · +40 HP · 40 madeiras + 24 pedras", 16, UiArt.JADE_LIGHT))
+	var description = app._label("Uma mistura rara de minerais e essência do Refúgio que recupera a vitalidade de um companheiro.", 12, CREAM)
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	text_col.add_child(description)
+	_elixir_status = app._label("", 12, CREAM)
+	_elixir_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	text_col.add_child(_elixir_status)
+	_elixir_craft = app._button(row, "FABRICAR", func(): world.get_node("JadeElixir").craft(); _refresh_inventory())
+	_elixir_craft.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	world.get_node("JadeElixir").changed.connect(_refresh_inventory)
+	_elixir_hint = app._label("", 14, UiArt.JADE_LIGHT)
+	add_child(_elixir_hint)
+	_elixir_hint.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	_elixir_hint.position = Vector2(-240, -115)
+	_elixir_hint.custom_minimum_size.x = 480
+	_elixir_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_elixir_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_refresh_elixir()
+
+func _refresh_elixir() -> void:
+	if not is_instance_valid(_elixir_status): return
+	var elixir = world.get_node("JadeElixir")
+	var stock = world.get_node("ResourceStock")
+	var reason: String = elixir.craft_reason()
+	_elixir_status.text = "Guardado: %d/1 · Recursos: %d madeira / %d pedra\n%s" % [elixir.stored, stock.get_amount(&"wood"), stock.get_amount(&"stone"), "Pronto para fabricar · intervalo de 2 amanheceres" if reason == "" else reason]
+	_elixir_craft.disabled = reason != ""
+	_elixir_craft.tooltip_text = reason
+
+func _update_elixir_preview() -> void:
+	if not is_instance_valid(world) or not is_instance_valid(_elixir_hint): return
+	var elixir = world.get_node("JadeElixir")
+	var target: Node3D = elixir.nearest_target() if elixir.stored == 1 else null
+	var active: bool = is_instance_valid(target) and DayNightManager.can_play() and not inventory_panel.visible and not world.get_node("Player").is_dead
+	_elixir_hint.visible = active
+	if is_instance_valid(_elixir_ring): _elixir_ring.visible = active
+	if not active: return
+	_elixir_hint.text = "G · CURAR %s · +%d HP" % [String(target.name), mini(40, int(target.MAX_HP - target.hp))]
+	if not is_instance_valid(_elixir_ring):
+		_elixir_ring = MeshInstance3D.new()
+		_elixir_ring.mesh = CombatFX.ring_mesh()
+		_elixir_ring.material_override = CombatFX.fx_material(UiArt.JADE_LIGHT, 0.65)
+		_elixir_ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		world.add_child(_elixir_ring)
+	_elixir_ring.global_position = target.global_position + Vector3(0, 0.04, 0)

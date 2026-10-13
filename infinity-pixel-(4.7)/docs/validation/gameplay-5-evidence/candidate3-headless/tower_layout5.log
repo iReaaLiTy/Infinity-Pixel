@@ -1,0 +1,32 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: SlotWestInner: plataforma sem colisão com cenário/recurso
+PASS: SlotWestInner: navmesh no ponto
+PASS: SlotWestInner: quatro acessos navegáveis
+PASS: SlotWestOuter: plataforma sem colisão com cenário/recurso
+PASS: SlotWestOuter: navmesh no ponto
+PASS: SlotWestOuter: quatro acessos navegáveis
+PASS: SlotRuinMeadow: plataforma sem colisão com cenário/recurso
+PASS: SlotRuinMeadow: navmesh no ponto
+PASS: SlotRuinMeadow: quatro acessos navegáveis
+PASS: SlotRuinArch: plataforma sem colisão com cenário/recurso
+PASS: SlotRuinArch: navmesh no ponto
+PASS: SlotRuinArch: quatro acessos navegáveis
+PASS: SlotEastInner: plataforma sem colisão com cenário/recurso
+PASS: SlotEastInner: navmesh no ponto
+FAIL: SlotEastInner: quatro acessos navegáveis
+PASS: SlotEastOuter: plataforma sem colisão com cenário/recurso
+PASS: SlotEastOuter: navmesh no ponto
+PASS: SlotEastOuter: quatro acessos navegáveis
+PASS: Separação mínima >10m: 10.82
+PASS: WestEntry: 20.3m cobertos pelo alcance L1
+FAIL: WestEntry: 1.12m livres do centro das torres
+PASS: RuinEntry: 26.8m cobertos pelo alcance L1
+PASS: RuinEntry: 2.60m livres do centro das torres
+PASS: EastEntry: 20.8m cobertos pelo alcance L1
+FAIL: EastEntry: 0.63m livres do centro das torres
+RESULT: 22 passed; 3 failed

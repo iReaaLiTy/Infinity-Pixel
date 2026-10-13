@@ -35,9 +35,9 @@ const EMBER := Color("e0795a")
 enum Step { MOVE, WALK, ATTACK, WEAKEN, TAME, WOOD, STONE, INVENTORY, CAMPFIRE, TOWER, ALLY, NIGHT, DONE }
 ## [titulo curto (objetivo da HUD), instrucao, tecla]
 const TEXT := {
-	Step.MOVE: ["Ande pelo Refúgio", "Use W A S D para andar. A câmera acompanha você.", "W A S D"],
+	Step.MOVE: ["Ande pelo Refúgio", "Use W A S D para andar e orientar o herói. Ao parar, ele mantém a direção.", "W A S D"],
 	Step.WALK: ["Vá até o sinal jade", "Caminhe até a coluna de luz jade na estrada.", "W A S D"],
-	Step.ATTACK: ["Ataque", "Clique com o botão esquerdo: o herói vira para onde você clicou e golpeia. Clique EM CIMA do alvo; o golpe alcança cerca de 2 m.", "CLIQUE"],
+	Step.ATTACK: ["Ataque", "Vire com WASD e clique: o golpe segue a direção em que o herói olha, a cerca de 2 m. O cursor não controla o ataque.", "CLIQUE"],
 	Step.WEAKEN: ["Enfraqueça o selvagem", "Golpeie o dinossauro marcado (4 golpes). Quando aparecer um ARCO VERMELHO no chão à frente dele, recue um passo: ele vai morder. Pare quando surgir o anel jade sob ele.", "CLIQUE · RECUE"],
 	Step.TAME: ["Domestique", "Fique perto dele e SEGURE E por 2 segundos. Soltar ou se afastar cancela.", "SEGURE E"],
 	Step.WOOD: ["Colete Madeira", "Golpeie árvores de copa amarelada (coletáveis) até juntar 20 Madeira.", "CLIQUE"],
@@ -46,7 +46,7 @@ const TEXT := {
 	Step.CAMPFIRE: ["Construa a Fogueira", "Escolha Fogueira de Cura (B ou CONSTRUIR no inventário) e posicione dentro da área de construção, ao lado do Refúgio.", "B · CLIQUE"],
 	Step.TOWER: ["Prepare uma torre", "Vá até um ponto de defesa (anel jade tracejado) e aperte C para erguer uma torre (30 Pontos).", "C"],
 	Step.ALLY: ["Posicione o aliado", "Leve o aliado até onde quer que ele defenda e aperte F perto dele: ele passa a FICAR ali.", "F"],
-	Step.NIGHT: ["Defenda o Refúgio", "A noite chegou: 2 invasores vêm pelas entradas. Proteja o cristal com a torre, o aliado e seus golpes.", "CLIQUE"],
+	Step.NIGHT: ["Defenda o Refúgio", "A noite chegou: 2 invasores vêm pelas entradas. Proteja o cristal com a torre, o aliado e seus golpes. Armadilhas defendem as rotas.", "CLIQUE"],
 	Step.DONE: ["Tutorial concluído", "Você aprendeu o ciclo do Vale de Jade.", ""],
 }
 
@@ -408,6 +408,6 @@ func _combat_feedback(delta: float) -> void:
 	elif _miss_check > 0:
 		_miss_check -= 1
 		if _miss_check == 0 and target.hp == _miss_hp and note == "":
-			_say("Golpe no vazio: clique EM CIMA do dinossauro, a até ~2 m dele.")
+			_say("Golpe no vazio: vire com WASD para o dinossauro e aproxime-se até cerca de 2 m.")
 	if target.get("_windup_left") != null and target._windup_left > 0.0 and _flat(target.global_position, player.global_position) < 3.0:
 		_say("Arco vermelho: ele vai morder — recue um passo!", 1.2)

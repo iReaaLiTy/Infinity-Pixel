@@ -8,14 +8,15 @@ const JADE := Color("69be9b")
 # as telas de Controles do menu principal e da pausa. T (debug) fica de fora.
 const CONTROLS := [
 	["WASD", "Mover (relativo à câmera)"],
-	["Mouse", "Mirar"],
-	["Clique esquerdo", "Atacar na direção do cursor"],
+	["Mouse", "Posicionar a prévia de construção"],
+	["Clique esquerdo", "Atacar para onde está olhando · WASD orienta"],
 	["E (segurar 2 s)", "Domesticar a até 3 m · no marco: recuperar território (de dia)"],
 	["F", "Seguir / ficar (somente de dia)"],
 	["C", "Construir / melhorar torre (perto de um ponto, de dia)"],
 	["I", "Mochila: recursos, construções e companheiros (abas 1, 2, 3)"],
 	["B", "Construir estrutura (R gira · botão direito cancela)"],
 	["H (segurar 3 s)", "Curar na Fogueira (+25, perto dela)"],
+	["G", "Elixir de Jade: curar aliado ferido a até 3 m"],
 	["ESC", "Pausar / retomar"],
 ]
 const DAWN_TOAST_TIME := 2.5 # Spec 008 (RF-UI-001): aviso de amanhecer, em segundos
@@ -580,8 +581,15 @@ func start_game() -> void:
 	world = WORLD.instantiate()
 	world.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child(world)
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Spec 007: cursor livre para mirar
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	var elixir := preload("res://scenes/world/jade_elixir.gd").new()
+	elixir.name = "JadeElixir"
+	world.add_child(elixir)
 	_build_hud()
+	hud.inventory_panel.visibility_changed.connect(sync_cursor)
+	hud.build_menu_panel.visibility_changed.connect(sync_cursor)
+	elixir.notice.connect(func(text): _show_toast("ElixirToast", text, JADE))
+	sync_cursor()
 	audio.change_music("calm")
 	audio.set_ambience("day")
 
@@ -683,7 +691,7 @@ func resume_game() -> void:
 	_close_overlay()
 	screen = "playing"
 	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Spec 007: cursor livre para mirar
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	audio.set_paused_mix(false)
 
 # RF-AGE-016: a derrota continua encerrando a sessao com tela propria.
@@ -943,3 +951,18 @@ func show_settings(back: Callable) -> void:
 		Settings.reset(audio, get_window())
 		show_settings(back))
 	_button(box, "Voltar", _leave_controls)
+
+# One cursor policy for gameplay, clickable UI, focus-loss pause and defeat.
+func sync_cursor() -> void:
+	var interactive := screen != "playing" or is_instance_valid(overlay)
+	if is_instance_valid(hud):
+		interactive = interactive or (is_instance_valid(hud.inventory_panel) and hud.inventory_panel.visible) or (is_instance_valid(hud.build_menu_panel) and hud.build_menu_panel.visible)
+	var mode := Input.MOUSE_MODE_VISIBLE if interactive else Input.MOUSE_MODE_HIDDEN
+	if Input.mouse_mode != mode: Input.mouse_mode = mode
+	if is_instance_valid(world):
+		var player = world.get_node("Player")
+		player.ui_blocked = interactive
+		if interactive: player._attack_queued = false
+
+func _process(_delta: float) -> void:
+	sync_cursor()

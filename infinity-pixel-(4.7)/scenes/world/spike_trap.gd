@@ -31,6 +31,11 @@ var _spike_mat: StandardMaterial3D # Spec 014: mesma cor, leve brilho a noite
 
 func _ready() -> void:
 	_build_visual()
+	# Scale only visual children: trigger volume and navigation stay unchanged.
+	for child in get_children():
+		if child is MeshInstance3D:
+			child.scale *= 1.25
+			child.position *= 1.25
 	Facetize.apply(self) # polimento: primitivas lisas -> facetadas (mesmas medidas)
 	if preview:
 		set_physics_process(false)
@@ -69,6 +74,7 @@ func _trigger(enemy: Node3D) -> void:
 	print_verbose("[ARMADILHA] %s recebeu %.0f (cargas %d/%d)" % [enemy.name, DAMAGE, charges, MAX_CHARGES])
 	enemy.take_damage(DAMAGE)
 	triggered.emit(enemy)
+	preload("res://scenes/visuals/combat_fx.gd").hit_spark(self, global_position + Vector3(0, 0.4, 0), Color("e9c27a"), 5)
 	_snap()
 	if charges <= 0:
 		_break()
@@ -80,7 +86,7 @@ func _snap() -> void:
 		t.tween_property(s, "position:y", s.position.y + 0.18, 0.06)
 		t.tween_property(s, "position:y", s.position.y, 0.2)
 
-# RF-CON-007: depois de 3 ativacoes quebra e some (libera o limite de 3).
+# RF-CON-007: depois de 3 ativacoes quebra e some (libera um dos cinco lugares).
 func _break() -> void:
 	_broken = true
 	remove_from_group("built_structure")

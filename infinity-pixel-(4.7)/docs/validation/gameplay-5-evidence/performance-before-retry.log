@@ -1,0 +1,108 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+[PERF] {"draw_calls_avg":224,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":155,"fps_1pct_low":0.1,"fps_avg":0.1,"frame_ms_avg":18761.29,"frame_ms_max":18761.29,"frames":1,"objects_visible_avg":155,"physics_ms_max_per_s":49.44,"physics_scripts_ms_avg":0.0,"physics_scripts_ms_p99":0.01,"primitives_avg":74925,"process_ms_max_per_s":18758.69,"render_cpu_ms_avg":20.38,"render_gpu_ms_avg":0.0,"scripts_ms_avg":1.05,"scripts_ms_p99":1.05,"static_mem_mb":45.2,"video_mem_mb":24.8,"view":"menu_principal"}
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[PERF] {"draw_calls_avg":247,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":191,"fps_1pct_low":26.6,"fps_avg":94.2,"frame_ms_avg":10.61,"frame_ms_max":48.3,"frames":472,"objects_visible_avg":191,"physics_ms_max_per_s":1.0,"physics_scripts_ms_avg":0.2,"physics_scripts_ms_p99":0.55,"primitives_avg":115359,"process_ms_max_per_s":33.71,"render_cpu_ms_avg":6.99,"render_gpu_ms_avg":9.32,"scripts_ms_avg":1.54,"scripts_ms_p99":2.69,"static_mem_mb":55.9,"video_mem_mb":36.4,"view":"padrao_1200"}
+[PERF] {"draw_calls_avg":240,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":182,"fps_1pct_low":29.8,"fps_avg":105.6,"frame_ms_avg":9.47,"frame_ms_max":37.61,"frames":529,"objects_visible_avg":182,"physics_ms_max_per_s":1.01,"physics_scripts_ms_avg":0.19,"physics_scripts_ms_p99":0.47,"primitives_avg":110791,"process_ms_max_per_s":31.5,"render_cpu_ms_avg":6.31,"render_gpu_ms_avg":8.08,"scripts_ms_avg":1.44,"scripts_ms_p99":2.41,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"padrao_1730"}
+[PERF] {"draw_calls_avg":205,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":149,"fps_1pct_low":33.9,"fps_avg":104.4,"frame_ms_avg":9.58,"frame_ms_max":31.68,"frames":522,"objects_visible_avg":149,"physics_ms_max_per_s":0.73,"physics_scripts_ms_avg":0.2,"physics_scripts_ms_p99":0.36,"primitives_avg":108689,"process_ms_max_per_s":28.55,"render_cpu_ms_avg":6.36,"render_gpu_ms_avg":8.41,"scripts_ms_avg":1.46,"scripts_ms_p99":2.34,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"padrao_2100"}
+[PERF] {"draw_calls_avg":239,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":183,"fps_1pct_low":24.7,"fps_avg":92.1,"frame_ms_avg":10.86,"frame_ms_max":43.65,"frames":459,"objects_visible_avg":183,"physics_ms_max_per_s":1.0,"physics_scripts_ms_avg":0.21,"physics_scripts_ms_p99":0.47,"primitives_avg":114289,"process_ms_max_per_s":35.34,"render_cpu_ms_avg":7.22,"render_gpu_ms_avg":9.66,"scripts_ms_avg":1.6,"scripts_ms_p99":2.78,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"refugio_1200"}
+[PERF] {"draw_calls_avg":247,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":191,"fps_1pct_low":32.8,"fps_avg":104.7,"frame_ms_avg":9.55,"frame_ms_max":34.36,"frames":523,"objects_visible_avg":191,"physics_ms_max_per_s":0.8,"physics_scripts_ms_avg":0.18,"physics_scripts_ms_p99":0.36,"primitives_avg":110692,"process_ms_max_per_s":31.3,"render_cpu_ms_avg":6.48,"render_gpu_ms_avg":8.41,"scripts_ms_avg":1.39,"scripts_ms_p99":2.34,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"slot_oeste_2100"}
+[PERF] {"draw_calls_avg":308,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":251,"fps_1pct_low":30.8,"fps_avg":85.2,"frame_ms_avg":11.73,"frame_ms_max":35.6,"frames":426,"objects_visible_avg":251,"physics_ms_max_per_s":1.62,"physics_scripts_ms_avg":0.51,"physics_scripts_ms_p99":1.18,"primitives_avg":158342,"process_ms_max_per_s":590.89,"render_cpu_ms_avg":15.67,"render_gpu_ms_avg":9.65,"scripts_ms_avg":1.85,"scripts_ms_p99":3.04,"static_mem_mb":57.2,"video_mem_mb":37.5,"view":"vivo_dia_dinos"}
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+[DEFESA] Torre construida em SlotWestInner (rota Oeste)
+[DEFESA] Torre construida em SlotEastInner (rota Leste)
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+[PERF] {"draw_calls_avg":394,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":335,"fps_1pct_low":0.6,"fps_avg":18.0,"frame_ms_avg":55.44,"frame_ms_max":2634.91,"frames":101,"objects_visible_avg":335,"physics_ms_max_per_s":2.32,"physics_scripts_ms_avg":0.89,"physics_scripts_ms_p99":2.25,"primitives_avg":123986,"process_ms_max_per_s":51.38,"render_cpu_ms_avg":60.06,"render_gpu_ms_avg":33.91,"scripts_ms_avg":2.47,"scripts_ms_p99":3.83,"static_mem_mb":58.2,"video_mem_mb":37.5,"view":"vivo_noite_3_torres_aliado"}
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@453 chegou ao territorio.
+@CharacterBody3D@479 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+[PERF] {"draw_calls_avg":502,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":299,"fps_1pct_low":29.3,"fps_avg":55.6,"frame_ms_avg":17.98,"frame_ms_max":43.83,"frames":278,"objects_visible_avg":299,"physics_ms_max_per_s":6.1,"physics_scripts_ms_avg":0.9,"physics_scripts_ms_p99":3.48,"primitives_avg":120843,"process_ms_max_per_s":27.6,"render_cpu_ms_avg":9.77,"render_gpu_ms_avg":8.21,"scripts_ms_avg":4.33,"scripts_ms_p99":7.74,"static_mem_mb":58.1,"video_mem_mb":37.6,"view":"vivo_noite_3_inventario"}
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+[DEFESA] Torre construida em SlotWestInner (rota Oeste)
+[DEFESA] Torre construida em SlotEastInner (rota Leste)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 10 inimigos, intervalo de 0.6s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+@CharacterBody3D@1063 chegou ao territorio.
+@CharacterBody3D@1093 chegou ao territorio.
+@CharacterBody3D@1065 foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 9
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 8
+@CharacterBody3D@1150 chegou ao territorio.
+[PERF] {"draw_calls_avg":670,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":609,"fps_1pct_low":17.7,"fps_avg":45.9,"frame_ms_avg":21.76,"frame_ms_max":84.64,"frames":230,"objects_visible_avg":609,"physics_ms_max_per_s":16.0,"physics_scripts_ms_avg":1.7,"physics_scripts_ms_p99":4.12,"primitives_avg":136673,"process_ms_max_per_s":31.11,"render_cpu_ms_avg":11.17,"render_gpu_ms_avg":7.71,"scripts_ms_avg":3.84,"scripts_ms_p99":6.31,"static_mem_mb":59.9,"video_mem_mb":37.5,"view":"vivo_noite_10_torres"}
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+[DEFESA] Torre construida em SlotWestInner (rota Oeste)
+[DEFESA] Torre construida em SlotEastInner (rota Leste)
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 10 inimigos, intervalo de 0.6s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+@CharacterBody3D@1887 foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 9
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 8
+@CharacterBody3D@1894 foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 7
+@CharacterBody3D@1917 chegou ao territorio.
+@CharacterBody3D@1889 foi derrotado.
+[DEFESA] +15 pontos (total 100)
+[NOITE] Inimigo da wave morreu. Restantes: 6
+@CharacterBody3D@1945 foi derrotado.
+[DEFESA] +15 pontos (total 115)
+[NOITE] Inimigo da wave morreu. Restantes: 5
+@CharacterBody3D@1974 foi derrotado.
+[DEFESA] +15 pontos (total 130)
+[NOITE] Inimigo da wave morreu. Restantes: 4
+[ALIADO] DinoDomesticado3 foi derrotado
+@CharacterBody3D@2013 foi derrotado.
+[DEFESA] +15 pontos (total 145)
+[NOITE] Inimigo da wave morreu. Restantes: 3
+[PERF] {"draw_calls_avg":670,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":607,"fps_1pct_low":23.6,"fps_avg":46.2,"frame_ms_avg":21.66,"frame_ms_max":44.12,"frames":230,"objects_visible_avg":607,"physics_ms_max_per_s":14.1,"physics_scripts_ms_avg":1.79,"physics_scripts_ms_p99":15.84,"primitives_avg":136902,"process_ms_max_per_s":27.98,"render_cpu_ms_avg":11.31,"render_gpu_ms_avg":8.41,"scripts_ms_avg":3.61,"scripts_ms_p99":5.98,"static_mem_mb":59.6,"video_mem_mb":37.5,"view":"vivo_noite_10_torres_3aliados"}
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+[TUTORIAL] passo 2/13: Vá até o sinal jade
+[TUTORIAL] passo 1/13: Ande pelo Refúgio
+[PERF] {"draw_calls_avg":217,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":130,"fps_1pct_low":39.5,"fps_avg":108.4,"frame_ms_avg":9.23,"frame_ms_max":28.58,"frames":542,"objects_visible_avg":130,"physics_ms_max_per_s":1.36,"physics_scripts_ms_avg":0.44,"physics_scripts_ms_p99":0.87,"primitives_avg":96082,"process_ms_max_per_s":24.04,"render_cpu_ms_avg":5.68,"render_gpu_ms_avg":7.43,"scripts_ms_avg":1.6,"scripts_ms_p99":2.65,"static_mem_mb":57.9,"video_mem_mb":37.5,"view":"vivo_tutorial"}
+RESULT: {"adapter":"Intel(R) Iris(R) Xe Graphics","game_load_ms":4982.0,"renderer":"gl_compatibility","seconds_per_view":5.0,"vendor":"Intel","views":[{"draw_calls_avg":224,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":155,"fps_1pct_low":0.1,"fps_avg":0.1,"frame_ms_avg":18761.29,"frame_ms_max":18761.29,"frames":1,"load_ms":3283.9,"objects_visible_avg":155,"physics_ms_max_per_s":49.44,"physics_scripts_ms_avg":0.0,"physics_scripts_ms_p99":0.01,"primitives_avg":74925,"process_ms_max_per_s":18758.69,"render_cpu_ms_avg":20.38,"render_gpu_ms_avg":0.0,"scripts_ms_avg":1.05,"scripts_ms_p99":1.05,"static_mem_mb":45.2,"video_mem_mb":24.8,"view":"menu_principal"},{"draw_calls_avg":247,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":191,"fps_1pct_low":26.6,"fps_avg":94.2,"frame_ms_avg":10.61,"frame_ms_max":48.3,"frames":472,"objects_visible_avg":191,"physics_ms_max_per_s":1.0,"physics_scripts_ms_avg":0.2,"physics_scripts_ms_p99":0.55,"primitives_avg":115359,"process_ms_max_per_s":33.71,"render_cpu_ms_avg":6.99,"render_gpu_ms_avg":9.32,"scripts_ms_avg":1.54,"scripts_ms_p99":2.69,"static_mem_mb":55.9,"video_mem_mb":36.4,"view":"padrao_1200"},{"draw_calls_avg":240,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":182,"fps_1pct_low":29.8,"fps_avg":105.6,"frame_ms_avg":9.47,"frame_ms_max":37.61,"frames":529,"objects_visible_avg":182,"physics_ms_max_per_s":1.01,"physics_scripts_ms_avg":0.19,"physics_scripts_ms_p99":0.47,"primitives_avg":110791,"process_ms_max_per_s":31.5,"render_cpu_ms_avg":6.31,"render_gpu_ms_avg":8.08,"scripts_ms_avg":1.44,"scripts_ms_p99":2.41,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"padrao_1730"},{"draw_calls_avg":205,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":149,"fps_1pct_low":33.9,"fps_avg":104.4,"frame_ms_avg":9.58,"frame_ms_max":31.68,"frames":522,"objects_visible_avg":149,"physics_ms_max_per_s":0.73,"physics_scripts_ms_avg":0.2,"physics_scripts_ms_p99":0.36,"primitives_avg":108689,"process_ms_max_per_s":28.55,"render_cpu_ms_avg":6.36,"render_gpu_ms_avg":8.41,"scripts_ms_avg":1.46,"scripts_ms_p99":2.34,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"padrao_2100"},{"draw_calls_avg":239,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":183,"fps_1pct_low":24.7,"fps_avg":92.1,"frame_ms_avg":10.86,"frame_ms_max":43.65,"frames":459,"objects_visible_avg":183,"physics_ms_max_per_s":1.0,"physics_scripts_ms_avg":0.21,"physics_scripts_ms_p99":0.47,"primitives_avg":114289,"process_ms_max_per_s":35.34,"render_cpu_ms_avg":7.22,"render_gpu_ms_avg":9.66,"scripts_ms_avg":1.6,"scripts_ms_p99":2.78,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"refugio_1200"},{"draw_calls_avg":247,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":191,"fps_1pct_low":32.8,"fps_avg":104.7,"frame_ms_avg":9.55,"frame_ms_max":34.36,"frames":523,"objects_visible_avg":191,"physics_ms_max_per_s":0.8,"physics_scripts_ms_avg":0.18,"physics_scripts_ms_p99":0.36,"primitives_avg":110692,"process_ms_max_per_s":31.3,"render_cpu_ms_avg":6.48,"render_gpu_ms_avg":8.41,"scripts_ms_avg":1.39,"scripts_ms_p99":2.34,"static_mem_mb":57.0,"video_mem_mb":37.7,"view":"slot_oeste_2100"},{"draw_calls_avg":308,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":251,"fps_1pct_low":30.8,"fps_avg":85.2,"frame_ms_avg":11.73,"frame_ms_max":35.6,"frames":426,"objects_visible_avg":251,"physics_ms_max_per_s":1.62,"physics_scripts_ms_avg":0.51,"physics_scripts_ms_p99":1.18,"primitives_avg":158342,"process_ms_max_per_s":590.89,"render_cpu_ms_avg":15.67,"render_gpu_ms_avg":9.65,"scripts_ms_avg":1.85,"scripts_ms_p99":3.04,"static_mem_mb":57.2,"video_mem_mb":37.5,"view":"vivo_dia_dinos"},{"draw_calls_avg":394,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":335,"fps_1pct_low":0.6,"fps_avg":18.0,"frame_ms_avg":55.44,"frame_ms_max":2634.91,"frames":101,"objects_visible_avg":335,"physics_ms_max_per_s":2.32,"physics_scripts_ms_avg":0.89,"physics_scripts_ms_p99":2.25,"primitives_avg":123986,"process_ms_max_per_s":51.38,"render_cpu_ms_avg":60.06,"render_gpu_ms_avg":33.91,"scripts_ms_avg":2.47,"scripts_ms_p99":3.83,"static_mem_mb":58.2,"video_mem_mb":37.5,"view":"vivo_noite_3_torres_aliado"},{"draw_calls_avg":502,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":299,"fps_1pct_low":29.3,"fps_avg":55.6,"frame_ms_avg":17.98,"frame_ms_max":43.83,"frames":278,"objects_visible_avg":299,"physics_ms_max_per_s":6.1,"physics_scripts_ms_avg":0.9,"physics_scripts_ms_p99":3.48,"primitives_avg":120843,"process_ms_max_per_s":27.6,"render_cpu_ms_avg":9.77,"render_gpu_ms_avg":8.21,"scripts_ms_avg":4.33,"scripts_ms_p99":7.74,"static_mem_mb":58.1,"video_mem_mb":37.6,"view":"vivo_noite_3_inventario"},{"draw_calls_avg":670,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":609,"fps_1pct_low":17.7,"fps_avg":45.9,"frame_ms_avg":21.76,"frame_ms_max":84.64,"frames":230,"objects_visible_avg":609,"physics_ms_max_per_s":16.0,"physics_scripts_ms_avg":1.7,"physics_scripts_ms_p99":4.12,"primitives_avg":136673,"process_ms_max_per_s":31.11,"render_cpu_ms_avg":11.17,"render_gpu_ms_avg":7.71,"scripts_ms_avg":3.84,"scripts_ms_p99":6.31,"static_mem_mb":59.9,"video_mem_mb":37.5,"view":"vivo_noite_10_torres"},{"draw_calls_avg":670,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":607,"fps_1pct_low":23.6,"fps_avg":46.2,"frame_ms_avg":21.66,"frame_ms_max":44.12,"frames":230,"objects_visible_avg":607,"physics_ms_max_per_s":14.1,"physics_scripts_ms_avg":1.79,"physics_scripts_ms_p99":15.84,"primitives_avg":136902,"process_ms_max_per_s":27.98,"render_cpu_ms_avg":11.31,"render_gpu_ms_avg":8.41,"scripts_ms_avg":3.61,"scripts_ms_p99":5.98,"static_mem_mb":59.6,"video_mem_mb":37.5,"view":"vivo_noite_10_torres_3aliados"},{"draw_calls_avg":217,"draw_calls_shadow_avg":0,"draw_calls_visible_avg":130,"fps_1pct_low":39.5,"fps_avg":108.4,"frame_ms_avg":9.23,"frame_ms_max":28.58,"frames":542,"objects_visible_avg":130,"physics_ms_max_per_s":1.36,"physics_scripts_ms_avg":0.44,"physics_scripts_ms_p99":0.87,"primitives_avg":96082,"process_ms_max_per_s":24.04,"render_cpu_ms_avg":5.68,"render_gpu_ms_avg":7.43,"scripts_ms_avg":1.6,"scripts_ms_p99":2.65,"static_mem_mb":57.9,"video_mem_mb":37.5,"view":"vivo_tutorial"}],"vsync":0,"window":"(1280, 720)"}

@@ -1,0 +1,7 @@
+﻿{
+    "suite":  "inventory_ui",
+    "mode":  "headless",
+    "exit":  0,
+    "passed":  true,
+    "timeout":  false
+}

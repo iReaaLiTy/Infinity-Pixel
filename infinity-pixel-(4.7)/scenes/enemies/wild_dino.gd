@@ -775,3 +775,13 @@ func _claim_attack_token(target: Node3D) -> bool:
 	tokens[self] = now + ATTACK_COOLDOWN + 0.1
 	target.set_meta("attack_tokens", tokens)
 	return true
+
+## Explicit ally-only healing contract. No revival, wild/invader healing or overflow.
+func heal_ally(amount: float) -> float:
+	if not is_domesticated or not is_in_group("domesticated") or is_in_group("wave_enemy") or hp <= 0.0 or is_queued_for_deletion() or not is_finite(amount) or amount <= 0.0:
+		return 0.0
+	var restored := minf(amount, MAX_HP - hp)
+	if restored <= 0.0: return 0.0
+	hp += restored
+	_update_label()
+	return restored

@@ -1,0 +1,31 @@
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2570)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "active" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://scenes/ui/hud.gd:1509)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/inventory_ui.gd:50)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/ui/main.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/inventory_ui.gd:50)
+ERROR: Failed to load script "res://scenes/ui/main.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/inventory_ui.gd:50)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _build_hud (res://scenes/ui/main.gd:763)
+   GDScript backtrace (most recent call first):
+       [0] _build_hud (res://scenes/ui/main.gd:763)
+       [1] start_game (res://scenes/ui/main.gd:588)
+       [2] _ready (res://tests/inventory_ui.gd:53)
+SCRIPT ERROR: Invalid access to property or key 'inventory_panel' on a base object of type 'Nil'.
+   at: start_game (res://scenes/ui/main.gd:589)
+   GDScript backtrace (most recent call first):
+       [0] start_game (res://scenes/ui/main.gd:589)
+       [1] _ready (res://tests/inventory_ui.gd:53)
+SCRIPT ERROR: Invalid access to property or key 'visible' on a base object of type 'Nil'.
+   at: _ready (res://tests/inventory_ui.gd:62)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/inventory_ui.gd:62)
+       [1] key (res://tests/inventory_ui.gd:27)
+       [2] frames (res://tests/inventory_ui.gd:17)

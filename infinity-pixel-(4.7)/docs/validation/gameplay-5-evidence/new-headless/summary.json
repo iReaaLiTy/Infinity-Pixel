@@ -1,0 +1,7 @@
+﻿{
+    "suite":  "gameplay5",
+    "mode":  "headless",
+    "exit":  1,
+    "passed":  false,
+    "timeout":  false
+}

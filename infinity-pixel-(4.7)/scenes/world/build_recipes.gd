@@ -22,7 +22,7 @@ const RECIPES := {
 		"name": "ARMADILHA DE ESPINHOS",
 		"built": "ARMADILHA CONSTRUÍDA",
 		"wood": 15, "stone": 6,
-		"limit": 3, # RF-CON-006: no maximo 3 ativas
+		"limit": 5, # Gameplay 5.0: cinco ativas
 		"zone": "route", # sobre as rotas noturnas (Spec 012)
 		"radius": 0.9,
 		"script": "res://scenes/world/spike_trap.gd",

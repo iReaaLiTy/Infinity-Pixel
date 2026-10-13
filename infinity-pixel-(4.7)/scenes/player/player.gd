@@ -58,7 +58,8 @@ const PROTECTION_BLINK := 0.16 # s: periodo do pisca da protecao pos-respawn (RF
 
 # A mira so passa a seguir o cursor depois que o mouse se mexe pela primeira vez,
 # para nao girar o jogador para um cursor parado em canto qualquer da tela.
-var _aim_active := false
+var _aim_active := false # legacy diagnostic only; mouse never changes facing
+var ui_blocked := false
 var _attack_queued := false # RF-CMB-002: um clique guardado durante o fim do cooldown
 var _queued_screen_pos := Vector2.ZERO # onde o clique guardado foi feito (mira no alvo dele)
 var attack_count := 0 # golpes executados (diagnostico/testes: 1 clique = 1 golpe)
@@ -165,11 +166,9 @@ func _respawn() -> void:
 # _unhandled_input (e nao _input): cliques consumidos por botoes/paineis da
 # interface nunca chegam aqui, entao clicar na UI nao ataca o mundo (RF-CAM-004).
 func _unhandled_input(event: InputEvent) -> void:
-	if not DayNightManager.can_play() or is_dead:
+	if not DayNightManager.can_play() or is_dead or ui_blocked:
 		return
-	if event is InputEventMouseMotion:
-		_aim_active = true
-	elif event.is_action_pressed("attack") and not event.is_echo() and not channel.blocks_attack():
+	if event.is_action_pressed("attack") and not event.is_echo() and not channel.blocks_attack():
 		# Spec 013D: posicionando construcao, o clique confirma a obra, nao ataca.
 		var placer := get_tree().get_first_node_in_group("build_placer")
 		if placer != null and placer.is_placing():
@@ -178,7 +177,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Antes: com a mira girando, o golpe esperava 2 quadros (sem cooldown ainda,
 		# um 2o clique podia gerar outro golpe) e usava a sobreposicao da Area3D
 		# do passo anterior. Agora: mira -> consulta de forma imediata -> dano.
-		_aim_at_click(event.position)
+		# Facing is already driven by WASD; the click position is irrelevant.
 		if attack_cooldown.is_stopped():
 			_try_attack()
 		elif attack_cooldown.time_left <= ATTACK_BUFFER:
@@ -187,12 +186,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			# Agora o vazio recupera em 0,3 s e um clique no fim do cooldown fica
 			# guardado (no maximo um) e sai assim que o cooldown acaba.
 			_attack_queued = true
-			_queued_screen_pos = event.position
 
 func _on_attack_ready() -> void:
 	if _attack_queued:
 		_attack_queued = false
-		_aim_at_click(_queued_screen_pos) # o mesmo alvo do clique guardado
 		_try_attack()
 
 func _physics_process(delta: float) -> void:
@@ -210,7 +207,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= GRAVITY * delta
 
 	var input_dir := Vector3.ZERO
-	if DayNightManager.can_play(): # RF-AGE-016: fim de sessao bloqueia movimento
+	if DayNightManager.can_play() and not ui_blocked: # RF-AGE-016: fim de sessao bloqueia movimento
 		if Input.is_physical_key_pressed(KEY_W):
 			input_dir.z -= 1.0
 		if Input.is_physical_key_pressed(KEY_S):
@@ -230,8 +227,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	if _aim_active and DayNightManager.can_play():
-		_aim_at_screen(get_viewport().get_mouse_position())
 
 	_update_facing(move_dir, delta)
 
@@ -246,69 +241,50 @@ func _update_facing(move_dir: Vector3, delta: float) -> void:
 		_facing_yaw = lerp_angle(_facing_yaw, target_yaw, 1.0 - exp(-TURN_SPEED * delta))
 	_facing_yaw = wrapf(_facing_yaw, -PI, PI)
 	# Global yaw do Visual = rotation.y (mira) + local yaw -> local = facing - mira.
-	visual.rotation.y = wrapf(_facing_yaw - rotation.y, -PI, PI)
+	rotation.y = _facing_yaw
+	visual.rotation.y = 0.0
 
-# RF-CAM-004: gira o jogador (e com ele a AttackArea3D) para o ponto do chao sob o cursor.
-func _aim_at_screen(screen_pos: Vector2) -> void:
-	var point = camera.screen_to_ground(screen_pos, global_position.y)
-	if point == null:
-		return
-	var dir: Vector3 = point - global_position
-	dir.y = 0.0
-	if dir.length() < MIN_AIM_DISTANCE:
-		return
-	rotation.y = atan2(-dir.x, -dir.z) # frente do jogador = -Z
+# Gameplay 5.0: retained entry points for tooling; screen coordinates are ignored.
+func _aim_at_screen(_screen_pos: Vector2) -> void:
+	pass
 
-# RF-CMB-002: no clique, se o cursor esta SOBRE uma criatura/recurso atacavel, a
-# mira vai para o corpo dele. Projetar no chao um clique feito no corpo (1 m+ de
-# altura) cai atras do alvo e desviava a mira em ate ~30 graus.
-func _aim_at_click(screen_pos: Vector2) -> void:
-	picked_target = _pick_target(screen_pos)
-	if picked_target != null:
-		var dir: Vector3 = picked_target.global_position - global_position
-		dir.y = 0.0
-		if dir.length() >= MIN_AIM_DISTANCE:
-			rotation.y = atan2(-dir.x, -dir.z)
-			return
-	_aim_at_screen(screen_pos)
+func _aim_at_click(_screen_pos: Vector2) -> void:
+	picked_target = _pick_target(Vector2.ZERO)
 
-## Alvo pretendido pelo clique. 1) o raio do cursor acerta o corpo de uma
-## criatura/recurso; 2) senao, o corpo mais proximo do cursor NA TELA (copa da
-## arvore, rocha, criatura). A copa e muito maior que a capsula do tronco: antes
-## o clique nela caia no chao atras da arvore e o golpe saia torto.
-func _pick_target(screen_pos: Vector2) -> Node3D:
-	var from := camera.project_ray_origin(screen_pos)
-	var query := PhysicsRayQueryParameters3D.create(from, from + camera.project_ray_normal(screen_pos) * 200.0, CREATURES | INTERACTABLES, [get_rid()])
-	var hit := get_world_3d().direct_space_state.intersect_ray(query)
-	if not hit.is_empty() and _is_attackable(hit.collider):
-		return hit.collider
-	var scale := get_viewport().get_visible_rect().size.y / 720.0
-	var best: Node3D = null
-	var best_score := INF
-	for body in get_tree().get_nodes_in_group("damageable"):
-		# So corpos que a caixa do golpe tambem atingiria (criaturas e recursos):
-		# o Refugio e "damageable" (inimigos o ferem), mas nunca e alvo do jogador.
-		if not body is CollisionObject3D or (body.collision_layer & (CREATURES | INTERACTABLES)) == 0 \
-				or not _is_attackable(body) or body.get("depleted") == true:
+## Immediate physics broadphase, only on attack. The original attack box and
+## reach stay unchanged. A frontal cone excludes side/back bodies, even when
+## their collision shape overlaps the box. Alignment wins before distance.
+func _pick_target(_screen_pos: Vector2, warning_only := false) -> Node3D:
+	var box: CollisionShape3D = attack_area.get_node("CollisionShape3D")
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = box.shape
+	query.transform = box.global_transform
+	if warning_only:
+		var extended := BoxShape3D.new()
+		extended.size = Vector3(4, 2, PICK_MAX_DISTANCE)
+		query.shape = extended
+		query.transform = global_transform * Transform3D(Basis.IDENTITY, Vector3(0, 1, -PICK_MAX_DISTANCE / 2))
+	query.collision_mask = CREATURES | INTERACTABLES
+	query.exclude = [get_rid()]
+	var best: Node3D
+	var score := INF
+	for result in get_world_3d().direct_space_state.intersect_shape(query, 64):
+		var body = result.collider
+		if not _is_attackable(body) or body.get("depleted") == true or body.get("hp") == 0.0:
 			continue
-		var d := _flat_distance(body)
-		if d > PICK_MAX_DISTANCE:
+		var offset: Vector3 = body.global_position - global_position
+		offset.y = 0
+		var distance := offset.length()
+		var alignment := (-global_basis.z).dot(offset.normalized())
+		if alignment < cos(deg_to_rad(55.0)):
 			continue
-		var height := 2.8 if body.get("kind") == "wood" else (1.1 if body.get("kind") == "stone" else 1.5)
-		var px := INF
-		for k in 4: # segmento vertical do corpo, projetado na tela
-			var p: Vector3 = body.global_position + Vector3(0, 0.2 + height * k / 3.0, 0)
-			if camera.is_position_behind(p):
-				continue
-			px = minf(px, camera.unproject_position(p).distance_to(screen_pos) / scale)
-		if px > PICK_RADIUS_PX:
+		if not warning_only and distance > REACH + _body_radius(body):
 			continue
-		# Criatura vence recurso quando os dois estao sob o cursor; depois, o
-		# mais perto do cursor e, por fim, o mais perto do jogador.
-		var score := px + d * 4.0 - (20.0 if body.is_in_group("wild_dino") else 0.0)
-		if score < best_score:
-			best_score = score
+		var candidate: float = (1.0 - alignment) * 10.0 + distance * 0.25
+		if body.is_in_group("wild_dino"): candidate -= 0.02
+		if candidate < score or (is_equal_approx(candidate, score) and (best == null or body.get_instance_id() < best.get_instance_id())):
 			best = body
+			score = candidate
 	return best
 
 func _flat_distance(body: Node3D) -> float:
@@ -333,7 +309,7 @@ func _try_attack() -> void:
 	if channel.blocks_attack() or (placer != null and placer.is_placing()):
 		_attack_queued = false
 		return
-	if is_dead or not DayNightManager.can_play() or not attack_cooldown.is_stopped():
+	if is_dead or ui_blocked or not DayNightManager.can_play() or not attack_cooldown.is_stopped():
 		return # RF-VID-003: morto nao ataca. RF-AGE-002: cooldown ainda ativo
 	attack_count += 1
 	last_attack_yaw = rotation.y
@@ -344,32 +320,15 @@ func _try_attack() -> void:
 	visual.strike()
 	CombatFX.slash(self, global_position + Vector3(0, 0.9, 0), rotation.y)
 	get_tree().call_group("audio_director", "effect", false)
-	# Consulta de forma IMEDIATA com a caixa da AttackArea3D na rotacao atual: nao
-	# depende da sobreposicao calculada no passo de fisica anterior.
-	var box: CollisionShape3D = attack_area.get_node("CollisionShape3D")
-	var query := PhysicsShapeQueryParameters3D.new()
-	query.shape = box.shape
-	query.transform = box.global_transform
-	query.collision_mask = CREATURES | INTERACTABLES
-	query.exclude = [get_rid()]
 	var hits := 0
-	var seen := {}
-	for result in get_world_3d().direct_space_state.intersect_shape(query, 16):
-		var body = result.collider
-		if _is_attackable(body) and not seen.has(body):
-			seen[body] = true
-			body.take_damage(ATTACK_DAMAGE)
-			hits += 1
-	# O alvo escolhido pelo clique, se estiver ao alcance, sempre leva o golpe
-	# (mesmo colado ao jogador ou na quina da caixa). Fora do alcance: so aviso.
-	var aim := picked_target
-	picked_target = null
-	if is_instance_valid(aim) and _is_attackable(aim) and aim.get("depleted") != true and not seen.has(aim):
-		if _flat_distance(aim) <= REACH + _body_radius(aim) + 0.1:
-			aim.take_damage(ATTACK_DAMAGE)
-			hits += 1
-		else:
-			attack_out_of_range.emit(aim)
-			CombatFX.ring(self, aim.global_position, Color(1, 1, 1), 1.3, 0.35)
+	picked_target = _pick_target(Vector2.ZERO)
+	if is_instance_valid(picked_target):
+		picked_target.take_damage(ATTACK_DAMAGE)
+		hits = 1
+	else:
+		var distant := _pick_target(Vector2.ZERO, true)
+		if is_instance_valid(distant):
+			attack_out_of_range.emit(distant)
+			CombatFX.ring(self, distant.global_position, Color.WHITE, 1.3, 0.35)
 	attack_cooldown.start(ATTACK_COOLDOWN if hits > 0 else WHIFF_COOLDOWN)
 	print_verbose("[Player] ataque acionado — alvos atingidos: %d" % hits) # feedback temporario de playtest

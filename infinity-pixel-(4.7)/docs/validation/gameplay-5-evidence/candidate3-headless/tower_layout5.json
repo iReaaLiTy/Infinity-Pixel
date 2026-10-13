@@ -1,0 +1,31 @@
+{
+	"failed": [
+		"SlotEastInner: quatro acessos navegáveis",
+		"WestEntry: 1.12m livres do centro das torres",
+		"EastEntry: 0.63m livres do centro das torres"
+	],
+	"passed": [
+		"SlotWestInner: plataforma sem colisão com cenário/recurso",
+		"SlotWestInner: navmesh no ponto",
+		"SlotWestInner: quatro acessos navegáveis",
+		"SlotWestOuter: plataforma sem colisão com cenário/recurso",
+		"SlotWestOuter: navmesh no ponto",
+		"SlotWestOuter: quatro acessos navegáveis",
+		"SlotRuinMeadow: plataforma sem colisão com cenário/recurso",
+		"SlotRuinMeadow: navmesh no ponto",
+		"SlotRuinMeadow: quatro acessos navegáveis",
+		"SlotRuinArch: plataforma sem colisão com cenário/recurso",
+		"SlotRuinArch: navmesh no ponto",
+		"SlotRuinArch: quatro acessos navegáveis",
+		"SlotEastInner: plataforma sem colisão com cenário/recurso",
+		"SlotEastInner: navmesh no ponto",
+		"SlotEastOuter: plataforma sem colisão com cenário/recurso",
+		"SlotEastOuter: navmesh no ponto",
+		"SlotEastOuter: quatro acessos navegáveis",
+		"Separação mínima >10m: 10.82",
+		"WestEntry: 20.3m cobertos pelo alcance L1",
+		"RuinEntry: 26.8m cobertos pelo alcance L1",
+		"RuinEntry: 2.60m livres do centro das torres",
+		"EastEntry: 20.8m cobertos pelo alcance L1"
+	]
+}
