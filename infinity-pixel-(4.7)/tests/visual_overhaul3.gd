@@ -49,10 +49,13 @@ func menu_checks() -> void:
 	var names := ["JOGAR", "TUTORIAL", "CONTROLES", "CONFIGURAÇÕES", "CRÉDITOS", "SAIR"]
 	var all := names.all(func(n): return button(n) != null)
 	check(all and button("CONTINUAR") == null, "Botoes reais presentes; sem CONTINUAR (nao ha save)")
+	# Design 5.0 (contrato alterado a pedido): tres niveis de hierarquia —
+	# JOGAR > TUTORIAL > demais opcoes (estas com o mesmo tamanho).
 	var widths := []
-	for n in names.slice(1):
+	for n in names.slice(2):
 		widths.append(button(n).size)
-	check(widths.all(func(s): return s.is_equal_approx(widths[0])) and button("JOGAR").size.x > widths[0].x, "Botoes secundarios com o mesmo tamanho; JOGAR maior")
+	check(widths.all(func(s): return s.is_equal_approx(widths[0])) and button("TUTORIAL").size.x > widths[0].x \
+		and button("JOGAR").size.x > button("TUTORIAL").size.x, "Hierarquia do menu: JOGAR > TUTORIAL > demais opcoes (mesmo tamanho)")
 	check(names.all(func(n): return button(n).has_meta("icon")), "Cada botao do menu tem icone proprio")
 	var backdrop: Node3D = app.menu_backdrop
 	var actors: Array = backdrop.find_children("*", "Node3D", false, false).filter(func(n): return n.get("showcase") != null and n.showcase != "")

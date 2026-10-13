@@ -14,10 +14,14 @@ const VALLEY_ART := preload("res://scenes/visuals/valley_art.tscn") # Spec 017A/
 const FLORA_ART := preload("res://scenes/visuals/flora_art.scn") # 4.0: arvores, rochas, sub-bosque
 const DINO := preload("res://scenes/visuals/dino.tscn")
 const Props := preload("res://scenes/visuals/prehistoric_props.gd")
+const TowerForge := preload("res://scenes/visuals/tower_forge.gd") # Design 5.0
+const SurfaceFinish := preload("res://scenes/visuals/surface_finish.gd") # Design 5.0
 
-## Camera ao norte do Refugio olhando para ele (sul); cristal no terco direito.
-const CAMERA_POS := Vector3(-6.2, 3.1, -3.4)
-const LOOK_AT := Vector3(-2.6, 1.55, -13.6)
+## Camera ao norte do Refugio olhando para ele (sul). 5.0: o cristal fica a direita
+## do centro, a Guardia (L2) ao fundo no centro e o Bastiao (L3) a direita;
+## a estela do menu ocupa o terco esquerdo.
+const CAMERA_POS := Vector3(-8.6, 2.7, -4.2)
+const LOOK_AT := Vector3(-3.6, 1.75, -14.2)
 const SWAY := 0.035 # rad de giro lento em volta do alvo (sem enjoo)
 const SWAY_PERIOD := 48.0 # s por ciclo completo
 
@@ -31,8 +35,8 @@ func _ready() -> void:
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	env.background_mode = Environment.BG_SKY
 	var sky_mat := ProceduralSkyMaterial.new()
-	sky_mat.sky_top_color = Color("4f7f8c")
-	sky_mat.sky_horizon_color = Color("d8cba8")
+	sky_mat.sky_top_color = Color("3f6a7c")
+	sky_mat.sky_horizon_color = Color("e2c08e")
 	sky_mat.ground_horizon_color = Color("b9a58c")
 	sky_mat.ground_bottom_color = Color("3c5a4c")
 	sky_mat.sun_angle_max = 20.0
@@ -40,23 +44,26 @@ func _ready() -> void:
 	sky.sky_material = sky_mat
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color("cfe3d6")
-	env.ambient_light_energy = 0.42
+	env.ambient_light_color = Color("b9d3d6")
+	env.ambient_light_energy = 0.36
 	env.fog_enabled = true
-	env.fog_light_color = Color("d9c29a")
+	env.fog_light_color = Color("e0b98a")
 	env.fog_density = 0.0045
 	env.fog_sky_affect = 0.2
+	env.adjustment_enabled = true # 5.0: um pouco mais de contraste, cor viva sem lavar
+	env.adjustment_contrast = 1.08
+	env.adjustment_saturation = 1.04
 	var world_env := WorldEnvironment.new()
 	world_env.environment = env
 	add_child(world_env)
 	# Sol baixo e quente (fim de tarde): faces com volume e sombras longas.
 	var sun := DirectionalLight3D.new()
-	sun.rotation_degrees = Vector3(-30, -58, 0)
+	sun.rotation_degrees = Vector3(-24, 64, 0) # 5.0: luz lateral baixa (contorno quente)
 	sun.shadow_enabled = true
 	sun.directional_shadow_max_distance = 45.0
 	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS # 4.0: metade das passadas de sombra
-	sun.light_color = Color(1, 0.84, 0.62)
-	sun.light_energy = 1.0
+	sun.light_color = Color(1, 0.8, 0.56)
+	sun.light_energy = 1.15
 	add_child(sun)
 	var art := ART.instantiate()
 	if art.has_node("PostLabel"): # removido na 013C; mantido por seguranca
@@ -68,7 +75,7 @@ func _ready() -> void:
 	add_child(REFUGE_ART.instantiate()) # cristal, plataforma, braseiros, estandartes
 	# Aliado em primeiro plano (cheira o chao e olha em volta) e um selvagem
 	# atravessando a trilha ao fundo, devagar.
-	var ally := _actor(DINO, Vector3(-1.9, 0, -9.0), -1.75, "rest")
+	var ally := _actor(DINO, Vector3(-3.3, 0, -9.6), 1.95, "rest") # 5.0: tres-quartos para a camera
 	ally.set_ally()
 	ally.flash_time = 0.0
 	_walker = _actor(DINO, Vector3(6.5, 0, -22.0), PI / 2.0, "walk")
@@ -97,6 +104,18 @@ func _ready() -> void:
 	camera.far = 160.0
 	add_child(camera)
 	camera.current = true
+	# Design 5.0: as torres novas guardam o Refugio no diorama (so malhas de
+	# vitrine, sem corpo fisico): o Bastiao (L3) atras, a direita do cristal, e
+	# a Guardia (L2) ao fundo, a esquerda; os mecanismos apontam para a trilha.
+	var bastion := TowerForge.showcase(3, 0.5, 1.1)
+	bastion.position = Vector3(6.4, 0.0, -15.4)
+	bastion.rotation.y = -0.6
+	add_child(bastion)
+	var guard := TowerForge.showcase(2, -0.4, 1.0)
+	guard.position = Vector3(-2.4, 0.0, -21.8)
+	guard.rotation.y = 0.3
+	add_child(guard)
+	SurfaceFinish.apply(self) # mesmo acabamento de superficie do jogo
 	_place_camera()
 
 func _actor(scene: PackedScene, pos: Vector3, yaw: float, pose: String) -> Node3D:

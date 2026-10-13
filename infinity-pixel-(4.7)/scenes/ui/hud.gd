@@ -127,8 +127,8 @@ func build(main: Node, game_world: Node3D) -> void:
 	bottom.add_theme_constant_override("separation", 4)
 	var panel = _hud_panel(self, bottom)
 	panel.name = "ContextPanel"
-	(panel.get_theme_stylebox("panel") as StyleBoxFlat).content_margin_top = 6
-	(panel.get_theme_stylebox("panel") as StyleBoxFlat).content_margin_bottom = 7
+	panel.get_theme_stylebox("panel").content_margin_top = 6
+	panel.get_theme_stylebox("panel").content_margin_bottom = 7
 	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
@@ -851,7 +851,7 @@ func _update_alerts() -> void:
 	var health := get_node_or_null("HealthPanel") as PanelContainer
 	if health != null:
 		var low := player_bar.value < player_bar.max_value * 0.3 or base_bar.value < base_bar.max_value * 0.35
-		(health.get_theme_stylebox("panel") as StyleBoxFlat).border_color = Color(UiArt.EMBER, pulse) if low else Color("3d6a57", .9)
+		health.get_theme_stylebox("panel").border_color = Color(UiArt.EMBER, pulse) if low else Color("3d6a57", .9)
 	var phase := get_node_or_null("PhasePanel") as PanelContainer
 	if phase != null:
 		var edge := Color("3d6a57", .9)
@@ -859,7 +859,7 @@ func _update_alerts() -> void:
 			edge = Color(UiArt.AMBER, pulse)
 		elif DayNightManager.is_night():
 			edge = Color(NIGHT_VIOLET, .8)
-		(phase.get_theme_stylebox("panel") as StyleBoxFlat).border_color = edge
+		phase.get_theme_stylebox("panel").border_color = edge
 
 ## Rotulos das criaturas por contexto: o aliado mais perto do Player mostra o
 ## rotulo completo; outros aliados so aparecem (menores) quando feridos e

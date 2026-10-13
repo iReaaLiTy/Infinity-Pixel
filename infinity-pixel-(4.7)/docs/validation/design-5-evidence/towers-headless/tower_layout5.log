@@ -1,0 +1,69 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Seis pontos de defesa
+PASS: Slots da cena = posicoes documentadas ({ "SlotWestInner": (-12.0, 0.0, -11.0), "SlotWestOuter": (-19.0, 0.0, 6.0), "SlotRuinMeadow": (-3.5, 0.0, 1.0), "SlotRuinArch": (4.5, 0.0, 13.0), "SlotEastInner": (12.5, 0.0, -8.0), "SlotEastOuter": (19.0, 0.0, 6.0) })
+PASS: Rota informativa de cada slot preservada
+PASS: tools/build_valley_art.gd usa as mesmas 6 posicoes
+PASS: Separacao minima 14.42 m (antes 8.07 m)
+PASS: SlotWestInner: plataforma sem colisao com cenario/recurso
+PASS: SlotWestInner: navmesh no ponto
+PASS: SlotWestInner: quatro acessos navegaveis (Player circula)
+PASS: SlotWestInner: borda da trilha a 5.91 m do centro (torre r=0,8 fora do caminho)
+PASS: SlotWestInner: longe do Refugio, area de construcao, entradas, marcos e coletaveis
+PASS: SlotWestOuter: plataforma sem colisao com cenario/recurso
+PASS: SlotWestOuter: navmesh no ponto
+PASS: SlotWestOuter: quatro acessos navegaveis (Player circula)
+PASS: SlotWestOuter: borda da trilha a 2.47 m do centro (torre r=0,8 fora do caminho)
+PASS: SlotWestOuter: longe do Refugio, area de construcao, entradas, marcos e coletaveis
+PASS: SlotRuinMeadow: plataforma sem colisao com cenario/recurso
+PASS: SlotRuinMeadow: navmesh no ponto
+PASS: SlotRuinMeadow: quatro acessos navegaveis (Player circula)
+PASS: SlotRuinMeadow: borda da trilha a 1.20 m do centro (torre r=0,8 fora do caminho)
+PASS: SlotRuinMeadow: longe do Refugio, area de construcao, entradas, marcos e coletaveis
+PASS: SlotRuinArch: plataforma sem colisao com cenario/recurso
+PASS: SlotRuinArch: navmesh no ponto
+PASS: SlotRuinArch: quatro acessos navegaveis (Player circula)
+PASS: SlotRuinArch: borda da trilha a 2.20 m do centro (torre r=0,8 fora do caminho)
+PASS: SlotRuinArch: longe do Refugio, area de construcao, entradas, marcos e coletaveis
+PASS: SlotEastInner: plataforma sem colisao com cenario/recurso
+PASS: SlotEastInner: navmesh no ponto
+PASS: SlotEastInner: quatro acessos navegaveis (Player circula)
+PASS: SlotEastInner: borda da trilha a 3.74 m do centro (torre r=0,8 fora do caminho)
+PASS: SlotEastInner: longe do Refugio, area de construcao, entradas, marcos e coletaveis
+PASS: SlotEastOuter: plataforma sem colisao com cenario/recurso
+PASS: SlotEastOuter: navmesh no ponto
+PASS: SlotEastOuter: quatro acessos navegaveis (Player circula)
+PASS: SlotEastOuter: borda da trilha a 2.50 m do centro (torre r=0,8 fora do caminho)
+PASS: SlotEastOuter: longe do Refugio, area de construcao, entradas, marcos e coletaveis
+PASS: WestEntry: 19.3 m do caminho sob alcance L1 de 8 m (layout antigo: 20.4 m)
+PASS: WestEntry: caminho passa a 3.37 m do centro da torre mais proxima
+PASS: RuinEntry: 25.4 m do caminho sob alcance L1 de 8 m (layout antigo: 27.3 m)
+PASS: RuinEntry: caminho passa a 4.07 m do centro da torre mais proxima
+PASS: EastEntry: 19.9 m do caminho sob alcance L1 de 8 m (layout antigo: 20.3 m)
+PASS: EastEntry: caminho passa a 3.47 m do centro da torre mais proxima
+[DEFESA] Torre construida em SlotWestInner (rota Oeste)
+[DEFESA] Torre melhorada para o nivel 2
+[DEFESA] Torre melhorada para o nivel 3
+[DEFESA] Torre construida em SlotWestOuter (rota Oeste)
+[DEFESA] Torre melhorada para o nivel 2
+[DEFESA] Torre melhorada para o nivel 3
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+[DEFESA] Torre melhorada para o nivel 2
+[DEFESA] Torre melhorada para o nivel 3
+[DEFESA] Torre construida em SlotRuinArch (rota Ruína)
+[DEFESA] Torre melhorada para o nivel 2
+[DEFESA] Torre melhorada para o nivel 3
+[DEFESA] Torre construida em SlotEastInner (rota Leste)
+[DEFESA] Torre melhorada para o nivel 2
+[DEFESA] Torre melhorada para o nivel 3
+[DEFESA] Torre construida em SlotEastOuter (rota Leste)
+[DEFESA] Torre melhorada para o nivel 2
+[DEFESA] Torre melhorada para o nivel 3
+PASS: Torres em todos os 6 slots e melhorias ate L3 (6/6)
+PASS: Com 6 torres: as 3 rotas seguem ate o Refugio
+PASS: Modelos das torres sem sobreposicao (centros a mais de 10 m)
+RESULT: 44 passed; 0 failed

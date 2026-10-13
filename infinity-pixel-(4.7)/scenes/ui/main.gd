@@ -125,12 +125,20 @@ func _label(text: String, size: int = 20, color: Color = CREAM) -> Label:
 	l.add_theme_color_override("font_color", color)
 	return l
 
-func _button(parent: Node, text: String, action: Callable) -> Button:
+## Botao das telas (pausa, configuracoes, derrota...). `primary` = a acao
+## principal da tela em placa ambar (Design 5.0: hierarquia clara).
+func _button(parent: Node, text: String, action: Callable, primary := false) -> Button:
 	var b := Button.new()
 	b.text = text
-	b.custom_minimum_size.y = 46
+	b.custom_minimum_size.y = 50 if primary else 46
 	b.add_theme_font_override("font", _display_font())
-	b.add_theme_font_size_override("font_size", 18)
+	b.add_theme_font_size_override("font_size", 20 if primary else 18)
+	if primary:
+		var styles := UiArt.button_styles(Color("c98f45"), Color("f0c983"), 6, 10, 22, 8)
+		for state in styles:
+			b.add_theme_stylebox_override(state, styles[state])
+		for key in ["font_color", "font_hover_color", "font_focus_color", "font_pressed_color"]:
+			b.add_theme_color_override(key, Color("2b1906"))
 	b.pressed.connect(action)
 	parent.add_child(b)
 	return b
@@ -221,8 +229,11 @@ func _menu_button(parent: Node, text: String, size: int, fill: Color, edge: Colo
 	parent.add_child(b)
 	return b
 
-## Marca JADEFALL desenhada: letras talhadas (extrusao em camadas escuras +
-## contorno + preenchimento ambar) e o cristal do Refugio como emblema.
+## Design 5.0 — logotipo: JADEFALL em relevo (extrusao, contorno, bisel claro
+## em cima e sombra embaixo) sobre um LINTEL de pedra talhada com musgo,
+## rachaduras e filete jade; um medalhao com o cristal do Refugio e dois ossos
+## fosseis cruzados sela a ponta esquerda. Tudo desenhado (nitido em qualquer
+## escala); fonte embutida Lilita One (OFL).
 func _title_mark(size: int) -> Control:
 	var c := Control.new()
 	c.name = "TitleMark"
@@ -230,88 +241,170 @@ func _title_mark(size: int) -> Control:
 	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var font := _display_font()
 	var text_size := font.get_string_size("JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size)
-	var emblem := size * 0.62
-	c.custom_minimum_size = Vector2(emblem + 14 + text_size.x, size * 1.18)
+	var medal := size * 1.22
+	var pad := size * 0.46
+	c.custom_minimum_size = Vector2(medal * 0.62 + pad * 2.0 + text_size.x + size * 0.2, size * 1.62)
 	c.draw.connect(func():
-		var base := size * 0.96
-		var x0 := emblem + 14
 		var ci := c.get_canvas_item()
-		# brilho e cristal (emblema a esquerda)
-		UiArt.crystal(c, Rect2(Vector2(2, size * .1), Vector2(emblem * .82, size * .98)), 1.0)
-		for k in range(9, 0, -1):
-			font.draw_string(ci, Vector2(x0, base + k), "JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color("2a160a").lerp(Color("5a3414"), 1.0 - k / 9.0))
-		font.draw_string_outline(ci, Vector2(x0, base), "JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size, maxi(6, size / 11), Color("2a160a"))
+		var w := c.size.x
+		var h := c.size.y
+		# lintel: placa trapezoidal chanfrada, um pouco mais larga em cima
+		var slab_l := medal * 0.36
+		var top := h * 0.2
+		var bottom := h * 0.94
+		var ch := size * 0.14
+		var slab := PackedVector2Array([Vector2(slab_l + ch, top), Vector2(w - ch, top), Vector2(w, top + ch), Vector2(w - size * 0.08, bottom - ch),
+			Vector2(w - size * 0.08 - ch, bottom), Vector2(slab_l + size * 0.08 + ch, bottom), Vector2(slab_l + size * 0.08, bottom - ch), Vector2(slab_l, top + ch)])
+		c.draw_colored_polygon(_offset_poly(slab, Vector2(0, 8)), Color(0, 0, 0, 0.35))
+		var cols := PackedColorArray()
+		for p in slab:
+			cols.append(Color("4a5a50").lerp(Color("26342e"), clampf((p.y - top) / (bottom - top), 0.0, 1.0)))
+		c.draw_polygon(slab, cols)
+		# veios/rachaduras e marcas de cinzel na pedra
+		var crack := Color(0.05, 0.08, 0.07, 0.55)
+		c.draw_polyline(PackedVector2Array([Vector2(w * 0.55, top + 2), Vector2(w * 0.565, top + (bottom - top) * 0.3), Vector2(w * 0.545, top + (bottom - top) * 0.55)]), crack, 2.0)
+		c.draw_polyline(PackedVector2Array([Vector2(w * 0.9, bottom - 2), Vector2(w * 0.885, bottom - (bottom - top) * 0.35), Vector2(w * 0.905, bottom - (bottom - top) * 0.5)]), crack, 2.0)
+		# filete jade e bisel do topo
+		c.draw_line(Vector2(slab_l + size * 0.2, bottom - size * 0.14), Vector2(w - size * 0.26, bottom - size * 0.14), Color(UiArt.JADE, 0.5), 2.0)
+		c.draw_line(Vector2(slab_l + ch, top + 1.5), Vector2(w - ch, top + 1.5), Color(1, 1, 1, 0.18), 2.0)
+		c.draw_polyline(slab + PackedVector2Array([slab[0]]), Color("1a2420"), 2.5, true)
+		# musgo pendendo da borda de cima (pequenos tufos)
+		for i in 9:
+			var x := slab_l + ch + (w - slab_l - 2.0 * ch) * (0.04 + 0.11 * i + 0.02 * sin(i * 3.1))
+			var mw := size * (0.1 + 0.05 * fposmod(i * 0.37, 1.0))
+			var mh := size * (0.05 + 0.06 * fposmod(i * 0.61, 1.0))
+			c.draw_colored_polygon(PackedVector2Array([Vector2(x - mw, top - 1), Vector2(x + mw, top - 1), Vector2(x + mw * 0.4, top + mh), Vector2(x - mw * 0.3, top + mh * 0.7)]),
+				Color("4f7f45") if i % 2 == 0 else Color("5f9150"))
+		# letras em relevo
+		var x0 := medal * 0.62 + pad
+		var base := top + (bottom - top) * 0.5 + size * 0.36
+		for k in range(8, 0, -1):
+			font.draw_string(ci, Vector2(x0, base + k), "JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color("1d1006").lerp(Color("5a3414"), 1.0 - k / 8.0))
+		font.draw_string_outline(ci, Vector2(x0, base), "JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size, maxi(6, size / 10), Color("1d1006"))
+		font.draw_string(ci, Vector2(x0, base - 2.5), "JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color("fff1cf"))
+		font.draw_string(ci, Vector2(x0, base + 3.0), "JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color("b8742a"))
 		font.draw_string(ci, Vector2(x0, base), "JADEFALL", HORIZONTAL_ALIGNMENT_LEFT, -1, size, UiArt.AMBER_LIGHT)
-		# rachaduras discretas na pedra (dao textura sem poluir)
-		var crack := Color("2a160a", 0.55)
-		c.draw_polyline(PackedVector2Array([Vector2(x0 + text_size.x * .18, base - size * .62), Vector2(x0 + text_size.x * .2, base - size * .44), Vector2(x0 + text_size.x * .185, base - size * .3)]), crack, 2.0)
-		c.draw_polyline(PackedVector2Array([Vector2(x0 + text_size.x * .71, base - size * .7), Vector2(x0 + text_size.x * .69, base - size * .52), Vector2(x0 + text_size.x * .705, base - size * .4)]), crack, 2.0))
+		# medalhao: ossos cruzados atras, anel de pedra, fundo escuro e o cristal
+		var mc := Vector2(medal * 0.46, h * 0.54)
+		var mr := medal * 0.42
+		UiArt.bone(c, mc + Vector2(-mr * 1.05, -mr * 0.9), mc + Vector2(mr * 1.05, mr * 0.9), size * 0.07, UiArt.IVORY.darkened(0.08))
+		UiArt.bone(c, mc + Vector2(-mr * 1.05, mr * 0.9), mc + Vector2(mr * 1.05, -mr * 0.9), size * 0.07, UiArt.IVORY)
+		c.draw_circle(mc + Vector2(0, 6), mr + 4, Color(0, 0, 0, 0.35))
+		_ring_poly(c, mc, mr + 3, 10, Color("1a2420"))
+		_ring_poly(c, mc, mr, 10, Color("5d6d63"))
+		_ring_poly(c, mc, mr * 0.8, 10, Color("13261f"))
+		for i in 10:
+			var a := TAU * i / 10.0
+			c.draw_circle(mc + Vector2(cos(a), sin(a)) * mr * 0.9, size * 0.025, Color(UiArt.JADE, 0.75))
+		UiArt.crystal(c, Rect2(mc - Vector2(mr * 0.42, mr * 0.68), Vector2(mr * 0.84, mr * 1.36)), 1.0))
 	return c
+
+func _offset_poly(pts: PackedVector2Array, d: Vector2) -> PackedVector2Array:
+	var out := PackedVector2Array()
+	for p in pts:
+		out.append(p + d)
+	return out
+
+func _ring_poly(ci: CanvasItem, center: Vector2, r: float, sides: int, col: Color) -> void:
+	var pts := PackedVector2Array()
+	for i in sides:
+		var a := TAU * i / sides - PI / 2.0
+		pts.append(center + Vector2(cos(a), sin(a)) * r)
+	ci.draw_colored_polygon(pts, col)
 
 ## Cristal facetado do Refugio (icone da HUD e das telas).
 func _crystal(size: float) -> Control:
 	return UiArt.drawn(Vector2(size * .62, size), func(ci: CanvasItem, r: Rect2): UiArt.crystal(ci, r))
 
-## Placa de pedra com o subtitulo entre dois ossos fosseis.
+## Design 5.0 — faixa de tecido jade com pontas recortadas e borda ambar; o
+## subtitulo (Label "Subtitle") vai por cima, com espacamento largo.
 func _subtitle_plaque(text: String, size: int) -> Control:
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 6)
-	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var bone_l := UiArt.drawn(Vector2(54, 24), func(ci: CanvasItem, r: Rect2): UiArt.bone(ci, Vector2(6, r.size.y * .5), Vector2(r.size.x - 4, r.size.y * .5), 5.0, Color(UiArt.IVORY, .85)))
-	row.add_child(bone_l)
-	var plaque := PanelContainer.new()
-	var s := UiArt.stone_panel(0.92, UiArt.JADE, Vector4(18, 4, 18, 6), 6)
-	s.shadow_size = 6
-	plaque.add_theme_stylebox_override("panel", s)
+	var ribbon := PanelContainer.new()
+	ribbon.name = "SubtitleRibbon"
+	ribbon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var empty := StyleBoxEmpty.new()
+	empty.content_margin_left = size * 2.2
+	empty.content_margin_right = size * 2.2
+	empty.content_margin_top = size * 0.35
+	empty.content_margin_bottom = size * 0.45
+	ribbon.add_theme_stylebox_override("panel", empty)
+	ribbon.draw.connect(func():
+		var s := ribbon.size
+		var n := s.y * 0.5
+		var cut := s.y * 0.55
+		var band := PackedVector2Array([Vector2(0, 0), Vector2(s.x, 0), Vector2(s.x - cut, n), Vector2(s.x, s.y), Vector2(0, s.y), Vector2(cut, n)])
+		ribbon.draw_colored_polygon(_offset_poly(band, Vector2(0, 4)), Color(0, 0, 0, 0.35))
+		ribbon.draw_colored_polygon(band, Color("1d4a3d"))
+		ribbon.draw_colored_polygon(PackedVector2Array([Vector2(cut * 1.4, 2), Vector2(s.x - cut * 1.4, 2), Vector2(s.x - cut * 1.4, n), Vector2(cut * 1.4, n)]), Color(1, 1, 1, 0.05))
+		ribbon.draw_polyline(band + PackedVector2Array([band[0]]), UiArt.AMBER, 2.0, true)
+		ribbon.draw_line(Vector2(cut * 1.3, s.y - 5), Vector2(s.x - cut * 1.3, s.y - 5), Color(UiArt.AMBER, 0.35), 1.0)
+		for x in [cut * 1.45, s.x - cut * 1.45]:
+			UiArt.crystal(ribbon, Rect2(Vector2(x - s.y * 0.14, s.y * 0.22), Vector2(s.y * 0.28, s.y * 0.56))))
 	var label := _label(text, size, UiArt.IVORY)
 	label.name = "Subtitle"
-	label.add_theme_font_override("font", _display_font())
-	label.add_theme_constant_override("outline_size", 0)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var spaced := FontVariation.new()
 	spaced.base_font = _display_font()
 	spaced.spacing_glyph = 5
 	label.add_theme_font_override("font", spaced)
-	plaque.add_child(label)
-	row.add_child(plaque)
-	var bone_r := UiArt.drawn(Vector2(54, 24), func(ci: CanvasItem, r: Rect2): UiArt.bone(ci, Vector2(4, r.size.y * .5), Vector2(r.size.x - 6, r.size.y * .5), 5.0, Color(UiArt.IVORY, .85)))
-	row.add_child(bone_r)
-	return row
+	label.add_theme_color_override("font_outline_color", Color("0e231c"))
+	label.add_theme_constant_override("outline_size", 4)
+	ribbon.add_child(label)
+	return ribbon
 
-## Botao do menu principal: tamanho fixo (consistente), icone proprio a
-## esquerda, faixa jade e leve avanço no hover, afunda no clique.
-func _stone_button(parent: Node, text: String, icon: StringName, primary: bool, action: Callable) -> Button:
+## Botao do menu principal em tres niveis de hierarquia: 0 = JOGAR (placa ambar
+## grande), 1 = TUTORIAL (placa jade media), 2 = demais opcoes (pedra, mesmo
+## tamanho). Icone proprio a esquerda, divisor talhado, brilho jade no hover,
+## avanço curto, afunda no clique e contorno ambar no foco de teclado.
+const MENU_TIERS := [
+	{"size": Vector2(410, 74), "font": 32, "fill": Color("c98f45"), "edge": Color("f0c983"), "depth": 7, "ink": Color("2b1906"), "pad": 84},
+	{"size": Vector2(360, 56), "font": 23, "fill": Color("1f5a49"), "edge": Color("69c7a0"), "depth": 6, "ink": Color("f2e8ce"), "pad": 70},
+	{"size": Vector2(320, 46), "font": 18, "fill": Color("1f332c"), "edge": Color("4e7a66"), "depth": 5, "ink": Color("f2e8ce"), "pad": 62},
+]
+
+func _stone_button(parent: Node, text: String, icon: StringName, tier: int, action: Callable) -> Button:
+	var spec: Dictionary = MENU_TIERS[tier]
 	var b := Button.new()
 	b.text = text
 	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	b.custom_minimum_size = Vector2(392, 68) if primary else Vector2(348, 48)
+	b.custom_minimum_size = spec.size
 	b.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	b.add_theme_font_override("font", _display_font())
-	b.add_theme_font_size_override("font_size", 30 if primary else 18)
-	var fill := Color("c98f45") if primary else UiArt.STONE
-	var edge := Color("f0c983") if primary else UiArt.STONE_EDGE
-	var styles := UiArt.button_styles(fill, edge, 7 if primary else 5, 10, 76 if primary else 62, 8)
+	b.add_theme_font_size_override("font_size", spec.font)
+	var styles := UiArt.button_styles(spec.fill, spec.edge, spec.depth, 12 if tier == 0 else 10, spec.pad, 8)
+	if tier == 0:
+		for st in styles.values():
+			st.studs = true
+			st.stud_color = Color("fff1cf")
 	for state in styles:
 		b.add_theme_stylebox_override(state, styles[state])
-	var ink := Color("2b1906") if primary else CREAM
+	var ink: Color = spec.ink
 	b.add_theme_color_override("font_color", ink)
-	b.add_theme_color_override("font_hover_color", ink if primary else Color.WHITE)
-	b.add_theme_color_override("font_focus_color", ink if primary else Color.WHITE)
-	b.add_theme_color_override("font_pressed_color", ink if primary else UiArt.JADE_LIGHT)
+	b.add_theme_color_override("font_hover_color", ink if tier == 0 else Color.WHITE)
+	b.add_theme_color_override("font_focus_color", ink if tier == 0 else Color.WHITE)
+	b.add_theme_color_override("font_pressed_color", ink if tier == 0 else UiArt.JADE_LIGHT)
+	if tier > 0:
+		b.add_theme_color_override("font_outline_color", Color("0b1a15"))
+		b.add_theme_constant_override("outline_size", 3)
 	b.set_meta("icon", icon)
+	b.set_meta("tier", tier)
 	b.draw.connect(func():
 		var h := b.size.y
 		var lit := b.is_hovered() or b.has_focus()
-		var r := Rect2(Vector2(20 if primary else 18, h * .2), Vector2(h * .6, h * .6) * (0.85 if not primary else 1.0))
-		if primary:
-			r = Rect2(Vector2(22, h * .14), Vector2(h * .48, h * .66))
-		var col := (UiArt.JADE_LIGHT if lit else UiArt.JADE) if not primary else UiArt.INK
+		var face := h - float(spec.depth)
+		var pad := float(spec.pad)
+		var r := Rect2(Vector2(pad * 0.3, face * 0.2), Vector2(face * 0.6, face * 0.6))
+		var col := UiArt.INK if tier == 0 else (UiArt.JADE_LIGHT if lit else UiArt.JADE)
+		if tier == 0:
+			r = Rect2(Vector2(pad * 0.27, face * 0.13), Vector2(face * 0.5, face * 0.72))
 		UiArt.icon(b, icon, r, col)
-		# divisor talhado entre icone e texto
-		var dx := (64.0 if primary else 52.0)
-		b.draw_line(Vector2(dx, h * .22), Vector2(dx, h * .74), Color(0, 0, 0, .28), 2.0)
-		b.draw_line(Vector2(dx + 2, h * .22), Vector2(dx + 2, h * .74), Color(1, 1, 1, .08), 1.0)
-		if lit and not primary: # faixa jade a esquerda
-			b.draw_rect(Rect2(Vector2(3, 6), Vector2(4, h - 14)), UiArt.JADE))
+		var dx := pad - 14.0
+		b.draw_line(Vector2(dx, face * 0.22), Vector2(dx, face * 0.78), Color(0, 0, 0, .3), 2.0)
+		b.draw_line(Vector2(dx + 2, face * 0.22), Vector2(dx + 2, face * 0.78), Color(1, 1, 1, .1), 1.0)
+		if lit and tier > 0: # seta jade a direita (o botao "aponta" a acao)
+			var ax := b.size.x - 26.0
+			var ay := face * 0.5
+			b.draw_colored_polygon(PackedVector2Array([Vector2(ax, ay - 6), Vector2(ax + 9, ay), Vector2(ax, ay + 6)]), UiArt.JADE_LIGHT))
 	b.mouse_entered.connect(func(): _nudge(b, true))
 	b.mouse_exited.connect(func(): _nudge(b, false))
 	b.focus_entered.connect(b.queue_redraw)
@@ -327,11 +420,21 @@ func _nudge(b: Control, on: bool) -> void:
 	t.tween_property(b, "scale", Vector2.ONE * (1.035 if on else 1.0), .12)
 	b.queue_redraw()
 
+## Escala da coluna do menu pela altura da janela (cabe de 960x540 a 4K).
+func _menu_scale() -> float:
+	return clampf(get_viewport().get_visible_rect().size.y / 780.0, 0.62, 1.25)
+
+# ---------------------------------------------------------------------------
+# Design 5.0 — composicao do menu principal: o diorama 3D ocupa a tela toda
+# (o Refugio, as torres novas e um aliado ficam no terco direito); faixas de
+# cinema escurecem o alto e o rodape; a esquerda, o logotipo no lintel e a
+# ESTELA de pedra com a hierarquia JOGAR > TUTORIAL > opcoes > sair.
+# ---------------------------------------------------------------------------
 func _build_main_menu() -> void:
-	# Faixa escura a esquerda (leitura dos botoes) que se dissolve no diorama.
+	# Faixa escura a esquerda (leitura) que se dissolve no diorama.
 	var gradient := Gradient.new()
-	gradient.set_color(0, Color(UiArt.GREEN_DEEP, .86))
-	gradient.add_point(0.42, Color(UiArt.GREEN_DEEP, .55))
+	gradient.set_color(0, Color(UiArt.GREEN_DEEP, .78))
+	gradient.add_point(0.38, Color(UiArt.GREEN_DEEP, .42))
 	gradient.set_color(gradient.get_point_count() - 1, Color(UiArt.GREEN_DEEP, 0))
 	var band_tex := GradientTexture2D.new()
 	band_tex.gradient = gradient
@@ -343,18 +446,37 @@ func _build_main_menu() -> void:
 	band.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	band.stretch_mode = TextureRect.STRETCH_SCALE
 	band.set_anchors_and_offsets_preset(Control.PRESET_LEFT_WIDE)
-	band.anchor_right = 0.62
+	band.anchor_right = 0.55
 	band.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui.add_child(band)
-	# Vinheta suave nas bordas.
+	# Faixas de cinema (alto e rodape) e vinheta suave.
+	for top in [true, false]:
+		var g := Gradient.new()
+		g.set_color(0, Color(0.02, 0.05, 0.04, 0.62 if top else 0.7))
+		g.set_color(1, Color(0.02, 0.05, 0.04, 0.0))
+		var gt := GradientTexture2D.new()
+		gt.gradient = g
+		gt.fill_from = Vector2(.5, 0 if top else 1)
+		gt.fill_to = Vector2(.5, 1 if top else 0)
+		var bar := TextureRect.new()
+		bar.texture = gt
+		bar.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		bar.stretch_mode = TextureRect.STRETCH_SCALE
+		bar.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE if top else Control.PRESET_BOTTOM_WIDE)
+		if top:
+			bar.anchor_bottom = 0.2
+		else:
+			bar.anchor_top = 0.74
+		bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		ui.add_child(bar)
 	var vg := Gradient.new()
 	vg.set_color(0, Color(.02, .06, .05, 0))
-	vg.set_color(1, Color(.02, .06, .05, .5))
+	vg.set_color(1, Color(.02, .06, .05, .45))
 	var vt := GradientTexture2D.new()
 	vt.gradient = vg
 	vt.fill = GradientTexture2D.FILL_RADIAL
-	vt.fill_from = Vector2(.62, .45)
-	vt.fill_to = Vector2(1.25, 1.05)
+	vt.fill_from = Vector2(.64, .46)
+	vt.fill_to = Vector2(1.3, 1.1)
 	var vignette := TextureRect.new()
 	vignette.texture = vt
 	vignette.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -362,58 +484,55 @@ func _build_main_menu() -> void:
 	vignette.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	vignette.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui.add_child(vignette)
-	# Trilha de pegadas cruzando a faixa (decoracao, bem apagada).
-	var trail := UiArt.drawn(Vector2.ZERO, func(ci: CanvasItem, r: Rect2):
-		UiArt.footprint_trail(ci, Vector2(r.size.x * .03, r.size.y * .97), Vector2(r.size.x * .4, r.size.y * .62), 9, 30.0, Color(UiArt.IVORY, .07)))
-	trail.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	ui.add_child(trail)
 
+	# Coluna: logotipo + estela. Escala pela altura da janela (pivo no canto).
 	var column := VBoxContainer.new()
 	column.name = "MenuColumn"
-	column.set_anchors_and_offsets_preset(Control.PRESET_LEFT_WIDE)
-	column.offset_left = 72
-	column.offset_right = 72 + 560
-	column.alignment = BoxContainer.ALIGNMENT_CENTER
-	column.add_theme_constant_override("separation", 0)
+	column.position = Vector2(64, 0)
+	column.add_theme_constant_override("separation", 14)
 	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui.add_child(column)
 	var logo := VBoxContainer.new()
 	logo.name = "Logo"
-	logo.add_theme_constant_override("separation", 2)
+	logo.add_theme_constant_override("separation", -6)
 	logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	column.add_child(logo)
-	logo.add_child(_title_mark(86))
+	logo.add_child(_title_mark(84))
 	var sub := _subtitle_plaque("GUARDIÕES DO REFÚGIO", 19)
-	var sub_pad := MarginContainer.new()
-	sub_pad.add_theme_constant_override("margin_left", 66)
-	sub_pad.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	sub_pad.add_child(sub)
-	logo.add_child(sub_pad)
-	var gap := Control.new()
-	gap.custom_minimum_size.y = 38
-	column.add_child(gap)
+	sub.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	logo.add_child(sub)
+	# Estela: placa alta de pedra com cravos e filete jade, botoes dentro.
+	var stele := PanelContainer.new()
+	stele.name = "MenuStele"
+	stele.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	var stele_style := UiArt.stone_panel(0.88, UiArt.STONE_EDGE, Vector4(26, 26, 30, 24), 14)
+	stele.add_theme_stylebox_override("panel", stele_style)
+	stele.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	column.add_child(stele)
 	var buttons := VBoxContainer.new()
 	buttons.name = "MenuButtons"
 	buttons.add_theme_constant_override("separation", 10)
-	column.add_child(buttons)
-	var play := _stone_button(buttons, "JOGAR", &"play", true, start_game)
+	stele.add_child(buttons)
+	var play := _stone_button(buttons, "JOGAR", &"play", 0, start_game)
 	play.name = "PlayButton"
-	var spacer := Control.new()
-	spacer.custom_minimum_size.y = 4
-	buttons.add_child(spacer)
 	# Spec 022: tutorial jogavel (mesmo jogo, instancia isolada).
-	_stone_button(buttons, "TUTORIAL", &"tutorial", false, start_tutorial).name = "TutorialButton"
-	_stone_button(buttons, "CONTROLES", &"controls", false, func(): show_info(false))
-	_stone_button(buttons, "CONFIGURAÇÕES", &"settings", false, func(): show_settings(_close_overlay)).name = "SettingsButton"
-	_stone_button(buttons, "CRÉDITOS", &"credits", false, func(): show_info(true))
-	_stone_button(buttons, "SAIR", &"quit", false, func(): get_tree().quit())
+	_stone_button(buttons, "TUTORIAL", &"tutorial", 1, start_tutorial).name = "TutorialButton"
+	buttons.add_child(UiArt.drawn(Vector2(0, 16), func(ci: CanvasItem, r: Rect2):
+		var y := r.size.y * .5
+		ci.draw_line(Vector2(6, y), Vector2(r.size.x * .5 - 30, y), Color(UiArt.JADE, .4), 2.0)
+		ci.draw_line(Vector2(r.size.x * .5 + 30, y), Vector2(r.size.x - 6, y), Color(UiArt.JADE, .4), 2.0)
+		UiArt.bone(ci, Vector2(r.size.x * .5 - 18, y), Vector2(r.size.x * .5 + 18, y), 3.5, Color(UiArt.IVORY, .6))))
+	_stone_button(buttons, "CONTROLES", &"controls", 2, func(): show_info(false))
+	_stone_button(buttons, "CONFIGURAÇÕES", &"settings", 2, func(): show_settings(_close_overlay)).name = "SettingsButton"
+	_stone_button(buttons, "CRÉDITOS", &"credits", 2, func(): show_info(true))
+	_stone_button(buttons, "SAIR", &"quit", 2, func(): get_tree().quit())
 	# Rodape: estudio (sem textos institucionais na tela principal).
 	var foot := HBoxContainer.new()
 	foot.name = "MenuFooter"
 	foot.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
 	foot.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	foot.offset_left = 74
-	foot.offset_bottom = -22
+	foot.offset_left = 66
+	foot.offset_bottom = -20
 	foot.add_theme_constant_override("separation", 8)
 	foot.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var mark := TextureRect.new()
@@ -422,23 +541,38 @@ func _build_main_menu() -> void:
 	mark.custom_minimum_size = Vector2(18, 18)
 	mark.modulate = Color(1, 1, 1, .7)
 	foot.add_child(mark)
-	foot.add_child(_label("INITY PIXEL  ·  EXPEDIÇÃO PRÉ-HISTÓRICA", 12, Color(CREAM, .5)))
+	foot.add_child(_label("INITY PIXEL  ·  EXPEDIÇÃO PRÉ-HISTÓRICA", 12, Color(CREAM, .55)))
 	ui.add_child(foot)
 	_build_audio_corner()
 	play.grab_focus()
-	# Entrada: a marca desce e aparece; os botoes surgem em cascata.
+	# Layout responsivo: escala e centraliza a coluna na altura da janela.
+	var layout := func():
+		if not is_instance_valid(column):
+			return
+		var s := _menu_scale()
+		column.scale = Vector2(s, s)
+		column.reset_size()
+		var view := get_viewport().get_visible_rect().size
+		column.position = Vector2(64.0 * s, maxf(12.0, (view.y - column.size.y * s) * 0.5 - 10.0 * s))
+	layout.call_deferred()
+	get_viewport().size_changed.connect(layout)
+	column.tree_exiting.connect(func():
+		if get_viewport().size_changed.is_connected(layout):
+			get_viewport().size_changed.disconnect(layout))
+	# Entrada: o logotipo aparece, a estela desliza da esquerda, botoes em cascata.
 	logo.modulate.a = 0.0
-	var intro := logo.create_tween().set_trans(Tween.TRANS_SINE)
-	intro.tween_property(logo, "modulate:a", 1.0, .6)
+	logo.create_tween().set_trans(Tween.TRANS_SINE).tween_property(logo, "modulate:a", 1.0, .6)
+	stele.modulate.a = 0.0
+	var st := stele.create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	st.tween_interval(.15)
+	st.tween_property(stele, "modulate:a", 1.0, .35)
 	var i := 0
 	for b in buttons.get_children():
 		b.modulate.a = 0.0
 		var t := b.create_tween()
-		t.tween_interval(.25 + .06 * i)
-		t.tween_property(b, "modulate:a", 1.0, .25)
+		t.tween_interval(.3 + .05 * i)
+		t.tween_property(b, "modulate:a", 1.0, .22)
 		i += 1
-	column.offset_top = -14
-	column.create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).tween_property(column, "offset_top", 0.0, .7)
 
 # Audio: so um icone no canto; o clique abre volume + mudo (mesmos controles
 # de _add_volume, usados tambem na pausa).
@@ -629,7 +763,9 @@ func _modal(title: String) -> VBoxContainer:
 	overlay.add_child(center)
 	var tablet := PanelContainer.new()
 	tablet.name = "Tablet"
-	tablet.add_theme_stylebox_override("panel", UiArt.stone_panel(0.97, UiArt.STONE_EDGE, Vector4(34, 26, 34, 24), 12))
+	var tablet_style := UiArt.stone_panel(0.97, UiArt.STONE_EDGE, Vector4(34, 26, 34, 24), 12)
+	tablet_style.studs = false # os ossos de UiArt.decorate ja ornam os cantos
+	tablet.add_theme_stylebox_override("panel", tablet_style)
 	center.add_child(tablet)
 	var box := VBoxContainer.new()
 	box.custom_minimum_size.x = 540
@@ -678,7 +814,7 @@ func _show_pause_menu() -> void:
 	_controls_back = Callable()
 	var box := _modal("Uma pausa no refúgio")
 	box.add_child(_label("A arena e a domesticação estão pausadas.", 18))
-	_button(box, "Retomar", resume_game).grab_focus()
+	_button(box, "Retomar", resume_game, true).grab_focus()
 	_button(box, "Controles", func(): show_controls(_show_pause_menu))
 	_button(box, "Configurações", func(): show_settings(_show_pause_menu))
 	_add_volume(box)
@@ -703,7 +839,7 @@ func _defeat() -> void:
 	audio.result(false)
 	var box := _modal("O refúgio caiu")
 	box.add_child(_label("A base perdeu toda a vida.\nPrepare aliados e lute ao lado deles na próxima tentativa.", 20))
-	_button(box, "Reiniciar", restart).grab_focus()
+	_button(box, "Reiniciar", restart, true).grab_focus()
 	_button(box, "Menu", show_menu)
 
 # Spec 008 (RF-UI-001): vencer a noite nao pausa nem abre modal. O estado ja
@@ -882,7 +1018,7 @@ func tutorial_finished() -> void:
 	audio.result(true)
 	var box := _modal("Tutorial concluído!")
 	box.add_child(_label("Você andou, lutou, domesticou, coletou, construiu,\nergueu uma torre, posicionou um aliado e defendeu o Refúgio.\n\nA partida normal começa com 2 guardiões, 3 invasores\nna primeira noite e o relógio correndo desde as 08:00.", 18))
-	_button(box, "Jogar partida", start_game).grab_focus()
+	_button(box, "Jogar partida", start_game, true).grab_focus()
 	_button(box, "Menu", show_menu)
 
 # ---------------------------------------------------------------------------

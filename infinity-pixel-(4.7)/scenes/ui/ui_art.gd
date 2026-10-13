@@ -27,52 +27,56 @@ const EMBER := Color("e0795a")
 # Estilos (StyleBoxFlat com cantos chanfrados: corner_detail baixo = pedra talhada)
 # ---------------------------------------------------------------------------
 
-## Placa de pedra escura, cantos chanfrados e borda mais grossa no topo
-## (paineis, modais, HUD).
-static func stone_panel(alpha := 0.95, edge := STONE_EDGE, margin := Vector4(20, 14, 20, 14), radius := 10) -> StyleBoxFlat:
-	var s := StyleBoxFlat.new()
-	s.bg_color = Color(GREEN_DEEP, alpha)
-	s.border_color = Color(edge, 0.9)
-	s.set_border_width_all(2)
-	s.border_width_top = 3
-	s.set_corner_radius_all(radius)
-	s.corner_detail = 2
-	s.shadow_color = Color(0, 0, 0, 0.4)
-	s.shadow_size = 10
-	s.shadow_offset = Vector2(0, 4)
+## Design 5.0: estilos em "pedra talhada" (CarvedStyle): chanfro, espessura,
+## bisel, filete e cravos. As assinaturas antigas continuam (menus, HUD, mochila).
+const CarvedStyle := preload("res://scenes/ui/carved_style.gd")
+
+static func carved(fill: Color, edge: Color, margin := Vector4(20, 14, 20, 14), chamfer := 10.0) -> StyleBox:
+	var s := CarvedStyle.new()
+	s.bg_color = fill
+	s.border_color = edge
+	s.chamfer = chamfer
 	s.content_margin_left = margin.x
 	s.content_margin_top = margin.y
 	s.content_margin_right = margin.z
 	s.content_margin_bottom = margin.w
 	return s
 
-## Estilo de botao de pedra: estado normal, hover (borda jade + brilho),
-## pressionado (afunda) e foco de teclado (contorno ambar).
+## Placa de pedra escura, cantos chanfrados, filete jade interno e cravos de
+## jade nos cantos (paineis, modais, HUD).
+static func stone_panel(alpha := 0.95, edge := STONE_EDGE, margin := Vector4(20, 14, 20, 14), radius := 10) -> StyleBox:
+	var s := carved(Color(GREEN_DEEP, alpha), Color(edge, 0.9), margin, radius + 2.0)
+	s.bg_top = Color(STONE.lerp(GREEN_DEEP, 0.35), alpha)
+	s.inner_color = Color(JADE, 0.22)
+	s.studs = radius >= 10
+	s.shadow_size = 10.0
+	s.shadow_offset = Vector2(0, 4)
+	s.shadow_color = Color(0, 0, 0, 0.4)
+	return s
+
+## Estilo de botao de pedra: normal (placa com espessura), hover (borda e
+## brilho jade), pressionado (afunda: perde a espessura), foco de teclado
+## (contorno ambar) e desabilitado (apagado).
 static func button_styles(fill: Color, edge: Color, depth := 5, radius := 10, h := 22, v := 8) -> Dictionary:
-	var make := func(bg: Color, border: Color, d: int, glow: float) -> StyleBoxFlat:
-		var s := StyleBoxFlat.new()
-		s.bg_color = bg
-		s.border_color = border
-		s.set_border_width_all(2)
-		s.border_width_bottom = d
-		s.set_corner_radius_all(radius)
-		s.corner_detail = 2
-		s.shadow_color = Color(JADE, glow) if glow > 0.0 else Color(0, 0, 0, 0.35)
-		s.shadow_size = 10 if glow > 0.0 else 5
-		s.shadow_offset = Vector2(0, 0) if glow > 0.0 else Vector2(0, 4)
-		s.content_margin_left = h
-		s.content_margin_right = h
-		s.content_margin_top = v
-		s.content_margin_bottom = v
+	var make := func(bg: Color, border: Color, d: float, glow: float) -> StyleBox:
+		var s := carved(bg, border, Vector4(h, v, h, v + d), float(radius))
+		s.depth = d
+		s.glow = glow
+		s.bg_top = bg.lightened(0.16)
+		s.inner_color = Color(border, 0.28)
+		s.shadow_size = 5.0
+		s.shadow_offset = Vector2(0, 3)
 		return s
-	var normal: StyleBoxFlat = make.call(fill, edge, depth, 0.0)
-	var hover: StyleBoxFlat = make.call(fill.lightened(0.1), JADE, depth, 0.35)
-	var pressed: StyleBoxFlat = make.call(fill.darkened(0.12), JADE, maxi(2, depth - 3), 0.2)
-	pressed.content_margin_top = v + depth - maxi(2, depth - 3) # o texto afunda junto
-	var focus: StyleBoxFlat = make.call(Color(0, 0, 0, 0), AMBER_LIGHT, 2, 0.0)
+	var normal: StyleBox = make.call(fill, edge, depth, 0.0)
+	var hover: StyleBox = make.call(fill.lightened(0.1), JADE, depth, 0.55)
+	var pressed: StyleBox = make.call(fill.darkened(0.12), JADE, maxi(1, depth - 3), 0.25)
+	pressed.content_margin_top = v + depth - maxi(1, depth - 3) # o texto afunda junto
+	pressed.content_margin_bottom = v + maxi(1, depth - 3)
+	var focus: StyleBox = make.call(Color(0, 0, 0, 0), AMBER_LIGHT, 0, 0.0)
 	focus.draw_center = false
-	focus.shadow_size = 0
-	var disabled: StyleBoxFlat = make.call(fill.darkened(0.35), Color(edge, 0.45), depth, 0.0)
+	focus.shadow_size = 0.0
+	var disabled: StyleBox = make.call(fill.darkened(0.35), Color(edge, 0.45), depth, 0.0)
+	disabled.inner_color = Color(0, 0, 0, 0)
 	return {"normal": normal, "hover": hover, "pressed": pressed, "focus": focus, "disabled": disabled}
 
 # ---------------------------------------------------------------------------

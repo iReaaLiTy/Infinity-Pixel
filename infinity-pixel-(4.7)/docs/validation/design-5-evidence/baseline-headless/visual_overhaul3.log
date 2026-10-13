@@ -1,0 +1,52 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+PASS: Marca JADEFALL e subtitulo GUARDIÕES DO REFÚGIO
+PASS: Botoes reais presentes; sem CONTINUAR (nao ha save)
+PASS: Botoes secundarios com o mesmo tamanho; JOGAR maior
+PASS: Cada botao do menu tem icone proprio
+PASS: Diorama com dinossauros em vitrine e sem gameplay (sem corpos nem navegacao)
+PASS: show_menu() repetido mantem um unico fundo (bug corrigido)
+PASS: Configuracoes na tabua de pedra do 3.0
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: FossilArt: nada acima de 0,3 m e sem colisao
+PASS: Cranios nos estandartes do Refugio
+PASS: Modelo novo com as partes nomeadas (paleta e testes)
+PASS: Cauda com pivo na raiz; corpo em malha esculpida
+PASS: Cabeca/pescoco animam sem mover o corpo fisico
+PASS: Guardioes: mascara de osso e colar (silhueta propria)
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+PASS: Guardiao domesticado: perde a mascara, ganha coleira; origem registrada
+PASS: Domesticar continua com vida cheia e SEGUINDO (regra intacta)
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Aliados juntos: so o aliado em foco mostra o rotulo (1 visiveis)
+PASS: Aliado ferido perto aparece, menor que o em foco
+PASS: Texto do rotulo inalterado (so visibilidade/tamanho)
+PASS: Dica perto do aliado com a tecla F desenhada
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+PASS: Anel de alcance escondido longe da torre
+PASS: Anel visivel perto, com o raio real da torre
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+PASS: Inicio da noite: vinheta violeta curta
+PASS: Invasor: espinhos dorsais na paleta noturna
+PASS: Vinheta some sozinha
+PASS: Derrota deixa restos visuais (sem script)
+PASS: Restos somem sozinhos em ~1,3 s
+PASS: Player: chapeu, capa, mochila, membros e marcador de direcao
+PASS: Conquista de territorio: coluna de luz jade
+OVERHAUL3 RESULTS: 28 passed; 0 failed

@@ -1,0 +1,93 @@
+﻿[
+    {
+        "suite":  "defense_economy",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "sky_cycle",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "combat_collect",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "build_heal",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "tower_layout5",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_invariants",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_overhaul3",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "visual_overhaul4",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "territory",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "gameplay5",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "world_layout",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "navigation_contracts",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    },
+    {
+        "suite":  "physics_contracts",
+        "mode":  "headless",
+        "exit":  0,
+        "passed":  true,
+        "timeout":  false
+    }
+]

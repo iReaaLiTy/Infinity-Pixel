@@ -1,0 +1,16 @@
+{
+	"failed": [],
+	"passed": [
+		"Menu principal tem CONFIGURACOES",
+		"Tela de configuracoes com volume geral, musica, efeitos, tela cheia e escala",
+		"Volume geral muda o barramento Master",
+		"Musica muda o volume da musica (0.20)",
+		"Efeitos a 0 silencia o barramento SFX",
+		"Escala da interface 115% aplicada",
+		"Mudancas salvas em user://settings.cfg",
+		"Recarregar mantem as configuracoes",
+		"ESC fecha as configuracoes no menu",
+		"Na pausa, ESC volta ao menu de pausa",
+		"Restaurar padrao volta tudo ao normal"
+	]
+}

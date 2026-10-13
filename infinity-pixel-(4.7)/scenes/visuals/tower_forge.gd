@@ -742,3 +742,32 @@ static func _pack(st: SurfaceTool, glow: SurfaceTool, head: SurfaceTool, head_gl
 		"orbit_mesh": null,
 		"top": top,
 	}
+
+## Torre so de vitrine (diorama do menu): as mesmas malhas do jogo, sem corpo
+## fisico, sem logica e sem navegacao. `glow` = brilho fixo do cristal.
+static func showcase(level: int, aim_yaw := 0.0, glow := 0.9) -> Node3D:
+	var p := parts(level)
+	var root := Node3D.new()
+	root.name = "TowerShowcase%d" % level
+	var crystal_mat := glow_material()
+	crystal_mat.emission_energy_multiplier = glow
+	var rune_mat := glow_material()
+	rune_mat.emission = RUNE_EMISSION
+	rune_mat.emission_energy_multiplier = glow * 0.55
+	root.add_child(Facets.instance("Body", p.body, material()))
+	root.add_child(Facets.instance("Runes", p.glow, rune_mat, Vector3.ZERO, false))
+	var head := Node3D.new()
+	head.name = "Head"
+	head.position.y = p.head_y
+	head.rotation.y = aim_yaw
+	root.add_child(head)
+	head.add_child(Facets.instance("Mechanism", p.head, material()))
+	if p.head_glow != null:
+		head.add_child(Facets.instance("MechanismRunes", p.head_glow, rune_mat, Vector3.ZERO, false))
+	var crystal := Facets.instance("Crystal", p.crystal, crystal_mat, p.crystal_pos, false)
+	head.add_child(crystal)
+	if p.orbit:
+		for i in 3:
+			var a := TAU * i / 3.0
+			crystal.add_child(Facets.instance("Shard%d" % i, p.orbit_mesh, crystal_mat, Vector3(sin(a) * 0.36, 0.12 * sin(a * 2.0), cos(a) * 0.36), false))
+	return root
