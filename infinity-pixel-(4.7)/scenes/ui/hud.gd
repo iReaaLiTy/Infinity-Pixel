@@ -1124,13 +1124,41 @@ func _update_alerts() -> void:
 			edge = Color(NIGHT_VIOLET, .8)
 		phase.get_theme_stylebox("panel").border_color = edge
 
-## Rotulos das criaturas por contexto: o aliado mais perto do Player mostra o
-## rotulo completo; outros aliados so aparecem (menores) quando feridos e
-## perto; invasores sempre aparecem; guardioes e selvagens ate uma distancia.
+## Rotulos das criaturas por contexto (World 6.0: identificacao + numero no
+## rotulo e a BARRA de vida grafica embaixo). Regras de visibilidade:
+## - ALIADO: o mais perto do Player (foco) sempre; outros so feridos e perto,
+##   ou logo depois de levar dano / receber cura;
+## - SELVAGEM: so em combate (ferido, golpeado ha pouco) ou bem perto;
+## - GUARDIAO: em confronto (ferido, golpeado ha pouco ou perto);
+## - INVASOR: durante o combate, ate uma distancia; os mais distantes menores.
 ## Rotulos que se sobrepoem na tela: fica o de maior prioridade (invasor >
-## guardiao > selvagem > aliado em foco > aliado ferido). So visibilidade e
-## tamanho: o texto (testado) e a logica de combate nao mudam.
-const LABEL_PIXEL := 0.0065
+## guardiao > selvagem > aliado em foco > aliado ferido) e no maximo
+## MAX_LABELS ao mesmo tempo (onda grande nao cobre a tela). So visibilidade,
+## tamanho e barra: o texto (testado) e a logica de combate nao mudam.
+const LABEL_PIXEL := 0.0085 # World 6.0: legivel da camera estrategica (era 0,0065)
+const MAX_LABELS := 9
+const MAX_BARS_ONLY := 12 # criaturas sem espaco para o texto mostram so a barra
+const RECENT := 5.0 # s em que um golpe/cura deixa a criatura "em destaque"
+const CreatureHealthBar := preload("res://scenes/visuals/creature_health_bar.gd")
+
+## Marca o instante do ultimo golpe/cura de cada criatura (le a mudanca de hp).
+func _recent_change(dino: Node) -> bool:
+	var now := Time.get_ticks_msec() * 0.001
+	var last_hp: float = dino.get_meta("hud_hp", dino.hp)
+	if not is_equal_approx(last_hp, dino.hp):
+		dino.set_meta("hud_hp_at", now)
+		dino.set_meta("hud_hp", dino.hp)
+	return now - float(dino.get_meta("hud_hp_at", -100.0)) < RECENT
+
+func _faction(dino: Node) -> StringName:
+	if dino.get("is_domesticated") == true:
+		return &"ally"
+	if dino.is_in_group("wave_enemy"):
+		return &"invader"
+	if String(dino.get("guardian_of")) != "":
+		return &"guardian"
+	return &"wild"
+
 func _update_creature_labels(player: Node3D) -> void:
 	var cam := get_viewport().get_camera_3d()
 	if cam == null or player == null:
@@ -1149,89 +1177,89 @@ func _update_creature_labels(player: Node3D) -> void:
 		if label == null or not is_instance_valid(label):
 			continue
 		var d := Vector2(dino.global_position.x - player.global_position.x, dino.global_position.z - player.global_position.z).length()
+		var hurt: bool = dino.hp < WildDino.MAX_HP - 0.5
+		var recent := _recent_change(dino)
+		var kind := _faction(dino)
 		var pri := 0
 		var size := 1.0
 		var show := true
-		if dino.get("is_domesticated") == true:
-			if dino == focus:
-				pri = 1
-			elif dino.hp < WildDino.MAX_HP - 0.5 and d < 14.0:
-				size = 0.75
-			else:
-				show = false
-		elif dino.is_in_group("wave_enemy"):
-			pri = 4
-			size = 1.0 if d < 16.0 else 0.8
-		elif String(dino.get("guardian_of")) != "":
-			pri = 3
-			show = d < 20.0
-		else:
-			pri = 2
-			show = d < 15.0
+		match kind:
+			&"ally":
+				if dino == focus:
+					pri = 1
+				elif (hurt and d < 14.0) or (recent and d < 18.0):
+					size = 0.75
+				else:
+					show = false
+			&"invader":
+				pri = 4
+				show = d < 22.0 or recent
+				size = 1.0 if d < 14.0 else 0.8
+			&"guardian":
+				pri = 3
+				show = d < 12.0 or ((hurt or recent) and d < 22.0)
+			_:
+				pri = 2
+				show = d < 6.0 or ((hurt or recent) and d < 18.0)
 		label.pixel_size = LABEL_PIXEL * size
 		label.modulate.a = 1.0 if size >= 1.0 else 0.8
 		if not show or cam.is_position_behind(label.global_position):
 			label.visible = false
 			continue
 		var at := cam.unproject_position(label.global_position)
-		var w := label.text.length() * 8.0 * size
-		entries.append([pri, d, label, Rect2(at - Vector2(w * 0.5, 9.0 * size), Vector2(w, 18.0 * size))])
+		var w := label.text.length() * 10.5 * size
+		# o retangulo inclui a barra embaixo do texto
+		entries.append([pri, d, label, Rect2(at - Vector2(w * 0.5, 12.0 * size), Vector2(w, 32.0 * size)), dino, kind])
 	entries.sort_custom(func(a, b): return a[0] > b[0] or (a[0] == b[0] and a[1] < b[1]))
 	var taken: Array[Rect2] = []
+	var bar_rects: Array[Rect2] = [] # faixa das barras (texto e so-barra)
+	var bars_only := 0
 	for e in entries:
-		var free := true
+		var free := taken.size() < MAX_LABELS
 		for r in taken:
 			if r.intersects(e[3]):
 				free = false
 				break
-		e[2].visible = free
+		var label: Label3D = e[2]
+		label.modulate.a = 1.0 if label.pixel_size >= LABEL_PIXEL else 0.8
+		label.set_meta("bar_only", false)
+		label.outline_modulate.a = 0.85
+		var bar_rect := Rect2(e[3].position + Vector2(e[3].size.x * 0.5 - 22.0, 14.0), Vector2(44.0, 8.0))
 		if free:
-			_update_hp_bar(e[2].get_parent(), e[2])
-		if free:
+			label.visible = true
 			taken.append(e[3])
+			bar_rects.append(bar_rect)
+			_update_health_bar(e[4], label, e[5])
+			continue
+		# Sem espaco para o texto: so a barra, se ela nao cobrir outra barra.
+		var bar_free := bars_only < MAX_BARS_ONLY
+		for r in bar_rects:
+			if r.intersects(bar_rect):
+				bar_free = false
+				break
+		label.visible = bar_free
+		if bar_free:
+			bars_only += 1
+			bar_rects.append(bar_rect)
+			label.set_meta("bar_only", true)
+			label.modulate.a = 0.0 # texto e contorno somem; a barra (filha) continua
+			label.outline_modulate.a = 0.0
+			_update_health_bar(e[4], label, e[5], 0.85)
 
-
-
-## Design 5.0: barra de vida compacta sob o rotulo da criatura (Sprite3D de
-## 48x4 px, sempre de frente para a camera). A imagem so e redesenhada quando
-## a vida (inteira) muda. Fica dentro do rotulo: some e aparece junto com ele
-## (mesma prioridade de sobreposicao). So leitura de hp / MAX_HP.
-const HP_BAR_W := 48
-const HP_BAR_H := 4
-func _update_hp_bar(dino: Node, label: Label3D) -> void:
-	var bar := label.get_node_or_null("HpBar") as Sprite3D
-	var hp_now := maxi(int(ceilf(dino.hp)), 0)
-	var tone := label.modulate
+## Barra de vida grafica (shader) sob o rotulo: criada na primeira vez que a
+## criatura aparece, depois so recebe a fracao e a faccao. Fica dentro do
+## rotulo: some e aparece junto com ele.
+func _update_health_bar(dino: Node, label: Label3D, kind: StringName, opacity := -1.0) -> void:
+	var bar = label.get_node_or_null("HealthBar")
+	var frac: float = clampf(dino.hp / maxf(WildDino.MAX_HP, 1.0), 0.0, 1.0)
 	if bar == null:
-		bar = Sprite3D.new()
-		bar.name = "HpBar"
-		bar.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		bar.no_depth_test = true
-		bar.shaded = false
-		bar.double_sided = true
-		bar.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
-		bar.render_priority = label.render_priority
-		bar.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		bar.texture = ImageTexture.create_from_image(Image.create(HP_BAR_W, HP_BAR_H, false, Image.FORMAT_RGBA8))
-		bar.set_meta("hp", -1)
+		bar = CreatureHealthBar.new()
 		label.add_child(bar)
-	bar.pixel_size = label.pixel_size * 3.0
-	bar.position = Vector3(0, -label.font_size * label.pixel_size * 0.85, 0)
-	bar.modulate.a = label.modulate.a
-	if bar.get_meta("hp") == hp_now and bar.get_meta("tone", Color.BLACK) == tone:
-		return
-	bar.set_meta("hp", hp_now)
-	bar.set_meta("tone", tone)
-	var img := Image.create(HP_BAR_W, HP_BAR_H, false, Image.FORMAT_RGBA8)
-	img.fill(Color("0b1612"))
-	img.fill_rect(Rect2i(1, 1, HP_BAR_W - 2, HP_BAR_H - 2), Color("1f2d28"))
-	var frac := clampf(float(hp_now) / maxf(WildDino.MAX_HP, 1.0), 0.0, 1.0)
-	var w := int(round((HP_BAR_W - 2) * frac))
-	if w > 0:
-		var fill := Color(tone.r, tone.g, tone.b, 1.0)
-		img.fill_rect(Rect2i(1, 1, w, HP_BAR_H - 2), fill.darkened(0.15))
-		img.fill_rect(Rect2i(1, 1, w, 1), fill.lightened(0.25))
-	(bar.texture as ImageTexture).update(img)
+		bar.snap(frac)
+	var s := label.pixel_size / LABEL_PIXEL
+	bar.scale = Vector3.ONE * s
+	bar.position = Vector3(0, -label.font_size * label.pixel_size * 0.78, 0)
+	bar.show_health(frac, kind, label.modulate.a if opacity < 0.0 else opacity)
 
 ## Design 5.0: rastro do dano, piscar dos medalhoes, estado critico (anel em
 ## brasa) e a ficha do Elixir de Jade (so leitura do JadeElixir).

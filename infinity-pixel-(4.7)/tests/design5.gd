@@ -283,8 +283,9 @@ func hud_checks() -> void:
 	ally.hp = 40.0
 	ally._update_label()
 	await frames(4)
-	var bar := ally.hp_label.get_node_or_null("HpBar") as Sprite3D
-	check(bar != null and bar.get_meta("hp") == 40 and ally.hp_label.text.begins_with("ALIADO"), "Aliado: barra de vida compacta (40/80) sob o rotulo; texto igual")
+	# World 6.0: a barra virou grafica (shader): HealthBar dentro do rotulo.
+	var bar = ally.hp_label.get_node_or_null("HealthBar")
+	check(bar != null and is_equal_approx(bar.target, 0.5) and ally.hp_label.text.begins_with("ALIADO"), "Aliado: barra de vida compacta (40/80) sob o rotulo; texto igual")
 	ally.queue_free()
 
 # --- Cursor (sem regressao) -------------------------------------------------------
