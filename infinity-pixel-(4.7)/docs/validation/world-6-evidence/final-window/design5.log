@@ -1,0 +1,100 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+PASS: L1: corpo, runas, mecanismo e cristal gerados (1 superficie cada)
+PASS: L1: geometria trabalhada e dentro do orcamento (2758 triangulos no corpo)
+PASS: L1: corpo dentro de 0.83 m (0,32-2 m) e base dentro de 1.13 m (< 0,32 m); nada enterrado
+PASS: L1: malhas cacheadas (mesmo recurso para todas as torres)
+PASS: L2: corpo, runas, mecanismo e cristal gerados (1 superficie cada)
+PASS: L2: geometria trabalhada e dentro do orcamento (5038 triangulos no corpo)
+PASS: L2: corpo dentro de 0.90 m (0,32-2 m) e base dentro de 1.13 m (< 0,32 m); nada enterrado
+PASS: L2: malhas cacheadas (mesmo recurso para todas as torres)
+PASS: L3: corpo, runas, mecanismo e cristal gerados (1 superficie cada)
+PASS: L3: geometria trabalhada e dentro do orcamento (5804 triangulos no corpo)
+PASS: L3: corpo dentro de 0.99 m (0,32-2 m) e base dentro de 1.03 m (< 0,32 m); nada enterrado
+PASS: L3: malhas cacheadas (mesmo recurso para todas as torres)
+PASS: Silhueta cresce a cada nivel (cristal a 2.70 / 3.24 / 3.44 m)
+PASS: So o Bastiao (L3) tem lascas orbitando o cristal
+PASS: Menu sem duplicacao de fundos (show_menu repetido)
+PASS: Diorama com as torres novas (so malhas, sem corpo fisico), sem criaturas com fisica nem navegacao
+PASS: Dinossauro em idle no diorama
+PASS: Seis botoes reais, cada um com icone proprio e placa talhada
+PASS: Hierarquia (World 6.0): JOGAR em destaque; demais iguais
+PASS: Botoes: brilho no hover, afunda no clique, contorno de foco
+PASS: Botao do menu executa a acao ligada (sem botoes decorativos)
+PASS: Logotipo JADEFALL no lintel e subtitulo na faixa
+PASS: Icones da interface (inclui dano, alcance, cadencia e elixir) desenhados
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: Tabela de dano, alcance, cadencia e custo identica a de antes da reforma
+[DEFESA] Torre construida em SlotRuinMeadow (rota Ruína)
+PASS: Colisor e obstaculo da torre iguais (0,8 m x 2,4 m, camada 4)
+PASS: L1: modelo correto do nivel (corpo, mecanismo e cristal)
+PASS: L1: mecanismo na plataforma (2.20 m) e estatisticas do nivel inalteradas
+PASS: L1: cristal e runas com o brilho noturno desta torre
+PASS: L1: lascas orbitando so no nivel 3
+[DEFESA] Torre melhorada para o nivel 2
+PASS: L2: modelo anterior removido na melhoria
+PASS: L2: troca visual apos a melhoria (malha nova)
+PASS: L2: modelo correto do nivel (corpo, mecanismo e cristal)
+PASS: L2: mecanismo na plataforma (2.62 m) e estatisticas do nivel inalteradas
+PASS: L2: cristal e runas com o brilho noturno desta torre
+PASS: L2: lascas orbitando so no nivel 3
+[DEFESA] Torre melhorada para o nivel 3
+PASS: L3: modelo anterior removido na melhoria
+PASS: L3: troca visual apos a melhoria (malha nova)
+PASS: L3: modelo correto do nivel (corpo, mecanismo e cristal)
+PASS: L3: mecanismo na plataforma (2.54 m) e estatisticas do nivel inalteradas
+PASS: L3: cristal e runas com o brilho noturno desta torre
+PASS: L3: lascas orbitando so no nivel 3
+PASS: Disparo: mecanismo voltado para o alvo no mesmo quadro
+PASS: Disparo: a lasca nasce no cristal do mecanismo (0.000 m)
+PASS: Disparo: recuo e clarao do cristal no instante do tiro (so visual)
+PASS: Disparo: dano real aplicado na chegada (80 -> 40)
+PASS: Cristal a noite mais forte (1.65) que de dia (0.45), com emissao contida (luminancia 0.44)
+PASS: Material das torres com o grao de superficie (triplanar no mundo)
+PASS: Grao procedural de 128 px (sem textura externa)
+PASS: Arte do mundo com acabamento: 296 malhas, 12 materiais compartilhados
+PASS: Criaturas e Player com os materiais originais (identidade preservada)
+PASS: Materiais com emissao (cristais, runas) ficam fora do acabamento
+PASS: HUD em pedra talhada; textos dos vitais iguais
+PASS: Medalhoes do explorador e do Refugio e arco do ciclo presentes
+PASS: Dano: barra 80, rastro do dano e medalhao piscando
+PASS: Rastro do dano desce ate o valor atual
+PASS: Refugio em estado critico visivel (anel em brasa)
+PASS: Ficha do Elixir escondida antes do Dia 2
+PASS: Ficha do Elixir no Dia 2 mostra o estoque real (1/1)
+PASS: Painel da torre aparece perto dela
+PASS: Painel mostra dano 10, alcance 8 m e cadencia 1,0 s (tabela real)
+PASS: Previa do proximo nivel com os valores reais do L2
+PASS: Recursos faltantes: 'Faltam 18 Pontos de Defesa'
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Aliado: barra de vida compacta (40/80) sob o rotulo; texto igual
+PASS: Cursor oculto no jogo
+PASS: Cursor visivel com a mochila aberta
+PASS: Cursor visivel na pausa
+PASS: Cursor oculto ao voltar ao jogo
+[DEFESA] +100 pontos (total 112)
+PASS: 1280x720: vitais, ciclo, recursos, contexto e painel da torre dentro da tela
+PASS: 1280x720: paineis da HUD sem sobreposicao
+PASS: 1280x720: nenhum texto da HUD cortado
+PASS: 1600x900: vitais, ciclo, recursos, contexto e painel da torre dentro da tela
+PASS: 1600x900: paineis da HUD sem sobreposicao
+PASS: 1600x900: nenhum texto da HUD cortado
+PASS: 1920x1080: vitais, ciclo, recursos, contexto e painel da torre dentro da tela
+PASS: 1920x1080: paineis da HUD sem sobreposicao
+PASS: 1920x1080: nenhum texto da HUD cortado
+PASS: Menu 1280x720: logotipo e todos os botoes visiveis
+PASS: Menu 1600x900: logotipo e todos os botoes visiveis
+PASS: Menu 1920x1080: logotipo e todos os botoes visiveis
+PASS: Menu 960x540: logotipo e todos os botoes visiveis
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+DESIGN5 RESULTS: 80 passed; 0 failed; 0 skipped

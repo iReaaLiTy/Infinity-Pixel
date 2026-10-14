@@ -1,0 +1,12 @@
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+SCRIPT ERROR: Cannot call method 'store_string' on a null value.
+   at: _ready (res://tests/perf_probe.gd:274)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/perf_probe.gd:274)
+       [1] live_scenarios (res://tests/perf_probe.gd:437)
+       [2] measure (res://tests/perf_probe.gd:188)

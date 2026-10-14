@@ -150,8 +150,12 @@ func footprints() -> void:
 		player.global_position += Vector3(0.06, 0, -0.04) * 1.5
 		player.rotation.y = atan2(-0.06, 0.04)
 		await get_tree().physics_frame
-	look(player.global_position + Vector3(2.2, 3.0, 3.6), player.global_position + Vector3(-1.6, 0.0, 0.8), 48.0)
+	game_camera() # o que o jogador ve: a trilha de pegadas atras do Player
+	var prints = world.get_node("PlayerFootprints")
 	await shot("13_pegadas_player", 4)
+	var o: Vector3 = prints.xforms[(prints._next + 45) % 48].origin
+	look(o + Vector3(0.01, 3.0, 0.8), o, 50.0)
+	await shot("13b_pegadas_vista_de_cima", 4)
 
 func map_views() -> void:
 	await start()
@@ -176,6 +180,11 @@ func map_views() -> void:
 	await put_player(Vector3(0, 0.1, -3))
 	game_camera()
 	await shot("04b_gameplay_dia", 20)
+	# Camera real de jogo nas bordas do mundo expandido (limites e oclusao).
+	for edge in [["21_camera_borda_norte", Vector3(0, 0.1, 30.6)], ["22_camera_cachoeira", Vector3(-29.5, 0.1, -27.0)], ["23_camera_borda_vulcao", Vector3(12, 0.1, -40.6)], ["24_camera_borda_leste", Vector3(30.6, 0.1, 8)], ["25_camera_borda_oeste", Vector3(-30.6, 0.1, 12)]]:
+		await put_player(edge[1])
+		game_camera()
+		await shot(edge[0], 30)
 
 func night_wave() -> void:
 	await start()

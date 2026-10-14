@@ -10,6 +10,13 @@ const VIEWS := [
 	["padrao_2100", Vector3(0, 0.1, -10), 21.0],
 	["refugio_1200", Vector3(0, 0.1, -12), 12.0],
 	["slot_oeste_2100", Vector3(-9, 0.1, -3), 21.0],
+	# World 6.0: as regioes novas (no projeto "antes" esses pontos ficam alem das
+	# paredes antigas; compare so o "depois").
+	["w6_floresta_1200", Vector3(-20, 0.1, 24), 12.0],
+	["w6_lago_1200", Vector3(-16, 0.1, -20), 12.0],
+	["w6_cachoeira_1200", Vector3(-28, 0.1, -26), 12.0],
+	["w6_pedra_1200", Vector3(26, 0.1, 14), 12.0],
+	["w6_vulcao_1200", Vector3(14, 0.1, -38), 12.0],
 ]
 var seconds := 10.0
 var live := false # --live: tambem mede cenarios com o jogo rodando

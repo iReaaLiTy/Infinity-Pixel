@@ -1,0 +1,45 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: W: move na direcao relativa a camera
+PASS: W: modelo olha para o movimento
+PASS: W: sem jitter em regime
+PASS: W: direcao do golpe segue o WASD
+PASS: S: move na direcao relativa a camera
+PASS: S: modelo olha para o movimento
+PASS: S: sem jitter em regime
+PASS: S: direcao do golpe segue o WASD
+PASS: A: move na direcao relativa a camera
+PASS: A: modelo olha para o movimento
+PASS: A: sem jitter em regime
+PASS: A: direcao do golpe segue o WASD
+PASS: D: move na direcao relativa a camera
+PASS: D: modelo olha para o movimento
+PASS: D: sem jitter em regime
+PASS: D: direcao do golpe segue o WASD
+PASS: W+D: move na direcao relativa a camera
+PASS: W+D: modelo olha para o movimento
+PASS: W+D: sem jitter em regime
+PASS: W+D: direcao do golpe segue o WASD
+PASS: W+A: move na direcao relativa a camera
+PASS: W+A: modelo olha para o movimento
+PASS: W+A: sem jitter em regime
+PASS: W+A: direcao do golpe segue o WASD
+PASS: S+D: move na direcao relativa a camera
+PASS: S+D: modelo olha para o movimento
+PASS: S+D: sem jitter em regime
+PASS: S+D: direcao do golpe segue o WASD
+PASS: S+A: move na direcao relativa a camera
+PASS: S+A: modelo olha para o movimento
+PASS: S+A: sem jitter em regime
+PASS: S+A: direcao do golpe segue o WASD
+PASS: Parado: mantem ultima orientacao
+PASS: Camera nao gira com Player
+PASS: Ataque atinge o lado do movimento, nao o do cursor
+PASS: Direcao logica do golpe = ultima direcao do WASD
+PASS: Modelo encara o golpe (giro rapido, sem salto)
+PASS: Volta a seguir o movimento apos o golpe
+RESULT: 38/38

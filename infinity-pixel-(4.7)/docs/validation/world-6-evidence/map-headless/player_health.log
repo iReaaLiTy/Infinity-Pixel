@@ -1,0 +1,88 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: HP inicial 100/100
+PASS: HUD mostra JOGADOR 100 / 100 com barra sincronizada
+PASS: REFÚGIO 100 / 100 distinto do jogador
+PASS: Player segue o contrato damageable/take_damage (ADR 0001)
+PASS: take_damage(15) reduz para 85
+PASS: HUD atualiza imediatamente apos dano
+PASS: Hits dentro da janela (1,0 s; era 0,6 s antes do balanceamento) sao ignorados
+PASS: Hit a 0,3 s ainda ignorado
+PASS: Hit apos a janela volta a causar dano
+PASS: Dano zero/negativo/NaN/infinito ignorado sem abrir janela
+PASS: Tres hits simultaneos aplicam um so
+PASS: WildDino real causa 15 de dano de dia (valor preservado)
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+PASS: Canalizacao em andamento antes da morte
+[Domesticacao] cancelada: estado_ou_foco (progresso 0.6 s descartado)
+[Player] morreu. Respawn em 2.0 s.
+PASS: HP chega a 0 sem ficar negativo e Player morre
+PASS: Sinal died emitido uma vez
+PASS: Morte cancela a domesticacao sem domesticar
+PASS: HUD mostra JOGADOR 0 / 100 na morte
+PASS: Aviso discreto de morte aparece
+PASS: Morte nao abre modal nem pausa
+PASS: Morto nao inicia domesticacao (E segurado)
+PASS: Morto nao recebe dano nem morre de novo
+PASS: Morto sai do grupo player e nao e corpo solido
+PASS: Morto nao anda
+PASS: Morto nao ataca
+PASS: IA nao fica mirando o Player morto
+PASS: Um unico timer de respawn
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+PASS: Respawn apos ~2 s (2.00 s)
+PASS: Respawn restaura 100/100
+PASS: Respawn no PlayerSpawn
+PASS: Respawn volta ao grupo player e a camada 2
+PASS: HUD atualiza apos respawn
+PASS: Aviso de morte some no respawn
+PASS: Protecao de respawn ignora dano a 1,0 s
+PASS: Dano volta apos 1,5 s
+PASS: Anda depois do respawn
+PASS: Orientacao visual segue o movimento apos respawn
+PASS: Ataca (15 de dano, Spec 013C) depois do respawn
+[Domesticacao] canalizacao iniciada: alvo=WildDinoEncontro hp=20/80
+WildDinoEncontro foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDinoEncontro domesticado
+[ALIADO] Modo: SEGUINDO
+[TERRITORIO] FLORESTA OESTE: guardiao domesticado -> PRONTO PARA SER RECUPERADO
+[Domesticacao] concluida: aliado=true hp=80/80
+PASS: Domestica depois do respawn (vida cheia, Spec 013C)
+PASS: Carnotauro continua nao domesticavel
+PASS: Camera nao gira com o Player
+[Player] morreu. Respawn em 2.0 s.
+PASS: Segunda morte registrada
+PASS: Respawn nao corre com o jogo pausado
+[Player] renasceu com 100/100 HP (protecao 1.5 s).
+PASS: Respawn conclui apos retomar
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+WildDinoEncontro2 foi derrotado.
+[TERRITORIO] REGIÃO ROCHOSA: guardiao derrotado -> PRONTO PARA SER RECUPERADO
+WildDino foi derrotado.
+[DEFESA] +15 pontos (total 55)
+[NOITE] Inimigo da wave morreu. Restantes: 2
+@CharacterBody3D@475 foi derrotado.
+[DEFESA] +15 pontos (total 70)
+[NOITE] Inimigo da wave morreu. Restantes: 1
+@CharacterBody3D@477 foi derrotado.
+[DEFESA] +15 pontos (total 85)
+[NOITE] Inimigo da wave morreu. Restantes: 0
+[NOITE] Wave concluida
+[DIA/NOITE] Noite defendida (1). Amanheceu: Dia 2, 08:00. Estado: DIA
+[VISUAL DIA/NOITE] Novo dia — amanhecer -> manha (transicao suave)
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+PASS: Noite vencida volta ao dia sem pausar
+PASS: Onda sem inimigos ativos
+PASS: Refugio recebe dano e HUD atualiza
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+PASS: Refugio em 0 abre 'O refúgio caiu'
+SPEC011 RESULTS: 47 passed; 0 failed

@@ -1,0 +1,84 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+MOTION parado_em_casa [{"chatter":0,"label":"territorial","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Parado em casa nao se mexe nem gira (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+MOTION perseguir_aproximacao [{"chatter":0,"label":"cacador","leg_idle":0.155,"max_speed":4.0,"net":4.565,"path":4.565,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":4,"twitch":1,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Cacador de fato se aproximou (menor trajeto 4.57 m >= 3.00)
+PASS: Aproximacao ao Player sem anda-para nem tremor (chatter 0.0<=1, twitch 1.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+MOTION atacar_parado [{"chatter":0,"label":"cacador","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Atacando o Player parado: firme no slot (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+PASS: Cacador continua no alcance do golpe (1.93 m)
+MOTION grupo_aproximacao [{"chatter":0,"label":"oeste","leg_idle":0.254,"max_speed":4.0,"net":4.398,"path":4.4,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":2,"yaw_travel":2.154,"yaw_wobble":1},{"chatter":0,"label":"leste","leg_idle":0.372,"max_speed":4.0,"net":4.3,"path":4.301,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":1,"yaw_travel":2.208,"yaw_wobble":0},{"chatter":0,"label":"sul","leg_idle":0.454,"max_speed":4.0,"net":4.303,"path":4.421,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":4,"twitch":0,"yaw_flips":2,"yaw_travel":0.941,"yaw_wobble":0},{"chatter":0,"label":"sudoeste","leg_idle":0.008,"max_speed":4.0,"net":4.438,"path":4.529,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":2,"twitch":0,"yaw_flips":3,"yaw_travel":1.622,"yaw_wobble":0}]
+PASS: Todo o grupo de fato se aproximou (menor trajeto 4.30 m >= 2.50)
+PASS: Grupo se aproxima sem tremor (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 1.0<=2)
+MOTION grupo_cercando [{"chatter":0,"label":"oeste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"leste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"sul","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"sudoeste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Grupo cercando o Player parado: ninguem empurra ninguem (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+MOTION player_passos_curtos [{"chatter":0,"label":"oeste","leg_idle":1.095,"max_speed":4.0,"net":0.703,"path":2.139,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":6,"twitch":0,"yaw_flips":8,"yaw_travel":5.567,"yaw_wobble":1},{"chatter":0,"label":"leste","leg_idle":0.446,"max_speed":4.0,"net":0.359,"path":1.168,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":4,"twitch":0,"yaw_flips":6,"yaw_travel":3.747,"yaw_wobble":0}]
+PASS: Cacadores de fato acompanharam os passos (menor trajeto 1.17 m >= 0.30)
+PASS: Passos curtos do Player nao viram anda-para nos cacadores (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 1.0<=2, yaw_flips 8.0<=10)
+MOTION player_corre_e_para [{"chatter":0,"label":"oeste","leg_idle":0.32,"max_speed":4.0,"net":5.778,"path":5.8,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":4,"twitch":1,"yaw_flips":3,"yaw_travel":2.109,"yaw_wobble":1},{"chatter":0,"label":"leste","leg_idle":0.117,"max_speed":4.0,"net":5.815,"path":5.827,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":4,"twitch":0,"yaw_flips":1,"yaw_travel":4.32,"yaw_wobble":0}]
+PASS: Cacadores de fato perseguiram (menor trajeto 5.80 m >= 3.00)
+PASS: Perseguicao apos corrida sem anda-para (chatter 0.0<=1, twitch 1.0<=1, reversals 0.0<=2, yaw_wobble 1.0<=2)
+MOTION depois_da_corrida [{"chatter":0,"label":"oeste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"leste","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Depois da corrida os cacadores assentam (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+MOTION aliados_seguem [{"chatter":0,"label":"aliado1","leg_idle":0.325,"max_speed":4.0,"net":7.447,"path":7.453,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":2,"twitch":0,"yaw_flips":0,"yaw_travel":1.698,"yaw_wobble":0},{"chatter":0,"label":"aliado2","leg_idle":0.448,"max_speed":4.0,"net":7.019,"path":7.06,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":2,"twitch":0,"yaw_flips":2,"yaw_travel":1.805,"yaw_wobble":0}]
+PASS: Aliados de fato seguiram (menor trajeto 7.06 m >= 3.00)
+PASS: Aliados seguem a corrida sem anda-para (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+MOTION aliados_parados [{"chatter":0,"label":"aliado1","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"aliado2","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Aliados parados com o Player parado (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+MOTION aliados_passos_curtos [{"chatter":0,"label":"aliado1","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"aliado2","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Passos curtos do Player nao fazem os aliados tremer (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+[ALIADO] Modo alterado: FICAR
+[ALIADO] Posição de defesa definida: (7.227281, -0.000049, 1.714703)
+PASS: Aliado de fato entrou em FICAR
+MOTION aliado_ficar [{"chatter":0,"label":"posto","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Aliado em FICAR fica firme no posto (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+MOTION dois_proximos [{"chatter":0,"label":"a","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"b","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Dois dinos proximos param e nao se empurram (path 0.0<=0.02, yaw_travel 0.0<=0.02, toggles 0.0<=0, leg_idle 0.0<=0.05)
+MOTION contorna_pedra [{"chatter":0,"label":"pedra","leg_idle":0.409,"max_speed":4.0,"net":4.544,"path":4.589,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":4,"twitch":1,"yaw_flips":1,"yaw_travel":1.831,"yaw_wobble":0}]
+PASS: Contorna a pedra e alcanca o Player (1.05 s)
+PASS: Contornar a pedra sem tremor (chatter 0.0<=1, twitch 1.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2)
+MOTION atravessa_bosque (arvore (-15.0, 0.0, 19.5)) [{"chatter":0,"label":"bosque","leg_idle":0.282,"max_speed":3.84,"net":4.562,"path":6.163,"reversals":0,"slot_sw":2,"target_sw":1,"toggles":6,"twitch":0,"yaw_flips":4,"yaw_travel":3.833,"yaw_wobble":1}]
+PASS: Atravessa o bosque e alcanca o Player (2.55 s)
+PASS: Atravessar o bosque sem tremor (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 1.0<=2)
+WildDino2 foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino2 domesticado
+[ALIADO] Modo: SEGUINDO
+MOTION troca_de_alvo [{"chatter":0,"label":"selvagem","leg_idle":0.567,"max_speed":4.0,"net":0.919,"path":0.924,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":4,"twitch":0,"yaw_flips":0,"yaw_travel":1.841,"yaw_wobble":0},{"chatter":1,"label":"aliado","leg_idle":0.83,"max_speed":4.0,"net":1.421,"path":1.501,"reversals":0,"slot_sw":1,"target_sw":1,"toggles":4,"twitch":0,"yaw_flips":3,"yaw_travel":2.815,"yaw_wobble":0}]
+PASS: Disputa de fato aconteceu (maior trajeto 1.50 m >= 0,3)
+PASS: Disputa Player x aliado sem alternancia de alvo (chatter 1.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2, target_sw 1.0<=2)
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+MOTION aliado_x_selvagem [{"chatter":0,"label":"aliado","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"selvagem","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Aliado x selvagem de fato lutaram
+PASS: Aliado x selvagem lutam sem andar em roda (chatter 0.0<=1, twitch 0.0<=1, reversals 0.0<=2, yaw_wobble 0.0<=2, path 0.0<=0.6)
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+@CharacterBody3D@518 chegou ao territorio.
+WildDino chegou ao territorio.
+@CharacterBody3D@520 chegou ao territorio.
+PASS: Onda: 3 inimigos chegaram e foram medidos no refugio (3)
+MOTION onda_no_refugio [{"chatter":0,"label":"WildDino","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"@CharacterBody3D@518","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"@CharacterBody3D@520","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Onda atacando o refugio: firmes nos slots (path 0.0<=0.05, toggles 0.0<=0, yaw_wobble 0.0<=0, slot_sw 0.0<=0)
+Base destruida — DERROTA.
+[DIA/NOITE] DERROTA — base destruida. Sessao encerrada, reinicie para tentar de novo.
+MOTION fim_de_sessao [{"chatter":0,"label":"andando1","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0},{"chatter":0,"label":"andando2","leg_idle":0.0,"max_speed":0.0,"net":0.0,"path":0.0,"reversals":0,"slot_sw":0,"target_sw":0,"toggles":0,"twitch":0,"yaw_flips":0,"yaw_travel":0.0,"yaw_wobble":0}]
+PASS: Fim de sessao ativo durante a medicao
+PASS: Fim de sessao: criaturas paradas nao andam no lugar (path 0.0<=0.01, leg_idle 0.0<=0.6)
+MOTION RESULTS: 32 passed; 0 failed

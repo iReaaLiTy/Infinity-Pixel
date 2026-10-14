@@ -1,0 +1,18 @@
+{
+	"failed": [],
+	"passed": [
+		"FICAR: aliado causa dano real a um inimigo noturno (41 quadros)",
+		"SEGUIR: aliado ataca a ameaca perto do jogador (32 quadros)",
+		"SEGUIR continua SEGUIR depois de lutar (estado preservado)",
+		"Aliado enfraquece o selvagem ate 20 HP e nao o mata (domesticavel)",
+		"Alvo fora do raio: sem dano e aliado no posto",
+		"Alvo eliminado: o aliado troca para o proximo inimigo",
+		"2 aliados x 2 inimigos da noite: os aliados vencem",
+		"Inimigo da onda eliminado por aliado paga a recompensa (40 -> 70)",
+		"Pelo menos um aliado sobrevive e segue aliado",
+		"2 aliados x 3 inimigos: ferem inimigos diferentes (3/3)",
+		"Cooldown de 1 s respeitado (3 golpes em 3 s)",
+		"Sem fogo amigo (aliados, jogador e Refugio intactos)",
+		"Aliado nao mira jogador nem aliados"
+	]
+}

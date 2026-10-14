@@ -5,6 +5,7 @@ param([string]$Before, [string]$Out, [int]$Rounds=2)
 $engine='C:\Users\ppfti\Downloads\Godot_v4.6.2-stable_win64.exe\Godot_v4.6.2-stable_win64.exe'
 $after=Split-Path $PSScriptRoot
 New-Item -ItemType Directory -Force $Out | Out-Null
+$Out=(Resolve-Path $Out).Path # World 6.0: caminho absoluto (o projeto "antes" resolvia o relativo dentro da propria copia)
 $env:APPDATA=Join-Path $env:TEMP 'jadefall-perf-ab'
 $env:LOCALAPPDATA=$env:APPDATA
 for($r=1; $r -le $Rounds; $r++){

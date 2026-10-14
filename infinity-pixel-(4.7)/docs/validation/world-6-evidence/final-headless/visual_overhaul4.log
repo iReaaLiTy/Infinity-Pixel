@@ -1,0 +1,37 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+PASS: Titulo e botoes com fonte embutida (Lilita One, OFL) e licenca no projeto; nada depende de fonte do sistema
+PASS: Diorama do menu usa a flora nova
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+PASS: FloraArt existe, sem corpo fisico e fora de navigation_source
+PASS: Arvores/rochas antigas ocultas (os nos ficam: o solido le o transform) — 42 troncos, 16 rochas
+PASS: Flora em 19 malhas (eram 226 nos) e 48955 triangulos (< 75 mil)
+PASS: Nada solto entre 0,3 e 1,9 m na area andavel: so tronco/rocha sobre o solido (0 vertices soltos)
+PASS: Trilhas livres: nada abaixo de 1,9 m sobre a faixa das rotas, so o piso antigo rente (0 vertices)
+PASS: Entradas das ondas abertas: nada entre 0,3 e 1,9 m nas passagens (0 vertices)
+PASS: Cada solido tem arte no lugar: 42/42 troncos e 16/16 rochas desenhados sobre o colisor
+PASS: Cristais e glifos numa malha propria, sem sombra, no grupo night_glow
+PASS: Cristais discretos de dia (0.25) e acesos a noite (1.10)
+PASS: Arvore coletavel com a copa nova de lobos (tons quentes, 1 malha)
+PASS: Rig: coxa no quadril, canela no joelho, pe e garras no tornozelo, ponta da cauda com pivo proprio
+PASS: Parado: pernas e joelho em repouso (sem andar no lugar)
+PASS: Andando: o joelho dobra na perna em balanco (-0.56 rad)
+PASS: Passo pela distancia: fase 16.8 rad para 4.50 m (esperado 16.8)
+PASS: Ponta da cauda balanca com atraso proprio
+PASS: Parou: joelho volta ao repouso no mesmo instante
+PASS: IA e colisao intocadas (velocidade base 4 m/s, colisor original)
+PASS: Sombra direcional em 2 fatias ate 45 m (a camera ve ~36 m): metade das passadas de sombra
+PASS: Log de eventos raros continua no console (so o log por golpe virou --verbose)
+PASS: Efeitos originais carregados (tools/build_sfx.gd), todos no barramento SFX
+PASS: Intervalo minimo por efeito (varias torres nao viram metralhadora)
+PASS: Todo botao do jogo toca o clique (gancho global)
+PASS: Ambiente de dia tocando durante a preparacao
+[DIA/NOITE] Noite 1 comecou (18:00). Estado: NOITE
+[NOITE] Noite 1: onda iniciada com 3 inimigos, intervalo de 2.0s.
+[VISUAL DIA/NOITE] 18:00 — por do sol em andamento
+PASS: Noite: trompa da onda, ambiente noturno e musica de combate
+PASS: Menu toca o tema principal (composicao original que estava sem uso)
+OVERHAUL4 RESULTS: 27 passed; 0 failed

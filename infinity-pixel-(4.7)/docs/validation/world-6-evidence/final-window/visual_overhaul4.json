@@ -1,0 +1,32 @@
+{
+	"failed": [],
+	"passed": [
+		"Titulo e botoes com fonte embutida (Lilita One, OFL) e licenca no projeto; nada depende de fonte do sistema",
+		"Diorama do menu usa a flora nova",
+		"FloraArt existe, sem corpo fisico e fora de navigation_source",
+		"Arvores/rochas antigas ocultas (os nos ficam: o solido le o transform) — 42 troncos, 16 rochas",
+		"Flora em 19 malhas (eram 226 nos) e 48955 triangulos (< 75 mil)",
+		"Nada solto entre 0,3 e 1,9 m na area andavel: so tronco/rocha sobre o solido (0 vertices soltos)",
+		"Trilhas livres: nada abaixo de 1,9 m sobre a faixa das rotas, so o piso antigo rente (0 vertices)",
+		"Entradas das ondas abertas: nada entre 0,3 e 1,9 m nas passagens (0 vertices)",
+		"Cada solido tem arte no lugar: 42/42 troncos e 16/16 rochas desenhados sobre o colisor",
+		"Cristais e glifos numa malha propria, sem sombra, no grupo night_glow",
+		"Cristais discretos de dia (0.25) e acesos a noite (1.10)",
+		"Arvore coletavel com a copa nova de lobos (tons quentes, 1 malha)",
+		"Rig: coxa no quadril, canela no joelho, pe e garras no tornozelo, ponta da cauda com pivo proprio",
+		"Parado: pernas e joelho em repouso (sem andar no lugar)",
+		"Andando: o joelho dobra na perna em balanco (-0.56 rad)",
+		"Passo pela distancia: fase 16.8 rad para 4.50 m (esperado 16.8)",
+		"Ponta da cauda balanca com atraso proprio",
+		"Parou: joelho volta ao repouso no mesmo instante",
+		"IA e colisao intocadas (velocidade base 4 m/s, colisor original)",
+		"Sombra direcional em 2 fatias ate 45 m (a camera ve ~36 m): metade das passadas de sombra",
+		"Log de eventos raros continua no console (so o log por golpe virou --verbose)",
+		"Efeitos originais carregados (tools/build_sfx.gd), todos no barramento SFX",
+		"Intervalo minimo por efeito (varias torres nao viram metralhadora)",
+		"Todo botao do jogo toca o clique (gancho global)",
+		"Ambiente de dia tocando durante a preparacao",
+		"Noite: trompa da onda, ambiente noturno e musica de combate",
+		"Menu toca o tema principal (composicao original que estava sem uso)"
+	]
+}

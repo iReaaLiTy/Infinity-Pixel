@@ -1,0 +1,102 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+OpenGL API 3.3.0 - Build 32.0.101.7088 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+
+PASS: Menu: as seis opcoes presentes
+PASS: Menu: TODAS as opcoes centralizadas na tela
+PASS: Menu: botoes do mesmo tamanho; JOGAR maior (prioridade)
+PASS: Menu: ordem JOGAR, TUTORIAL, CONTROLES, CONFIGURACOES, CREDITOS, SAIR com espacamento igual
+PASS: Logotipo centralizado: pedra com rachaduras e jade recortados pelas letras
+PASS: Opcoes dentro da placa fossil centralizada
+PASS: Botoes: brilho jade no hover e sensacao de pressao no clique
+PASS: Telas secundarias na mesma placa fossil
+PASS: Menu 1280x720: opcoes e logotipo centralizados e dentro da tela
+PASS: Menu 1600x900: opcoes e logotipo centralizados e dentro da tela
+PASS: Menu 1920x1080: opcoes e logotipo centralizados e dentro da tela
+[ENCONTRO] Selvagem domesticavel disponivel em (-10.0, 0.5, 10.0)
+[TERRITORIO] FLORESTA OESTE: guardiao WildDinoEncontro
+[ENCONTRO] Selvagem domesticavel disponivel em (13.0, 0.5, 22.0)
+[TERRITORIO] REGIÃO ROCHOSA: guardiao WildDinoEncontro2
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Aliado em foco: identificacao + numero (80/80) e barra grafica
+PASS: 100%: barra cheia na cor jade do aliado
+PASS: Dano: numero atualiza na hora (40/80); barra desce suave (0.93 ainda)
+PASS: Dano: rastro claro do valor anterior e piscada do golpe
+PASS: 50%: barra chega a metade; o rastro desce (0.50)
+PASS: HP critico: 12/80 e barra curta (0.15)
+PASS: Cura: valor real +30 (regra intacta), brilho jade e barra subindo suave
+PASS: Cura: barra chega a 42/80
+PASS: Vida maxima das criaturas inalterada (80)
+PASS: Selvagem golpeado: barra terracota visivel
+PASS: Guardiao em confronto (perto): barra ambar
+PASS: Invasor: barra azul-violeta
+PASS: Quatro cores de faccao distintas
+PASS: Selvagem calmo e longe: sem rotulo nem barra
+PASS: Onda grande: 9 rotulos com texto (limite 9) + 10 so com a barra (limite 12)
+PASS: Onda grande: criaturas sem espaco para o texto ainda mostram a barra
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Varios aliados: foco + ferido visiveis, sadio distante escondido
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Domesticacao: rotulo ALIADO e barra jade
+PASS: Noite: barra sem iluminacao (legivel no escuro)
+PASS: Pegadas: uma MultiMesh com 48 instancias fixas (pool)
+PASS: Parado: nenhuma pegada nova
+PASS: Andando 6 m: 7 pegadas (passada de 0.85 m), nao uma por quadro
+PASS: Alterna pe esquerdo e direito (lados opostos da trilha)
+PASS: Pegada virada para a direcao real do movimento (+X)
+PASS: Pegada atras dos pes
+PASS: Superficie forest reconhecida em (-22.0, 14.0)
+PASS: Superficie stone reconhecida em (27.0, 12.0)
+PASS: Superficie water reconhecida em (-14.9, -22.0)
+PASS: Superficie volcano reconhecida em (10.0, -35.0)
+PASS: Pedra mais sutil (poeira); margem mais escura (umida)
+PASS: Limite: 42 pegadas ativas (max 48), nenhum no acumulado
+PASS: Pegadas antigas somem sozinhas
+WildDino foi domesticado com 80/80 HP (nao removido).
+[DOMESTICACAO] Estado: DOMESTICADO
+[ALIADO] WildDino domesticado
+[ALIADO] Modo: SEGUINDO
+PASS: Mochila: veu que escurece e tira a cor do jogo atras
+PASS: Mochila aberta: o mundo continua rodando (Spec 013D)
+PASS: Mochila aberta: cursor visivel
+PASS: Placa arqueologica desenhada (contorno irregular, fosseis na borda)
+PASS: Contorno da placa e irregular (nao e um retangulo): 126 pontos
+PASS: Abas preservadas com icones novos (pedra/cristal, ferramenta, cranio)
+PASS: Ficha de expedicao com dados reais (47/80, barra, SEGUINDO)
+PASS: Ficha mostra numero e tipo do aliado
+PASS: Elixir de Jade integrado (frasco de especime + fabricar)
+PASS: Fechar a mochila devolve o cursor oculto
+PASS: Mapa: paredes nos limites do mundo expandido (x +-32, z -42..32)
+PASS: Mapa: area 4736 m2 = 1.90x a antiga (48 x 52), dentro de 1,5x-2x
+PASS: Mapa: chao com colisao nos quatro cantos do mundo expandido
+PASS: Regioes: FLORESTA, PEDRA, AGUA e VULCAO com centros dentro do mundo
+PASS: Marcos: cachoeira (queda, paredao, nevoa), lago, rio, vulcao (lava, fumaca, brilho)
+PASS: Particulas do mapa limitadas (75 no total)
+PASS: Lava e cachoeira so visuais: nenhuma Area3D/corpo na arte (sem dano)
+PASS: BiomeCollision: solidos das pecas altas (82) no grupo da navmesh
+PASS: Navmesh: Refugio alcanca as 10 areas novas (sem area isolada) []
+PASS: Navmesh: lago fundo e lava fora (5.3 / 3.0 m do centro); rio e corrego atravessaveis (desvio [1.02, 1.0])
+PASS: Ondas: tres rotas ate o Refugio abertas e diretas (comprimentos [36.0, 25.0, 25.0] m)
+PASS: Ondas: ponto de spawn (0; 0,5; 23) e 3 rotas preservados
+PASS: Territorios intactos: Refugio + Oeste + Leste (biomas nao sao territorios)
+PASS: Parede leste segura o Player (x = 31.40)
+PASS: Lava: Player para na borda (2.75 m do centro) e nao perde vida
+PASS: Cachoeira: o Player chega a beira do poco e sai livremente
+PASS: Camera: Player enquadrado nas cinco bordas do mundo expandido
+WORLD6 RESULTS: 70 passed; 0 failed; 0 skipped
