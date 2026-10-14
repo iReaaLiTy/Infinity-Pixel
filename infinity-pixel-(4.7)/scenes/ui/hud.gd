@@ -1210,7 +1210,7 @@ func _update_creature_labels(player: Node3D) -> void:
 		var at := cam.unproject_position(label.global_position)
 		var w := label.text.length() * 10.5 * size
 		# o retangulo inclui a barra embaixo do texto
-		entries.append([pri, d, label, Rect2(at - Vector2(w * 0.5, 12.0 * size), Vector2(w, 32.0 * size)), dino, kind])
+		entries.append([pri, d, label, Rect2(at - Vector2(w * 0.5, 12.0 * size), Vector2(w, 36.0 * size)), dino, kind])
 	entries.sort_custom(func(a, b): return a[0] > b[0] or (a[0] == b[0] and a[1] < b[1]))
 	var taken: Array[Rect2] = []
 	var bar_rects: Array[Rect2] = [] # faixa das barras (texto e so-barra)
@@ -1225,7 +1225,7 @@ func _update_creature_labels(player: Node3D) -> void:
 		label.modulate.a = 1.0 if label.pixel_size >= LABEL_PIXEL else 0.8
 		label.set_meta("bar_only", false)
 		label.outline_modulate.a = 0.85
-		var bar_rect := Rect2(e[3].position + Vector2(e[3].size.x * 0.5 - 22.0, 14.0), Vector2(44.0, 8.0))
+		var bar_rect := Rect2(e[3].position + Vector2(e[3].size.x * 0.5 - 22.0, 18.0), Vector2(44.0, 8.0))
 		if free:
 			label.visible = true
 			taken.append(e[3])
@@ -1259,7 +1259,8 @@ func _update_health_bar(dino: Node, label: Label3D, kind: StringName, opacity :=
 		bar.snap(frac)
 	var s := label.pixel_size / LABEL_PIXEL
 	bar.scale = Vector3.ONE * s
-	bar.position = Vector3(0, -label.font_size * label.pixel_size * 0.78, 0)
+	# abaixo do texto com folga: meia linha (0,5) + contorno + meia altura da barra
+	bar.position = Vector3(0, -label.font_size * label.pixel_size * 0.95, 0)
 	bar.show_health(frac, kind, label.modulate.a if opacity < 0.0 else opacity)
 
 ## Design 5.0: rastro do dano, piscar dos medalhoes, estado critico (anel em
