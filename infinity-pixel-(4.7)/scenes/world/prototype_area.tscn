@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" path="res://scenes/visuals/refuge_art.tscn" id="refuge_017a"]
 [ext_resource type="Script" path="res://scenes/visuals/fossil_art.gd" id="fossils_o3"]
 [ext_resource type="PackedScene" path="res://scenes/visuals/flora_art.scn" id="flora_o4"]
+[ext_resource type="Script" path="res://scenes/world/player_footprints.gd" id="w6_prints"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(48, 1, 52)
@@ -79,6 +80,9 @@ mesh = SubResource("BoxMesh_ground")
 [node name="Player" parent="." instance=ExtResource("1_player")]
 respawn_point_path = NodePath("../PlayerSpawn")
 position = Vector3(0, 1, -10)
+
+[node name="PlayerFootprints" type="MultiMeshInstance3D" parent="."]
+script = ExtResource("w6_prints")
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 position = Vector3(0, 1, -10)
