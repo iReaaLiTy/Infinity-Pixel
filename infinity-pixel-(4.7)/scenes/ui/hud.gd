@@ -40,6 +40,7 @@ var _hint_key: Control
 const NIGHT_VIOLET := Color("9aa6f0")
 const CombatFX := preload("res://scenes/visuals/combat_fx.gd")
 const UiArt := preload("res://scenes/ui/ui_art.gd")
+const FossilUI := preload("res://scenes/ui/fossil_ui.gd") # World 6.0
 
 func build(main: Node, game_world: Node3D) -> void:
 	app = main
@@ -1338,7 +1339,7 @@ const CARD_WIDTH := 1000.0
 const PAGE_HEIGHT := 392.0
 const DefenseTower := preload("res://scenes/world/defense_tower.gd")
 const WildDino := preload("res://scenes/enemies/wild_dino.gd")
-const TABS := [["resources", "RECURSOS", &"stone"], ["build", "CONSTRUÇÕES", &"campfire"], ["companions", "COMPANHEIROS", &"paw"]]
+const TABS := [["resources", "RECURSOS", &"crystal_stone"], ["build", "CONSTRUÇÕES", &"tool"], ["companions", "COMPANHEIROS", &"skull"]]
 var _inv_recipes_box: VBoxContainer
 var _inv_card: PanelContainer
 var _inv_close: Button
@@ -1359,31 +1360,30 @@ var _world_clock: Label
 
 func _inv_section(title: String, hint: String) -> VBoxContainer:
 	var col := VBoxContainer.new()
-	col.add_theme_constant_override("separation", 8)
+	col.add_theme_constant_override("separation", 6)
 	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var head = app._label(title, 15, UiArt.JADE)
+	var head = app._label(title, 15, UiArt.JADE_LIGHT)
 	head.add_theme_font_override("font", app._display_font())
+	head.add_theme_color_override("font_outline_color", Color("0b1a15"))
+	head.add_theme_constant_override("outline_size", 3)
 	col.add_child(head)
 	if hint != "":
-		var sub = app._label(hint, 12, Color(CREAM, .62))
+		var sub = app._label(hint, 12, Color(CREAM, .66))
 		sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		col.add_child(sub)
-	col.add_child(UiArt.drawn(Vector2(0, 6), func(ci: CanvasItem, r: Rect2):
-		ci.draw_line(Vector2(0, 3), Vector2(r.size.x, 3), Color("2f5547"), 2.0)
-		ci.draw_circle(Vector2(r.size.x, 3), 3.0, Color("2f5547"))))
+	col.add_child(UiArt.drawn(Vector2(0, 10), func(ci: CanvasItem, r: Rect2): FossilUI.bone_divider(ci, r)))
 	return col
 
-## Placa de conteudo: pedra mais clara, borda na cor do tema.
+## Nicho de pedra (World 6.0): cavidade mais escura escavada na placa, com
+## filete na cor do tema — conteudo legivel sobre fundo calmo.
 func _inv_tile(parent: Node, style_color: Color) -> VBoxContainer:
 	var tile := PanelContainer.new()
-	# Design 5.0: placa de pedra talhada na cor do tema (mesma familia do menu e da HUD).
-	var sb := UiArt.carved(Color(style_color.lerp(UiArt.GREEN_DARK, 0.82), 0.92), Color(style_color, 0.45), Vector4(14, 10, 14, 13), 8.0)
-	sb.bg_top = Color(style_color.lerp(UiArt.GREEN_DARK, 0.7), 0.94)
-	sb.depth = 3.0
-	sb.inner_color = Color(style_color, 0.16)
-	sb.shadow_size = 4.0
-	sb.shadow_color = Color(0, 0, 0, 0.22)
+	var sb := UiArt.carved(Color(0.07, 0.1, 0.085, 0.8), Color(style_color, 0.4), Vector4(14, 10, 14, 12), 10.0)
+	sb.bg_top = Color(0.04, 0.06, 0.05, 0.85) # escuro em cima: parece escavado
+	sb.inner_color = Color(FossilUI.BONE, 0.07)
+	sb.shadow_size = 0.0
 	sb.border_width = 1.5
+	sb.chisel = true
 	tile.add_theme_stylebox_override("panel", sb)
 	parent.add_child(tile)
 	var box := VBoxContainer.new()
@@ -1399,26 +1399,39 @@ func _big_value(text: String, color: Color, size := 34) -> Label:
 	return l
 
 func _build_big_inventory() -> void:
-	# Veu escuro em tela cheia (e o proprio inventory_panel).
+	# World 6.0: veu que escurece e tira a cor do jogo (que continua rodando e
+	# visivel atras) — e o proprio inventory_panel, que bloqueia cliques no mundo.
 	inventory_panel = PanelContainer.new()
 	inventory_panel.name = "InventoryPanel"
-	var veil := StyleBoxFlat.new()
-	veil.bg_color = Color(0.01, 0.03, 0.025, 0.66)
-	inventory_panel.add_theme_stylebox_override("panel", veil)
+	inventory_panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
 	add_child(inventory_panel)
 	inventory_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	inventory_panel.mouse_filter = Control.MOUSE_FILTER_STOP # nada atravessa para o mundo
 	inventory_panel.gui_input.connect(_on_veil_input)
+	var veil := ColorRect.new()
+	veil.name = "Veil"
+	veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var veil_mat := ShaderMaterial.new()
+	veil_mat.shader = preload("res://scenes/ui/inventory_veil.gdshader")
+	veil.material = veil_mat
+	inventory_panel.add_child(veil)
 	var center := CenterContainer.new()
 	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	inventory_panel.add_child(center)
+	# Placa arqueologica: contorno irregular, rachaduras com jade, vertebras,
+	# amonite, ossos, pegadas e cristais na borda (FossilUI.slab).
 	_inv_card = PanelContainer.new()
 	_inv_card.name = "InventoryCard"
-	_inv_card.add_theme_stylebox_override("panel", UiArt.stone_panel(0.97, UiArt.STONE_EDGE, Vector4(28, 20, 28, 16), 12))
+	var card_style := StyleBoxEmpty.new()
+	card_style.content_margin_left = 34
+	card_style.content_margin_right = 34
+	card_style.content_margin_top = 28
+	card_style.content_margin_bottom = 24
+	_inv_card.add_theme_stylebox_override("panel", card_style)
 	_inv_card.custom_minimum_size.x = CARD_WIDTH
 	_inv_card.mouse_filter = Control.MOUSE_FILTER_STOP
 	center.add_child(_inv_card)
-	UiArt.decorate(_inv_card)
+	_inv_card.draw.connect(func(): FossilUI.slab(_inv_card, Rect2(Vector2.ZERO, _inv_card.size), 3.0))
 	var root := VBoxContainer.new()
 	root.add_theme_constant_override("separation", 10)
 	_inv_card.add_child(root)
@@ -1436,7 +1449,7 @@ func _build_big_inventory() -> void:
 	title.add_theme_color_override("font_outline_color", Color("2a160a"))
 	title.add_theme_constant_override("outline_size", 5)
 	titles.add_child(title)
-	titles.add_child(app._label("Recursos, construções e os dinossauros que seguem você.", 13, Color(CREAM, .7)))
+	titles.add_child(app._label("Diário de expedição  ·  recursos, construções e companheiros", 13, Color(CREAM, .7)))
 	header.add_child(titles)
 	var keys := HBoxContainer.new()
 	keys.add_theme_constant_override("separation", 5)
@@ -1462,9 +1475,8 @@ func _build_big_inventory() -> void:
 	var tabs_fill := Control.new()
 	tabs_fill.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	tabs.add_child(tabs_fill)
-	tabs.add_child(UiArt.drawn(Vector2(46, 34), func(ci: CanvasItem, r: Rect2): UiArt.claw_marks(ci, r.grow(-4), Color(UiArt.IVORY, .16))))
-	root.add_child(UiArt.drawn(Vector2(0, 4), func(ci: CanvasItem, r: Rect2):
-		ci.draw_line(Vector2(0, 2), Vector2(r.size.x, 2), Color(UiArt.JADE, .5), 2.0)))
+	tabs.add_child(UiArt.drawn(Vector2(46, 34), func(ci: CanvasItem, r: Rect2): UiArt.claw_marks(ci, r.grow(-4), Color(UiArt.IVORY, .22))))
+	root.add_child(UiArt.drawn(Vector2(0, 10), func(ci: CanvasItem, r: Rect2): FossilUI.bone_divider(ci, r)))
 	# Paginas (todas com a mesma altura: trocar de aba nao mexe no cartao).
 	var pages := Control.new()
 	pages.custom_minimum_size.y = PAGE_HEIGHT
@@ -1500,7 +1512,8 @@ func _build_big_inventory() -> void:
 	inventory_panel.hide()
 	show_inventory_tab(inventory_tab)
 
-## Aba: pedra com icone, nome e a tecla (1, 2, 3); a ativa fica jade e "acesa".
+## Aba: tabuleta de pedra com pinos de osso, icone fossil, nome e a tecla
+## (1, 2, 3); a ativa ganha o fundo jade e o icone aceso.
 func _tab_button(text: String, icon: StringName, key: String, group: ButtonGroup) -> Button:
 	var b := Button.new()
 	b.text = text
@@ -1508,23 +1521,25 @@ func _tab_button(text: String, icon: StringName, key: String, group: ButtonGroup
 	b.button_group = group
 	b.focus_mode = Control.FOCUS_ALL
 	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	b.custom_minimum_size = Vector2(212, 42)
+	b.custom_minimum_size = Vector2(216, 44)
 	b.add_theme_font_override("font", app._display_font())
 	b.add_theme_font_size_override("font_size", 15)
-	var styles := UiArt.button_styles(Color("1a302a"), Color("2f5547"), 3, 8, 50, 6)
-	var on := UiArt.button_styles(UiArt.JADE_DEEP.darkened(0.35), UiArt.JADE, 3, 8, 50, 6)
+	var styles := UiArt.button_styles(Color("262b26"), Color(FossilUI.BONE_SHADE, 0.55), 3, 6, 54, 6)
+	var on := UiArt.button_styles(UiArt.JADE_DEEP.darkened(0.25), UiArt.JADE, 3, 6, 54, 6)
 	for state in styles:
 		b.add_theme_stylebox_override(state, styles[state])
 	b.add_theme_stylebox_override("pressed", on.normal)
 	b.add_theme_stylebox_override("hover_pressed", on.hover)
-	b.add_theme_color_override("font_color", Color(CREAM, .7))
+	b.add_theme_color_override("font_color", Color(CREAM, .72))
 	b.add_theme_color_override("font_pressed_color", Color.WHITE)
 	b.add_theme_color_override("font_hover_pressed_color", Color.WHITE)
 	b.add_theme_color_override("font_hover_color", CREAM)
 	b.draw.connect(func():
-		var h := b.size.y
-		UiArt.icon(b, icon, Rect2(Vector2(14, h * .22), Vector2(h * .56, h * .56)), UiArt.JADE_LIGHT if b.button_pressed else Color(UiArt.IVORY, .6))
-		var kr := Rect2(Vector2(b.size.x - 26, h * .5 - 9), Vector2(16, 18))
+		var h := b.size.y - 3.0
+		for x in [7.0, b.size.x - 7.0]: # pinos de osso nas pontas
+			b.draw_circle(Vector2(x, h * .5), 2.6, Color(FossilUI.BONE, .55))
+		FossilUI.icon(b, icon, Rect2(Vector2(16, h * .18), Vector2(h * .64, h * .64)), UiArt.JADE_LIGHT if b.button_pressed else Color(FossilUI.BONE, .75))
+		var kr := Rect2(Vector2(b.size.x - 30, h * .5 - 9), Vector2(16, 18))
 		b.draw_rect(kr, Color(UiArt.AMBER, .9 if b.button_pressed else .35), false, 1.5)
 		var f: Font = app._display_font()
 		f.draw_string(b.get_canvas_item(), kr.position + Vector2(4.5, 13.5), key, HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(UiArt.AMBER, .95 if b.button_pressed else .5)))
@@ -1699,32 +1714,47 @@ func _build_companions_page(page: Control) -> void:
 	how.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_companion_empty.add_child(how)
 
-## Cartao de um aliado: medalhao com a silhueta, vida, estado e funcao.
+## Ficha de expedicao de um aliado (World 6.0): cabecalho de osso com o numero
+## da ficha, especime em moldura de pedra com cantos de osso, e so dados reais
+## — origem, vida (barra + numero), estado (SEGUINDO/FICAR), funcao atual,
+## golpe e o uso do Elixir de Jade.
 func _companion_card(dino: Node, index: int) -> Dictionary:
 	var tile := _inv_tile(_companion_grid, UiArt.JADE)
 	tile.get_parent().custom_minimum_size = Vector2(300, 0)
 	tile.add_theme_constant_override("separation", 6)
+	var band := HBoxContainer.new()
+	band.add_theme_constant_override("separation", 6)
+	tile.add_child(band)
+	band.add_child(UiArt.drawn(Vector2(30, 12), func(ci: CanvasItem, r: Rect2): FossilUI.vertebrae(ci, Vector2(0, 6), Vector2(r.size.x, 6), 4, Color(FossilUI.BONE, .5))))
+	band.add_child(app._label("FICHA DE EXPEDIÇÃO  ·  Nº %02d" % index, 10, Color(FossilUI.BONE, .7)))
+	var band_fill := Control.new()
+	band_fill.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	band.add_child(band_fill)
+	band.add_child(app._label("Golpe %d  ·  F alterna (de dia)" % int(WildDino.ALLY_ATTACK_DAMAGE), 10, Color(CREAM, .5)))
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 10)
 	tile.add_child(top)
-	var medal := UiArt.drawn(Vector2(68, 56), func(ci: CanvasItem, r: Rect2):
-		ci.draw_circle(r.get_center(), r.size.y * .5, Color(UiArt.GREEN_DEEP, .9))
-		ci.draw_arc(r.get_center(), r.size.y * .5, 0, TAU, 24, Color(UiArt.JADE, .7), 2.0)
-		UiArt.dino_silhouette(ci, Rect2(r.position + Vector2(8, 10), Vector2(r.size.x - 16, r.size.y - 18)), UiArt.JADE, false, UiArt.INK))
+	var medal := UiArt.drawn(Vector2(72, 58), func(ci: CanvasItem, r: Rect2):
+		ci.draw_rect(r.grow(-2), Color(0.03, 0.05, 0.04, 0.9))
+		ci.draw_rect(r.grow(-2), Color(FossilUI.BONE_SHADE, .55), false, 1.5)
+		for c in [Vector2(4, 4), Vector2(r.size.x - 4, 4), Vector2(4, r.size.y - 4), Vector2(r.size.x - 4, r.size.y - 4)]:
+			ci.draw_circle(c, 3.0, Color(FossilUI.BONE, .7))
+		UiArt.dino_silhouette(ci, Rect2(r.position + Vector2(8, 9), Vector2(r.size.x - 16, r.size.y - 16)), UiArt.JADE, false, UiArt.INK))
 	top.add_child(medal)
 	var names := VBoxContainer.new()
 	names.add_theme_constant_override("separation", -2)
 	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var title = app._label("ALIADO %d" % index, 16, UiArt.AMBER_LIGHT)
+	var title = app._label("ALIADO %d" % index, 17, UiArt.AMBER_LIGHT)
 	title.add_theme_font_override("font", app._display_font())
 	names.add_child(title)
-	names.add_child(app._label(String(dino.get_meta("ally_origin", "Dinossauro do vale")), 12, Color(CREAM, .62)))
+	names.add_child(app._label("Tipo: " + String(dino.get_meta("ally_origin", "Dinossauro do vale")), 12, Color(CREAM, .66)))
 	top.add_child(names)
 	var state = app._label("", 12, UiArt.INK)
 	state.add_theme_font_override("font", app._display_font())
 	var chip := PanelContainer.new()
 	var cs := StyleBoxFlat.new()
-	cs.set_corner_radius_all(4)
+	cs.set_corner_radius_all(3)
+	cs.corner_detail = 2
 	cs.content_margin_left = 8
 	cs.content_margin_right = 8
 	cs.content_margin_top = 2
@@ -1736,18 +1766,18 @@ func _companion_card(dino: Node, index: int) -> Dictionary:
 	var hp_row := HBoxContainer.new()
 	hp_row.add_theme_constant_override("separation", 8)
 	tile.add_child(hp_row)
-	hp_row.add_child(UiArt.icon_control(&"heart", 14, UiArt.EMBER))
+	hp_row.add_child(app._label("VIDA", 11, Color(FossilUI.BONE, .6)))
 	var bar := _hud_bar(hp_row, UiArt.JADE)
 	bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	bar.max_value = WildDino.MAX_HP
 	var hp = app._label("", 13, CREAM)
+	hp.add_theme_font_override("font", app._display_font())
 	hp_row.add_child(hp)
-	var info = app._label("", 12, Color(CREAM, .75))
+	var info = app._label("", 12, Color(CREAM, .78))
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	info.custom_minimum_size.y = 34
+	info.custom_minimum_size.y = 0
 	tile.add_child(info)
-	tile.add_child(app._label("Golpe: %d de dano  ·  F alterna (de dia)" % int(WildDino.ALLY_ATTACK_DAMAGE), 11, Color(CREAM, .5)))
 	var heal_button: Button = app._button(tile, "USAR ELIXIR · até 3 m", func(): world.get_node("JadeElixir").use_on(dino))
 	return {"heal": heal_button, "tile": tile.get_parent(), "hp": hp, "bar": bar, "state": state, "chip": cs, "info": info}
 
@@ -1838,12 +1868,14 @@ var _elixir_tick := 0.0
 func _build_elixir_card(parent: Node) -> void:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 12)
-	_inv_tile(parent, UiArt.JADE).add_child(row) # Design 5.0: na mesma placa talhada dos outros cartoes
-	row.add_child(UiArt.drawn(Vector2(42, 76), func(ci: CanvasItem, _r: Rect2):
-		ci.draw_circle(Vector2(21, 40), 17, UiArt.JADE)
-		ci.draw_rect(Rect2(14, 13, 14, 19), UiArt.JADE_LIGHT)
-		ci.draw_rect(Rect2(12, 10, 18, 6), Color("806044"))
-		ci.draw_line(Vector2(13, 36), Vector2(17, 30), Color.WHITE, 3)))
+	_inv_tile(parent, UiArt.JADE).add_child(row) # World 6.0: nicho de pedra, como os outros cartoes
+	# Frasco de especime: o liquido mostra o estoque real (cheio = 1 guardado).
+	var jar := UiArt.drawn(Vector2(44, 64), func(ci: CanvasItem, r: Rect2):
+		var elixir = world.get_node_or_null("JadeElixir")
+		FossilUI.jar(ci, r, 1.0 if elixir != null and elixir.stored > 0 else 0.18))
+	jar.name = "ElixirJar"
+	row.add_child(jar)
+	world.get_node("JadeElixir").changed.connect(jar.queue_redraw)
 	var text_col := VBoxContainer.new()
 	text_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(text_col)

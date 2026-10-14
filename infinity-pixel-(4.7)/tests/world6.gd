@@ -202,3 +202,43 @@ func footprint_checks() -> void:
 	await physics(int((Footprints.LIFE + 1.0) * 60))
 	check(prints.active == 0, "Pegadas antigas somem sozinhas")
 	player.set_physics_process(true)
+
+# --- Inventario fossil ------------------------------------------------------------
+func inventory_checks() -> void:
+	var hud = app.hud
+	var inv: Control = app.inventory_panel
+	var ally = dino_at(Vector3(1.4, 0.4, 0.6), true)
+	ally.hp = 47.0
+	ally._update_label()
+	app.toggle_inventory()
+	await frames(4)
+	var veil: ColorRect = inv.get_node_or_null("Veil")
+	check(inv.visible and veil != null and veil.material is ShaderMaterial and (veil.material as ShaderMaterial).shader.code.contains("hint_screen_texture"), "Mochila: veu que escurece e tira a cor do jogo atras")
+	check(DayNightManager.can_play() and not get_tree().paused, "Mochila aberta: o mundo continua rodando (Spec 013D)")
+	check(not app.cursor_hidden, "Mochila aberta: cursor visivel")
+	check(hud._inv_card.get_theme_stylebox("panel") is StyleBoxEmpty and hud._inv_card.draw.get_connections().size() > 0, "Placa arqueologica desenhada (contorno irregular, fosseis na borda)")
+	var outline = preload("res://scenes/ui/fossil_ui.gd").slab_outline(Rect2(0, 0, 1000, 500))
+	var off_edge := 0
+	for p in outline:
+		if absf(p.x) > 4.5 and absf(p.x - 1000) > 4.5 and absf(p.y) > 4.5 and absf(p.y - 500) > 4.5:
+			off_edge += 1
+	check(outline.size() > 40 and off_edge > 0, "Contorno da placa e irregular (nao e um retangulo): %d pontos" % outline.size())
+	var icons := []
+	for id in ["resources", "build", "companions"]:
+		icons.append(hud._inv_tabs.has(id))
+	check(icons.all(func(v): return v) and hud.TABS[0][2] == &"crystal_stone" and hud.TABS[1][2] == &"tool" and hud.TABS[2][2] == &"skull", "Abas preservadas com icones novos (pedra/cristal, ferramenta, cranio)")
+	hud.show_inventory_tab("companions")
+	await frames(3)
+	var card: Dictionary = hud._companion_cards.get(ally, {})
+	check(not card.is_empty() and card.hp.text == "47/80" and is_equal_approx(card.bar.value, 47.0) and card.state.text == "SEGUINDO", "Ficha de expedicao com dados reais (47/80, barra, SEGUINDO)")
+	var labels := []
+	for l: Label in card.tile.find_children("*", "Label", true, false):
+		labels.append(l.text)
+	check(labels.any(func(t): return t.begins_with("FICHA DE EXPEDIÇÃO")) and labels.any(func(t): return t.begins_with("Tipo:")), "Ficha mostra numero e tipo do aliado")
+	var jar = hud._inv_card.find_child("ElixirJar", true, false)
+	check(jar != null and hud._elixir_status != null and hud._elixir_craft != null, "Elixir de Jade integrado (frasco de especime + fabricar)")
+	app.toggle_inventory()
+	await frames(2)
+	check(not inv.visible and app.cursor_hidden, "Fechar a mochila devolve o cursor oculto")
+	ally.queue_free()
+	await frames(2)
