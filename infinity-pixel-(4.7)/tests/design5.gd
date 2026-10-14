@@ -205,7 +205,7 @@ func menu_checks() -> void:
 	check(actors.size() >= 1, "Dinossauro em idle no diorama")
 	var names := ["JOGAR", "TUTORIAL", "CONTROLES", "CONFIGURAÇÕES", "CRÉDITOS", "SAIR"]
 	check(names.all(func(n): return button(n) != null and button(n).has_meta("icon") and button(n).get_theme_stylebox("normal") is CarvedStyle), "Seis botoes reais, cada um com icone proprio e placa talhada")
-	check(button("JOGAR").get_meta("tier") == 0 and button("TUTORIAL").get_meta("tier") == 1 and names.slice(2).all(func(n): return button(n).get_meta("tier") == 2), "Hierarquia: JOGAR (1) > TUTORIAL (2) > demais (3)")
+	check(button("JOGAR").get_meta("tier") == 0 and names.slice(1).all(func(n): return button(n).get_meta("tier") == 1), "Hierarquia (World 6.0): JOGAR em destaque; demais iguais")
 	var play := button("JOGAR")
 	check(play.get_theme_stylebox("hover").glow > 0.0 and play.get_theme_stylebox("pressed").depth < play.get_theme_stylebox("normal").depth and not play.get_theme_stylebox("focus").draw_center, "Botoes: brilho no hover, afunda no clique, contorno de foco")
 	var fired := [false]

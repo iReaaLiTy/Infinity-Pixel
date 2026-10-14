@@ -242,3 +242,53 @@ func inventory_checks() -> void:
 	check(not inv.visible and app.cursor_hidden, "Fechar a mochila devolve o cursor oculto")
 	ally.queue_free()
 	await frames(2)
+
+# --- Menu fossil centralizado -------------------------------------------------------
+func menu_button(text: String) -> Button:
+	for b in app.ui.find_children("*", "Button", true, false):
+		if b.text == text and b.is_visible_in_tree():
+			return b
+	return null
+
+func centered(c: Control) -> bool:
+	var view := get_viewport().get_visible_rect()
+	return c != null and absf(c.get_global_rect().get_center().x - view.get_center().x) < 3.0
+
+func menu_checks() -> void:
+	app.show_menu()
+	await frames(8)
+	var names := ["JOGAR", "TUTORIAL", "CONTROLES", "CONFIGURAÇÕES", "CRÉDITOS", "SAIR"]
+	check(names.all(func(n): return menu_button(n) != null), "Menu: as seis opcoes presentes")
+	check(names.all(func(n): return centered(menu_button(n))), "Menu: TODAS as opcoes centralizadas na tela")
+	var sizes := names.slice(1).map(func(n): return menu_button(n).size)
+	check(sizes.all(func(s): return s.is_equal_approx(sizes[0])) and menu_button("JOGAR").size.x > sizes[0].x and menu_button("JOGAR").size.y > sizes[0].y, "Menu: botoes do mesmo tamanho; JOGAR maior (prioridade)")
+	var ys := names.map(func(n): return menu_button(n).get_global_rect().position.y)
+	var ordered := true
+	for i in range(1, ys.size()):
+		ordered = ordered and ys[i] > ys[i - 1]
+	var gaps := []
+	for i in range(2, names.size()):
+		gaps.append(menu_button(names[i]).get_global_rect().position.y - menu_button(names[i - 1]).get_global_rect().end.y)
+	check(ordered and gaps.all(func(g): return absf(g - gaps[0]) < 1.0), "Menu: ordem JOGAR, TUTORIAL, CONTROLES, CONFIGURACOES, CREDITOS, SAIR com espacamento igual")
+	var mark: Control = app.ui.find_child("TitleMark", true, false)
+	var face: Control = app.ui.find_child("TitleFace", true, false)
+	check(centered(mark) and face != null and face.clip_children == CanvasItem.CLIP_CHILDREN_AND_DRAW and face.find_child("TitleCracks", false, false) != null, "Logotipo centralizado: pedra com rachaduras e jade recortados pelas letras")
+	var stele: Control = app.ui.find_child("MenuStele", true, false)
+	check(stele != null and centered(stele) and stele.draw.get_connections().size() > 0, "Opcoes dentro da placa fossil centralizada")
+	var play := menu_button("JOGAR")
+	check(play.get_theme_stylebox("hover").glow > 0.0 and play.get_theme_stylebox("pressed").depth < play.get_theme_stylebox("normal").depth, "Botoes: brilho jade no hover e sensacao de pressao no clique")
+	app.show_settings(app._close_overlay)
+	await frames(3)
+	var tablet: Control = app.overlay.find_child("Tablet", true, false)
+	check(tablet != null and tablet.get_theme_stylebox("panel") is StyleBoxEmpty and tablet.draw.get_connections().size() > 0, "Telas secundarias na mesma placa fossil")
+	app._close_overlay()
+	if headless():
+		skip("Menu centralizado em 1280x720, 1600x900 e 1920x1080 (exige janela)")
+		return
+	for size in [Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080)]:
+		get_window().size = size
+		await frames(8)
+		var ok: bool = names.all(func(n): return centered(menu_button(n)) and get_viewport().get_visible_rect().encloses(menu_button(n).get_global_rect()))
+		check(ok and centered(mark), "Menu %dx%d: opcoes e logotipo centralizados e dentro da tela" % [size.x, size.y])
+	get_window().size = Vector2i(1280, 720)
+	await frames(4)
