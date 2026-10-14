@@ -19,10 +19,10 @@ const LIFE := 6.0 # s ate sumir
 const FADE := 2.5 # s finais em que esmaece
 const Y := 0.09 # acima do relevo do chao (no maximo 0,075 m)
 const TONES := {
-	&"forest": Color(0.17, 0.12, 0.07, 0.42),
-	&"stone": Color(0.86, 0.83, 0.74, 0.2),
-	&"water": Color(0.05, 0.08, 0.08, 0.55),
-	&"volcano": Color(0.47, 0.44, 0.43, 0.48),
+	&"forest": Color(0.15, 0.1, 0.06, 0.6),
+	&"stone": Color(0.88, 0.85, 0.76, 0.34),
+	&"water": Color(0.04, 0.07, 0.07, 0.66),
+	&"volcano": Color(0.52, 0.49, 0.47, 0.6),
 }
 
 @export var player_path: NodePath = ^"../Player"
@@ -79,8 +79,8 @@ static func _print_mesh() -> ArrayMesh:
 			for v in [c, c + Vector2(cos(a1) * r.x, sin(a1) * r.y), c + Vector2(cos(a0) * r.x, sin(a0) * r.y)]:
 				st.set_normal(Vector3.UP)
 				st.add_vertex(Vector3(v.x, 0, v.y))
-	blob.call(Vector2(0, 0.06), Vector2(0.075, 0.1), 8) # planta
-	blob.call(Vector2(0, -0.1), Vector2(0.06, 0.055), 7) # calcanhar
+	blob.call(Vector2(0, 0.08), Vector2(0.1, 0.13), 8) # planta (World 6.0: legivel da camera estrategica)
+	blob.call(Vector2(0, -0.13), Vector2(0.08, 0.072), 7) # calcanhar
 	return st.commit()
 
 func _physics_process(delta: float) -> void:
