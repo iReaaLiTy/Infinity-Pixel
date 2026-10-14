@@ -12,6 +12,7 @@ const REGIONS := preload("res://scenes/world/world_regions.tscn")
 const REFUGE_ART := preload("res://scenes/visuals/refuge_art.tscn") # Spec 017A
 const VALLEY_ART := preload("res://scenes/visuals/valley_art.tscn") # Spec 017A/018
 const FLORA_ART := preload("res://scenes/visuals/flora_art.scn") # 4.0: arvores, rochas, sub-bosque
+const BIOME_ART := preload("res://scenes/visuals/biome_art.scn") # World 6.0: agua, cachoeira, vulcao
 const DINO := preload("res://scenes/visuals/dino.tscn")
 const Props := preload("res://scenes/visuals/prehistoric_props.gd")
 const TowerForge := preload("res://scenes/visuals/tower_forge.gd") # Design 5.0
@@ -20,8 +21,11 @@ const SurfaceFinish := preload("res://scenes/visuals/surface_finish.gd") # Desig
 ## Camera ao norte do Refugio olhando para ele (sul). 5.0: o cristal fica a direita
 ## do centro, a Guardia (L2) ao fundo no centro e o Bastiao (L3) a direita;
 ## a estela do menu ocupa o terco esquerdo.
-const CAMERA_POS := Vector3(-8.6, 2.7, -4.2)
-const LOOK_AT := Vector3(-3.6, 1.75, -14.2)
+## World 6.0: com o menu centralizado, as bordas da tela mostram o mundo novo:
+## a cachoeira e o lago no terco esquerdo, o vulcao (cratera, fumaca e lava) no
+## terco direito; o aliado em primeiro plano a esquerda e o Refugio ao centro.
+const CAMERA_POS := Vector3(6.0, 4.6, 0.0)
+const LOOK_AT := Vector3(-7.0, 2.6, -24.0)
 const SWAY := 0.035 # rad de giro lento em volta do alvo (sem enjoo)
 const SWAY_PERIOD := 48.0 # s por ciclo completo
 
@@ -73,6 +77,7 @@ func _ready() -> void:
 	add_child(VALLEY_ART.instantiate()) # chao, trilhas e paredoes (os antigos foram ocultados)
 	add_child(FLORA_ART.instantiate()) # 4.0: as arvores e rochas antigas de ArenaArt ficam ocultas
 	add_child(REFUGE_ART.instantiate()) # cristal, plataforma, braseiros, estandartes
+	add_child(BIOME_ART.instantiate()) # World 6.0: as quatro regioes e os marcos
 	# Aliado em primeiro plano (cheira o chao e olha em volta) e um selvagem
 	# atravessando a trilha ao fundo, devagar.
 	var ally := _actor(DINO, Vector3(-3.3, 0, -9.6), 1.95, "rest") # 5.0: tres-quartos para a camera
@@ -101,7 +106,7 @@ func _ready() -> void:
 	add_child(glow)
 	camera = Camera3D.new()
 	camera.fov = 48.0
-	camera.far = 160.0
+	camera.far = 180.0
 	add_child(camera)
 	camera.current = true
 	# Design 5.0: as torres novas guardam o Refugio no diorama (so malhas de
