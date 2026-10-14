@@ -114,3 +114,27 @@ static func surface_at(p: Vector2) -> StringName:
 
 static func in_bounds(p: Vector2, margin := 0.0) -> bool:
 	return absf(p.x) < BOUND_X - margin and p.y > BOUND_SOUTH + margin and p.y < BOUND_NORTH - margin
+
+## Trilhas de exploracao (do vale para cada regiao): sem pecas altas nelas e
+## desenhadas no chao. Nao sao rotas de onda (essas continuam as tres antigas).
+const EXPLORE_TRAILS := [
+	{"name": "WestShore", "points": [Vector2(-21.0, 2.0), Vector2(-26.0, -2.0), Vector2(-27.5, -9.0), Vector2(-21.5, -15.0)], "width": 2.4},
+	{"name": "LakeSouth", "points": [Vector2(-13.5, -17.0), Vector2(-15.0, -28.5), Vector2(-21.0, -31.0), Vector2(-27.0, -33.5)], "width": 2.2},
+	{"name": "VolcanoPass", "points": [Vector2(-4.5, -19.5), Vector2(-4.0, -27.0), Vector2(3.0, -31.0), Vector2(11.0, -31.0), Vector2(21.0, -36.0)], "width": 2.6},
+	{"name": "EastCanyon", "points": [Vector2(21.0, 2.0), Vector2(26.0, 4.0), Vector2(28.0, 11.0), Vector2(27.0, 21.0)], "width": 2.4},
+	{"name": "EastSouth", "points": [Vector2(16.0, -12.0), Vector2(25.0, -17.0), Vector2(27.0, -27.0)], "width": 2.2},
+	{"name": "NorthWoods", "points": [Vector2(-11.0, 25.0), Vector2(-17.0, 30.0), Vector2(-27.0, 27.0)], "width": 2.0},
+]
+
+## Distancia ate a borda da trilha de exploracao mais proxima (< 0 = dentro).
+static func trail_distance(p: Vector2) -> float:
+	var best := INF
+	for t in EXPLORE_TRAILS:
+		best = minf(best, segment_distance(p, t.points) - t.width * 0.5)
+	return best
+
+## Fora do vale antigo (onde a expansao desenha e coloca pecas); margem > 0
+## entra um pouco no vale (transicoes).
+static func in_expansion(p: Vector2, margin := 0.0) -> bool:
+	var out_old := maxf(maxf(absf(p.x) - OLD_BOUND_X, OLD_BOUND_SOUTH - p.y), p.y - OLD_BOUND_NORTH)
+	return out_old > -margin

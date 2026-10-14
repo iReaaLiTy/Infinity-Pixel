@@ -753,16 +753,16 @@ radial_segments = 8
 rings = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ug01"]
-size = Vector3(0.4, 2, 52)
+size = Vector3(0.4, 2, 74)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h4wpb"]
-size = Vector3(0.4, 2, 52)
+size = Vector3(0.4, 2, 74)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vr6m2"]
-size = Vector3(48, 2, 0.4)
+size = Vector3(64, 2, 0.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hgu30"]
-size = Vector3(48, 2, 0.4)
+size = Vector3(64, 2, 0.4)
 
 [sub_resource type="StandardMaterial3D" id="r1"]
 albedo_color = Color(0.27450982, 0.41960785, 0.3137255, 1)
@@ -2092,7 +2092,7 @@ material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r196")
 
 [node name="Rock24" type="MeshInstance3D" parent="." unique_id=772017436]
-transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 1.1007506e-08, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
+transform = Transform3D(-2.4714942, 0.2538297, 0.64465797, 0.3618501, 1.8815093, 7.298602e-09, -0.7216517, 0.074115746, -2.207808, 17, 0.684, 9)
 visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
@@ -2158,7 +2158,7 @@ material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r207")
 
 [node name="Rock30" type="MeshInstance3D" parent="." unique_id=702117131]
-transform = Transform3D(1.6086876, -0.16956496, 1.3999475, 0.2783466, 1.4854021, -2.6023665e-08, -1.1552694, 0.12177208, 1.9493967, 18, 0.54, 13)
+transform = Transform3D(1.6086876, -0.16956496, 1.3999475, 0.2783466, 1.4854021, -4.077981e-08, -1.1552694, 0.12177209, 1.9493967, 18, 0.54, 13)
 visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
@@ -2242,7 +2242,7 @@ material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r221")
 
 [node name="Rock36" type="MeshInstance3D" parent="." unique_id=690400592]
-transform = Transform3D(0.5510016, -0.05723706, 2.0376217, 0.32009816, 1.6834557, 1.2246136e-07, -2.2099626, 0.22956651, 0.50803256, 16.5, 0.612, 22.8)
+transform = Transform3D(0.5510016, -0.05723707, 2.0376217, 0.32009816, 1.6834557, 1.3905208e-07, -2.2099626, 0.22956651, 0.50803256, 16.5, 0.612, 22.8)
 visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
@@ -2284,7 +2284,7 @@ material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r228")
 
 [node name="Rock39" type="MeshInstance3D" parent="." unique_id=348639069]
-transform = Transform3D(-0.49722728, 0.050314095, 2.1551704, 0.34793285, 1.7824825, 6.0839305e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
+transform = Transform3D(-0.49722728, 0.050314087, 2.1551704, 0.34793285, 1.7824825, 6.636291e-08, -2.425223, 0.24540694, -0.44186017, 11.2, 0.648, 19.5)
 visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_77ip3")
@@ -2368,7 +2368,7 @@ material_override = SubResource("StandardMaterial3D_33w2e")
 mesh = SubResource("r242")
 
 [node name="Rock45" type="MeshInstance3D" parent="." unique_id=968983789]
-transform = Transform3D(1.0943596, -0.11718281, 1.700666, 0.2922636, 1.5844289, 1.8202931e-07, -1.7683208, 0.18934956, 1.0524901, 14.6, 0.57600003, 3.4)
+transform = Transform3D(1.0943596, -0.11718285, 1.700666, 0.2922636, 1.5844289, 2.3642768e-07, -1.7683208, 0.18934953, 1.0524901, 14.6, 0.57600003, 3.4)
 visible = false
 material_override = SubResource("StandardMaterial3D_ege7e")
 mesh = SubResource("ArrayMesh_3h36n")
@@ -2612,28 +2612,28 @@ material_override = SubResource("r8")
 mesh = SubResource("r278")
 
 [node name="Boundary0" type="StaticBody3D" parent="." unique_id=283075243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, -5)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary0" unique_id=127155899]
 shape = SubResource("BoxShape3D_3ug01")
 
 [node name="Boundary1" type="StaticBody3D" parent="." unique_id=1130532348]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 1, -5)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary1" unique_id=1543309951]
 shape = SubResource("BoxShape3D_h4wpb")
 
 [node name="Boundary2" type="StaticBody3D" parent="." unique_id=332798807]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 28.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 32)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary2" unique_id=737767125]
 shape = SubResource("BoxShape3D_vr6m2")
 
 [node name="Boundary3" type="StaticBody3D" parent="." unique_id=1018223844]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -24.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -42)
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape3D" parent="Boundary3" unique_id=1551877482]

@@ -369,58 +369,58 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAADMzu0DXo7A/AACAPs3MrEDXo7A/AACAPs3MrEA9Crc/AAAAADMzu0DXo7A/AACAPs3MrEA9Crc/AAAAADMzu0A9Crc/AACAPs3MrEDXo7A/AAAAAGdmnkDXo7A/AAAAAGdmnkA9Crc/AACAPs3MrEDXo7A/AAAAAGdmnkA9Crc/AACAPs3MrEA9Crc/AAAAAGdmnkDXo7A/AACAvs3MrEDXo7A/AACAvs3MrEA9Crc/AAAAAGdmnkDXo7A/AACAvs3MrEA9Crc/AAAAAGdmnkA9Crc/AACAvs3MrEDXo7A/AAAAADMzu0DXo7A/AAAAADMzu0A9Crc/AACAvs3MrEDXo7A/AAAAADMzu0A9Crc/AACAvs3MrEA9Crc/AAAAADMzu0A9Crc/AACAPs3MrEA9Crc/AAAAAM3MrEA9Crc/AACAPs3MrEA9Crc/AAAAAGdmnkA9Crc/AAAAAM3MrEA9Crc/AAAAAGdmnkA9Crc/AACAvs3MrEA9Crc/AAAAAM3MrEA9Crc/AACAvs3MrEA9Crc/AAAAADMzu0A9Crc/AAAAAM3MrEA9Crc/SNK2rc5qEdNI0ratzmoR00jStq3OahHTSNK2rc5qEdNI0ratzmoR00jStq3OahHTSNJIUs5q7KxI0khSzmrsrEjSSFLOauysSNJIUs5q7KxI0khSzmrsrEjSSFLOauysti1IUs5qEdO2LUhSzmoR07YtSFLOahHTti1IUs5qEdO2LUhSzmoR07YtSFLOahHTti22rc5q7Ky2LbatzmrsrLYttq3Oauysti22rc5q7Ky2LbatzmrsrLYttq3Oauys/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
 }]
 
-[node name="RefugeArt" type="Node3D" unique_id=1670677146]
+[node name="RefugeArt" type="Node3D" unique_id=1398014995]
 script = ExtResource("1_ify7x")
 
-[node name="CrystalPedestal" type="MeshInstance3D" parent="." unique_id=1282979600]
+[node name="CrystalPedestal" type="MeshInstance3D" parent="." unique_id=682344579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 material_override = SubResource("StandardMaterial3D_tfhi5")
 mesh = SubResource("ArrayMesh_00vxc")
 metadata/on_solid = true
 
-[node name="Crystal" type="MeshInstance3D" parent="." unique_id=1660765632]
+[node name="Crystal" type="MeshInstance3D" parent="." unique_id=2071179671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 material_override = SubResource("StandardMaterial3D_2m2w4")
 mesh = SubResource("ArrayMesh_oskou")
 metadata/on_solid = true
 metadata/glow = Vector2(0.2, 0.85)
 
-[node name="Runes" type="MeshInstance3D" parent="." unique_id=983142521]
+[node name="Runes" type="MeshInstance3D" parent="." unique_id=1236878478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 material_override = SubResource("StandardMaterial3D_te3et")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_mjvgc")
 metadata/glow = Vector2(0.15, 1)
 
-[node name="Platform" type="MeshInstance3D" parent="." unique_id=1307053359]
+[node name="Platform" type="MeshInstance3D" parent="." unique_id=616860170]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 material_override = SubResource("StandardMaterial3D_fxv1d")
 mesh = SubResource("ArrayMesh_fa141")
 metadata/on_solid = true
 
-[node name="Courtyard" type="MeshInstance3D" parent="." unique_id=1734117678]
+[node name="Courtyard" type="MeshInstance3D" parent="." unique_id=865201996]
 material_override = SubResource("StandardMaterial3D_yqwy8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_qs73l")
 
-[node name="Rosette" type="MeshInstance3D" parent="." unique_id=572207124]
+[node name="Rosette" type="MeshInstance3D" parent="." unique_id=1101385989]
 material_override = SubResource("StandardMaterial3D_uxqtd")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_bl8a6")
 
-[node name="RosetteGem" type="MeshInstance3D" parent="." unique_id=825773243]
+[node name="RosetteGem" type="MeshInstance3D" parent="." unique_id=1283631030]
 material_override = SubResource("StandardMaterial3D_mowe5")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_43e4a")
 metadata/glow = Vector2(0.25, 0.9)
 
-[node name="Brazier0" type="MeshInstance3D" parent="." unique_id=445152480]
+[node name="Brazier0" type="MeshInstance3D" parent="." unique_id=1344408309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 0, -14.3)
 material_override = SubResource("StandardMaterial3D_vp8vt")
 mesh = SubResource("ArrayMesh_ia3pk")
 metadata/on_solid = true
 
-[node name="Flame0" type="MeshInstance3D" parent="." unique_id=1702468285]
+[node name="Flame0" type="MeshInstance3D" parent="." unique_id=2037047308]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 0, -14.3)
 material_override = SubResource("StandardMaterial3D_h4jru")
 cast_shadow = 0
@@ -428,13 +428,13 @@ mesh = SubResource("ArrayMesh_1us3h")
 metadata/on_solid = true
 metadata/glow = Vector2(1.1, 2.4)
 
-[node name="Brazier1" type="MeshInstance3D" parent="." unique_id=317450278]
+[node name="Brazier1" type="MeshInstance3D" parent="." unique_id=1338396723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0, -14.3)
 material_override = SubResource("StandardMaterial3D_mhsal")
 mesh = SubResource("ArrayMesh_7k27q")
 metadata/on_solid = true
 
-[node name="Flame1" type="MeshInstance3D" parent="." unique_id=1371138270]
+[node name="Flame1" type="MeshInstance3D" parent="." unique_id=1037247908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0, -14.3)
 material_override = SubResource("StandardMaterial3D_cbf7x")
 cast_shadow = 0
@@ -442,31 +442,33 @@ mesh = SubResource("ArrayMesh_7vx1a")
 metadata/on_solid = true
 metadata/glow = Vector2(1.1, 2.4)
 
-[node name="Banner0" type="MeshInstance3D" parent="." unique_id=1566737708]
+[node name="Banner0" type="MeshInstance3D" parent="." unique_id=621262961]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -16)
 material_override = SubResource("StandardMaterial3D_htm8o")
 mesh = SubResource("ArrayMesh_sky54")
 metadata/on_solid = true
 
-[node name="Banner1" type="MeshInstance3D" parent="." unique_id=2036049000]
+[node name="Banner1" type="MeshInstance3D" parent="." unique_id=448134624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -16)
 material_override = SubResource("StandardMaterial3D_sf7gg")
 mesh = SubResource("ArrayMesh_p6a3p")
 metadata/on_solid = true
 
-[node name="BuildFrame" type="MeshInstance3D" parent="." unique_id=12966332]
+[node name="BuildFrame" type="MeshInstance3D" parent="." unique_id=1781857380]
 material_override = SubResource("StandardMaterial3D_mruet")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_rtacd")
 
-[node name="Watchtower" type="MeshInstance3D" parent="." unique_id=780395965]
+[node name="Watchtower" type="MeshInstance3D" parent="." unique_id=172077225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -29)
 material_override = SubResource("StandardMaterial3D_2whah")
 mesh = SubResource("ArrayMesh_oui2f")
+metadata/on_solid = true
 
-[node name="WatchtowerWindow" type="MeshInstance3D" parent="." unique_id=1344519882]
+[node name="WatchtowerWindow" type="MeshInstance3D" parent="." unique_id=309455613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -29)
 material_override = SubResource("StandardMaterial3D_hvxvs")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_dj21g")
 metadata/glow = Vector2(0.15, 1.8)
+metadata/on_solid = true

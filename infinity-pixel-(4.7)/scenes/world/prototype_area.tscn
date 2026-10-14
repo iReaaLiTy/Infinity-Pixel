@@ -26,12 +26,14 @@
 [ext_resource type="Script" path="res://scenes/visuals/fossil_art.gd" id="fossils_o3"]
 [ext_resource type="PackedScene" path="res://scenes/visuals/flora_art.scn" id="flora_o4"]
 [ext_resource type="Script" path="res://scenes/world/player_footprints.gd" id="w6_prints"]
+[ext_resource type="PackedScene" path="res://scenes/visuals/biome_art.scn" id="w6_biomes"]
+[ext_resource type="PackedScene" path="res://scenes/world/biome_collision.tscn" id="w6_biome_col"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
-size = Vector3(48, 1, 52)
+size = Vector3(64, 1, 74)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ground"]
-size = Vector3(48, 1, 52)
+size = Vector3(64, 1, 74)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_base"]
 albedo_color = Color(0.2, 0.4, 0.85, 1)
@@ -69,12 +71,12 @@ collision_layer = 1
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-position = Vector3(0, -0.5, 2)
+position = Vector3(0, -0.5, -5)
 shape = SubResource("BoxShape3D_ground")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 visible = false
-position = Vector3(0, -0.5, 2)
+position = Vector3(0, -0.5, -5)
 mesh = SubResource("BoxMesh_ground")
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
@@ -134,6 +136,10 @@ navigation_mesh = ExtResource("nav_010")
 script = ExtResource("fossils_o3")
 
 [node name="FloraArt" parent="." instance=ExtResource("flora_o4")]
+
+[node name="BiomeArt" parent="." instance=ExtResource("w6_biomes")]
+
+[node name="BiomeCollision" parent="." groups=["navigation_source"] instance=ExtResource("w6_biome_col")]
 
 [node name="DefenseEconomy" type="Node" parent="."]
 script = ExtResource("eco_013b")

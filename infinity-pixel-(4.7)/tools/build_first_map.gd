@@ -14,6 +14,8 @@ const ART := "res://scenes/visuals/arena_art.tscn"
 const RefugeArt := preload("res://tools/build_refuge_art.gd")
 const ValleyArt := preload("res://tools/build_valley_art.gd")
 const FloraArt := preload("res://tools/build_flora_art.gd")
+const BiomeArt := preload("res://tools/build_biome_art.gd") # World 6.0
+const Biomes := preload("res://scenes/world/world_biomes.gd") # World 6.0
 const Layout := preload("res://tools/valley_layout.gd")
 const Nature := preload("res://scenes/visuals/nature_meshes.gd")
 const Palette := preload("res://scenes/visuals/palette.gd")
@@ -200,13 +202,16 @@ func build() -> void:
 	# Spec 017A: the north/south ridges (old smooth spheres) are now
 	# ValleyArt/Cliffs, drawn around the whole valley.
 	# Existing bounds now coincide with visible escarpments at the edge of the valley.
-	var bounds := [Vector3(24.2,1,2),Vector3(-24.2,1,2),Vector3(0,1,28.2),Vector3(0,1,-24.2)]
+	# World 6.0: as paredes vao para os limites do mundo expandido (64 x 74 m).
+	var mid_z := (Biomes.BOUND_NORTH + Biomes.BOUND_SOUTH) * 0.5
+	var span_z := Biomes.BOUND_NORTH - Biomes.BOUND_SOUTH
+	var bounds := [Vector3(Biomes.BOUND_X,1,mid_z),Vector3(-Biomes.BOUND_X,1,mid_z),Vector3(0,1,Biomes.BOUND_NORTH),Vector3(0,1,Biomes.BOUND_SOUTH)]
 	for i in 4:
 		var boundary: StaticBody3D = art.get_node("Boundary%d" % i)
 		boundary.position = bounds[i]
 		var shape: CollisionShape3D = boundary.get_node("Collider")
 		shape.shape = shape.shape.duplicate()
-		shape.shape.size = Vector3(.4,2,52) if i<2 else Vector3(48,2,.4)
+		shape.shape.size = Vector3(.4,2,span_z) if i<2 else Vector3(Biomes.BOUND_X * 2.0,2,.4)
 	save_scene(art, ART)
 	art.free()
 
@@ -251,6 +256,13 @@ func build() -> void:
 	marker(landmarks,"WestChoke",Vector2(-14,.2))
 	marker(landmarks,"EastChoke",Vector2(14.2,-.2))
 	marker(landmarks,"HeathGate",Vector2(13.8,20.6))
+	# World 6.0: marcos e centros das quatro regioes do mundo expandido.
+	var biomes := group(regions, "Biomes")
+	for id in Biomes.REGION_CENTERS:
+		marker(biomes, String(id).capitalize(), Biomes.REGION_CENTERS[id][0])
+	marker(landmarks,"Waterfall",Biomes.WATERFALL)
+	marker(landmarks,"Lake",Biomes.LAKE_CENTER,Biomes.LAKE_RADII * 2.0)
+	marker(landmarks,"Volcano",Vector2(Biomes.VOLCANO_PEAK.x, Biomes.VOLCANO_PEAK.z))
 	# Paving around the refuge, no physics on low decorative stones.
 	for i in 12:
 		var a := TAU*i/12.0
@@ -260,7 +272,8 @@ func build() -> void:
 	RefugeArt.generate()
 	ValleyArt.generate()
 	FloraArt.generate() # 4.0: arvores, rochas e sub-bosque (le Trunk*/Rock* daqui)
-	print("[MAP012] authored valley: 48 x 52 m, 42 trees, 16 rocks, 3 night routes")
+	BiomeArt.generate() # World 6.0: floresta, pedra, agua (cachoeira) e vulcao + solidos
+	print("[MAP012] authored valley 48 x 52 m inside a 64 x 74 m world (World 6.0), 42 trees, 16 rocks, 3 night routes")
 	quit()
 
 ## Spec 018: species by place. Jade trees frame the Refuge (the valley's

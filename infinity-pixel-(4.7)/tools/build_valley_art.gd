@@ -12,12 +12,13 @@ const Palette := preload("res://scenes/visuals/palette.gd")
 const Facets := preload("res://scenes/visuals/facets.gd")
 const Layout := preload("res://tools/valley_layout.gd")
 const Nature := preload("res://scenes/visuals/nature_meshes.gd")
+const Biomes := preload("res://scenes/world/world_biomes.gd") # World 6.0
 const OUT := "res://scenes/visuals/valley_art.tscn"
 const ART := "res://scenes/visuals/arena_art.tscn"
 const GROUND_Y := 0.012 # acima do chao fisico (y = 0), abaixo das pecas rentes
-const CELL := 0.5 # m por celula do chao (2 triangulos)
-const AREA_MIN := Vector2(-29.0, -29.0)
-const AREA_MAX := Vector2(29.0, 33.0)
+const CELL := 0.6 # m por celula do chao (2 triangulos). World 6.0: era 0,5 (mapa maior)
+const AREA_MIN := Vector2(-42.0, -54.0) # World 6.0: o chao cobre o mundo expandido
+const AREA_MAX := Vector2(42.0, 42.0)
 ## Entradas das ondas no paredao: [ponto na borda, meia largura da passagem].
 const GAPS := [[Vector2(-24.2, 2.0), 3.6], [Vector2(24.2, 2.0), 3.6], [Vector2(0.0, 28.2), 3.8]]
 
@@ -134,16 +135,65 @@ static func ground_color(p: Vector2, noise: Array, trees: Array[Vector2]) -> Col
 	var r := p.distance_to(Layout.REFUGE)
 	if not Layout.in_build_zone(p, 0.2):
 		col = col.lerp(Palette.EARTH_EDGE.darkened(0.15).lerp(Palette.STONE_DARK, 0.3), 1.0 - smoothstep(5.5, 6.2, r + nf * 0.3))
-	# Fora dos limites (pe do paredao): mais escuro.
-	var outside := maxf(maxf(absf(p.x) - Layout.BOUND_X, Layout.BOUND_SOUTH - p.y), p.y - Layout.BOUND_NORTH)
+	# World 6.0: fora do vale antigo, o chao vira o de cada regiao (mistura
+	# suave pelos pesos de WorldBiomes: transicoes, nunca quadrados).
+	var out_old := maxf(maxf(absf(p.x) - Layout.BOUND_X, Layout.BOUND_SOUTH - p.y), p.y - Layout.BOUND_NORTH)
+	var o := smoothstep(-4.0, 6.0, out_old + nb * 2.0)
+	if o > 0.0:
+		col = col.lerp(biome_ground(p, noise, t, nb, nf), o)
+	# Pe do paredao novo: mais escuro.
+	var outside := maxf(maxf(absf(p.x) - Biomes.BOUND_X, Biomes.BOUND_SOUTH - p.y), p.y - Biomes.BOUND_NORTH)
 	if outside > -0.4:
 		col = col.lerp(Palette.CLIFF_DARK.darkened(0.2), clampf((outside + 0.4) / 2.0, 0.0, 0.7))
 	return col
 
+## World 6.0 — chao das quatro regioes, misturado pelos pesos de WorldBiomes.
+const STONE_GROUND := [Color("6f746b"), Color("8c8e83"), Color("a9a899")]
+const WET_GRASS := [Color("2f5a3c"), Color("3f7048"), Color("5a8a52")]
+const MUD := [Color("2c2f24"), Color("4a4733")]
+const ASH := [Color("2f2d2c"), Color("45413d"), Color("5b5550")]
+const RUST := Color("6b3a2a")
+
+static func biome_ground(p: Vector2, _noise: Array, t: float, nb: float, nf: float) -> Color:
+	var w: Dictionary = Biomes.weights(p)
+	# pesos mais "afiados" no chao: cada regiao le com a propria cor e a
+	# transicao continua gradual (so mais curta).
+	var sharp := 0.0
+	for id in w:
+		w[id] = pow(float(w[id]), 2.0)
+		sharp += w[id]
+	for id in w:
+		w[id] = w[id] / maxf(sharp, 0.0001)
+	var forest := Palette.FOREST_DARK.lerp(Palette.FOREST_FLOOR, smoothstep(0.2, 0.6, t)).lerp(Palette.FOREST_MOSS, smoothstep(0.7, 1.0, t))
+	# pedra: cinza-esverdeado, cascalho claro salpicado, liquen
+	var stone: Color = (STONE_GROUND[0] as Color).lerp(STONE_GROUND[1], smoothstep(0.2, 0.7, t))
+	stone = stone.lerp(STONE_GROUND[2], smoothstep(0.55, 0.9, nf) * 0.6)
+	stone = stone.lerp(Palette.LICHEN, smoothstep(0.6, 0.95, nb) * 0.35)
+	# agua: grama umida mais escura e lama perto da margem
+	var wet: Color = (WET_GRASS[0] as Color).lerp(WET_GRASS[1], smoothstep(0.2, 0.7, t)).lerp(WET_GRASS[2], smoothstep(0.75, 1.0, t) * 0.5)
+	var wd := Biomes.water_distance(p)
+	wet = wet.lerp((MUD[1] as Color).lerp(MUD[0], smoothstep(1.5, 0.0, wd)), smoothstep(3.2, 0.6, wd))
+	# vulcao: cinza escura, manchas de ferrugem, borda quente em volta da lava
+	var ash: Color = (ASH[0] as Color).lerp(ASH[1], smoothstep(0.2, 0.7, t)).lerp(ASH[2], smoothstep(0.7, 1.0, nf) * 0.5)
+	ash = ash.lerp(RUST, smoothstep(0.45, 0.85, nb) * 0.45)
+	var ld := Biomes.lava_distance(p)
+	ash = ash.lerp(Color("7a2e17"), smoothstep(2.6, 0.2, ld) * 0.7)
+	var meadow := Palette.GRASS_DARK.lerp(Palette.GRASS_MID, smoothstep(0.1, 0.45, t))
+	var col := Color(0, 0, 0)
+	col += forest * float(w[Biomes.FOREST])
+	col += stone * float(w[Biomes.STONE])
+	col += wet * float(w[Biomes.WATER])
+	col += ash * float(w[Biomes.VOLCANO])
+	col += meadow * float(w[Biomes.MEADOW])
+	# perto da agua, mesmo fora da regiao, o chao fica umido (riacho entre biomas)
+	if wd < 2.2:
+		col = col.lerp((MUD[1] as Color), smoothstep(2.2, 0.0, wd) * 0.6)
+	return Color(col.r, col.g, col.b)
+
 ## Desempenho (Iris Xe): o chao e os tufos saem em blocos 3 x 3 para o culling
 ## por camera descartar o que esta fora da tela; uma malha so era desenhada
 ## inteira todo quadro. Sem sombra projetada (so recebe).
-const CHUNKS := Vector2i(3, 3)
+const CHUNKS := Vector2i(6, 6) # World 6.0: 36 blocos (era 3 x 3) para o mapa maior
 
 static func _chunk(p: Vector2) -> int:
 	var size := (AREA_MAX - AREA_MIN) / Vector2(CHUNKS)
@@ -303,41 +353,49 @@ static func _tufts(noise: Array, trees: Array[Vector2], sts: Array) -> void:
 	print("[018] %d tufos" % placed)
 
 
-# --- Paredoes em volta do vale ---------------------------------------------------
+# --- Paredoes em volta do mundo (World 6.0: nos limites expandidos) -------------
 # Colunas de rocha facetada em 3 fileiras (frente baixa, fundo alto), topo com
-# vegetacao. Tudo fora dos Boundary; nas entradas das ondas, so entulho baixo.
+# vegetacao, fora dos Boundary. Cada lado com o tom da regiao: o sul (vulcao)
+# em basalto escuro, o leste (pedra) cinza, o oeste (agua) umido e o norte
+# (floresta) BAIXO — fica entre a camera e o Player, entao nunca tapa a visao.
+# No oeste, um vao para a cachoeira (o paredao dela e da BiomeArt).
+const WATERFALL_GAP := Vector2(-38.5, -23.5) # z do vao no paredao oeste
+const BASALT := [Color("4a4644"), Color("35312f"), Color("221f1e"), Color("57514c")]
+const WET_CLIFF := [Color("8f9a8f"), Color("6c776d"), Color("4d5850")]
+
 static func _cliffs() -> Node3D:
-	# Um lado por malha (culling: o paredao norte, atras da camera, quase nunca
-	# e desenhado) e sem sombra projetada: fica fora da area jogavel e as 4
-	# fatias da sombra direcional o redesenhariam inteiro (medido no Iris Xe).
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 25017
-	var x := Layout.BOUND_X
+	var x := Biomes.BOUND_X
+	var s := Biomes.BOUND_SOUTH
+	var n := Biomes.BOUND_NORTH
 	var holder := Node3D.new()
 	holder.name = "Cliffs"
 	var mat := Palette.toon(0.3, 0.1)
+	var cliff := [Palette.CLIFF_LIGHT, Palette.CLIFF, Palette.CLIFF_DARK]
+	# [nome, inicio, fim, normal para fora, tons, escala de altura]
 	var sides := [
-		["South", Vector2(-31, Layout.BOUND_SOUTH), Vector2(31, Layout.BOUND_SOUTH), Vector2(0, -1)],
-		["North", Vector2(-31, Layout.BOUND_NORTH), Vector2(31, Layout.BOUND_NORTH), Vector2(0, 1)],
-		["West", Vector2(-x, Layout.BOUND_SOUTH - 1.0), Vector2(-x, Layout.BOUND_NORTH + 1.0), Vector2(-1, 0)],
-		["East", Vector2(x, Layout.BOUND_SOUTH - 1.0), Vector2(x, Layout.BOUND_NORTH + 1.0), Vector2(1, 0)],
+		["South", Vector2(-x - 1.0, s), Vector2(x + 1.0, s), Vector2(0, -1), BASALT, 1.25],
+		["North", Vector2(-x - 1.0, n), Vector2(x + 1.0, n), Vector2(0, 1), cliff, 0.42],
+		["WestSouth", Vector2(-x, s - 1.0), Vector2(-x, WATERFALL_GAP.x), Vector2(-1, 0), WET_CLIFF, 1.0],
+		["WestNorth", Vector2(-x, WATERFALL_GAP.y), Vector2(-x, n + 1.0), Vector2(-1, 0), WET_CLIFF, 1.0],
+		["East", Vector2(x, s - 1.0), Vector2(x, n + 1.0), Vector2(1, 0), cliff, 1.1],
 	]
 	for side in sides:
 		var st := SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
-		_cliff_band(st, rng, side[1], side[2], side[3])
+		_cliff_band(st, rng, side[1], side[2], side[3], side[4], side[5])
 		holder.add_child(Facets.instance("Cliffs" + side[0], st.commit(), mat, Vector3.ZERO, false))
 	return holder
 
-static func _gap(p: Vector2) -> float:
-	## 0 = fora de uma passagem; 1 = no centro dela.
-	var g := 0.0
-	for gap in GAPS:
-		g = maxf(g, 1.0 - p.distance_to(gap[0]) / gap[1])
-	return g
+## World 6.0: as passagens das ondas agora ficam dentro do mundo (sem vao no
+## paredao); os monolitos das entradas continuam marcando por onde vem a onda.
+static func _gap(_p: Vector2) -> float:
+	return 0.0
 
-static func _cliff_band(st: SurfaceTool, rng: RandomNumberGenerator, a: Vector2, b: Vector2, out: Vector2) -> void:
-	var tones := [Palette.CLIFF_LIGHT, Palette.CLIFF, Palette.CLIFF_DARK]
+static func _cliff_band(st: SurfaceTool, rng: RandomNumberGenerator, a: Vector2, b: Vector2, out: Vector2, tones: Array = [], height := 1.0) -> void:
+	if tones.is_empty():
+		tones = [Palette.CLIFF_LIGHT, Palette.CLIFF, Palette.CLIFF_DARK]
 	var dir := (b - a).normalized()
 	var length := a.distance_to(b)
 	var rows := [
@@ -350,18 +408,10 @@ static func _cliff_band(st: SurfaceTool, rng: RandomNumberGenerator, a: Vector2,
 		var s := rng.randf_range(0.0, 0.6)
 		while s <= length:
 			var edge := a + dir * s
-			var gap := _gap(edge)
 			var r := rng.randf_range(row.r.x, row.r.y)
-			var h := rng.randf_range(row.h.x, row.h.y)
+			var h := rng.randf_range(row.h.x, row.h.y) * height
 			var c2: Vector2 = edge + out * (row.off + rng.randf_range(-0.35, 0.35))
 			s += row.step * rng.randf_range(0.85, 1.15)
-			if gap > 0.0:
-				if k > 0 and gap > 0.25:
-					continue # passagem aberta: so a fileira da frente, baixa
-				h = lerpf(h, rng.randf_range(0.5, 0.9), smoothstep(0.0, 0.35, gap))
-				r *= lerpf(1.0, 0.75, gap)
-			elif gap == 0.0 and _gap(edge - dir * 3.0) + _gap(edge + dir * 3.0) > 0.0:
-				h *= 1.25 # flancos da passagem mais altos: portal natural
 			_column(st, rng, Vector3(c2.x, 0, c2.y), r, h, tones)
 	# Entulho no pe do paredao (ainda fora da area andavel).
 	var s2 := 0.8
@@ -369,8 +419,8 @@ static func _cliff_band(st: SurfaceTool, rng: RandomNumberGenerator, a: Vector2,
 		var p := a + dir * s2 + out * rng.randf_range(0.5, 0.75)
 		s2 += rng.randf_range(2.0, 3.6)
 		var size := rng.randf_range(0.28, 0.5)
-		var paint_rock := func(f: Vector3, n: Vector3) -> Color:
-			return Facets.by_height(tones, n, f.y, 0.0, size * 1.4, f.x + f.z)
+		var paint_rock := func(f: Vector3, nrm: Vector3) -> Color:
+			return Facets.by_height(tones, nrm, f.y, 0.0, size * 1.4, f.x + f.z)
 		var rr := []
 		for spec in [[-0.05, 1.0], [size * 0.6, 0.9]]:
 			var ring := Facets.ring(5, size * spec[1], spec[0], rng, 0.2, rng.randf() * TAU, 0.05)
@@ -385,12 +435,15 @@ static func _column(st: SurfaceTool, rng: RandomNumberGenerator, c: Vector3, r: 
 	var shade := rng.randf_range(-0.06, 0.06) # 3 tons + variacao por coluna
 	var tilt := Vector2(rng.randf_range(-0.25, 0.25), rng.randf_range(-0.25, 0.25))
 	var top_y := func(p: Vector3) -> float: return h + tilt.x * (p.x - c.x) + tilt.y * (p.z - c.z)
+	# World 6.0: 4o tom opcional = topo (basalto do vulcao com cinza, nao musgo)
+	var top: Color = tones[3] if tones.size() > 3 else Palette.CLIFF_TOP
+	var top_mix: Color = top if tones.size() > 3 else Palette.GRASS_MID
 	var paint := func(f: Vector3, n: Vector3) -> Color:
 		var col: Color
 		if n.y > 0.55:
-			col = Facets.facet_shade(Palette.CLIFF_TOP.lerp(Palette.GRASS_MID, 0.35 * absf(sin(f.x * 3.1 + f.z))), n)
+			col = Facets.facet_shade(top.lerp(top_mix, 0.35 * absf(sin(f.x * 3.1 + f.z))), n)
 		elif f.y > top_y.call(f) - 0.22:
-			col = Facets.facet_shade(Palette.CLIFF_TOP.darkened(0.25), n) # beirada do musgo
+			col = Facets.facet_shade(top.darkened(0.25), n) # beirada do musgo (ou da cinza)
 		else:
 			col = Facets.by_height(tones, n, f.y, 0.0, h, c.x + c.z)
 		return col.lightened(shade) if shade > 0.0 else col.darkened(-shade)
@@ -467,11 +520,13 @@ static func _mountains() -> MeshInstance3D:
 	for i in 22:
 		var a := TAU * i / 22.0
 		for peak in 2:
-			var dist := 47.0 + peak * 7.0 + rng.randf_range(-2.0, 2.0)
+			var dist := 66.0 + peak * 9.0 + rng.randf_range(-2.0, 2.0) # World 6.0: alem do mundo expandido
 			var aa := a + (0.07 if peak == 1 else 0.0)
-			var c := Vector3(sin(aa) * dist, 0, cos(aa) * dist + 2.0)
-			var r := rng.randf_range(9.0, 12.5) * (1.15 if peak == 1 else 1.0)
-			var h := rng.randf_range(11.0, 17.0) * (1.25 if peak == 1 else 1.0)
+			if absf(wrapf(aa - atan2(Biomes.VOLCANO_PEAK.x, Biomes.VOLCANO_PEAK.z - 2.0), -PI, PI)) < 0.42:
+				continue # o vulcao (BiomeArt) fica sozinho no horizonte sul
+			var c := Vector3(sin(aa) * dist, 0, cos(aa) * dist - 5.0)
+			var r := rng.randf_range(11.0, 15.0) * (1.15 if peak == 1 else 1.0)
+			var h := rng.randf_range(13.0, 20.0) * (1.25 if peak == 1 else 1.0)
 			var paint := func(f: Vector3, n: Vector3) -> Color:
 				return Facets.by_height(tones, n, f.y, -2.0, h, c.x)
 			var rings := []

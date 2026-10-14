@@ -21,7 +21,7 @@ const RING_TOP := 0.425 # topo do RefugeRing (arena_art), onde o cristal se apoi
 # Solidos de arena_collision (FirePost / BannerPole): mesmos centros.
 const BRAZIERS := [Vector3(-3.3, 0, -14.3), Vector3(3.3, 0, -14.3)]
 const BANNERS := [Vector3(-2, 0, -16), Vector3(2, 0, -16)]
-const WATCHTOWER := Vector3(-7.5, 0, -29.0) # alem do paredao sul
+const WATCHTOWER := Vector3(-7.5, 0, -29.0) # World 6.0: agora dentro do mundo (regiao do vulcao), com solido
 
 func _initialize() -> void:
 	generate()
@@ -395,7 +395,9 @@ static func _watchtower(root: Node3D) -> void:
 		Facets.ring(7, 1.4, 7.25, rng, 0.02, 0.05),
 	], true, null, paint)
 	Facets.loft(st, [Facets.ring(7, 1.95, 7.25, rng, 0.03, 0.2), Facets.ring(7, 1.25, 8.1, rng, 0.03, 0.25)], Vector3(0.05, 9.9, 0), null, paint)
-	root.add_child(Facets.instance("Watchtower", st.commit(), Palette.toon(0.3, 0.12), WATCHTOWER))
+	var tower := Facets.instance("Watchtower", st.commit(), Palette.toon(0.3, 0.12), WATCHTOWER)
+	tower.set_meta("on_solid", true) # World 6.0: dentro do mundo expandido; solido em BiomeCollision
+	root.add_child(tower)
 	# Janela ambar voltada para o vale: acende a noite ("alguem vigia").
 	st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -409,4 +411,5 @@ static func _watchtower(root: Node3D) -> void:
 	Facets.loft(st, [front, back], true, null, paint_win)
 	var window := Facets.instance("WatchtowerWindow", st.commit(), Palette.toon_glow(Palette.AMBER, 0.3, 0.0), WATCHTOWER, false)
 	window.set_meta("glow", Vector2(0.15, 1.8))
+	window.set_meta("on_solid", true)
 	root.add_child(window)

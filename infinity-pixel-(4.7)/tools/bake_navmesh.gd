@@ -49,4 +49,9 @@ static func configure(navmesh: NavigationMesh) -> NavigationMesh:
 	# isso map_get_closest_point podia "projetar" um ponto em cima de uma pedra.
 	# Recast: area minima = region_min_size^2 celulas (8 -> 64 celulas = 4 m2).
 	navmesh.region_min_size = 8.0
+	# World 6.0: com o mundo expandido a particao padrao (watershed) mudou o
+	# desenho dos poligonos no vale antigo e o A* passou a contornar arvores pelo
+	# lado mais longo na rota oeste (26,2 m; antes 24,3 m). Em camadas (LAYERS)
+	# as tres rotas voltam ao comprimento antigo (23,9 / 35,6 / 24,0 m).
+	navmesh.sample_partition_type = NavigationMesh.SAMPLE_PARTITION_LAYERS
 	return navmesh

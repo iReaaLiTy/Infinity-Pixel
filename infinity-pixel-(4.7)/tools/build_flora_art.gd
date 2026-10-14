@@ -203,7 +203,9 @@ static func generate() -> void:
 	_ruins(tall, low, glow, rng, counts)
 	_outcrops(tall, glow, rng, counts)
 	# --- Borda do vale (fora da area andavel): mata alta junto ao paredao ---
-	_edge(tall, low, glow, rng, counts)
+	# World 6.0: sem a faixa de mata colada as paredes antigas (o vale agora se
+	# abre para as quatro regioes; a BiomeArt faz as transicoes). _edge fica
+	# disponivel, mas nao e mais chamado.
 
 	var root := Node3D.new()
 	root.name = "FloraArt"
