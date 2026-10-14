@@ -77,7 +77,16 @@ func _ready() -> void:
 	add_child(VALLEY_ART.instantiate()) # chao, trilhas e paredoes (os antigos foram ocultados)
 	add_child(FLORA_ART.instantiate()) # 4.0: as arvores e rochas antigas de ArenaArt ficam ocultas
 	add_child(REFUGE_ART.instantiate()) # cristal, plataforma, braseiros, estandartes
-	add_child(BIOME_ART.instantiate()) # World 6.0: as quatro regioes e os marcos
+	# World 6.0: as quatro regioes e os marcos. No diorama elas ficam a mais de
+	# 20 m da camera: sem sombra projetada, sem o sub-bosque rente (Low*) e sem
+	# as particulas das pocas de lava (nao aparecem daqui) .
+	var biomes := BIOME_ART.instantiate()
+	add_child(biomes)
+	for node in biomes.get_children():
+		if node.name.begins_with("Low") or (node.name.begins_with("Lava") and node is CPUParticles3D):
+			node.visible = false
+		elif node is GeometryInstance3D:
+			(node as GeometryInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	# Aliado em primeiro plano (cheira o chao e olha em volta) e um selvagem
 	# atravessando a trilha ao fundo, devagar.
 	var ally := _actor(DINO, Vector3(-3.3, 0, -9.6), 1.95, "rest") # 5.0: tres-quartos para a camera
