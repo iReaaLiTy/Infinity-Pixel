@@ -88,7 +88,7 @@ func health_bar_checks() -> void:
 	await frames(2)
 	check(ally.hp_label.text.ends_with("40/80") and is_equal_approx(bar.target, 0.5) and bar.shown > 0.55, "Dano: numero atualiza na hora (40/80); barra desce suave (%.2f ainda)" % bar.shown)
 	check(bar.ghost >= 0.99 and bar._flash > 0.5, "Dano: rastro claro do valor anterior e piscada do golpe")
-	for i in 60: await get_tree().process_frame
+	await get_tree().create_timer(1.6).timeout # tempo real (o rastro espera e desce por tempo, nao por quadro)
 	check(is_equal_approx(bar.shown, 0.5) and bar.ghost < 0.9, "50%%: barra chega a metade; o rastro desce (%.2f)" % bar.ghost)
 	ally.take_damage(28.0)
 	for i in 60: await get_tree().process_frame
@@ -292,3 +292,140 @@ func menu_checks() -> void:
 		check(ok and centered(mark), "Menu %dx%d: opcoes e logotipo centralizados e dentro da tela" % [size.x, size.y])
 	get_window().size = Vector2i(1280, 720)
 	await frames(4)
+
+# --- Mapa expandido (World 6.0) ----------------------------------------------------
+## Empurra o Player (fisica real, move_and_slide) numa direcao por alguns segundos.
+func push(dir: Vector3, seconds: float) -> void:
+	player.set_physics_process(false)
+	var t := 0.0
+	while t < seconds:
+		player.velocity = dir.normalized() * 6.0 + Vector3(0, -1, 0)
+		player.move_and_slide()
+		await get_tree().physics_frame
+		t += 1.0 / 60.0
+	player.velocity = Vector3.ZERO
+	player.set_physics_process(true)
+
+func nav_path(from: Vector3, to: Vector3) -> PackedVector3Array:
+	var map: RID = world.get_world_3d().navigation_map
+	return NavigationServer3D.map_get_path(map, from, to, true)
+
+func path_length(path: PackedVector3Array) -> float:
+	var total := 0.0
+	for i in path.size() - 1:
+		total += path[i].distance_to(path[i + 1])
+	return total
+
+func map_checks() -> void:
+	var map: RID = world.get_world_3d().navigation_map
+	await physics(4)
+	# Dimensoes: paredes nos limites novos; 1,5x a 2x a area antiga.
+	var walls := [world.get_node("ArenaArt/Boundary0"), world.get_node("ArenaArt/Boundary1"), world.get_node("ArenaArt/Boundary2"), world.get_node("ArenaArt/Boundary3")]
+	check(is_equal_approx(walls[0].position.x, WorldBiomes.BOUND_X) and is_equal_approx(walls[1].position.x, -WorldBiomes.BOUND_X) \
+		and is_equal_approx(walls[2].position.z, WorldBiomes.BOUND_NORTH) and is_equal_approx(walls[3].position.z, WorldBiomes.BOUND_SOUTH), "Mapa: paredes nos limites do mundo expandido (x +-32, z -42..32)")
+	var ratio := (WorldBiomes.BOUND_X * 2.0 * (WorldBiomes.BOUND_NORTH - WorldBiomes.BOUND_SOUTH)) / (48.0 * 52.0)
+	check(ratio >= 1.5 and ratio <= 2.0, "Mapa: area %.0f m2 = %.2fx a antiga (48 x 52), dentro de 1,5x-2x" % [ratio * 48.0 * 52.0, ratio])
+	# Chao fisico cobre os cantos do mundo.
+	var space: PhysicsDirectSpaceState3D = world.get_world_3d().direct_space_state
+	var corners_ok := true
+	for c in [Vector2(-31, -41), Vector2(31, -41), Vector2(-31, 31), Vector2(31, 31)]:
+		var ray := PhysicsRayQueryParameters3D.create(Vector3(c.x, 3, c.y), Vector3(c.x, -2, c.y), 1)
+		corners_ok = corners_ok and not space.intersect_ray(ray).is_empty()
+	check(corners_ok, "Mapa: chao com colisao nos quatro cantos do mundo expandido")
+	# Quatro regioes reais (cada centro le como a propria regiao).
+	var regions_ok := true
+	for id in [WorldBiomes.FOREST, WorldBiomes.STONE, WorldBiomes.WATER, WorldBiomes.VOLCANO]:
+		for c: Vector2 in WorldBiomes.REGION_CENTERS[id]:
+			regions_ok = regions_ok and WorldBiomes.biome_at(c) == id and WorldBiomes.in_bounds(c, 1.0)
+	check(regions_ok, "Regioes: FLORESTA, PEDRA, AGUA e VULCAO com centros dentro do mundo")
+	var art: Node3D = world.get_node_or_null("BiomeArt")
+	var parts := ["Waterfall", "WaterfallCliff", "LakeWater", "RiverWater", "Volcano", "Lava", "OuterGround", "WaterfallMist", "VolcanoSmoke", "CraterGlow"]
+	check(art != null and parts.all(func(p): return art.has_node(p)), "Marcos: cachoeira (queda, paredao, nevoa), lago, rio, vulcao (lava, fumaca, brilho)")
+	var particles := 0
+	if art != null:
+		for p: CPUParticles3D in art.find_children("*", "CPUParticles3D", true, false):
+			particles += p.amount
+	check(particles > 0 and particles <= 100, "Particulas do mapa limitadas (%d no total)" % particles)
+	check(art != null and art.find_children("*", "Area3D", true, false).is_empty() and art.find_children("*", "CollisionObject3D", true, false).is_empty(), "Lava e cachoeira so visuais: nenhuma Area3D/corpo na arte (sem dano)")
+	var collision: Node3D = world.get_node_or_null("BiomeCollision")
+	check(collision != null and collision.is_in_group("navigation_source") and collision.get_child_count() > 40, "BiomeCollision: solidos das pecas altas (%d) no grupo da navmesh" % (collision.get_child_count() if collision else 0))
+	# Navmesh: do Refugio ate cada regiao e marco (sem area isolada).
+	var refuge := Vector3(0, 0.5, -10)
+	var targets := {"floresta norte": Vector3(-20, 0.5, 27), "canion (pedra)": Vector3(27, 0.5, 15), "arco natural": Vector3(27, 0.5, 4.5),
+		"margem do lago": Vector3(-14.5, 0.5, -22), "cachoeira": Vector3(-28.5, 0.5, -26.5), "borda do vulcao": Vector3(12, 0.5, -40.5),
+		"pocas de lava": Vector3(20, 0.5, -36.5), "ruinas leste": Vector3(29, 0.5, 26), "ruinas oeste": Vector3(-29, 0.5, 20), "corrego": Vector3(-26, 0.5, -6)}
+	var unreachable := []
+	for label in targets:
+		var t: Vector3 = targets[label]
+		var snap := NavigationServer3D.map_get_closest_point(map, t)
+		var path := nav_path(refuge, snap)
+		if Vector2(snap.x, snap.z).distance_to(Vector2(t.x, t.z)) > 1.5 or path.is_empty() or path[path.size() - 1].distance_to(snap) > 0.3:
+			unreachable.append(label)
+	check(unreachable.is_empty(), "Navmesh: Refugio alcanca as 10 areas novas (sem area isolada) %s" % [unreachable])
+	# Navmesh: agua funda e lava ficam fora (o caminho para no bloqueio); o rio
+	# raso e o corrego se atravessam (caminho quase reto de uma margem a outra).
+	var lava_pool: Vector2 = WorldBiomes.LAVA_POOLS[0][0]
+	var to_lake := nav_path(refuge, Vector3(WorldBiomes.LAKE_CENTER.x, 0.0, WorldBiomes.LAKE_CENTER.y))
+	var to_lava := nav_path(refuge, Vector3(lava_pool.x, 0.0, lava_pool.y))
+	var lake_gap := 0.0
+	var lava_gap0 := 0.0
+	if not to_lake.is_empty():
+		lake_gap = Vector2(to_lake[to_lake.size() - 1].x, to_lake[to_lake.size() - 1].z).distance_to(WorldBiomes.LAKE_CENTER)
+	if not to_lava.is_empty():
+		lava_gap0 = Vector2(to_lava[to_lava.size() - 1].x, to_lava[to_lava.size() - 1].z).distance_to(lava_pool)
+	var crossings := []
+	for spec in [[WorldBiomes.RIVER, WorldBiomes.RIVER_HALF], [WorldBiomes.STREAM, WorldBiomes.STREAM_HALF]]:
+		var a: Vector2 = spec[0][0]
+		var b: Vector2 = spec[0][spec[0].size() - 1]
+		var mid := a.lerp(b, 0.55)
+		var side := (b - a).normalized().orthogonal() * (float(spec[1]) + 1.2)
+		var p0 := NavigationServer3D.map_get_closest_point(map, Vector3(mid.x + side.x, 0.0, mid.y + side.y))
+		var p1 := NavigationServer3D.map_get_closest_point(map, Vector3(mid.x - side.x, 0.0, mid.y - side.y))
+		crossings.append(snappedf(path_length(nav_path(p0, p1)) / maxf(p0.distance_to(p1), 0.01), 0.01))
+	check(lake_gap > 3.0 and lava_gap0 > 1.5 and crossings.all(func(c): return c < 1.3), "Navmesh: lago fundo e lava fora (%.1f / %.1f m do centro); rio e corrego atravessaveis (desvio %s)" % [lake_gap, lava_gap0, crossings])
+	# Ondas: as tres rotas (entradas -> Refugio) continuam abertas e diretas.
+	var spawner: Node3D = world.get_node("EnemySpawnPoint")
+	var waves: Node = world.get_node("WaveManager")
+	var routes_ok := true
+	var lengths := []
+	for k in 3:
+		var from: Vector3 = spawner.global_position + waves.spawn_offsets[k]
+		var path := nav_path(NavigationServer3D.map_get_closest_point(map, from), Vector3(0, 0.5, -13))
+		var length := path_length(path)
+		lengths.append(snappedf(length, 0.1))
+		routes_ok = routes_ok and not path.is_empty() and path[path.size() - 1].distance_to(Vector3(0, 0, -13)) < 2.0 and length < from.distance_to(Vector3(0, 0, -13)) * 1.35
+	check(routes_ok, "Ondas: tres rotas ate o Refugio abertas e diretas (comprimentos %s m)" % [lengths])
+	check(spawner.global_position.is_equal_approx(Vector3(0, 0.5, 23)) and waves.route_count == 3, "Ondas: ponto de spawn (0; 0,5; 23) e 3 rotas preservados")
+	# Territorios: so os da Spec 015 (biomas NAO viraram territorios).
+	var tm = world.get_node("TerritoryManager")
+	var ids: Array = tm.TERRITORIES.map(func(t): return t.id)
+	check(ids == [&"center", &"west", &"east"] and tm.total_count() == 3 and is_equal_approx(tm.markers[&"west"].global_position.x, -14.0) and is_equal_approx(tm.markers[&"east"].global_position.x, 13.0), "Territorios intactos: Refugio + Oeste + Leste (biomas nao sao territorios)")
+	# Paredes seguram o Player; lava bloqueia sem dano; cachoeira nao prende.
+	player._invulnerable_left = 0.0
+	var hp0: float = player.current_hp
+	player.global_position = Vector3(29.5, 0.1, 0.0)
+	await push(Vector3(1, 0, 0), 1.5)
+	var x_wall: float = player.global_position.x
+	player.global_position = Vector3(lava_pool.x, 0.1, lava_pool.y + 4.0)
+	await push(Vector3(0, 0, -1), 1.5)
+	var lava_gap: float = Vector2(player.global_position.x, player.global_position.z).distance_to(lava_pool)
+	check(x_wall < WorldBiomes.BOUND_X - 0.3, "Parede leste segura o Player (x = %.2f)" % x_wall)
+	check(lava_gap > float(WorldBiomes.LAVA_POOLS[0][1]) and is_equal_approx(player.current_hp, hp0), "Lava: Player para na borda (%.2f m do centro) e nao perde vida" % lava_gap)
+	var wf: Vector2 = WorldBiomes.WATERFALL
+	player.global_position = Vector3(wf.x + 4.2, 0.1, wf.y + 1.0)
+	await push(Vector3(-1, 0, 0), 1.0)
+	var at_pool: Vector3 = player.global_position
+	await push(Vector3(1, 0, 0.3), 1.2)
+	check(player.global_position.distance_to(at_pool) > 3.0, "Cachoeira: o Player chega a beira do poco e sai livremente")
+	player._invulnerable_left = INF
+	# Camera: nas bordas o Player fica no quadro e a camera segue sem travar.
+	var cam: Camera3D = player.get_node("StrategicCamera")
+	var framed := true
+	for edge in [Vector3(0, 0.1, 30.5), Vector3(-30.5, 0.1, 10), Vector3(30.5, 0.1, 10), Vector3(12, 0.1, -40.5), Vector3(-28.5, 0.1, -26.5)]:
+		player.global_position = edge
+		await physics(90)
+		var screen := cam.unproject_position(player.global_position + Vector3(0, 1, 0))
+		framed = framed and cam.is_position_in_frustum(player.global_position) and get_viewport().get_visible_rect().grow(-40).has_point(screen)
+	check(framed, "Camera: Player enquadrado nas cinco bordas do mundo expandido")
+	player.global_position = Vector3(0, 0.1, -10)
+	await physics(4)

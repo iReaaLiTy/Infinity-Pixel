@@ -1260,6 +1260,50 @@
 				-19.4
 			]
 		],
+		"WorldRegions/Biomes/Forest": [
+			[
+				-22.0,
+				0.0,
+				14.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Biomes/Stone": [
+			[
+				26.0,
+				0.0,
+				12.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Biomes/Volcano": [
+			[
+				14.0,
+				0.0,
+				-36.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Biomes/Water": [
+			[
+				-24.0,
+				0.0,
+				-24.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
 		"WorldRegions/CreatureZones/CommonTerritory": [
 			[
 				-10.0,
@@ -1326,6 +1370,17 @@
 				0.0
 			]
 		],
+		"WorldRegions/Landmarks/Lake": [
+			[
+				-22.5,
+				0.0,
+				-22.0
+			],
+			[
+				12.8,
+				9.6
+			]
+		],
 		"WorldRegions/Landmarks/OldArch": [
 			[
 				0.0,
@@ -1353,6 +1408,28 @@
 				16.0,
 				0.0,
 				17.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/Volcano": [
+			[
+				13.0,
+				0.0,
+				-66.0
+			],
+			[
+				0.0,
+				0.0
+			]
+		],
+		"WorldRegions/Landmarks/Waterfall": [
+			[
+				-32.0,
+				0.0,
+				-31.0
 			],
 			[
 				0.0,
@@ -1473,11 +1550,12 @@
 	"navigation_source": [
 		"Ground",
 		"ArenaArt",
-		"ArenaCollision"
+		"ArenaCollision",
+		"BiomeCollision"
 	],
-	"navmesh_polygons": 532,
-	"navmesh_sha256": "4834ed6228ce1f4c3681895ce9293b9f76e98c5a6334debdd3f600e98f0c76fb",
-	"navmesh_vertices": 416,
+	"navmesh_polygons": 944,
+	"navmesh_sha256": "ad1b74271af23e57474e90b622e98aacad5549a7b869bd374f400e768adffd8d",
+	"navmesh_vertices": 758,
 	"solids": {
 		"ArenaArt/Boundary0": {
 			"class": "StaticBody3D",
@@ -1491,9 +1569,9 @@
 				0.0,
 				0.0,
 				1.0,
-				24.2,
+				32.0,
 				1.0,
-				2.0
+				-5.0
 			],
 			"groups": [],
 			"layer": 1,
@@ -1521,7 +1599,7 @@
 					"size": [
 						0.4,
 						2.0,
-						52.0
+						74.0
 					],
 					"type": "BoxShape3D"
 				}
@@ -1539,9 +1617,9 @@
 				0.0,
 				0.0,
 				1.0,
-				-24.2,
+				-32.0,
 				1.0,
-				2.0
+				-5.0
 			],
 			"groups": [],
 			"layer": 1,
@@ -1569,7 +1647,7 @@
 					"size": [
 						0.4,
 						2.0,
-						52.0
+						74.0
 					],
 					"type": "BoxShape3D"
 				}
@@ -1589,7 +1667,7 @@
 				1.0,
 				0.0,
 				1.0,
-				28.2
+				32.0
 			],
 			"groups": [],
 			"layer": 1,
@@ -1615,7 +1693,7 @@
 					],
 					"margin": 0.04,
 					"size": [
-						48.0,
+						64.0,
 						2.0,
 						0.4
 					],
@@ -1637,7 +1715,7 @@
 				1.0,
 				0.0,
 				1.0,
-				-24.2
+				-42.0
 			],
 			"groups": [],
 			"layer": 1,
@@ -1663,7 +1741,7 @@
 					],
 					"margin": 0.04,
 					"size": [
-						48.0,
+						64.0,
 						2.0,
 						0.4
 					],
@@ -4782,6 +4860,3858 @@
 				}
 			]
 		},
+		"BiomeCollision/BiomeArchPillar0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				24.7,
+				1.8,
+				8.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.85,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeArchPillar2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				29.3,
+				1.8,
+				8.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.85,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt53": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-11.6308,
+				0.0,
+				-27.6389
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:82531442c19eb180626490d82947f3cbef4ccb3eb2576b77880d5974c273ba14",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt54": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-10.3958,
+				0.0,
+				-33.4044
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:873215c6ee37843475179e31039b523531e7ecf8e0c3f0282fc4fb94d82a2471",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt55": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-7.8036,
+				0.7733,
+				-35.9474
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.5466,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.9285,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt56": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-7.5284,
+				0.8993,
+				-31.674
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.7985,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8651,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt57": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-4.5015,
+				1.2175,
+				-39.9565
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.435,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.7632,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt59": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-6.1873,
+				0.0,
+				-33.5534
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:ef08e6309a1a066eec60873afa71b50cbd7cd2928d8375bd99954aef657c6a23",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt60": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-2.48,
+				1.3055,
+				-39.1884
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6109,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8367,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt62": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-1.3714,
+				0.7681,
+				-34.8652
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.5362,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8529,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt63": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				1.0143,
+				0.762,
+				-23.3713
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.5239,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.9013,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt64": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				10.2101,
+				0.6344,
+				-38.5402
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2687,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.9181,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt67": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				13.2927,
+				0.7863,
+				-26.7895
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.5727,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.849,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt69": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				15.6087,
+				1.1533,
+				-27.2395
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.3067,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.81,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt70": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				20.2829,
+				0.9413,
+				-31.2341
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.8826,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8753,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt71": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				22.1738,
+				0.7058,
+				-39.1661
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.4116,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.7426,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBasalt78": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				29.1008,
+				1.329,
+				-33.8339
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6579,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8896,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree51": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-13.1047,
+				1.3,
+				-34.8296
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree52": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-11.4938,
+				1.3,
+				-30.9699
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree58": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-4.7112,
+				1.3,
+				-37.1712
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree61": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-0.3755,
+				1.3,
+				-38.4247
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree68": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				13.4012,
+				1.3,
+				-24.268
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree72": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				21.7995,
+				1.3,
+				-31.2958
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree73": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				21.9307,
+				1.3,
+				-26.4436
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree75": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				25.1522,
+				1.3,
+				-39.2777
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeBurntTree77": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				27.656,
+				1.3,
+				-36.3031
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.6,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.36,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeCanyon0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				24.199,
+				0.0,
+				12.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:d9ba88b06d978f7b4408e9adcffb8fa2fda8bafbf217ff9438405b1439992779",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeCanyon1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				24.3157,
+				0.0,
+				14.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:cbe9ed1e419aa752dffe18584f81c20f2b381a52827dbc2f5f64e5310908d9f6",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeCanyon2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				24.5544,
+				0.0,
+				16.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:c901e0012d03729dd9dc30f5b1fa182c065d5a07bc38e9fdadf00224cfdef5c2",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeCanyon3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				30.44,
+				0.0,
+				18.875
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:9f6e2a1e04dc9646a62d2fc3266685ab220a9ec8921cdbf8f92036b5f55f8e37",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeCanyon4": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				30.2547,
+				0.0,
+				21.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:c48cd9e755aacc29254e5118527f3b2b0ea087357c1bb306b73d4892fa60f2dc",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeEntryStone0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.6,
+				1.9,
+				-1.8
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.8,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.78,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeEntryStone1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.6,
+				1.9,
+				5.8
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.8,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.78,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeEntryStone2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				25.6,
+				1.9,
+				-1.8
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.8,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.78,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeEntryStone3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				25.6,
+				1.9,
+				5.8
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.8,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.78,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeEntryStone4": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-4.0,
+				1.9,
+				29.6
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.8,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.78,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeEntryStone5": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				4.0,
+				1.9,
+				29.6
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 3.8,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.78,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-30.0214,
+				0.45,
+				-33.7086
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.3981,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-28.8449,
+				0.4868,
+				-33.766
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9736,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.63,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-28.7319,
+				0.4567,
+				-32.6358
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9135,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5911,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock3": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-28.0057,
+				0.45,
+				-31.9577
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.4766,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock4": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-27.9426,
+				0.45,
+				-31.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.4134,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock5": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-28.3639,
+				0.45,
+				-30.1434
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5518,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock6": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-28.682,
+				0.4649,
+				-29.3336
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9298,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.6016,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock7": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-29.0122,
+				0.45,
+				-28.4152
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5774,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeFallRock8": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-29.811,
+				0.5032,
+				-27.878
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.0064,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.6512,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeLake": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:a41c9547d513b5ce9031516a841b4bc71b33e11b51e8fa29efe6ac74101a87b0",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeLavaPool0": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:8af71264844128c8d60b04631e62bbcb76aec2339f72a3747ce84241b67d0bc2",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeLavaPool1": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:d20cea8c8c3dfa038a61eb94df69c023987a8b296bdb81fe804fbff25a7a35ee",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeLavaPool2": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:3a481945c6c5ff70811b4ec3ba34c67d1ed4d17a65347c9cfde677c0890b3e3e",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeLog76": {
+			"class": "StaticBody3D",
+			"global": [
+				0.6886,
+				0.0,
+				-0.7251,
+				0.0,
+				1.0,
+				0.0,
+				0.7251,
+				0.0,
+				0.6886,
+				25.3517,
+				0.3,
+				-10.0076
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						2.5282,
+						0.6,
+						0.8
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeMossRock42": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-28.1841,
+				0.4929,
+				24.3775
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9858,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.7654,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinBlock26": {
+			"class": "StaticBody3D",
+			"global": [
+				-0.8568,
+				0.0,
+				0.5156,
+				0.0,
+				1.0,
+				0.0,
+				-0.5156,
+				0.0,
+				-0.8568,
+				25.7326,
+				0.3,
+				26.8766
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						1.2982,
+						0.605,
+						0.9253
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinBlock29": {
+			"class": "StaticBody3D",
+			"global": [
+				-0.3994,
+				0.0,
+				-0.9168,
+				0.0,
+				1.0,
+				0.0,
+				0.9168,
+				0.0,
+				-0.3994,
+				-27.5775,
+				0.3,
+				18.7938
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						1.2414,
+						0.605,
+						0.9448
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinBlock31": {
+			"class": "StaticBody3D",
+			"global": [
+				-0.6533,
+				0.0,
+				-0.7571,
+				0.0,
+				1.0,
+				0.0,
+				0.7571,
+				0.0,
+				-0.6533,
+				-28.0297,
+				0.3,
+				14.7433
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						1.3946,
+						0.605,
+						0.8777
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinBlock33": {
+			"class": "StaticBody3D",
+			"global": [
+				-0.8355,
+				0.0,
+				0.5494,
+				0.0,
+				1.0,
+				0.0,
+				-0.5494,
+				0.0,
+				-0.8355,
+				-8.2348,
+				0.3,
+				28.5087
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"size": [
+						1.3407,
+						0.605,
+						0.916
+					],
+					"type": "BoxShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinColumn25": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				27.5347,
+				0.5881,
+				24.5873
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.1762,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinColumn27": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				24.3956,
+				0.5236,
+				25.4212
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.0473,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinColumn28": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.7388,
+				0.6023,
+				17.0783
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.2045,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinColumn30": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-29.4163,
+				0.7676,
+				16.7631
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.5353,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeRuinColumn32": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-10.2386,
+				0.6535,
+				30.0009
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.3069,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.5,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeShoreTree37": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-30.007,
+				1.2,
+				-39.0222
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeShoreTree39": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-30.0014,
+				1.2,
+				19.4184
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeShoreTree40": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-27.8116,
+				1.2,
+				-36.3478
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeShoreTree41": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-28.3452,
+				1.2,
+				21.7622
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeShoreTree43": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.3034,
+				1.2,
+				-36.9204
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeShoreTree49": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-17.2421,
+				1.2,
+				-36.35
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeShoreTree50": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-16.8569,
+				1.2,
+				-34.6502
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeStone65": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				9.9547,
+				0.0,
+				26.7964
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:7276ec4d02ece803bacede593f543b3b102108ac42825b69990d08fc0e0265a8",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeStone74": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				21.7555,
+				0.0,
+				28.6162
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:e22719fe073224f84f348ccaef58983742afb96047fb65a884259243e71e0a49",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeStone79": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				29.0393,
+				0.0,
+				-14.8468
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:d2ab1af6c1346c7f007501e22f86a2030aa033ee74f505e7673e59cabf8478d1",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeStone80": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				29.7908,
+				0.4993,
+				-8.7253
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 0.9986,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.966,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeStone81": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				29.146,
+				0.5934,
+				0.5837
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 1.1867,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.8847,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeTree38": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-30.0341,
+				1.2,
+				13.7882
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeTree44": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.2942,
+				1.2,
+				15.2053
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeTree45": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-26.1771,
+				1.2,
+				19.8606
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeTree46": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-23.5528,
+				1.2,
+				7.7199
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeTree47": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-23.2933,
+				1.2,
+				13.6934
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeTree48": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-23.2583,
+				1.2,
+				22.8365
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeTree66": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				10.6557,
+				1.2,
+				29.0863
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"height": 2.4,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"radius": 0.42,
+					"type": "CylinderShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeWatchtower": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-7.5,
+				0.0,
+				-29.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:1e720aebe04f4593d1cf4969145fef4a98702263bf8f4e150c685eb62c1c6d57",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
+		"BiomeCollision/BiomeWaterfallPool": {
+			"class": "StaticBody3D",
+			"global": [
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"groups": [
+				"solid_obstacles"
+			],
+			"layer": 1,
+			"mask": 0,
+			"shapes": [
+				{
+					"custom_solver_bias": 0.0,
+					"disabled": false,
+					"holder": "CollisionShape3D",
+					"local": [
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					"margin": 0.04,
+					"points": "sha256:c655f787b10d783b8ad0627e688f1e875298fba8da8e72f53805b0f05d2d88d2",
+					"type": "ConvexPolygonShape3D"
+				}
+			]
+		},
 		"Collectables/Stone1": {
 			"class": "StaticBody3D",
 			"global": [
@@ -4809,7 +8739,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 1.2,
-					"holder": "@CollisionShape3D@155",
+					"holder": "@CollisionShape3D@102",
 					"local": [
 						1.0,
 						0.0,
@@ -4857,7 +8787,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 1.2,
-					"holder": "@CollisionShape3D@162",
+					"holder": "@CollisionShape3D@106",
 					"local": [
 						1.0,
 						0.0,
@@ -4905,7 +8835,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 1.2,
-					"holder": "@CollisionShape3D@169",
+					"holder": "@CollisionShape3D@110",
 					"local": [
 						1.0,
 						0.0,
@@ -4953,7 +8883,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 1.2,
-					"holder": "@CollisionShape3D@176",
+					"holder": "@CollisionShape3D@114",
 					"local": [
 						1.0,
 						0.0,
@@ -5001,7 +8931,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 1.2,
-					"holder": "@CollisionShape3D@183",
+					"holder": "@CollisionShape3D@118",
 					"local": [
 						1.0,
 						0.0,
@@ -5049,7 +8979,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 1.2,
-					"holder": "@CollisionShape3D@190",
+					"holder": "@CollisionShape3D@122",
 					"local": [
 						1.0,
 						0.0,
@@ -5097,7 +9027,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@99",
+					"holder": "@CollisionShape3D@62",
 					"local": [
 						1.0,
 						0.0,
@@ -5145,7 +9075,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@106",
+					"holder": "@CollisionShape3D@67",
 					"local": [
 						1.0,
 						0.0,
@@ -5193,7 +9123,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@113",
+					"holder": "@CollisionShape3D@72",
 					"local": [
 						1.0,
 						0.0,
@@ -5241,7 +9171,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@120",
+					"holder": "@CollisionShape3D@77",
 					"local": [
 						1.0,
 						0.0,
@@ -5289,7 +9219,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@127",
+					"holder": "@CollisionShape3D@82",
 					"local": [
 						1.0,
 						0.0,
@@ -5337,7 +9267,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@134",
+					"holder": "@CollisionShape3D@87",
 					"local": [
 						1.0,
 						0.0,
@@ -5385,7 +9315,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@141",
+					"holder": "@CollisionShape3D@92",
 					"local": [
 						1.0,
 						0.0,
@@ -5433,7 +9363,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 3.0,
-					"holder": "@CollisionShape3D@148",
+					"holder": "@CollisionShape3D@97",
 					"local": [
 						1.0,
 						0.0,
@@ -5492,13 +9422,13 @@
 						1.0,
 						0.0,
 						-0.5,
-						2.0
+						-5.0
 					],
 					"margin": 0.04,
 					"size": [
-						48.0,
+						64.0,
 						1.0,
-						52.0
+						74.0
 					],
 					"type": "BoxShape3D"
 				}
@@ -5531,7 +9461,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 2.0,
-					"holder": "@CollisionShape3D@212",
+					"holder": "@CollisionShape3D@137",
 					"local": [
 						1.0,
 						0.0,
@@ -5579,7 +9509,7 @@
 					"custom_solver_bias": 0.0,
 					"disabled": false,
 					"height": 2.0,
-					"holder": "@CollisionShape3D@197",
+					"holder": "@CollisionShape3D@126",
 					"local": [
 						1.0,
 						0.0,

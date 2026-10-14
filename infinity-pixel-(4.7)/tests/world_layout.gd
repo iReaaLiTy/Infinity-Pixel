@@ -41,6 +41,11 @@ func _ready() -> void:
 	for marker: Marker3D in regions.find_children("*", "Marker3D", true, false):
 		if marker.name in ["Refuge", "StoneGarden"]:
 			continue # landmarks indicate solids, not a walk destination
+		# World 6.0: lago, cachoeira e vulcao tambem marcam solidos/cenario, e os
+		# marcadores de Biomes sao centros de regiao (pesos), nao destinos; a
+		# chegada a cada regiao nova e conferida em tests/world6.gd (map_checks).
+		if marker.get_parent().name == "Biomes" or (marker.get_parent().name == "Landmarks" and marker.name in ["Waterfall", "Lake", "Volcano"]):
+			continue
 		destinations[String(regions.get_path_to(marker))] = marker.global_position
 	check(NavigationServer3D.map_get_iteration_id(map) > 0, "Navmesh sincronizada")
 	for label in destinations:

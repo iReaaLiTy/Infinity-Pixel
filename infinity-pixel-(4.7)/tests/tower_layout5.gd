@@ -123,7 +123,11 @@ func _ready() -> void:
 	var l1: float = preload("res://scenes/world/defense_tower.gd").LEVELS[0].range
 	for entry_name in ["WestEntry", "RuinEntry", "EastEntry"]:
 		var entry: Vector3 = world.get_node("WorldRegions/NightRoutes/" + entry_name).global_position
-		var route := NavigationServer3D.map_get_path(map, entry, refuge, true)
+		# World 6.0: o invasor real para no slot de aproximacao do Refugio mais perto
+		# dele (ApproachSlots.claim), do lado de chegada; o centro do Refugio e
+		# solido e, na navmesh nova, o ponto mais proximo dele caiu no lado sul.
+		var arrival: Vector3 = refuge + Vector3(entry.x - refuge.x, 0, entry.z - refuge.z).normalized() * 2.4
+		var route := NavigationServer3D.map_get_path(map, entry, arrival, true)
 		var now := coverage_of(route, real.values(), l1)
 		var before := coverage_of(route, OLD.values(), l1)
 		check(now[0] >= 12.0 and now[0] >= before[0] * 0.9, "%s: %.1f m do caminho sob alcance L1 de %.0f m (layout antigo: %.1f m)" % [entry_name, now[0], l1, before[0]])

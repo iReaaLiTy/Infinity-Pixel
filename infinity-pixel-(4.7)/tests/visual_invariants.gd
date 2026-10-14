@@ -3,11 +3,17 @@ extends Node
 # Spec 017A: a reforma visual nao pode mexer em fisica, navegacao nem posicoes
 # de gameplay. Compara o mundo real (main.tscn -> start_game) com a linha de
 # base gravada ANTES da reforma (tests/visual_invariants_baseline.json).
+# World 6.0: linha de base REGRAVADA de proposito para o mundo expandido
+# (paredes e chao novos, BiomeCollision, navmesh rebake 4834ed62 -> nova). O
+# diff contra a linha de base 017A esta em docs/validation/world-6-evidence/
+# visual_invariants_diff_vs_baseline_017A.log: so Boundary0-3 e Ground mudaram;
+# nenhuma posicao de gameplay mudou.
 # Uso: -- --report=<json>            compara com a linha de base
 #      -- --write-baseline=<json>    grava uma nova linha de base (so na Etapa 1)
 const BASELINE := "res://tests/visual_invariants_baseline.json"
 const NAVMESH := "res://scenes/world/arena_navmesh.tres"
 const COLLISION := "res://scenes/world/arena_collision.tscn"
+const Biomes := preload("res://scenes/world/world_biomes.gd")
 
 var passed: Array[String] = []
 var failed: Array[String] = []
@@ -170,7 +176,7 @@ func _ready() -> void:
 	if refuge_art != null:
 		check(refuge_art.find_children("*", "CollisionObject3D", true, false).is_empty(), "RefugeArt sem nenhum corpo fisico")
 		check(not refuge_art.is_in_group("navigation_source"), "RefugeArt fora de navigation_source")
-		# Regra 4: no chao andavel (dentro dos Boundary: |x| < 24,2; -24,2 < z < 28,2)
+		# Regra 4: no chao andavel (dentro dos Boundary; World 6.0: mundo expandido)
 		# so pecas rentes (ate 0,15 m de altura propria); acima de 0,3 m, so sobre
 		# um solido (meta on_solid, conferida contra o solido real abaixo).
 		var tall := []
@@ -180,7 +186,7 @@ func _ready() -> void:
 				continue
 			var box := mi.global_transform * mi.get_aabb()
 			var c := box.get_center()
-			var walkable := absf(c.x) < 24.2 and c.z > -24.2 and c.z < 28.2
+			var walkable := Biomes.in_bounds(Vector2(c.x, c.z), 0.0)
 			if not walkable or (box.size.y <= 0.15) or box.end.y <= 0.3:
 				continue
 			var probe := PhysicsPointQueryParameters3D.new()
@@ -207,12 +213,36 @@ func _ready() -> void:
 			for v in mi.mesh.get_faces():
 				var g := mi.global_transform * v
 				vertices += 1
-				if g.y <= 0.3 or absf(g.x) >= 24.0 or g.z <= -24.0 or g.z >= 28.0:
+				if g.y <= 0.3 or not Biomes.in_bounds(Vector2(g.x, g.z), 0.2):
 					continue
 				probe.position = g
 				if space.intersect_point(probe, 1).is_empty():
 					loose[String(mi.name)] = int(loose.get(String(mi.name), 0)) + 1
 		check(loose.is_empty(), "ValleyArt: nenhum vertice acima de 0,3 m fora de solido na area andavel (%d vertices; soltos %s)" % [vertices, loose])
+	# World 6.0: a arte das quatro regioes segue a mesma regra da flora (raio
+	# para baixo): entre 0,3 m e 1,9 m no chao andavel, so sobre um solido.
+	var biome_art := world.get_node_or_null("BiomeArt")
+	if biome_art != null:
+		check(biome_art.find_children("*", "CollisionObject3D", true, false).is_empty() \
+			and not biome_art.is_in_group("navigation_source"), "BiomeArt sem corpo fisico e fora de navigation_source")
+		var space := world.get_world_3d().direct_space_state
+		var ray := PhysicsRayQueryParameters3D.new()
+		ray.collision_mask = 1 | 8
+		var loose := {}
+		var vertices := 0
+		for mi: MeshInstance3D in biome_art.find_children("*", "MeshInstance3D", true, false):
+			if not mi.is_visible_in_tree():
+				continue
+			for v in mi.mesh.get_faces():
+				var g := mi.global_transform * v
+				vertices += 1
+				if g.y <= 0.3 or g.y >= 1.9 or not Biomes.in_bounds(Vector2(g.x, g.z), 0.2):
+					continue
+				ray.from = g + Vector3(0, 0.01, 0)
+				ray.to = Vector3(g.x, -0.2, g.z)
+				if space.intersect_ray(ray).is_empty():
+					loose[String(mi.name)] = int(loose.get(String(mi.name), 0)) + 1
+		check(loose.is_empty(), "BiomeArt: nada entre 0,3 e 1,9 m fora de solido no chao andavel (%d vertices; soltos %s)" % [vertices, loose])
 	var slot = world.get_node("DefenseSlots/SlotWestInner")
 	check(slot.preview_ring != null and slot.has_method("build") and slot.is_empty(), "API do ponto de defesa preservada (preview_ring, build, tower)")
 	print("RESULT: %d passed, %d failed" % [passed.size(), failed.size()])
